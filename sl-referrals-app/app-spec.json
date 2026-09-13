@@ -1,0 +1,529 @@
+{
+  "solution": { "uniqueName": "SLReferralsPOC", "displayName": "SL Referrals & Rationale", "publisherPrefix": "sl" },
+  "app": {
+    "name": "SL Referrals & Rationale",
+    "description": "Referral and underwriting-authority approval workbench (POC data model and UI shell).",
+    "newLook": true
+  },
+  "globalChoices": [
+    { "name": "sl_detailtemplate", "displayName": "Detail Template",
+      "options": ["General","Appetite","Limit","Pricing","Duration","AdditionalCover","Wording","USExposure","RiskManagement","Reinsurance","VoidCover","Geography","Moratorium"] },
+    { "name": "sl_decisiontype", "displayName": "Decision Type",
+      "options": ["Authorised","Authorised with Recommendations","Authorised with Conditions","More Information Required","Onward for Approval","Rejected"] },
+    { "name": "sl_authorityvalidationresult", "displayName": "Authority Validation Result",
+      "options": ["Not Checked","Valid","Invalid","Expired","Insufficient Rank","Product Mismatch","Disabled User","Snapshot Stale"] },
+    { "name": "sl_priority", "displayName": "Priority", "options": ["High","Medium","Low"] },
+    { "name": "sl_transactiontype", "displayName": "Transaction Type", "options": ["New Business","Renewal","Mid-Term Adjustment","Other"] },
+    { "name": "sl_policytype", "displayName": "Policy Type", "options": ["New","Renewal","Endorsement","Other"] },
+    { "name": "sl_participantrole", "displayName": "Participant Role", "options": ["Additional Contact","Observer","Secondary Underwriter","Manager"] },
+    { "name": "sl_licencescheme", "displayName": "Licence Scheme", "options": ["SL UK & RSAL","CL UK","Other/Legacy"] },
+    { "name": "sl_snapshotintegrity", "displayName": "Snapshot Integrity", "options": ["Not checked","Current","Stale"] },
+    { "name": "sl_processingstatus", "displayName": "Processing Status", "options": ["Pending","Processing","Sent","Failed","Dead-lettered","Skipped"] },
+    { "name": "sl_eventtype", "displayName": "Notification Event Type",
+      "options": ["Submitted","More Information Requested","Resubmitted","Onward","Decision Recorded","Parent Action Required","Parent Completed","Reminder","Escalation","Cancelled","Folder Provisioning Failure"] },
+    { "name": "sl_folderstatus", "displayName": "Folder Provisioning Status", "options": ["Not Requested","Requested","Provisioning","Provisioned","Failed"] },
+    { "name": "sl_sourcesystem", "displayName": "Source System", "options": ["CRM","Imported","Integration"] },
+    { "name": "sl_reinsurancetype", "displayName": "Reinsurance Type", "options": ["Facultative","Treaty","Other"] }
+  ],
+  "entities": [
+    {
+      "schemaName": "sl_country", "displayName": "Country", "pluralName": "Countries",
+      "description": "Shared country reference data used as referral and authority metadata.",
+      "primaryAttribute": { "schemaName": "sl_name", "displayName": "Country Name" },
+      "columns": [
+        { "schemaName": "sl_isoalpha2", "displayName": "ISO Alpha-2", "type": "Text", "maxLength": 2, "required": true },
+        { "schemaName": "sl_isoalpha3", "displayName": "ISO Alpha-3", "type": "Text", "maxLength": 3 },
+        { "schemaName": "sl_numericcode", "displayName": "Numeric Code", "type": "Text", "maxLength": 3 }
+      ],
+      "alternateKeys": [ { "schemaName": "sl_akcountryalpha2", "displayName": "AK_Country_Alpha2", "columns": ["sl_isoalpha2"] } ]
+    },
+    {
+      "schemaName": "sl_authoritylevel", "displayName": "Authority Level", "pluralName": "Authority Levels",
+      "description": "The comparable authority-rank catalogue that gates who may approve a referral item.",
+      "primaryAttribute": { "schemaName": "sl_name", "displayName": "Authority Level Name" },
+      "columns": [
+        { "schemaName": "sl_levelcode", "displayName": "Level Code", "type": "Text", "maxLength": 20, "required": true,
+          "description": "Stable integration and rule code, e.g. 1-7 or C." },
+        { "schemaName": "sl_comparisonrank", "displayName": "Comparison Rank", "type": "Integer", "minValue": 0,
+          "description": "Comparable authority magnitude; rank direction is environment-configured." },
+        { "schemaName": "sl_description", "displayName": "Description", "type": "Memo", "maxLength": 2000 },
+        { "schemaName": "sl_canapprovereferrals", "displayName": "Can Approve Referrals", "type": "Boolean", "defaultValue": false,
+          "description": "Eligibility gate for referral decisions." }
+      ],
+      "alternateKeys": [ { "schemaName": "sl_akauthoritylevelcode", "displayName": "AK_AuthorityLevel_Code", "columns": ["sl_levelcode"] } ]
+    },
+    {
+      "schemaName": "sl_underwritingauthority", "displayName": "Underwriting Authority", "pluralName": "Underwriting Authorities",
+      "description": "One effective-dated authority assignment: a person, product and level that may approve referrals in that window.",
+      "primaryAttribute": { "schemaName": "sl_name", "displayName": "Authority Assignment Name" },
+      "columns": [
+        { "schemaName": "sl_assignmentnumber", "displayName": "Authority Assignment Number", "type": "AutoNumber", "autoNumberFormat": "UA-{SEQNUM:000000}",
+          "description": "Stable human reference, immutable after create." },
+        { "schemaName": "sl_authorityranksnapshot", "displayName": "Authority Rank Snapshot", "type": "Integer",
+          "description": "Cache of the live level rank, used for client prefiltering and reconciliation." },
+        { "schemaName": "sl_canapprovesnapshot", "displayName": "Can Approve Referrals Snapshot", "type": "Boolean", "defaultValue": false },
+        { "schemaName": "sl_licencescheme", "displayName": "Licence Scheme", "type": "Choice", "globalChoice": "sl_licencescheme", "required": true },
+        { "schemaName": "sl_effectivefrom", "displayName": "Effective From", "type": "DateTime", "dateFormat": "DateOnly", "required": true },
+        { "schemaName": "sl_effectiveto", "displayName": "Effective To", "type": "DateTime", "dateFormat": "DateOnly",
+          "description": "Blank means open-ended." },
+        { "schemaName": "sl_lastverifiedon", "displayName": "Last Verified On", "type": "DateTime" },
+        { "schemaName": "sl_licenceurl", "displayName": "SharePoint Licence URL", "type": "Text", "maxLength": 2000, "format": "Url" },
+        { "schemaName": "sl_authoritymatrixurl", "displayName": "Authority Matrix URL", "type": "Text", "maxLength": 2000, "format": "Url" },
+        { "schemaName": "sl_sourcesystem", "displayName": "Source System", "type": "Text", "maxLength": 50 },
+        { "schemaName": "sl_sourcerecordid", "displayName": "Source Record ID", "type": "Text", "maxLength": 100 },
+        { "schemaName": "sl_restrictions", "displayName": "Restrictions / Notes", "type": "Memo", "maxLength": 4000 },
+        { "schemaName": "sl_snapshotintegrity", "displayName": "Snapshot Integrity", "type": "Choice", "globalChoice": "sl_snapshotintegrity", "required": true }
+      ],
+      "statusReasons": [
+        { "label": "Scheduled", "state": "Active" }, { "label": "Current", "state": "Active" }, { "label": "Suspended", "state": "Active" },
+        { "label": "Expired", "state": "Inactive" }, { "label": "Revoked", "state": "Inactive" }, { "label": "Superseded", "state": "Inactive" }
+      ],
+      "alternateKeys": [
+        { "schemaName": "sl_akuaassignmentnumber", "displayName": "AK_UA_AssignmentNumber", "columns": ["sl_assignmentnumber"] },
+        { "schemaName": "sl_akuasourcerecord", "displayName": "AK_UA_SourceRecord", "columns": ["sl_sourcesystem","sl_sourcerecordid"] }
+      ]
+    },
+    {
+      "schemaName": "sl_referralreason", "displayName": "Referral Reason", "pluralName": "Referral Reasons",
+      "description": "Reference catalogue of business reasons a referral item can be raised for.",
+      "primaryAttribute": { "schemaName": "sl_name", "displayName": "Referral Reason Name" },
+      "columns": [
+        { "schemaName": "sl_reasoncode", "displayName": "Reason Code", "type": "Text", "maxLength": 20, "required": true },
+        { "schemaName": "sl_detailtemplate", "displayName": "Detail Template", "type": "Choice", "globalChoice": "sl_detailtemplate", "required": true,
+          "description": "Chooses which reason-specific field group is shown on the item." },
+        { "schemaName": "sl_description", "displayName": "Description", "type": "Memo", "maxLength": 2000 },
+        { "schemaName": "sl_guidance", "displayName": "Guidance", "type": "Memo", "maxLength": 4000 },
+        { "schemaName": "sl_guidanceurl", "displayName": "Guidance URL", "type": "Text", "maxLength": 2000, "format": "Url" },
+        { "schemaName": "sl_defaultsla", "displayName": "Default SLA Days", "type": "Integer", "minValue": 0, "maxValue": 365 },
+        { "schemaName": "sl_requirescover", "displayName": "Requires Cover / Section", "type": "Boolean", "defaultValue": true },
+        { "schemaName": "sl_requiresevidence", "displayName": "Requires Supporting Evidence", "type": "Boolean", "defaultValue": false },
+        { "schemaName": "sl_displayorder", "displayName": "Display Order", "type": "Integer", "minValue": 0, "maxValue": 10000 },
+        { "schemaName": "sl_effectivefrom", "displayName": "Effective From", "type": "DateTime", "dateFormat": "DateOnly" },
+        { "schemaName": "sl_effectiveto", "displayName": "Effective To", "type": "DateTime", "dateFormat": "DateOnly" }
+      ],
+      "alternateKeys": [ { "schemaName": "sl_akreasoncode", "displayName": "AK_Reason_Code", "columns": ["sl_reasoncode"] } ]
+    },
+    {
+      "schemaName": "sl_coversection", "displayName": "Cover / Section", "pluralName": "Covers / Sections",
+      "description": "Product-specific cover catalogue that a referral item's reason is applied against.",
+      "primaryAttribute": { "schemaName": "sl_name", "displayName": "Cover / Section Name" },
+      "columns": [
+        { "schemaName": "sl_covercode", "displayName": "Cover Code", "type": "Text", "maxLength": 30, "required": true },
+        { "schemaName": "sl_isleaf", "displayName": "Is Leaf", "type": "Boolean", "defaultValue": true,
+          "description": "Only leaf rows are selectable on a referral item." },
+        { "schemaName": "sl_description", "displayName": "Description", "type": "Memo", "maxLength": 2000 },
+        { "schemaName": "sl_externalcode", "displayName": "External Code", "type": "Text", "maxLength": 100 },
+        { "schemaName": "sl_displayorder", "displayName": "Display Order", "type": "Integer", "minValue": 0, "maxValue": 10000 },
+        { "schemaName": "sl_effectivefrom", "displayName": "Effective From", "type": "DateTime", "dateFormat": "DateOnly" },
+        { "schemaName": "sl_effectiveto", "displayName": "Effective To", "type": "DateTime", "dateFormat": "DateOnly" }
+      ]
+    },
+    {
+      "schemaName": "sl_referral", "displayName": "Referral", "pluralName": "Referrals", "hasNotes": true,
+      "description": "The secured parent approval cycle for one Opportunity/Product combination; holds shared customer, broker, underwriting, transaction, risk and financial context.",
+      "primaryAttribute": { "schemaName": "sl_name", "displayName": "Referral Number", "autoNumberFormat": "REF-{SEQNUM:000000}" },
+      "columns": [
+        { "schemaName": "sl_clientrequestid", "displayName": "Client Request ID", "type": "Text", "maxLength": 64 },
+        { "schemaName": "sl_referralcyclenumber", "displayName": "Referral Cycle Number", "type": "Integer", "minValue": 1,
+          "description": "Distinguishes multiple referral cycles for one Opportunity." },
+        { "schemaName": "sl_productnamesnapshot", "displayName": "Product Name Snapshot", "type": "Text", "maxLength": 200 },
+        { "schemaName": "sl_customerid", "displayName": "Customer / Insured", "type": "Customer" },
+        { "schemaName": "sl_transactiontype", "displayName": "Transaction Type", "type": "Choice", "globalChoice": "sl_transactiontype", "required": true },
+        { "schemaName": "sl_policytype", "displayName": "Policy Type", "type": "Choice", "globalChoice": "sl_policytype" },
+        { "schemaName": "sl_inceptiondate", "displayName": "Inception / Effective Date", "type": "DateTime", "dateFormat": "DateOnly" },
+        { "schemaName": "sl_priority", "displayName": "Priority", "type": "Choice", "globalChoice": "sl_priority", "required": true },
+        { "schemaName": "sl_businessdescription", "displayName": "Common Business / Risk Description", "type": "Memo", "maxLength": 8000 },
+        { "schemaName": "sl_fullpremium", "displayName": "100% Premium", "type": "Money", "minValue": 0 },
+        { "schemaName": "sl_intactshare", "displayName": "Intact Share %", "type": "Decimal", "minValue": 0, "maxValue": 100, "precision": 4 },
+        { "schemaName": "sl_intactpremium", "displayName": "Intact Premium", "type": "Money", "minValue": 0 },
+        { "schemaName": "sl_intactnwp", "displayName": "Intact NWP", "type": "Money", "minValue": 0 },
+        { "schemaName": "sl_ukpremium", "displayName": "UK Premium", "type": "Money", "minValue": 0 },
+        { "schemaName": "sl_maxpolicyeml", "displayName": "Maximum Policy Limit / EML 100%", "type": "Decimal", "minValue": 0, "precision": 2 },
+        { "schemaName": "sl_emlamount", "displayName": "PL / EML Amount", "type": "Decimal", "minValue": 0, "precision": 2 },
+        { "schemaName": "sl_externalquotenumber", "displayName": "External Quote Number", "type": "Text", "maxLength": 100 },
+        { "schemaName": "sl_externalquoteversion", "displayName": "External Quote Version", "type": "Text", "maxLength": 50 },
+        { "schemaName": "sl_externalquoteurl", "displayName": "External Quote URL", "type": "Text", "maxLength": 2000, "format": "Url" },
+        { "schemaName": "sl_policyreference", "displayName": "Policy Reference", "type": "Text", "maxLength": 100 },
+        { "schemaName": "sl_uwfolderurl", "displayName": "UW Folder URL", "type": "Text", "maxLength": 2000, "format": "Url", "isValidForCreate": false },
+        { "schemaName": "sl_folderstatus", "displayName": "Folder Provisioning Status", "type": "Choice", "globalChoice": "sl_folderstatus", "isValidForCreate": false },
+        { "schemaName": "sl_ratingtoolurl", "displayName": "Authority / Rating Tool URL", "type": "Text", "maxLength": 2000, "format": "Url" },
+        { "schemaName": "sl_haseverbeensubmitted", "displayName": "Has Ever Been Submitted", "type": "Boolean", "defaultValue": false, "isValidForUpdate": false },
+        { "schemaName": "sl_submittedon", "displayName": "Submitted On", "type": "DateTime", "isValidForUpdate": false },
+        { "schemaName": "sl_lastsubmittedon", "displayName": "Last Submitted On", "type": "DateTime", "isValidForUpdate": false },
+        { "schemaName": "sl_completedon", "displayName": "Completed On", "type": "DateTime", "isValidForUpdate": false },
+        { "schemaName": "sl_totalitemcount", "displayName": "Total Current Item Count", "type": "Integer", "isValidForUpdate": false },
+        { "schemaName": "sl_openitemcount", "displayName": "Open Current Item Count", "type": "Integer", "isValidForUpdate": false },
+        { "schemaName": "sl_authoriseditemcount", "displayName": "Authorised Current Item Count", "type": "Integer", "isValidForUpdate": false },
+        { "schemaName": "sl_rejecteditemcount", "displayName": "Rejected Current Item Count", "type": "Integer", "isValidForUpdate": false },
+        { "schemaName": "sl_cancelleditemcount", "displayName": "Cancelled Current Item Count", "type": "Integer", "isValidForUpdate": false },
+        { "schemaName": "sl_outcomesummary", "displayName": "Outcome Summary", "type": "Memo", "maxLength": 4000, "isValidForUpdate": false },
+        { "schemaName": "sl_cancellationreason", "displayName": "Cancellation Reason", "type": "Memo", "maxLength": 2000 },
+        { "schemaName": "sl_sourcesystem", "displayName": "Source System", "type": "Choice", "globalChoice": "sl_sourcesystem", "required": true },
+        { "schemaName": "sl_sourcerecordid", "displayName": "Source Record ID", "type": "Text", "maxLength": 100 },
+        { "schemaName": "sl_explicitlycancelled", "displayName": "Explicitly Cancelled", "type": "Boolean", "defaultValue": false, "isValidForUpdate": false }
+      ],
+      "statusReasons": [
+        { "label": "Draft", "state": "Active" }, { "label": "Sent for Approval", "state": "Active" },
+        { "label": "More Information Required", "state": "Active" }, { "label": "Onward for Approval", "state": "Active" },
+        { "label": "Revision in Progress", "state": "Active" },
+        { "label": "Partially Authorised - Underwriter Action Required", "state": "Active" },
+        { "label": "Rejected - Underwriter Action Required", "state": "Active" },
+        { "label": "Authorised", "state": "Inactive" }, { "label": "Authorised with Recommendations", "state": "Inactive" },
+        { "label": "Authorised with Conditions", "state": "Inactive" }, { "label": "Partially Authorised - Completed", "state": "Inactive" },
+        { "label": "Rejected", "state": "Inactive" }, { "label": "Cancelled / No Longer Required", "state": "Inactive" }
+      ],
+      "alternateKeys": [ { "schemaName": "sl_akreferralclientrequestid", "displayName": "AK_Referral_ClientRequestId", "columns": ["sl_clientrequestid"] } ]
+    },
+    {
+      "schemaName": "sl_referralitem", "displayName": "Referral Item", "pluralName": "Referral Items", "hasNotes": true,
+      "description": "One atomic Referral Reason applied to one Cover/Section; routes and decides independently of sibling items.",
+      "primaryAttribute": { "schemaName": "sl_name", "displayName": "Referral Item Number", "autoNumberFormat": "RFI-{SEQNUM:000000}" },
+      "columns": [
+        { "schemaName": "sl_logicalitemid", "displayName": "Logical Item ID", "type": "Text", "maxLength": 36, "isValidForUpdate": false,
+          "description": "Stable identity carried across revision rows." },
+        { "schemaName": "sl_iscurrentrevision", "displayName": "Is Current Revision", "type": "Boolean", "defaultValue": true },
+        { "schemaName": "sl_revisionnumber", "displayName": "Revision Number", "type": "Integer", "minValue": 1 },
+        { "schemaName": "sl_sequence", "displayName": "Sequence", "type": "Integer", "minValue": 1, "maxValue": 10000 },
+        { "schemaName": "sl_itemsummary", "displayName": "Item Summary", "type": "Text", "maxLength": 300 },
+        { "schemaName": "sl_referraldetails", "displayName": "Referral Details", "type": "Memo", "maxLength": 8000 },
+        { "schemaName": "sl_underwriterrationale", "displayName": "Underwriter Rationale", "type": "Memo", "maxLength": 8000 },
+        { "schemaName": "sl_requestedexception", "displayName": "Requested Decision / Exception", "type": "Memo", "maxLength": 4000 },
+        { "schemaName": "sl_detailtemplatesnapshot", "displayName": "Detail Template Snapshot", "type": "Choice", "globalChoice": "sl_detailtemplate" },
+        { "schemaName": "sl_supportingdocumenturl", "displayName": "Supporting Document URL", "type": "Text", "maxLength": 2000, "format": "Url" },
+        { "schemaName": "sl_evidencenotes", "displayName": "Evidence Notes", "type": "Memo", "maxLength": 4000 },
+        { "schemaName": "sl_requiredranksnapshot", "displayName": "Required Rank Snapshot", "type": "Integer", "isValidForUpdate": false },
+        { "schemaName": "sl_assignedapproversnapshot", "displayName": "Assigned Approver Snapshot", "type": "Text", "maxLength": 200, "isValidForUpdate": false },
+        { "schemaName": "sl_selectedauthoritylevelsnapshot", "displayName": "Selected Authority Level Snapshot", "type": "Text", "maxLength": 100, "isValidForUpdate": false },
+        { "schemaName": "sl_selectedauthorityranksnapshot", "displayName": "Selected Authority Rank Snapshot", "type": "Integer", "isValidForUpdate": false },
+        { "schemaName": "sl_authorityvalidationresult", "displayName": "Authority Validation Result", "type": "Choice", "globalChoice": "sl_authorityvalidationresult", "isValidForUpdate": false },
+        { "schemaName": "sl_authorityvalidatedon", "displayName": "Authority Validated On", "type": "DateTime", "isValidForUpdate": false },
+        { "schemaName": "sl_authorityvalidationmessage", "displayName": "Authority Validation Message", "type": "Memo", "maxLength": 2000, "isValidForUpdate": false },
+        { "schemaName": "sl_dueon", "displayName": "Due On", "type": "DateTime", "isValidForUpdate": false },
+        { "schemaName": "sl_senton", "displayName": "Sent On", "type": "DateTime", "isValidForUpdate": false },
+        { "schemaName": "sl_reviewstartedon", "displayName": "Review Started On", "type": "DateTime", "isValidForUpdate": false },
+        { "schemaName": "sl_respondedon", "displayName": "Responded On", "type": "DateTime", "isValidForUpdate": false },
+        { "schemaName": "sl_informationcyclenumber", "displayName": "Information Cycle Number", "type": "Integer", "minValue": 0, "maxValue": 1000 },
+        { "schemaName": "sl_informationresponse", "displayName": "Information Response", "type": "Memo", "maxLength": 8000 },
+        { "schemaName": "sl_changesummary", "displayName": "Change Summary", "type": "Memo", "maxLength": 4000 },
+        { "schemaName": "sl_hazardcode", "displayName": "Hazard / Appetite Code", "type": "Text", "maxLength": 100 },
+        { "schemaName": "sl_appetitebreach", "displayName": "Appetite Breach Detail", "type": "Memo", "maxLength": 4000 },
+        { "schemaName": "sl_requestedlimit", "displayName": "Requested Limit Amount", "type": "Money", "minValue": 0 },
+        { "schemaName": "sl_currentauthoritylimit", "displayName": "Current Authority Limit", "type": "Money", "minValue": 0 },
+        { "schemaName": "sl_proposedpremium", "displayName": "Proposed Premium", "type": "Money", "minValue": 0 },
+        { "schemaName": "sl_technicalpremium", "displayName": "Technical Premium", "type": "Money", "minValue": 0 },
+        { "schemaName": "sl_pricingrationale", "displayName": "Pricing Rationale", "type": "Memo", "maxLength": 4000 },
+        { "schemaName": "sl_proposedduration", "displayName": "Proposed Duration (Months)", "type": "Integer", "minValue": 1, "maxValue": 1200 },
+        { "schemaName": "sl_maxduration", "displayName": "Maximum Permitted Duration", "type": "Integer", "minValue": 1, "maxValue": 1200 },
+        { "schemaName": "sl_additionalcover", "displayName": "Additional Cover Description", "type": "Memo", "maxLength": 4000 },
+        { "schemaName": "sl_additionalcoverlimit", "displayName": "Additional Cover Limit", "type": "Money", "minValue": 0 },
+        { "schemaName": "sl_wordingtitle", "displayName": "Clause / Wording Title", "type": "Text", "maxLength": 200 },
+        { "schemaName": "sl_currentwording", "displayName": "Current Wording", "type": "Memo", "maxLength": 8000 },
+        { "schemaName": "sl_requestedwording", "displayName": "Requested Wording", "type": "Memo", "maxLength": 8000 },
+        { "schemaName": "sl_usexposurepercent", "displayName": "US Exposure %", "type": "Decimal", "minValue": 0, "maxValue": 100, "precision": 4 },
+        { "schemaName": "sl_usexposuredetail", "displayName": "US Exposure Detail", "type": "Memo", "maxLength": 4000 },
+        { "schemaName": "sl_riskconsultingrequired", "displayName": "Risk Consulting Required", "type": "Boolean", "defaultValue": false },
+        { "schemaName": "sl_riskmanagementdetail", "displayName": "Risk Management Detail", "type": "Memo", "maxLength": 4000 },
+        { "schemaName": "sl_reinsurancetype", "displayName": "Reinsurance Type", "type": "Choice", "globalChoice": "sl_reinsurancetype" },
+        { "schemaName": "sl_retentionamount", "displayName": "Retention Amount", "type": "Money", "minValue": 0 },
+        { "schemaName": "sl_placementdetail", "displayName": "Placement Detail", "type": "Memo", "maxLength": 4000 },
+        { "schemaName": "sl_voidcoverdetail", "displayName": "Void Cover / Declaration Detail", "type": "Memo", "maxLength": 4000 },
+        { "schemaName": "sl_geographyexception", "displayName": "Geography Exception Detail", "type": "Memo", "maxLength": 4000 },
+        { "schemaName": "sl_moratoriumreason", "displayName": "Moratorium Exception Reason", "type": "Memo", "maxLength": 4000 }
+      ],
+      "statusReasons": [
+        { "label": "Draft", "state": "Active" }, { "label": "Sent for Approval", "state": "Active" }, { "label": "In Review", "state": "Active" },
+        { "label": "More Information Required", "state": "Active" }, { "label": "Revision in Progress", "state": "Active" },
+        { "label": "Resubmitted", "state": "Active" }, { "label": "Onward for Approval", "state": "Active" },
+        { "label": "Authorised", "state": "Inactive" }, { "label": "Authorised with Recommendations", "state": "Inactive" },
+        { "label": "Authorised with Conditions", "state": "Inactive" }, { "label": "Rejected", "state": "Inactive" },
+        { "label": "Cancelled / No Longer Required", "state": "Inactive" }
+      ],
+      "alternateKeys": [ { "schemaName": "sl_akitemlogicalrevision", "displayName": "AK_Item_LogicalRevision", "columns": ["sl_logicalitemid","sl_revisionnumber"] } ]
+    },
+    {
+      "schemaName": "sl_referraldecision", "displayName": "Referral Decision", "pluralName": "Referral Decisions",
+      "description": "Immutable evidence of one decision event on a Referral Item; created only through a controlled decision process and never edited afterward.",
+      "primaryAttribute": { "schemaName": "sl_name", "displayName": "Decision Number", "autoNumberFormat": "RFD-{SEQNUM:000000}" },
+      "columns": [
+        { "schemaName": "sl_decisionsequence", "displayName": "Decision Sequence", "type": "Integer", "minValue": 1, "isValidForUpdate": false },
+        { "schemaName": "sl_decisiontype", "displayName": "Decision Type", "type": "Choice", "globalChoice": "sl_decisiontype", "required": true, "isValidForUpdate": false },
+        { "schemaName": "sl_decisionon", "displayName": "Decision On", "type": "DateTime", "isValidForUpdate": false },
+        { "schemaName": "sl_authoritylevelsnapshot", "displayName": "Authority Level Snapshot", "type": "Text", "maxLength": 100, "isValidForUpdate": false },
+        { "schemaName": "sl_authorityranksnapshot", "displayName": "Authority Rank Snapshot", "type": "Integer", "isValidForUpdate": false },
+        { "schemaName": "sl_decisioncomments", "displayName": "Decision Comments", "type": "Memo", "maxLength": 8000, "isValidForUpdate": false },
+        { "schemaName": "sl_recommendations", "displayName": "Recommendations", "type": "Memo", "maxLength": 8000, "isValidForUpdate": false },
+        { "schemaName": "sl_conditions", "displayName": "Conditions", "type": "Memo", "maxLength": 8000, "isValidForUpdate": false },
+        { "schemaName": "sl_informationrequested", "displayName": "Information Requested", "type": "Memo", "maxLength": 8000, "isValidForUpdate": false },
+        { "schemaName": "sl_rejectionreason", "displayName": "Rejection Reason", "type": "Memo", "maxLength": 8000, "isValidForUpdate": false },
+        { "schemaName": "sl_previousitemstatus", "displayName": "Previous Item Status", "type": "Text", "maxLength": 100, "isValidForUpdate": false },
+        { "schemaName": "sl_newitemstatus", "displayName": "New Item Status", "type": "Text", "maxLength": 100, "isValidForUpdate": false },
+        { "schemaName": "sl_itemrevisionnumber", "displayName": "Item Revision Number", "type": "Integer", "isValidForUpdate": false },
+        { "schemaName": "sl_onwardapproversnapshot", "displayName": "Onward Approver Snapshot", "type": "Text", "maxLength": 200, "isValidForUpdate": false },
+        { "schemaName": "sl_clientrequestid", "displayName": "Client Request ID", "type": "Text", "maxLength": 64, "isValidForUpdate": false }
+      ],
+      "statusReasons": [ { "label": "Recorded", "state": "Active" } ],
+      "alternateKeys": [
+        { "schemaName": "sl_akdecisionclientrequestid", "displayName": "AK_Decision_ClientRequestId", "columns": ["sl_clientrequestid"] }
+      ]
+    },
+    {
+      "schemaName": "sl_referralparticipant", "displayName": "Referral Participant", "pluralName": "Referral Participants",
+      "description": "Additional people who need read access and/or notifications on a Referral without being an owner or approver.",
+      "primaryAttribute": { "schemaName": "sl_name", "displayName": "Participant Number", "autoNumberFormat": "RFP-{SEQNUM:000000}" },
+      "columns": [
+        { "schemaName": "sl_participantrole", "displayName": "Participant Role", "type": "Choice", "globalChoice": "sl_participantrole", "required": true },
+        { "schemaName": "sl_notifyonsubmission", "displayName": "Notify on Submission", "type": "Boolean", "defaultValue": true },
+        { "schemaName": "sl_notifyoninformation", "displayName": "Notify on Information Request", "type": "Boolean", "defaultValue": true },
+        { "schemaName": "sl_notifyondecision", "displayName": "Notify on Decision", "type": "Boolean", "defaultValue": true }
+      ]
+    },
+    {
+      "schemaName": "sl_referralnotification", "displayName": "Referral Notification", "pluralName": "Referral Notifications",
+      "description": "Durable outbox of asynchronous notification events, for deduplication, retry and failure visibility.",
+      "primaryAttribute": { "schemaName": "sl_name", "displayName": "Notification Number", "autoNumberFormat": "RFN-{SEQNUM:000000}" },
+      "columns": [
+        { "schemaName": "sl_eventtype", "displayName": "Event Type", "type": "Choice", "globalChoice": "sl_eventtype", "required": true },
+        { "schemaName": "sl_recipientemail", "displayName": "Recipient Email Snapshot", "type": "Text", "maxLength": 320, "format": "Email" },
+        { "schemaName": "sl_templatekey", "displayName": "Template Key", "type": "Text", "maxLength": 100 },
+        { "schemaName": "sl_payloadjson", "displayName": "Payload JSON", "type": "Memo", "maxLength": 20000 },
+        { "schemaName": "sl_deduplicationkey", "displayName": "Deduplication Key", "type": "Text", "maxLength": 300 },
+        { "schemaName": "sl_sendafter", "displayName": "Send After", "type": "DateTime" },
+        { "schemaName": "sl_processingstatus", "displayName": "Processing Status", "type": "Choice", "globalChoice": "sl_processingstatus", "required": true },
+        { "schemaName": "sl_attemptcount", "displayName": "Attempt Count", "type": "Integer", "minValue": 0, "maxValue": 1000 },
+        { "schemaName": "sl_senton", "displayName": "Sent On", "type": "DateTime" },
+        { "schemaName": "sl_lasterror", "displayName": "Last Error", "type": "Memo", "maxLength": 4000 }
+      ],
+      "alternateKeys": [ { "schemaName": "sl_aknotificationdedup", "displayName": "AK_Notification_Deduplication", "columns": ["sl_deduplicationkey"] } ]
+    }
+  ],
+  "relationships": [
+    { "type": "OneToMany", "referenced": "opportunity", "referencing": "sl_referral", "lookup": { "schemaName": "sl_opportunityid", "displayName": "Opportunity" } },
+    { "type": "OneToMany", "referenced": "product", "referencing": "sl_referral", "lookup": { "schemaName": "sl_productid", "displayName": "Product" } },
+    { "type": "OneToMany", "referenced": "account", "referencing": "sl_referral", "lookup": { "schemaName": "sl_brokeraccountid", "displayName": "Broker Account" } },
+    { "type": "OneToMany", "referenced": "contact", "referencing": "sl_referral", "lookup": { "schemaName": "sl_brokercontactid", "displayName": "Broker Contact" } },
+    { "type": "OneToMany", "referenced": "sl_country", "referencing": "sl_referral", "schemaName": "sl_country_referral", "lookup": { "schemaName": "sl_countryid", "displayName": "Country of Referral" } },
+    { "type": "OneToMany", "referenced": "systemuser", "referencing": "sl_referral", "schemaName": "sl_systemuser_referral_primaryuw", "lookup": { "schemaName": "sl_primaryunderwriterid", "displayName": "Primary Underwriter" } },
+    { "type": "OneToMany", "referenced": "systemuser", "referencing": "sl_referral", "schemaName": "sl_systemuser_referral_submittedby", "lookup": { "schemaName": "sl_submittedbyid", "displayName": "Submitted By" } },
+    { "type": "OneToMany", "referenced": "systemuser", "referencing": "sl_referral", "schemaName": "sl_systemuser_referral_completedby", "lookup": { "schemaName": "sl_completedbyid", "displayName": "Completed By" } },
+
+    { "type": "OneToMany", "referenced": "sl_referral", "referencing": "sl_referralitem", "lookup": { "schemaName": "sl_referralid", "displayName": "Referral" } },
+    { "type": "OneToMany", "referenced": "sl_referralreason", "referencing": "sl_referralitem", "lookup": { "schemaName": "sl_referralreasonid", "displayName": "Referral Reason" } },
+    { "type": "OneToMany", "referenced": "sl_coversection", "referencing": "sl_referralitem", "lookup": { "schemaName": "sl_coversectionid", "displayName": "Cover / Section" } },
+    { "type": "OneToMany", "referenced": "sl_authoritylevel", "referencing": "sl_referralitem", "schemaName": "sl_authoritylevel_referralitem", "lookup": { "schemaName": "sl_requiredauthoritylevelid", "displayName": "Required Authority Level" } },
+    { "type": "OneToMany", "referenced": "sl_underwritingauthority", "referencing": "sl_referralitem", "schemaName": "sl_ua_referralitem_selected", "lookup": { "schemaName": "sl_authorityassignmentid", "displayName": "Selected Underwriting Authority" } },
+    { "type": "OneToMany", "referenced": "systemuser", "referencing": "sl_referralitem", "schemaName": "sl_systemuser_referralitem_approver", "lookup": { "schemaName": "sl_assignedapproverid", "displayName": "Assigned Approver" } },
+    { "type": "OneToMany", "referenced": "sl_country", "referencing": "sl_referralitem", "schemaName": "sl_country_referralitem_geography", "lookup": { "schemaName": "sl_requestedgeographyid", "displayName": "Requested Geography" } },
+    { "type": "OneToMany", "referenced": "sl_country", "referencing": "sl_referralitem", "schemaName": "sl_country_referralitem_moratorium", "lookup": { "schemaName": "sl_moratoriumcountryid", "displayName": "Moratorium Country" } },
+    { "type": "OneToMany", "referenced": "sl_referralitem", "referencing": "sl_referralitem", "schemaName": "sl_referralitem_previous", "lookup": { "schemaName": "sl_previousitemid", "displayName": "Previous Referral Item" } },
+    { "type": "OneToMany", "referenced": "sl_referralitem", "referencing": "sl_referralitem", "schemaName": "sl_referralitem_root", "lookup": { "schemaName": "sl_rootitemid", "displayName": "Root Referral Item" } },
+
+    { "type": "OneToMany", "referenced": "sl_referralitem", "referencing": "sl_referraldecision", "lookup": { "schemaName": "sl_referralitemid", "displayName": "Referral Item" } },
+    { "type": "OneToMany", "referenced": "systemuser", "referencing": "sl_referraldecision", "schemaName": "sl_systemuser_decision_decisionby", "lookup": { "schemaName": "sl_decisionbyid", "displayName": "Decision By" } },
+    { "type": "OneToMany", "referenced": "sl_underwritingauthority", "referencing": "sl_referraldecision", "schemaName": "sl_ua_decision_used", "lookup": { "schemaName": "sl_authorityassignmentid", "displayName": "Authority Assignment Used" } },
+    { "type": "OneToMany", "referenced": "sl_underwritingauthority", "referencing": "sl_referraldecision", "schemaName": "sl_ua_decision_onward", "lookup": { "schemaName": "sl_onwardauthorityassignmentid", "displayName": "Onward Authority Assignment" } },
+
+    { "type": "OneToMany", "referenced": "sl_referral", "referencing": "sl_referralparticipant", "lookup": { "schemaName": "sl_referralid", "displayName": "Referral" } },
+    { "type": "OneToMany", "referenced": "systemuser", "referencing": "sl_referralparticipant", "schemaName": "sl_systemuser_participant_user", "lookup": { "schemaName": "sl_participantuserid", "displayName": "Participant User" } },
+
+    { "type": "OneToMany", "referenced": "sl_referral", "referencing": "sl_referralnotification", "lookup": { "schemaName": "sl_referralid", "displayName": "Referral" } },
+    { "type": "OneToMany", "referenced": "sl_referralitem", "referencing": "sl_referralnotification", "lookup": { "schemaName": "sl_referralitemid", "displayName": "Referral Item" } },
+    { "type": "OneToMany", "referenced": "sl_referraldecision", "referencing": "sl_referralnotification", "lookup": { "schemaName": "sl_referraldecisionid", "displayName": "Referral Decision" } },
+    { "type": "OneToMany", "referenced": "systemuser", "referencing": "sl_referralnotification", "schemaName": "sl_systemuser_notification_recipient", "lookup": { "schemaName": "sl_recipientuserid", "displayName": "Recipient User" } },
+
+    { "type": "OneToMany", "referenced": "product", "referencing": "sl_coversection", "lookup": { "schemaName": "sl_productid", "displayName": "Product" } },
+    { "type": "OneToMany", "referenced": "sl_coversection", "referencing": "sl_coversection", "schemaName": "sl_coversection_parent", "lookup": { "schemaName": "sl_parentcoverid", "displayName": "Parent Cover / Section" } },
+
+    { "type": "OneToMany", "referenced": "sl_authoritylevel", "referencing": "sl_referralreason", "schemaName": "sl_authoritylevel_referralreason", "lookup": { "schemaName": "sl_defaultauthoritylevelid", "displayName": "Default Required Authority Level" } },
+
+    { "type": "OneToMany", "referenced": "systemuser", "referencing": "sl_underwritingauthority", "schemaName": "sl_systemuser_ua_underwriter", "lookup": { "schemaName": "sl_underwriterid", "displayName": "Underwriter" } },
+    { "type": "OneToMany", "referenced": "product", "referencing": "sl_underwritingauthority", "lookup": { "schemaName": "sl_productid", "displayName": "Product / Class of Business" } },
+    { "type": "OneToMany", "referenced": "sl_authoritylevel", "referencing": "sl_underwritingauthority", "schemaName": "sl_authoritylevel_ua", "lookup": { "schemaName": "sl_authoritylevelid", "displayName": "Authority Level" } },
+    { "type": "OneToMany", "referenced": "sl_country", "referencing": "sl_underwritingauthority", "schemaName": "sl_country_ua_location", "lookup": { "schemaName": "sl_licencelocationid", "displayName": "Licence Location" } },
+    { "type": "OneToMany", "referenced": "systemuser", "referencing": "sl_underwritingauthority", "schemaName": "sl_systemuser_ua_verifiedby", "lookup": { "schemaName": "sl_lastverifiedbyid", "displayName": "Last Verified By" } }
+  ],
+  "forms": [
+    { "entity": "sl_referral", "type": "main", "name": "Referral Main", "layout": "auto", "autoSubgrids": false,
+      "description": "Primary working form for a referral's shared context, financials and aggregate status.",
+      "subgrids": [
+        { "childEntity": "sl_referralitem", "label": "Referral Items" },
+        { "childEntity": "sl_referralparticipant", "label": "Participants" }
+      ],
+      "fieldOptions": {
+        "sl_totalitemcount": { "readOnly": true }, "sl_openitemcount": { "readOnly": true },
+        "sl_authoriseditemcount": { "readOnly": true }, "sl_rejecteditemcount": { "readOnly": true },
+        "sl_cancelleditemcount": { "readOnly": true }, "sl_outcomesummary": { "readOnly": true },
+        "sl_productnamesnapshot": { "readOnly": true }, "sl_haseverbeensubmitted": { "readOnly": true }
+      } },
+    { "entity": "sl_referralitem", "type": "main", "name": "Referral Item Main", "layout": "auto", "autoSubgrids": false,
+      "description": "Working form for one atomic referral question, its reason-specific detail and its routed authority.",
+      "subgrids": [ { "childEntity": "sl_referraldecision", "label": "Recorded Decisions" } ],
+      "fieldOptions": {
+        "sl_requiredranksnapshot": { "readOnly": true }, "sl_assignedapproversnapshot": { "readOnly": true },
+        "sl_selectedauthoritylevelsnapshot": { "readOnly": true }, "sl_selectedauthorityranksnapshot": { "readOnly": true },
+        "sl_authorityvalidationresult": { "readOnly": true }, "sl_authorityvalidationmessage": { "readOnly": true }
+      } },
+    { "entity": "sl_referraldecision", "type": "main", "name": "Referral Decision Read-only", "layout": "auto",
+      "description": "Read-only evidence record of one decision event; not intended to be edited by business users." },
+    { "entity": "sl_referralreason", "type": "main", "name": "Referral Reason Main", "layout": "auto" },
+    { "entity": "sl_coversection", "type": "main", "name": "Cover / Section Main", "layout": "auto" },
+    { "entity": "sl_authoritylevel", "type": "main", "name": "Authority Level Main", "layout": "auto" },
+    { "entity": "sl_underwritingauthority", "type": "main", "name": "Underwriting Authority Main", "layout": "auto" },
+    { "entity": "sl_referralparticipant", "type": "main", "name": "Referral Participant Main", "layout": "auto" },
+    { "entity": "sl_referralnotification", "type": "main", "name": "Referral Notification Administration", "layout": "auto" }
+  ],
+  "views": [
+    { "entity": "sl_referral", "name": "My Draft Referrals", "columns": ["sl_name","sl_productnamesnapshot","sl_priority","statuscode"],
+      "sort": [{ "attr": "modifiedon", "dir": "desc" }],
+      "filters": [ { "attr": "sl_primaryunderwriterid", "op": "eq-userid" } ] },
+    { "entity": "sl_referral", "name": "My Active Referrals", "columns": ["sl_name","statuscode","sl_priority"],
+      "filters": [ { "attr": "sl_primaryunderwriterid", "op": "eq-userid" } ] },
+    { "entity": "sl_referral", "name": "Action Required", "columns": ["sl_name","statuscode","sl_priority","sl_primaryunderwriterid"] },
+    { "entity": "sl_referral", "name": "Team Active Referrals", "columns": ["sl_name","statuscode","sl_priority","sl_primaryunderwriterid","ownerid"] },
+    { "entity": "sl_referral", "name": "Completed Referrals", "columns": ["sl_name","statuscode","sl_primaryunderwriterid","sl_outcomesummary"],
+      "activeOnly": false, "filters": [ { "attr": "statecode", "op": "eq", "value": "1" } ], "sort": [{ "attr": "sl_completedon", "dir": "desc" }] },
+    { "entity": "sl_referralitem", "name": "My Approvals", "columns": ["sl_name","sl_referralid","statuscode","sl_referralreasonid","sl_dueon"],
+      "sort": [{ "attr": "sl_dueon", "dir": "asc" }],
+      "filters": [ { "attr": "sl_assignedapproverid", "op": "eq-userid" } ] },
+    { "entity": "sl_referralitem", "name": "Information Required", "columns": ["sl_name","sl_referralid","sl_referralreasonid","sl_assignedapproverid","sl_informationcyclenumber"] },
+    { "entity": "sl_referralitem", "name": "All Current Referral Items", "columns": ["sl_name","sl_referralid","sl_revisionnumber","statuscode","sl_referralreasonid","sl_dueon"],
+      "filters": [ { "attr": "sl_iscurrentrevision", "op": "eq", "value": "1" } ] },
+    { "entity": "sl_referraldecision", "name": "Recorded Decisions", "columns": ["sl_name","sl_referralitemid","sl_decisionsequence","sl_decisiontype","sl_decisionon"],
+      "sort": [{ "attr": "sl_decisionon", "dir": "desc" }] },
+    { "entity": "sl_referralreason", "name": "Referral Reasons Reference List", "columns": ["sl_name","sl_reasoncode","sl_detailtemplate","sl_effectivefrom","sl_effectiveto"],
+      "sort": [{ "attr": "sl_displayorder", "dir": "asc" }] },
+    { "entity": "sl_coversection", "name": "Active Covers by Product", "columns": ["sl_name","sl_covercode","sl_productid","sl_effectivefrom","sl_effectiveto"],
+      "filters": [ { "attr": "sl_isleaf", "op": "eq", "value": "1" } ] },
+    { "entity": "sl_underwritingauthority", "name": "Current Authorities", "columns": ["sl_name","sl_underwriterid","sl_productid","sl_authoritylevelid","sl_effectiveto"] },
+    { "entity": "sl_referralnotification", "name": "Failed Notifications", "columns": ["sl_name","sl_eventtype","sl_referralid","sl_recipientemail","sl_attemptcount","sl_lasterror"],
+      "filters": [ { "attr": "sl_processingstatus", "op": "eq", "value": "Failed" } ] }
+  ],
+  "appShell": {
+    "areas": [
+      { "label": "Referral Workbench", "groups": [
+        { "label": "My Work", "subAreas": [
+          { "entity": "sl_referral", "title": "My Draft Referrals" },
+          { "entity": "sl_referral", "title": "My Active Referrals" } ] },
+        { "label": "Approvals", "subAreas": [
+          { "entity": "sl_referralitem", "title": "My Approvals" },
+          { "entity": "sl_referralitem", "title": "Information Required" },
+          { "entity": "sl_referral", "title": "Action Required" } ] },
+        { "label": "Team", "subAreas": [ { "entity": "sl_referral", "title": "Team Active Referrals" } ] },
+        { "label": "History", "subAreas": [
+          { "entity": "sl_referral", "title": "Completed Referrals" },
+          { "entity": "sl_referralitem", "title": "All Referral Items" } ] }
+      ] },
+      { "label": "Administration", "groups": [
+        { "label": "Reference Data", "subAreas": [
+          { "entity": "sl_referralreason", "title": "Referral Reasons" },
+          { "entity": "sl_coversection", "title": "Covers / Sections" },
+          { "entity": "sl_country", "title": "Countries" } ] },
+        { "label": "Authority", "subAreas": [
+          { "entity": "sl_authoritylevel", "title": "Authority Levels" },
+          { "entity": "sl_underwritingauthority", "title": "Underwriting Authorities" } ] },
+        { "label": "Audit", "subAreas": [ { "entity": "sl_referraldecision", "title": "Referral Decisions / Audit" } ] },
+        { "label": "Operations", "subAreas": [ { "entity": "sl_referralnotification", "title": "Notifications" } ] }
+      ] }
+    ]
+  },
+  "personas": [
+    { "persona": "Referral Underwriter",
+      "jobs": [
+        { "name": "Create and submit referrals", "surfaces": ["My Draft Referrals","Referral Main","Referral Item Main"],
+          "privileges": [
+            { "entity": "sl_referral", "access": ["create","read","write"], "scope": "user" },
+            { "entity": "sl_referralitem", "access": ["create","read","write"], "scope": "user" },
+            { "entity": "sl_referralparticipant", "access": ["create","read","write"], "scope": "user" }
+          ] },
+        { "name": "Track my active referrals", "surfaces": ["My Active Referrals","Completed Referrals"],
+          "privileges": [ { "entity": "sl_referral", "access": ["read"], "scope": "user" } ] }
+      ],
+      "additionalPrivileges": [
+        { "entity": "sl_referralreason", "access": ["read"], "scope": "organization" },
+        { "entity": "sl_coversection", "access": ["read"], "scope": "organization" },
+        { "entity": "sl_authoritylevel", "access": ["read"], "scope": "organization" },
+        { "entity": "sl_underwritingauthority", "access": ["read"], "scope": "organization" },
+        { "entity": "sl_country", "access": ["read"], "scope": "organization" },
+        { "entity": "product", "access": ["read"], "scope": "organization" },
+        { "entity": "opportunity", "access": ["read","append","appendTo"], "scope": "organization" },
+        { "entity": "account", "access": ["read","append","appendTo"], "scope": "organization" },
+        { "entity": "contact", "access": ["read","append","appendTo"], "scope": "organization" },
+        { "entity": "systemuser", "access": ["read"], "scope": "organization" }
+      ],
+      "appAccess": true },
+    { "persona": "Referral Approver",
+      "jobs": [
+        { "name": "Review and decide on assigned referral items", "surfaces": ["My Approvals","Referral Item Main"],
+          "privileges": [
+            { "entity": "sl_referralitem", "access": ["read","write"], "scope": "user" },
+            { "entity": "sl_referral", "access": ["read"], "scope": "user" },
+            { "entity": "sl_referraldecision", "access": ["create","read"], "scope": "user" }
+          ] }
+      ],
+      "additionalPrivileges": [
+        { "entity": "sl_underwritingauthority", "access": ["read"], "scope": "organization" },
+        { "entity": "sl_authoritylevel", "access": ["read"], "scope": "organization" },
+        { "entity": "sl_referralreason", "access": ["read"], "scope": "organization" },
+        { "entity": "sl_coversection", "access": ["read"], "scope": "organization" },
+        { "entity": "systemuser", "access": ["read"], "scope": "organization" }
+      ],
+      "appAccess": true },
+    { "persona": "Referral Manager",
+      "jobs": [
+        { "name": "Oversee team referrals and approvals", "surfaces": ["Team Active Referrals","Action Required"],
+          "privileges": [
+            { "entity": "sl_referral", "access": ["read","write"], "scope": "businessUnit" },
+            { "entity": "sl_referralitem", "access": ["read","write"], "scope": "businessUnit" },
+            { "entity": "sl_referralparticipant", "access": ["read","write"], "scope": "businessUnit" },
+            { "entity": "sl_referraldecision", "access": ["read"], "scope": "businessUnit" }
+          ] }
+      ],
+      "additionalPrivileges": [
+        { "entity": "sl_referralreason", "access": ["read"], "scope": "organization" },
+        { "entity": "sl_coversection", "access": ["read"], "scope": "organization" },
+        { "entity": "sl_authoritylevel", "access": ["read"], "scope": "organization" },
+        { "entity": "sl_underwritingauthority", "access": ["read"], "scope": "organization" },
+        { "entity": "sl_country", "access": ["read"], "scope": "organization" },
+        { "entity": "systemuser", "access": ["read"], "scope": "organization" }
+      ],
+      "appAccess": true },
+    { "persona": "Referral Auditor",
+      "jobs": [
+        { "name": "Audit referral decisions and history", "surfaces": ["Recorded Decisions","Referral Decision Read-only"],
+          "privileges": [
+            { "entity": "sl_referral", "access": ["read"], "scope": "organization" },
+            { "entity": "sl_referralitem", "access": ["read"], "scope": "organization" },
+            { "entity": "sl_referraldecision", "access": ["read"], "scope": "organization" },
+            { "entity": "sl_referralparticipant", "access": ["read"], "scope": "organization" },
+            { "entity": "sl_referralnotification", "access": ["read"], "scope": "organization" }
+          ] }
+      ],
+      "additionalPrivileges": [
+        { "entity": "sl_authoritylevel", "access": ["read"], "scope": "organization" },
+        { "entity": "sl_underwritingauthority", "access": ["read"], "scope": "organization" },
+        { "entity": "sl_referralreason", "access": ["read"], "scope": "organization" },
+        { "entity": "sl_coversection", "access": ["read"], "scope": "organization" },
+        { "entity": "sl_country", "access": ["read"], "scope": "organization" }
+      ],
+      "appAccess": true },
+    { "persona": "Referral Administrator",
+      "jobs": [
+        { "name": "Maintain reference and authority data", "surfaces": ["Referral Reasons","Covers / Sections","Authority Levels","Underwriting Authorities","Countries"],
+          "privileges": [
+            { "entity": "sl_referralreason", "access": ["create","read","write","delete"], "scope": "organization" },
+            { "entity": "sl_coversection", "access": ["create","read","write","delete"], "scope": "organization" },
+            { "entity": "sl_authoritylevel", "access": ["create","read","write","delete"], "scope": "organization" },
+            { "entity": "sl_underwritingauthority", "access": ["create","read","write","delete"], "scope": "organization" },
+            { "entity": "sl_country", "access": ["create","read","write","delete"], "scope": "organization" }
+          ] },
+        { "name": "Administer referrals operationally", "surfaces": ["All Referral Items","Notifications"],
+          "privileges": [
+            { "entity": "sl_referral", "access": ["read","write"], "scope": "organization" },
+            { "entity": "sl_referralitem", "access": ["read","write"], "scope": "organization" },
+            { "entity": "sl_referraldecision", "access": ["read"], "scope": "organization" },
+            { "entity": "sl_referralnotification", "access": ["read","write"], "scope": "organization" },
+            { "entity": "sl_referralparticipant", "access": ["read","write"], "scope": "organization" }
+          ] }
+      ],
+      "appAccess": true }
+  ]
+}
