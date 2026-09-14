@@ -1,0 +1,18 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net462</TargetFramework>
+    <LangVersion>latest</LangVersion>
+    <AssemblyName>SLCRM.ReferralLifecycle</AssemblyName>
+    <RootNamespace>SLCRM.ReferralLifecycle</RootNamespace>
+    <SignAssembly>true</SignAssembly>
+    <AssemblyOriginatorKeyFile>SLCRM.ReferralLifecycle.snk</AssemblyOriginatorKeyFile>
+    <GenerateAssemblyInfo>true</GenerateAssemblyInfo>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <!-- Pin exact versions before first build; these are placeholders for VS2022 NuGet restore. -->
+    <PackageReference Include="Microsoft.CrmSdk.CoreAssemblies" Version="9.0.2.55" />
+  </ItemGroup>
+
+</Project>
