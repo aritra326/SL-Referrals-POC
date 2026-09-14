@@ -16,3 +16,10 @@ sl-referrals-app/imported-solution-columns.json
 sl-referrals-app/pull-imported-columns.ps1
 sl-referrals-app/create-fields-log.txt
 sl-referrals-app/create-missing-item-fields-result.json
+sl-referrals-app/seed-phase*-ids.json
+sl-referrals-app/seed-phase*-log*.txt
+sl-referrals-app/lookup-schemanames.json
+sl-referrals-app/get-lookup-schemanames-log.txt
+sl-referrals-app/create-icons-log.txt
+sl-referrals-app/create-table-icons-log.txt
+sl-referrals-app/tmp-*.json
