@@ -342,19 +342,61 @@
     { "type": "OneToMany", "referenced": "systemuser", "referencing": "sl_underwritingauthority", "schemaName": "sl_systemuser_ua_verifiedby", "lookup": { "schemaName": "sl_lastverifiedbyid", "displayName": "Last Verified By" } }
   ],
   "forms": [
-    { "entity": "sl_referral", "type": "main", "name": "Referral Main", "layout": "auto", "autoSubgrids": false,
+    { "entity": "sl_referral", "type": "main", "name": "Referral Main", "layout": "explicit", "autoSubgrids": false, "deactivateOtherMainForms": true,
       "description": "Primary working form for a referral's shared context, financials and aggregate status.",
       "subgrids": [
-        { "childEntity": "sl_referralitem", "label": "Referral Items" },
-        { "childEntity": "sl_referralparticipant", "label": "Participants" }
+        { "childEntity": "sl_referralitem", "label": "Current Referral Items" },
+        { "childEntity": "sl_referralparticipant", "label": "Referral Participants" }
       ],
-      "fieldOptions": {
-        "sl_totalitemcount": { "readOnly": true }, "sl_openitemcount": { "readOnly": true },
-        "sl_authoriseditemcount": { "readOnly": true }, "sl_rejecteditemcount": { "readOnly": true },
-        "sl_cancelleditemcount": { "readOnly": true }, "sl_outcomesummary": { "readOnly": true },
-        "sl_productnamesnapshot": { "readOnly": true }, "sl_haseverbeensubmitted": { "readOnly": true }
-      } },
-    { "entity": "sl_referralitem", "type": "main", "name": "Referral Item Main", "layout": "auto", "autoSubgrids": false,
+      "tabs": [
+        { "label": "Summary", "sections": [
+          { "label": "Business Context", "columns": 2, "fields": [
+            "sl_opportunityid", "sl_transactiontype",
+            "sl_productid", "sl_policytype",
+            "sl_brokeraccountid", "sl_priority",
+            "sl_brokercontactid", "sl_primaryunderwriterid",
+            "sl_customerid", "sl_policyreference",
+            "sl_countryid", "sl_inceptiondate"
+          ] },
+          { "label": "Referral & Risk Information", "columns": 2, "fields": [
+            "sl_businessdescription", "sl_externalquotenumber",
+            "sl_cancellationreason", "sl_externalquoteversion",
+            "sl_externalquoteurl"
+          ] }
+        ] },
+        { "label": "Finance & Exposure", "sections": [
+          { "label": "Premium", "columns": 2, "fields": [
+            "transactioncurrencyid", "sl_intactnwp",
+            "sl_fullpremium", "sl_intactshare",
+            "sl_ukpremium", "sl_intactpremium"
+          ] },
+          { "label": "Limit & Exposure", "columns": 2, "fields": [
+            "sl_maxpolicyeml", "sl_emlamount"
+          ] }
+        ] },
+        { "label": "People & Documents", "sections": [
+          { "label": "Document & Links", "columns": 2, "fields": [
+            "sl_uwfolderurl", "sl_ratingtoolurl",
+            { "name": "sl_folderstatus", "readOnly": true }
+          ] }
+        ] },
+        { "label": "Decisions & History", "sections": [
+          { "label": "Current Item Summary (System Generated)", "columns": 2, "fields": [
+            { "name": "sl_totalitemcount", "readOnly": true }, { "name": "sl_openitemcount", "readOnly": true },
+            { "name": "sl_authoriseditemcount", "readOnly": true }, { "name": "sl_rejecteditemcount", "readOnly": true },
+            { "name": "sl_cancelleditemcount", "readOnly": true }, { "name": "sl_outcomesummary", "readOnly": true }
+          ] }
+        ] },
+        { "label": "Administration", "sections": [
+          { "label": "Source & Lifecycle", "columns": 2, "fields": [
+            { "name": "sl_clientrequestid", "readOnly": true }, { "name": "sl_haseverbeensubmitted", "readOnly": true },
+            { "name": "sl_sourcesystem", "readOnly": true }, { "name": "sl_submittedon", "readOnly": true },
+            { "name": "sl_sourcerecordid", "readOnly": true }, { "name": "sl_completedon", "readOnly": true },
+            { "name": "sl_explicitlycancelled", "readOnly": true }, { "name": "sl_productnamesnapshot", "readOnly": true }
+          ] }
+        ] }
+      ] },
+    { "entity": "sl_referralitem", "type": "main", "name": "Referral Item Main", "layout": "auto", "autoSubgrids": false, "deactivateOtherMainForms": true,
       "description": "Working form for one atomic referral question, its reason-specific detail and its routed authority.",
       "subgrids": [ { "childEntity": "sl_referraldecision", "label": "Recorded Decisions" } ],
       "fieldOptions": {
@@ -362,14 +404,14 @@
         "sl_selectedauthoritylevelsnapshot": { "readOnly": true }, "sl_selectedauthorityranksnapshot": { "readOnly": true },
         "sl_authorityvalidationresult": { "readOnly": true }, "sl_authorityvalidationmessage": { "readOnly": true }
       } },
-    { "entity": "sl_referraldecision", "type": "main", "name": "Referral Decision Read-only", "layout": "auto",
+    { "entity": "sl_referraldecision", "type": "main", "name": "Referral Decision Read-only", "layout": "auto", "deactivateOtherMainForms": true,
       "description": "Read-only evidence record of one decision event; not intended to be edited by business users." },
-    { "entity": "sl_referralreason", "type": "main", "name": "Referral Reason Main", "layout": "auto" },
-    { "entity": "sl_coversection", "type": "main", "name": "Cover / Section Main", "layout": "auto" },
-    { "entity": "sl_authoritylevel", "type": "main", "name": "Authority Level Main", "layout": "auto" },
-    { "entity": "sl_underwritingauthority", "type": "main", "name": "Underwriting Authority Main", "layout": "auto" },
-    { "entity": "sl_referralparticipant", "type": "main", "name": "Referral Participant Main", "layout": "auto" },
-    { "entity": "sl_referralnotification", "type": "main", "name": "Referral Notification Administration", "layout": "auto" }
+    { "entity": "sl_referralreason", "type": "main", "name": "Referral Reason Main", "layout": "auto", "deactivateOtherMainForms": true },
+    { "entity": "sl_coversection", "type": "main", "name": "Cover / Section Main", "layout": "auto", "deactivateOtherMainForms": true },
+    { "entity": "sl_authoritylevel", "type": "main", "name": "Authority Level Main", "layout": "auto", "deactivateOtherMainForms": true },
+    { "entity": "sl_underwritingauthority", "type": "main", "name": "Underwriting Authority Main", "layout": "auto", "deactivateOtherMainForms": true },
+    { "entity": "sl_referralparticipant", "type": "main", "name": "Referral Participant Main", "layout": "auto", "deactivateOtherMainForms": true },
+    { "entity": "sl_referralnotification", "type": "main", "name": "Referral Notification Administration", "layout": "auto", "deactivateOtherMainForms": true }
   ],
   "views": [
     { "entity": "sl_referral", "name": "My Draft Referrals", "columns": ["sl_name","sl_productnamesnapshot","sl_priority","statuscode"],
@@ -400,17 +442,10 @@
   "appShell": {
     "areas": [
       { "label": "Referral Workbench", "groups": [
-        { "label": "My Work", "subAreas": [
-          { "entity": "sl_referral", "title": "My Draft Referrals" },
-          { "entity": "sl_referral", "title": "My Active Referrals" } ] },
+        { "label": "Referrals", "subAreas": [
+          { "entity": "sl_referral", "title": "Referrals" } ] },
         { "label": "Approvals", "subAreas": [
-          { "entity": "sl_referralitem", "title": "My Approvals" },
-          { "entity": "sl_referralitem", "title": "Information Required" },
-          { "entity": "sl_referral", "title": "Action Required" } ] },
-        { "label": "Team", "subAreas": [ { "entity": "sl_referral", "title": "Team Active Referrals" } ] },
-        { "label": "History", "subAreas": [
-          { "entity": "sl_referral", "title": "Completed Referrals" },
-          { "entity": "sl_referralitem", "title": "All Referral Items" } ] }
+          { "entity": "sl_referralitem", "title": "Referral Items" } ] }
       ] },
       { "label": "Administration", "groups": [
         { "label": "Reference Data", "subAreas": [
@@ -423,6 +458,82 @@
         { "label": "Audit", "subAreas": [ { "entity": "sl_referraldecision", "title": "Referral Decisions / Audit" } ] },
         { "label": "Operations", "subAreas": [ { "entity": "sl_referralnotification", "title": "Notifications" } ] }
       ] }
+    ]
+  },
+  "sampleData": {
+    "sl_country": [
+      { "sl_name": "United Kingdom", "sl_isoalpha2": "GB", "sl_isoalpha3": "GBR", "sl_numericcode": "826" },
+      { "sl_name": "Spain", "sl_isoalpha2": "ES", "sl_isoalpha3": "ESP", "sl_numericcode": "724" },
+      { "sl_name": "France", "sl_isoalpha2": "FR", "sl_isoalpha3": "FRA", "sl_numericcode": "250" }
+    ],
+    "sl_authoritylevel": [
+      { "sl_name": "Level 1", "sl_levelcode": "1", "sl_comparisonrank": 1, "sl_canapprovereferrals": true },
+      { "sl_name": "Level 2", "sl_levelcode": "2", "sl_comparisonrank": 2, "sl_canapprovereferrals": true },
+      { "sl_name": "Level 3", "sl_levelcode": "3", "sl_comparisonrank": 3, "sl_canapprovereferrals": true },
+      { "sl_name": "Level 4", "sl_levelcode": "4", "sl_comparisonrank": 4, "sl_canapprovereferrals": true },
+      { "sl_name": "Level 5", "sl_levelcode": "5", "sl_comparisonrank": 5, "sl_canapprovereferrals": true },
+      { "sl_name": "Level 6", "sl_levelcode": "6", "sl_comparisonrank": 6, "sl_canapprovereferrals": true },
+      { "sl_name": "Level 7", "sl_levelcode": "7", "sl_comparisonrank": 7, "sl_canapprovereferrals": true },
+      { "sl_name": "Level C", "sl_levelcode": "C", "sl_comparisonrank": 8, "sl_canapprovereferrals": false }
+    ],
+    "sl_referralreason": [
+      { "sl_name": "Additional Covers", "sl_reasoncode": "ADDCOVER", "sl_detailtemplate": "AdditionalCover", "sl_displayorder": 10 },
+      { "sl_name": "Appetite/Hazard Code", "sl_reasoncode": "APPETITE", "sl_detailtemplate": "Appetite", "sl_displayorder": 20 },
+      { "sl_name": "Authorised Geography", "sl_reasoncode": "AUTHGEO", "sl_detailtemplate": "Geography", "sl_displayorder": 30 },
+      { "sl_name": "Commission", "sl_reasoncode": "COMMISSION", "sl_detailtemplate": "General", "sl_displayorder": 40 },
+      { "sl_name": "Country Moratorium", "sl_reasoncode": "CTRYMORAT", "sl_detailtemplate": "Moratorium", "sl_displayorder": 50 },
+      { "sl_name": "High Risk Country (Blue Flag)", "sl_reasoncode": "HIGHRISK", "sl_detailtemplate": "General", "sl_displayorder": 60 },
+      { "sl_name": "Limits/Capacity", "sl_reasoncode": "LIMITSCAP", "sl_detailtemplate": "Limit", "sl_displayorder": 70 },
+      { "sl_name": "Loss Record", "sl_reasoncode": "LOSSREC", "sl_detailtemplate": "General", "sl_displayorder": 80 },
+      { "sl_name": "Low Carbon Policy", "sl_reasoncode": "LOWCARBON", "sl_detailtemplate": "General", "sl_displayorder": 90 },
+      { "sl_name": "Mass Risk", "sl_reasoncode": "MASSRISK", "sl_detailtemplate": "General", "sl_displayorder": 100 },
+      { "sl_name": "Policy Duration", "sl_reasoncode": "POLICYDUR", "sl_detailtemplate": "Duration", "sl_displayorder": 110 },
+      { "sl_name": "PPM Score", "sl_reasoncode": "PPMSCORE", "sl_detailtemplate": "General", "sl_displayorder": 120 },
+      { "sl_name": "Pricing (incl AP/TP TRI)", "sl_reasoncode": "PRICING", "sl_detailtemplate": "Pricing", "sl_displayorder": 130 },
+      { "sl_name": "Reinsurance (Incl. Fac)", "sl_reasoncode": "REINSURANCE", "sl_detailtemplate": "Reinsurance", "sl_displayorder": 140 },
+      { "sl_name": "Risk Consulting/Risk Management", "sl_reasoncode": "RISKCONSULT", "sl_detailtemplate": "RiskManagement", "sl_displayorder": 150 }
+    ],
+    "sl_underwritingauthority": [
+      { "sl_name": "Aritra Bhattacharya - Marine Hull", "sl_licencescheme": "SL UK & RSAL", "sl_effectivefrom": "2026-09-01", "sl_effectiveto": "2027-08-31", "sl_snapshotintegrity": "Current", "statusReason": "Current",
+        "$parents": [
+          { "entity": "sl_authoritylevel", "match": { "sl_name": "Level 5" } },
+          { "entity": "sl_country", "match": { "sl_name": "United Kingdom" } }
+        ] },
+      { "sl_name": "Aritra Bhattacharya - Marine Liability", "sl_licencescheme": "SL UK & RSAL", "sl_effectivefrom": "2026-09-01", "sl_effectiveto": "2027-08-31", "sl_snapshotintegrity": "Current", "statusReason": "Current",
+        "$parents": [
+          { "entity": "sl_authoritylevel", "match": { "sl_name": "Level 4" } },
+          { "entity": "sl_country", "match": { "sl_name": "Spain" } }
+        ] },
+      { "sl_name": "David Mallory - Marine Cargo", "sl_licencescheme": "SL UK & RSAL", "sl_effectivefrom": "2026-09-01", "sl_effectiveto": "2027-08-31", "sl_snapshotintegrity": "Current", "statusReason": "Current",
+        "$parents": [
+          { "entity": "sl_authoritylevel", "match": { "sl_name": "Level 4" } },
+          { "entity": "sl_country", "match": { "sl_name": "France" } }
+        ] },
+      { "sl_name": "David Mallory - Marine Freight", "sl_licencescheme": "SL UK & RSAL", "sl_effectivefrom": "2026-09-01", "sl_effectiveto": "2027-08-31", "sl_snapshotintegrity": "Current", "statusReason": "Current",
+        "$parents": [
+          { "entity": "sl_authoritylevel", "match": { "sl_name": "Level 3" } },
+          { "entity": "sl_country", "match": { "sl_name": "United Kingdom" } }
+        ] },
+      { "sl_name": "Alan Steiner - Marine Liability", "sl_licencescheme": "SL UK & RSAL", "sl_effectivefrom": "2026-09-01", "sl_effectiveto": "2027-08-31", "sl_snapshotintegrity": "Current", "statusReason": "Current",
+        "$parents": [
+          { "entity": "sl_authoritylevel", "match": { "sl_name": "Level 3" } },
+          { "entity": "sl_country", "match": { "sl_name": "Spain" } }
+        ] },
+      { "sl_name": "Alan Steiner - Marine Cargo", "sl_licencescheme": "SL UK & RSAL", "sl_effectivefrom": "2026-09-01", "sl_effectiveto": "2027-08-31", "sl_snapshotintegrity": "Current", "statusReason": "Current",
+        "$parents": [
+          { "entity": "sl_authoritylevel", "match": { "sl_name": "Level 3" } },
+          { "entity": "sl_country", "match": { "sl_name": "France" } }
+        ] },
+      { "sl_name": "Jeremy Johnson - Marine Hull", "sl_licencescheme": "SL UK & RSAL", "sl_effectivefrom": "2026-09-01", "sl_effectiveto": "2027-08-31", "sl_snapshotintegrity": "Current", "statusReason": "Current",
+        "$parents": [
+          { "entity": "sl_authoritylevel", "match": { "sl_name": "Level 4" } },
+          { "entity": "sl_country", "match": { "sl_name": "United Kingdom" } }
+        ] },
+      { "sl_name": "Jeremy Johnson - Ports & Terminals", "sl_licencescheme": "SL UK & RSAL", "sl_effectivefrom": "2026-09-01", "sl_effectiveto": "2027-08-31", "sl_snapshotintegrity": "Current", "statusReason": "Current",
+        "$parents": [
+          { "entity": "sl_authoritylevel", "match": { "sl_name": "Level 4" } },
+          { "entity": "sl_country", "match": { "sl_name": "Spain" } }
+        ] }
     ]
   },
   "personas": [
