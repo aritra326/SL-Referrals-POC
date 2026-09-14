@@ -1,0 +1,541 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Create Referral — SL Referrals &amp; Rationale</title>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/react/18.3.1/umd/react.production.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/react-dom/18.3.1/umd/react-dom.production.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/7.26.2/babel.min.js"></script>
+<style>
+  :root{
+    --brand:#0F6CBD; --brand-hover:#115EA3; --brand-pressed:#0C3B5E; --brand-tint:#EBF3FC;
+    --ink:#242424; --ink-2:#424242; --ink-3:#616161; --ink-4:#707070;
+    --line:#E0E0E0; --line-2:#D1D1D1; --surface:#FFFFFF; --canvas:#FAF9F8; --subtle:#F5F5F5;
+    --danger:#B10E1C; --danger-tint:#FDF3F4; --success:#0E700E; --success-tint:#F1FAF1;
+    --warn:#9D5D00; --warn-tint:#FFF9F5;
+    --r-sm:4px; --r-md:6px; --r-lg:8px;
+    --sh-2:0 1px 2px rgba(0,0,0,.14),0 0 2px rgba(0,0,0,.12);
+    --sh-4:0 2px 4px rgba(0,0,0,.14),0 0 2px rgba(0,0,0,.12);
+    --sh-8:0 4px 8px rgba(0,0,0,.14),0 0 2px rgba(0,0,0,.12);
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0;padding:0;background:var(--canvas);color:var(--ink);
+    font-family:"Segoe UI Variable Text","Segoe UI",system-ui,-apple-system,sans-serif;font-size:14px;line-height:20px;}
+  #root{min-height:100vh}
+  button{font-family:inherit}
+
+  /* ---------- Shell ---------- */
+  .shell{max-width:1180px;margin:0 auto;padding:0 24px 120px;}
+  .page-head{padding:24px 0 16px;border-bottom:1px solid var(--line);margin-bottom:24px;
+    display:flex;align-items:flex-start;justify-content:space-between;gap:24px;flex-wrap:wrap}
+  .page-title{font-family:"Segoe UI Variable Display","Segoe UI",sans-serif;font-size:28px;line-height:36px;font-weight:600;margin:0}
+  .page-sub{margin:4px 0 0;color:var(--ink-3);font-size:14px}
+  .head-meta{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+
+  .badge{display:inline-flex;align-items:center;gap:6px;height:24px;padding:0 10px;border-radius:999px;
+    font-size:12px;font-weight:600;letter-spacing:.01em}
+  .badge-draft{background:var(--subtle);color:var(--ink-2);border:1px solid var(--line-2)}
+  .badge-dot{width:6px;height:6px;border-radius:50%;background:var(--ink-4)}
+
+  /* ---------- Layout ---------- */
+  .grid{display:grid;grid-template-columns:minmax(0,1fr) 320px;gap:24px;align-items:start}
+  @media (max-width:1024px){.grid{grid-template-columns:minmax(0,1fr)}.rail{order:-1}}
+
+  /* ---------- Card ---------- */
+  .card{background:var(--surface);border:1px solid var(--line);border-radius:var(--r-lg);box-shadow:var(--sh-2);margin-bottom:20px;overflow:hidden}
+  .card-head{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:16px 20px;border-bottom:1px solid var(--line)}
+  .card-head-l{display:flex;align-items:center;gap:12px;min-width:0}
+  .card-ico{width:28px;height:28px;border-radius:var(--r-md);background:var(--brand-tint);color:var(--brand);
+    display:grid;place-items:center;flex:none}
+  .card-title{font-size:16px;line-height:22px;font-weight:600;margin:0}
+  .card-desc{font-size:12px;color:var(--ink-3);margin:2px 0 0}
+  .card-body{padding:20px}
+
+  /* ---------- Fields ---------- */
+  .row{display:grid;grid-template-columns:1fr 1fr;gap:16px 20px}
+  @media (max-width:680px){.row{grid-template-columns:1fr}}
+  .field{display:flex;flex-direction:column;gap:6px;min-width:0}
+  .field.full{grid-column:1/-1}
+  .label{font-size:13px;font-weight:600;color:var(--ink-2);display:flex;align-items:center;gap:4px}
+  .req{color:var(--danger);font-weight:700}
+  .hint{font-size:12px;color:var(--ink-4)}
+
+  .control{height:32px;border:1px solid var(--line-2);border-bottom-color:var(--ink-4);border-radius:var(--r-sm);
+    background:var(--surface);padding:0 10px;font-size:14px;color:var(--ink);width:100%;outline:none;transition:border-color .1s}
+  .control:hover{border-color:var(--ink-4)}
+  .control:focus{border-color:var(--brand);border-bottom-width:2px;padding-bottom:1px}
+  textarea.control{height:auto;min-height:76px;padding:8px 10px;resize:vertical;line-height:20px}
+  select.control{appearance:none;background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><path fill='%23616161' d='M3.2 5.7a1 1 0 0 1 1.4 0L8 9.1l3.4-3.4a1 1 0 1 1 1.4 1.4l-4.1 4.1a1 1 0 0 1-1.4 0L3.2 7.1a1 1 0 0 1 0-1.4z'/></svg>");
+    background-repeat:no-repeat;background-position:right 8px center;background-size:16px;padding-right:30px;cursor:pointer}
+  .control.err{border-color:var(--danger);border-bottom-width:2px}
+  .err-txt{font-size:12px;color:var(--danger);display:flex;align-items:center;gap:4px}
+
+  .readonly{height:32px;display:flex;align-items:center;padding:0 10px;background:var(--subtle);
+    border:1px solid transparent;border-radius:var(--r-sm);color:var(--ink-2);font-size:14px;
+    overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+  .readonly.empty{color:var(--ink-4);font-style:italic}
+
+  /* ---------- Item cards ---------- */
+  .items{display:flex;flex-direction:column;gap:16px}
+  .item{border:1px solid var(--line);border-radius:var(--r-lg);background:var(--surface);overflow:hidden;
+    transition:box-shadow .15s,border-color .15s}
+  .item:hover{box-shadow:var(--sh-4)}
+  .item.invalid{border-color:#F3C3C7}
+  .item-head{display:flex;align-items:center;justify-content:space-between;gap:12px;
+    padding:12px 16px;background:var(--subtle);border-bottom:1px solid var(--line)}
+  .item-head-l{display:flex;align-items:center;gap:10px;min-width:0}
+  .item-num{width:24px;height:24px;border-radius:var(--r-sm);background:var(--brand);color:#fff;
+    font-size:12px;font-weight:700;display:grid;place-items:center;flex:none}
+  .item-name{font-size:14px;font-weight:600;color:var(--ink);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .item-body{padding:16px}
+
+  .icon-btn{width:28px;height:28px;border-radius:var(--r-sm);border:1px solid transparent;background:transparent;
+    color:var(--ink-3);display:grid;place-items:center;cursor:pointer;transition:background .1s,color .1s}
+  .icon-btn:hover{background:#EDEDED;color:var(--ink)}
+  .icon-btn.danger:hover{background:var(--danger-tint);color:var(--danger)}
+  .icon-btn:disabled{opacity:.4;cursor:not-allowed}
+
+  /* ---------- Buttons ---------- */
+  .btn{height:32px;padding:0 14px;border-radius:var(--r-sm);font-size:14px;font-weight:600;
+    display:inline-flex;align-items:center;gap:8px;cursor:pointer;border:1px solid transparent;transition:background .1s,border-color .1s}
+  .btn-primary{background:var(--brand);color:#fff}
+  .btn-primary:hover{background:var(--brand-hover)}
+  .btn-primary:active{background:var(--brand-pressed)}
+  .btn-primary:disabled{background:#BDBDBD;color:#fff;cursor:not-allowed}
+  .btn-default{background:var(--surface);color:var(--ink);border-color:var(--line-2)}
+  .btn-default:hover{background:var(--subtle)}
+  .btn-subtle{background:transparent;color:var(--ink-2)}
+  .btn-subtle:hover{background:var(--subtle)}
+  .btn-link{background:transparent;color:var(--brand);border:none;padding:0 4px;height:auto;font-weight:600}
+  .btn-link:hover{text-decoration:underline}
+
+  /* ---------- Rail ---------- */
+  .rail{position:sticky;top:16px;display:flex;flex-direction:column;gap:16px}
+  .rail-card{background:var(--surface);border:1px solid var(--line);border-radius:var(--r-lg);box-shadow:var(--sh-2);padding:16px}
+  .rail-title{font-size:14px;font-weight:600;margin:0 0 12px;display:flex;align-items:center;gap:8px}
+  .stat{display:flex;align-items:baseline;justify-content:space-between;padding:7px 0;border-bottom:1px solid var(--line)}
+  .stat:last-child{border-bottom:none}
+  .stat-k{font-size:13px;color:var(--ink-3)}
+  .stat-v{font-size:13px;font-weight:600;color:var(--ink)}
+  .checklist{display:flex;flex-direction:column;gap:9px;margin:0;padding:0;list-style:none}
+  .check{display:flex;gap:9px;font-size:13px;align-items:flex-start;line-height:18px}
+  .check-ico{flex:none;width:16px;height:16px;margin-top:1px}
+  .check.ok{color:var(--ink-2)} .check.todo{color:var(--ink-4)}
+
+  /* ---------- Banner ---------- */
+  .banner{display:flex;gap:12px;padding:12px 16px;border-radius:var(--r-md);margin-bottom:20px;align-items:flex-start;border:1px solid}
+  .banner-err{background:var(--danger-tint);border-color:#F3C3C7;color:#69161E}
+  .banner-ok{background:var(--success-tint);border-color:#BDDFBD;color:#0B5A0B}
+  .banner-info{background:var(--brand-tint);border-color:#C7E0F4;color:#0B4D80}
+  .banner-body{min-width:0}
+  .banner-title{font-weight:600;font-size:14px;margin:0 0 2px}
+  .banner-list{margin:4px 0 0;padding-left:18px;font-size:13px;line-height:19px}
+
+  /* ---------- Command bar ---------- */
+  .cmdbar{position:fixed;left:0;right:0;bottom:0;background:var(--surface);border-top:1px solid var(--line);
+    box-shadow:0 -2px 8px rgba(0,0,0,.06);z-index:20}
+  .cmdbar-in{max-width:1180px;margin:0 auto;padding:12px 24px;display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap}
+  .cmd-l{font-size:13px;color:var(--ink-3);display:flex;align-items:center;gap:8px}
+  .cmd-r{display:flex;gap:8px;align-items:center}
+
+  .empty{padding:32px;text-align:center;border:1px dashed var(--line-2);border-radius:var(--r-lg);background:var(--subtle)}
+  .empty-t{font-weight:600;margin:8px 0 4px}
+  .empty-d{font-size:13px;color:var(--ink-3);margin:0 0 16px}
+
+  .divider{height:1px;background:var(--line);margin:16px 0}
+  .spin{animation:spin 1s linear infinite;transform-origin:center}
+  @keyframes spin{to{transform:rotate(360deg)}}
+</style>
+</head>
+<body>
+<div id="root"></div>
+
+<script type="text/babel">
+const {useState, useMemo, useCallback} = React;
+
+/* ---------------- Icons (Fluent-style, inline) ---------------- */
+const I = {
+  briefcase: p => <svg width="16" height="16" viewBox="0 0 20 20" {...p}><path fill="currentColor" d="M8 3h4a2 2 0 0 1 2 2v1h2.5A1.5 1.5 0 0 1 18 7.5v7A1.5 1.5 0 0 1 16.5 16h-13A1.5 1.5 0 0 1 2 14.5v-7A1.5 1.5 0 0 1 3.5 6H6V5a2 2 0 0 1 2-2Zm0 1.5a.5.5 0 0 0-.5.5v1h5V5a.5.5 0 0 0-.5-.5H8Z"/></svg>,
+  list: p => <svg width="16" height="16" viewBox="0 0 20 20" {...p}><path fill="currentColor" d="M3 5.5A1.5 1.5 0 1 1 6 5.5a1.5 1.5 0 0 1-3 0Zm5 .25a.75.75 0 0 1 .75-.75h8.5a.75.75 0 0 1 0 1.5h-8.5A.75.75 0 0 1 8 5.75Zm0 4.25a.75.75 0 0 1 .75-.75h8.5a.75.75 0 0 1 0 1.5h-8.5A.75.75 0 0 1 8 10Zm0 4.25a.75.75 0 0 1 .75-.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.75.75 0 0 1-.75-.75ZM3 10a1.5 1.5 0 1 1 3 0 1.5 1.5 0 0 1-3 0Zm0 4.25a1.5 1.5 0 1 1 3 0 1.5 1.5 0 0 1-3 0Z"/></svg>,
+  plus: p => <svg width="16" height="16" viewBox="0 0 20 20" {...p}><path fill="currentColor" d="M10 3a.75.75 0 0 1 .75.75v5.5h5.5a.75.75 0 0 1 0 1.5h-5.5v5.5a.75.75 0 0 1-1.5 0v-5.5h-5.5a.75.75 0 0 1 0-1.5h5.5v-5.5A.75.75 0 0 1 10 3Z"/></svg>,
+  trash: p => <svg width="16" height="16" viewBox="0 0 20 20" {...p}><path fill="currentColor" d="M8.5 2h3a1.5 1.5 0 0 1 1.5 1.5V4h3.25a.75.75 0 0 1 0 1.5h-.56l-.82 10.14A2.5 2.5 0 0 1 12.38 18H7.62a2.5 2.5 0 0 1-2.49-2.36L4.31 5.5H3.75a.75.75 0 0 1 0-1.5H7v-.5A1.5 1.5 0 0 1 8.5 2Zm0 2h3v-.5H8.5V4Zm-.25 4a.75.75 0 0 0-.75.75v5a.75.75 0 0 0 1.5 0v-5A.75.75 0 0 0 8.25 8Zm3.5 0a.75.75 0 0 0-.75.75v5a.75.75 0 0 0 1.5 0v-5a.75.75 0 0 0-.75-.75Z"/></svg>,
+  copy: p => <svg width="16" height="16" viewBox="0 0 20 20" {...p}><path fill="currentColor" d="M7 2h6.5A2.5 2.5 0 0 1 16 4.5V13a2 2 0 0 1-1 1.73V4.5A1.5 1.5 0 0 0 13.5 3H6.27A2 2 0 0 1 8 2Zm-2.5 2h7A2.5 2.5 0 0 1 14 6.5v9a2.5 2.5 0 0 1-2.5 2.5h-7A2.5 2.5 0 0 1 2 15.5v-9A2.5 2.5 0 0 1 4.5 4Z"/></svg>,
+  shield: p => <svg width="16" height="16" viewBox="0 0 20 20" {...p}><path fill="currentColor" d="M10 2.1 16 4v5c0 4.2-2.9 7.7-6 8.5C6.9 16.7 4 13.2 4 9V4l6-1.9Zm-.9 9.6L7 9.6l-1.1 1.1L9.1 14 14 9.1 12.9 8l-3.8 3.7Z"/></svg>,
+  check: p => <svg width="16" height="16" viewBox="0 0 20 20" {...p}><path fill="currentColor" d="M16.7 5.3a1 1 0 0 1 0 1.4l-8 8a1 1 0 0 1-1.4 0l-4-4a1 1 0 0 1 1.4-1.4L8 12.6l7.3-7.3a1 1 0 0 1 1.4 0Z"/></svg>,
+  circle: p => <svg width="16" height="16" viewBox="0 0 20 20" {...p}><circle cx="10" cy="10" r="6.5" fill="none" stroke="currentColor" strokeWidth="1.3" strokeDasharray="2.5 2.5"/></svg>,
+  alert: p => <svg width="18" height="18" viewBox="0 0 20 20" {...p}><path fill="currentColor" d="M10 2a8 8 0 1 1 0 16 8 8 0 0 1 0-16Zm0 10.5a1 1 0 1 0 0 2 1 1 0 0 0 0-2Zm0-7a.9.9 0 0 0-.9 1l.35 4.3a.55.55 0 0 0 1.1 0L10.9 6.5a.9.9 0 0 0-.9-1Z"/></svg>,
+  info: p => <svg width="18" height="18" viewBox="0 0 20 20" {...p}><path fill="currentColor" d="M10 2a8 8 0 1 0 0 16 8 8 0 0 0 0-16Zm1 12H9V9h2v5Zm-1-6.5A1.25 1.25 0 1 1 10 5a1.25 1.25 0 0 1 0 2.5Z"/></svg>,
+  send: p => <svg width="16" height="16" viewBox="0 0 20 20" {...p}><path fill="currentColor" d="M2.7 2.6 17.4 9.3a.8.8 0 0 1 0 1.4L2.7 17.4a.8.8 0 0 1-1.1-.9l1.5-5.7L11 10 3.1 9.2 1.6 3.5a.8.8 0 0 1 1.1-.9Z"/></svg>,
+  save: p => <svg width="16" height="16" viewBox="0 0 20 20" {...p}><path fill="currentColor" d="M4.5 3h8.7L17 6.8v9.7A1.5 1.5 0 0 1 15.5 18h-11A1.5 1.5 0 0 1 3 16.5v-12A1.5 1.5 0 0 1 4.5 3Zm1 1.5v3.75h7V4.5h-7Zm4.5 6a2.75 2.75 0 1 0 0 5.5 2.75 2.75 0 0 0 0-5.5Z"/></svg>,
+  spinner: p => <svg width="16" height="16" viewBox="0 0 20 20" {...p}><path className="spin" fill="currentColor" d="M10 2a8 8 0 0 1 8 8h-2a6 6 0 0 0-6-6V2Z"/></svg>,
+};
+
+/* ---------------- Reference data (mirrors the Dev environment) ---------------- */
+const OPPORTUNITIES = [
+  {id:"e90a0493", name:"10 Airpot XL Coffee Makers for Alpine Ski House", customer:"Alpine Ski House", broker:"Fourth Coffee", country:"United Kingdom"},
+  {id:"b052fc98", name:"18 Airpot Coffee Makers for Northwind Traders", customer:"Northwind Traders", broker:"A. Datum Corporation", country:"France"},
+  {id:"becc5dba", name:"1 Café Grande Espresso Machine for Alpine Ski House", customer:"Alpine Ski House", broker:"Fourth Coffee", country:"Spain"},
+  {id:"2ec06197", name:"2 Café Corto for Northwind Traders", customer:"Northwind Traders", broker:"Fabrikam, Inc.", country:"United Kingdom"},
+];
+const PRODUCTS = ["Marine Hull","Marine Cargo","Marine Freight","Marine Liability","Marine Trades","Ports & Terminals"];
+const COVERS = {
+  "Marine Hull":["Hull All Risks","Hull War Risks"],
+  "Marine Cargo":["Cargo Transit","Cargo Storage"],
+  "Marine Freight":["Freight Demurrage"],
+  "Marine Liability":["Liability P&I"],
+  "Marine Trades":["Trades Repairers"],
+  "Ports & Terminals":["Ports Terminal Operations"],
+};
+const REASONS = [
+  "Appetite/Hazard Code","Limits/Capacity","Pricing (incl AP/TP TRI)","Policy Duration",
+  "Additional Covers","Specific Wording Issues","US Exposure","Risk Management",
+  "Reinsurance (Incl. Fac)","Void Cover / Declaration","Authorised Geography","Country Moratorium",
+  "Commission","Loss Record","High Risk Country (Blue Flag)",
+];
+const LEVELS = ["Level 1","Level 2","Level 3","Level 4","Level 5","Level 6","Level 7"];
+const AUTHORITIES = [
+  {name:"Aritra Bhattacharya", level:"Level 5", products:["Marine Hull","Marine Liability"]},
+  {name:"David Mallory",       level:"Level 4", products:["Marine Cargo","Marine Freight"]},
+  {name:"Alan Steiner",        level:"Level 3", products:["Marine Liability","Marine Cargo"]},
+  {name:"Jeremy Johnson",      level:"Level 4", products:["Marine Hull","Ports & Terminals"]},
+];
+const PRIORITIES = ["High","Medium","Low"];
+const POLICY_TYPES = ["Annual","Project","LTA"];
+
+const uid = () => Math.random().toString(36).slice(2,10);
+const newItem = () => ({key:uid(), reason:"", cover:"", rationale:"", level:"", approver:""});
+
+/* ---------------- Small building blocks ---------------- */
+function Field({label, required, hint, error, children}){
+  return (
+    <div className="field">
+      <label className="label">{label}{required && <span className="req">*</span>}</label>
+      {children}
+      {error ? <span className="err-txt"><I.alert width="12" height="12"/>{error}</span>
+             : hint ? <span className="hint">{hint}</span> : null}
+    </div>
+  );
+}
+function Select({value, onChange, options, placeholder, error, disabled}){
+  return (
+    <select className={"control"+(error?" err":"")} value={value} disabled={disabled}
+            onChange={e=>onChange(e.target.value)}>
+      <option value="">{placeholder}</option>
+      {options.map(o=> <option key={o} value={o}>{o}</option>)}
+    </select>
+  );
+}
+function ReadOnly({value, placeholder}){
+  return <div className={"readonly"+(value?"":" empty")}>{value || placeholder}</div>;
+}
+
+/* ---------------- Referral item card ---------------- */
+function ItemCard({item, index, count, product, errors, onChange, onRemove, onDuplicate}){
+  const covers = product ? (COVERS[product]||[]) : [];
+  const eligible = useMemo(()=>{
+    if(!item.level || !product) return [];
+    const need = LEVELS.indexOf(item.level);
+    return AUTHORITIES
+      .filter(a=>a.products.includes(product) && LEVELS.indexOf(a.level) >= need)
+      .map(a=>`${a.name} — ${a.level}`);
+  },[item.level, product]);
+
+  const hasErr = Object.keys(errors||{}).length>0;
+  const title = item.reason ? item.reason : `Referral item ${index+1}`;
+
+  return (
+    <div className={"item"+(hasErr?" invalid":"")}>
+      <div className="item-head">
+        <div className="item-head-l">
+          <span className="item-num">{index+1}</span>
+          <span className="item-name">{title}</span>
+        </div>
+        <div style={{display:"flex",gap:4}}>
+          <button className="icon-btn" title="Duplicate item" onClick={onDuplicate}><I.copy/></button>
+          <button className="icon-btn danger" title="Remove item" disabled={count<=1} onClick={onRemove}><I.trash/></button>
+        </div>
+      </div>
+      <div className="item-body">
+        <div className="row">
+          <Field label="Referral reason" required error={errors.reason}>
+            <Select value={item.reason} onChange={v=>onChange({reason:v})}
+                    options={REASONS} placeholder="Select a reason" error={errors.reason}/>
+          </Field>
+          <Field label="Cover / section" required error={errors.cover}
+                 hint={!product ? "Select a product in Context first" : undefined}>
+            <Select value={item.cover} onChange={v=>onChange({cover:v})} options={covers}
+                    placeholder={product?"Select a cover":"—"} disabled={!product} error={errors.cover}/>
+          </Field>
+          <div className="field full">
+            <Field label="Underwriter rationale" required error={errors.rationale}
+                   hint="Explain why this exceeds your authority and what you are asking the approver to accept.">
+              <textarea className={"control"+(errors.rationale?" err":"")} value={item.rationale}
+                        placeholder="e.g. Requested limit of GBP 2,000,000 exceeds my Level 4 authority of GBP 1,500,000. Loss record is clean for 3 years and the technical rate is met."
+                        onChange={e=>onChange({rationale:e.target.value})}/>
+            </Field>
+          </div>
+          <Field label="Required authority level" required error={errors.level}>
+            <Select value={item.level} onChange={v=>onChange({level:v, approver:""})}
+                    options={LEVELS} placeholder="Select a level" error={errors.level}/>
+          </Field>
+          <Field label="Approver"
+                 hint={item.level ? `${eligible.length} eligible for ${product||"this product"}` : "Select a required level first"}>
+            <Select value={item.approver} onChange={v=>onChange({approver:v})} options={eligible}
+                    placeholder={eligible.length?"Select an approver":"—"} disabled={!eligible.length}/>
+          </Field>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+/* ---------------- App ---------------- */
+function App(){
+  const [ctx, setCtx] = useState({opportunity:"", product:"", priority:"Medium", policyType:"Annual",
+                                  inception:"", description:""});
+  const [items, setItems] = useState([newItem()]);
+  const [submitted, setSubmitted] = useState(false);
+  const [busy, setBusy] = useState(null);
+  const [done, setDone] = useState(null);
+
+  const opp = OPPORTUNITIES.find(o=>o.name===ctx.opportunity);
+
+  const errors = useMemo(()=>{
+    const e = {ctx:{}, items:{}};
+    if(!ctx.opportunity) e.ctx.opportunity = "Opportunity is required.";
+    if(!ctx.product) e.ctx.product = "Product is required.";
+    if(!ctx.description.trim()) e.ctx.description = "A short risk description is required.";
+    items.forEach(it=>{
+      const ie = {};
+      if(!it.reason) ie.reason = "Required.";
+      if(!it.cover) ie.cover = "Required.";
+      if(!it.rationale.trim()) ie.rationale = "Required.";
+      if(!it.level) ie.level = "Required.";
+      if(Object.keys(ie).length) e.items[it.key] = ie;
+    });
+    // duplicate reason + cover combination
+    const seen = {};
+    items.forEach(it=>{
+      if(!it.reason || !it.cover) return;
+      const k = it.reason+"||"+it.cover;
+      if(seen[k]){ (e.items[it.key] = e.items[it.key]||{}).reason = "Duplicate reason and cover combination."; }
+      seen[k] = true;
+    });
+    return e;
+  },[ctx, items]);
+
+  const flat = useMemo(()=>{
+    const list = [];
+    Object.entries(errors.ctx).forEach(([,v])=>list.push(v));
+    items.forEach((it,i)=>{
+      const ie = errors.items[it.key]; if(!ie) return;
+      Object.values(ie).forEach(v=>list.push(`Referral item ${i+1}: ${v.replace(/\.$/,"")}.`));
+    });
+    return list;
+  },[errors, items]);
+
+  const valid = flat.length===0;
+  const show = submitted && !valid;
+
+  const patch = (key,p)=>setItems(list=>list.map(i=>i.key===key?{...i,...p}:i));
+  const remove = key=>setItems(list=>list.length>1?list.filter(i=>i.key!==key):list);
+  const dup = key=>setItems(list=>{
+    const i = list.findIndex(x=>x.key===key); const c = {...list[i], key:uid()};
+    return [...list.slice(0,i+1), c, ...list.slice(i+1)];
+  });
+
+  const run = (kind)=>{
+    setSubmitted(true);
+    if(!valid){ window.scrollTo({top:0,behavior:"smooth"}); return; }
+    setBusy(kind);
+    setTimeout(()=>{ setBusy(null); setDone(kind); window.scrollTo({top:0,behavior:"smooth"}); }, 900);
+  };
+
+  return (
+    <div className="shell">
+      <div className="page-head">
+        <div>
+          <h1 className="page-title">Create referral</h1>
+          <p className="page-sub">Raise a referral request for underwriting approval. Add one item per reason you need signed off.</p>
+        </div>
+        <div className="head-meta">
+          <span className="badge badge-draft"><span className="badge-dot"></span>Draft — not yet submitted</span>
+        </div>
+      </div>
+
+      {done && (
+        <div className="banner banner-ok">
+          <I.check width="18" height="18" style={{flex:"none",marginTop:1}}/>
+          <div className="banner-body">
+            <p className="banner-title">
+              {done==="submit" ? "Referral REF-000007 submitted for approval" : "Referral REF-000007 saved as draft"}
+            </p>
+            <div style={{fontSize:13}}>
+              {items.length} referral item{items.length>1?"s":""} created.{" "}
+              {done==="submit"
+                ? "Approvers have been notified. You can track progress from Referrals."
+                : "You can continue editing it from Referrals and submit when ready."}
+              <button className="btn-link" onClick={()=>setDone(null)}>Create another</button>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {show && (
+        <div className="banner banner-err">
+          <I.alert style={{flex:"none",marginTop:1}}/>
+          <div className="banner-body">
+            <p className="banner-title">{flat.length} {flat.length===1?"item needs":"items need"} your attention before this can be submitted</p>
+            <ul className="banner-list">{flat.slice(0,6).map((m,i)=><li key={i}>{m}</li>)}</ul>
+            {flat.length>6 && <div style={{fontSize:12,marginTop:4}}>…and {flat.length-6} more.</div>}
+          </div>
+        </div>
+      )}
+
+      <div className="grid">
+        <div>
+          {/* Context */}
+          <section className="card">
+            <div className="card-head">
+              <div className="card-head-l">
+                <span className="card-ico"><I.briefcase/></span>
+                <div>
+                  <h2 className="card-title">Context</h2>
+                  <p className="card-desc">Shared details that apply to every item on this referral</p>
+                </div>
+              </div>
+            </div>
+            <div className="card-body">
+              <div className="row">
+                <div className="field full">
+                  <Field label="Opportunity" required error={submitted?errors.ctx.opportunity:null}
+                         hint="Customer, broker and country are taken from the opportunity.">
+                    <Select value={ctx.opportunity} onChange={v=>setCtx(c=>({...c,opportunity:v}))}
+                            options={OPPORTUNITIES.map(o=>o.name)} placeholder="Search opportunities…"
+                            error={submitted&&errors.ctx.opportunity}/>
+                  </Field>
+                </div>
+                <Field label="Customer / insured"><ReadOnly value={opp?.customer} placeholder="From opportunity"/></Field>
+                <Field label="Broker"><ReadOnly value={opp?.broker} placeholder="From opportunity"/></Field>
+                <Field label="Product / class of business" required error={submitted?errors.ctx.product:null}>
+                  <Select value={ctx.product} onChange={v=>{setCtx(c=>({...c,product:v})); setItems(l=>l.map(i=>({...i,cover:"",approver:""})));}}
+                          options={PRODUCTS} placeholder="Select a product" error={submitted&&errors.ctx.product}/>
+                </Field>
+                <Field label="Country of referral"><ReadOnly value={opp?.country} placeholder="From opportunity"/></Field>
+                <Field label="Priority">
+                  <Select value={ctx.priority} onChange={v=>setCtx(c=>({...c,priority:v}))} options={PRIORITIES} placeholder="Select"/>
+                </Field>
+                <Field label="Policy type">
+                  <Select value={ctx.policyType} onChange={v=>setCtx(c=>({...c,policyType:v}))} options={POLICY_TYPES} placeholder="Select"/>
+                </Field>
+                <Field label="Inception / effective date">
+                  <input className="control" type="date" value={ctx.inception} onChange={e=>setCtx(c=>({...c,inception:e.target.value}))}/>
+                </Field>
+                <div className="field full">
+                  <Field label="Business / risk description" required error={submitted?errors.ctx.description:null}
+                         hint="One short paragraph the approver reads first — what the risk is and why it is being referred.">
+                    <textarea className={"control"+(submitted&&errors.ctx.description?" err":"")} value={ctx.description}
+                              placeholder="e.g. Renewal of a fleet of six coastal vessels trading UK and North Europe. Clean loss record. Referred for limit and duration."
+                              onChange={e=>setCtx(c=>({...c,description:e.target.value}))}/>
+                  </Field>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          {/* Items */}
+          <section className="card">
+            <div className="card-head">
+              <div className="card-head-l">
+                <span className="card-ico"><I.list/></span>
+                <div>
+                  <h2 className="card-title">Referral items</h2>
+                  <p className="card-desc">One item per reason — each is approved or rejected independently</p>
+                </div>
+              </div>
+              <button className="btn btn-default" onClick={()=>setItems(l=>[...l,newItem()])}><I.plus/>Add item</button>
+            </div>
+            <div className="card-body">
+              {items.length===0 ? (
+                <div className="empty">
+                  <I.list width="24" height="24" style={{color:"#8A8886"}}/>
+                  <p className="empty-t">No referral items yet</p>
+                  <p className="empty-d">Add at least one item describing what needs approval.</p>
+                  <button className="btn btn-primary" onClick={()=>setItems([newItem()])}><I.plus/>Add the first item</button>
+                </div>
+              ) : (
+                <div className="items">
+                  {items.map((it,i)=>(
+                    <ItemCard key={it.key} item={it} index={i} count={items.length} product={ctx.product}
+                              errors={submitted ? (errors.items[it.key]||{}) : {}}
+                              onChange={p=>patch(it.key,p)} onRemove={()=>remove(it.key)} onDuplicate={()=>dup(it.key)}/>
+                  ))}
+                </div>
+              )}
+            </div>
+          </section>
+        </div>
+
+        {/* Rail */}
+        <aside className="rail">
+          <div className="rail-card">
+            <h3 className="rail-title"><I.shield/>Summary</h3>
+            <div className="stat"><span className="stat-k">Referral items</span><span className="stat-v">{items.length}</span></div>
+            <div className="stat"><span className="stat-k">Product</span><span className="stat-v">{ctx.product||"—"}</span></div>
+            <div className="stat"><span className="stat-k">Priority</span><span className="stat-v">{ctx.priority||"—"}</span></div>
+            <div className="stat"><span className="stat-k">Highest authority</span>
+              <span className="stat-v">{items.map(i=>i.level).filter(Boolean).sort((a,b)=>LEVELS.indexOf(b)-LEVELS.indexOf(a))[0]||"—"}</span></div>
+            <div className="divider"></div>
+            <ul className="checklist">
+              {[["Opportunity selected", !!ctx.opportunity],
+                ["Product selected", !!ctx.product],
+                ["Risk description added", !!ctx.description.trim()],
+                [`All ${items.length} item${items.length>1?"s":""} complete`, items.every(i=>i.reason&&i.cover&&i.rationale.trim()&&i.level)],
+                ["Approvers chosen (optional)", items.every(i=>i.approver)]
+              ].map(([t,ok],i)=>(
+                <li key={i} className={"check "+(ok?"ok":"todo")}>
+                  <span className="check-ico" style={{color:ok?"var(--success)":"var(--ink-4)"}}>{ok?<I.check/>:<I.circle/>}</span>
+                  <span>{t}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          <div className="rail-card" style={{background:"var(--brand-tint)",borderColor:"#C7E0F4"}}>
+            <h3 className="rail-title" style={{color:"#0B4D80"}}><I.info/>How approval works</h3>
+            <p style={{margin:0,fontSize:13,lineHeight:19,color:"#0B4D80"}}>
+              Each item is routed to an approver who holds sufficient authority for the product.
+              Items are decided independently — some may be authorised while others are rejected or
+              sent back for more information.
+            </p>
+          </div>
+        </aside>
+      </div>
+
+      {/* Command bar */}
+      <div className="cmdbar">
+        <div className="cmdbar-in">
+          <div className="cmd-l">
+            {valid
+              ? <><I.check style={{color:"var(--success)"}}/>Ready to submit — {items.length} item{items.length>1?"s":""}</>
+              : <><I.circle style={{color:"var(--ink-4)"}}/>{flat.length} field{flat.length===1?"":"s"} still to complete</>}
+          </div>
+          <div className="cmd-r">
+            <button className="btn btn-subtle">Cancel</button>
+            <button className="btn btn-default" disabled={!!busy} onClick={()=>run("draft")}>
+              {busy==="draft" ? <I.spinner/> : <I.save/>}Save draft
+            </button>
+            <button className="btn btn-primary" disabled={!!busy} onClick={()=>run("submit")}>
+              {busy==="submit" ? <I.spinner/> : <I.send/>}Submit for approval
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+ReactDOM.createRoot(document.getElementById("root")).render(<App/>);
+</script>
+</body>
+</html>

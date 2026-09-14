@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<manifest>
+  <control namespace="SL.Referrals" constructor="ReferralBuilder" version="1.0.0"
+           display-name-key="Referral Builder"
+           description-key="Create a referral request with one or more referral items."
+           control-type="virtual" >
+    <external-service-usage enabled="false">
+    </external-service-usage>
+
+    <!-- Bound dummy property: the Field template requires one. Not used by the UI. -->
+    <property name="sampleProperty" display-name-key="Placeholder"
+              description-key="Unused; required by the field template."
+              of-type="SingleLine.Text" usage="bound" required="false" />
+
+    <!-- Launch context. Blank when opened from the sitemap; populated when launched
+         from a record (e.g. Opportunity -> Create Referral command). -->
+    <property name="SourceEntityName" display-name-key="Source Entity"
+              description-key="Logical name of the record the page was launched from."
+              of-type="SingleLine.Text" usage="input" required="false" />
+    <property name="SourceRecordId" display-name-key="Source Record"
+              description-key="Id of the record the page was launched from."
+              of-type="SingleLine.Text" usage="input" required="false" />
+    <property name="Mode" display-name-key="Mode"
+              description-key="Reserved for future use. Pass create."
+              of-type="SingleLine.Text" usage="input" required="false" />
+
+    <resources>
+      <code path="index.ts" order="1"/>
+      <!--
+        React stays a platform library: a virtual control requires the host's React.
+        Fluent is deliberately NOT declared as a platform library — this environment's
+        platform build rejects fluent_9_68_0 ("not supported by the platform"), so the
+        Fluent v9 components are bundled into the control instead. Costs bundle size,
+        but removes the dependency on the environment's platform-library level.
+      -->
+      <platform-library name="React" version="16.14.0" />
+    </resources>
+
+    <feature-usage>
+      <uses-feature name="WebAPI" required="true" />
+    </feature-usage>
+  </control>
+</manifest>

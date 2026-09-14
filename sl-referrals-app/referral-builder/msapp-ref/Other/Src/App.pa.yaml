@@ -1,0 +1,52 @@
+# ************************************************************************************************
+# Warning: YAML source code for Canvas Apps should only be used to review changes made within Power Apps Studio and for minor edits (Preview).
+# Use the maker portal to create and edit your Power Apps.
+# 
+# The schema file for Canvas Apps is available at https://go.microsoft.com/fwlink/?linkid=2304907
+# 
+# For more information, visit https://go.microsoft.com/fwlink/?linkid=2292623
+# ************************************************************************************************
+App:
+  Properties:
+    OnStart: |-
+      =Set(varRecordId, GUID(Param("recordId")));
+      Set(varEntityName, Param("entityName"));
+      Set(varActionName, Param("actionName"));
+      Set(
+         varActionTitle,
+         Switch(
+             varActionName,
+             "RequestInformation", "Request Information",
+             "Onward", "Onward for Approval",
+             "Authorise", "Authorise Referral Item",
+             "AuthoriseWithRecommendations", "Authorise with Recommendations",
+             "AuthoriseWithConditions", "Authorise with Conditions",
+             "Reject", "Reject Referral Item",
+             "Cancel", "Cancel",
+             "CompletePartial", "Complete Partial Outcome",
+             "CompleteRejected", "Complete Rejected Outcome",
+             "Referral Action"
+         )
+      );
+      Set(
+         varRequiresAuthority,
+         varActionName = "Onward"
+      );
+      Set(
+         varCommentLabel,
+         Switch(
+             varActionName,
+             "RequestInformation", "Information required from underwriter",
+             "Onward", "Reason for onward approval",
+             "Authorise", "Decision rationale",
+             "AuthoriseWithRecommendations", "Decision rationale and recommendations",
+             "AuthoriseWithConditions", "Decision rationale and conditions",
+             "Reject", "Rejection rationale",
+             "Cancel", "Cancellation reason",
+             "CompletePartial", "Partial outcome completion rationale",
+             "CompleteRejected", "Rejected outcome completion rationale",
+             "Comment"
+         )
+      );
+      Set(varIsSubmitting, false);
+    Theme: =PowerAppsTheme

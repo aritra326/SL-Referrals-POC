@@ -1,0 +1,102 @@
+﻿Connected as AritraBhattacharya@61858932.onmicrosoft.com
+Connected to... Dev
+Using publisher prefix 'slcrm'.
+Checking if the control 'slcrm_SL.Referrals.ReferralBuilder' already exists in the current org.
+Using full update.
+Creating a temporary solution wrapper to push the component.
+Building the temporary solution wrapper.
+  Determining projects to restore...
+  Restored C:\Users\arka1\Desktop\Rishi\Claude\SL Referrals POC\sl-referrals-app\referral-builder\pcf\obj\PowerAppsToolsTemp_slcrm\PowerAppsToolsTemp_slcrm.cdsproj (in 431 ms).
+  1 of 2 projects are up-to-date for restore.
+  
+  > pcf-project@1.0.0 clean
+  > pcf-scripts clean --noColor --buildMode development --outDir C:\Users\arka1\Desktop\Rishi\Claude\SL Referrals POC\sl-referrals-app\referral-builder\pcf\out\controls --buildSource MSBuild
+  
+  [12:16:04 AM] [clean] Initializing...
+  [12:16:04 AM] [clean] Cleaning build outputs...
+  [12:16:04 AM] [clean] Succeeded
+  Cleaning output directory: bin\Debug\, Intermediate directory: obj\Debug\ and Solution Packager working directory: obj\Debug\
+  Removing log file: obj\Debug\SolutionPackager.log and generated solution package: bin\Debug\PowerAppsToolsTemp_slcrm.zip
+  
+  > pcf-project@1.0.0 build
+  > pcf-scripts build --noColor --buildMode development --outDir C:\Users\arka1\Desktop\Rishi\Claude\SL Referrals POC\sl-referrals-app\referral-builder\pcf\out\controls --buildSource MSBuild
+  
+  [12:16:10 AM] [build] Initializing...
+  [12:16:10 AM] [build] Validating manifest...
+  [12:16:10 AM] [build] Validating control...
+  [12:16:11 AM] [build] Generating manifest types...
+  [12:16:11 AM] [build] Generating design types...
+  [12:16:11 AM] [build] Running ESLint...
+  [12:16:18 AM] [build] Compiling and bundling control...
+  [BABEL] Note: The code generator has deoptimised the styling of C:\Users\arka1\Desktop\Rishi\Claude\SL Referrals POC\sl-referrals-app\referral-builder\pcf\node_modules\@fluentui\react-icons\lib\sizedIcons\chunk-19.js as it exceeds the max of 500KB.
+  [BABEL] Note: The code generator has deoptimised the styling of C:\Users\arka1\Desktop\Rishi\Claude\SL Referrals POC\sl-referrals-app\referral-builder\pcf\node_modules\@fluentui\react-icons\lib\sizedIcons\chunk-24.js as it exceeds the max of 500KB.
+  [BABEL] Note: The code generator has deoptimised the styling of C:\Users\arka1\Desktop\Rishi\Claude\SL Referrals POC\sl-referrals-app\referral-builder\pcf\node_modules\@fluentui\react-icons\lib\sizedIcons\chunk-6.js as it exceeds the max of 500KB.
+  [BABEL] Note: The code generator has deoptimised the styling of C:\Users\arka1\Desktop\Rishi\Claude\SL Referrals POC\sl-referrals-app\referral-builder\pcf\node_modules\@fluentui\react-icons\lib\sizedIcons\chunk-3.js as it exceeds the max of 500KB.
+  [BABEL] Note: The code generator has deoptimised the styling of C:\Users\arka1\Desktop\Rishi\Claude\SL Referrals POC\sl-referrals-app\referral-builder\pcf\node_modules\@fluentui\react-icons\lib\sizedIcons\chunk-10.js as it exceeds the max of 500KB.
+  [BABEL] Note: The code generator has deoptimised the styling of C:\Users\arka1\Desktop\Rishi\Claude\SL Referrals POC\sl-referrals-app\referral-builder\pcf\node_modules\@fluentui\react-icons\lib\sizedIcons\chunk-11.js as it exceeds the max of 500KB.
+  [BABEL] Note: The code generator has deoptimised the styling of C:\Users\arka1\Desktop\Rishi\Claude\SL Referrals POC\sl-referrals-app\referral-builder\pcf\node_modules\@fluentui\react-icons\lib\sizedIcons\chunk-22.js as it exceeds the max of 500KB.
+  [BABEL] Note: The code generator has deoptimised the styling of C:\Users\arka1\Desktop\Rishi\Claude\SL Referrals POC\sl-referrals-app\referral-builder\pcf\node_modules\@fluentui\react-icons\lib\sizedIcons\chunk-18.js as it exceeds the max of 500KB.
+  [BABEL] Note: The code generator has deoptimised the styling of C:\Users\arka1\Desktop\Rishi\Claude\SL Referrals POC\sl-referrals-app\referral-builder\pcf\node_modules\@fluentui\react-icons\lib\sizedIcons\chunk-21.js as it exceeds the max of 500KB.
+  [BABEL] Note: The code generator has deoptimised the styling of C:\Users\arka1\Desktop\Rishi\Claude\SL Referrals POC\sl-referrals-app\referral-builder\pcf\node_modules\@fluentui\react-icons\lib\sizedIcons\chunk-27.js as it exceeds the max of 500KB.
+  [BABEL] Note: The code generator has deoptimised the styling of C:\Users\arka1\Desktop\Rishi\Claude\SL Referrals POC\sl-referrals-app\referral-builder\pcf\node_modules\@fluentui\react-icons\lib\sizedIcons\chunk-0.js as it exceeds the max of 500KB.
+  [Webpack stats]:
+  asset [1m[32mbundle.js[39m[22m 1.65 MiB [1m[32m[emitted][39m[22m (name: main)
+  orphan modules 14.4 MiB [1m[33m[orphan][39m[22m 82 modules
+  runtime modules 1.08 KiB 5 modules
+  built modules 1.26 MiB [1m[33m[built][39m[22m
+    modules by path [1m./node_modules/[39m[22m 1.19 MiB
+      modules by path [1m./node_modules/@griffel/[39m[22m 54.3 KiB 27 modules
+      modules by path [1m./node_modules/@fluentui/react-icons/lib/[39m[22m 1.11 MiB 17 modules
+      modules by path [1m./node_modules/react/[39m[22m 31.6 KiB 2 modules
+      + 1 module
+    modules by path [1m./ReferralBuilder/[39m[22m 67.9 KiB
+      modules by path [1m./ReferralBuilder/components/[39m[22m 45.6 KiB 3 modules
+      modules by path [1m./ReferralBuilder/services/*.ts[39m[22m 16.6 KiB 3 modules
+      + 3 modules
+    [1mexternal "Reactv16"[39m[22m 42 bytes [1m[33m[built][39m[22m [1m[33m[code generated][39m[22m
+    [1mexternal "FluentUIReactv940"[39m[22m 42 bytes [1m[33m[built][39m[22m [1m[33m[code generated][39m[22m
+  webpack 5.111.0 compiled [1m[32msuccessfully[39m[22m in 28117 ms
+  [12:16:48 AM] [build] Generating build outputs...
+  [12:16:48 AM] [build] Succeeded
+  Running Solution Packager to build package type: Unmanaged bin\Debug\PowerAppsToolsTemp_slcrm.zip
+
+Packing C:\Users\arka1\Desktop\Rishi\Claude\SL Referrals POC\sl-referrals-app\referral-builder\pcf\obj\PowerAppsToolsTemp_slcrm\obj\Debug\Metadata to bin\Debug\PowerAppsToolsTemp_slcrm.zip
+
+Processing Component: Entities
+Processing Component: Roles
+Processing Component: Workflows
+Processing Component: FieldSecurityProfiles
+Processing Component: Templates
+Processing Component: EntityMaps
+Processing Component: EntityRelationships
+Processing Component: OrganizationSettings
+Processing Component: optionsets
+Processing Component: CustomControls
+ - SL.Referrals.ReferralBuilder
+Processing Component: SolutionPluginAssemblies
+Processing Component: EntityDataProviders
+Processing Sharded Component Files
+
+Unmanaged Pack complete.
+
+  Solution: bin\Debug\PowerAppsToolsTemp_slcrm.zip generated.
+  Solution Package Type: Unmanaged generated.
+  Completed intermediate files clean up.
+
+Build succeeded.
+    0 Warning(s)
+    0 Error(s)
+
+Time Elapsed 00:01:10.22
+Building temporary solution wrapper: done.
+Importing the temporary solution wrapper into the current org.
+
+Solution Importing...
+Microsoft PowerPlatform CLI
+Version: 2.10.1+g52c3983 (.NET Framework 4.8.9310.0)
+Online documentation: https://aka.ms/PowerPlatformCLI
+Feedback, Suggestions, Issues: https://github.com/microsoft/powerplatform-build-tools/discussions
+
+Error: Import Solution Failed: CustomControl with name  failed to import with error: CustomControls with Name SL.Referrals.ReferralBuilder Import Solution Failed with following error: platform library fluent_9_68_0 with version 9.68.0 is not supported by the platform.
+
+

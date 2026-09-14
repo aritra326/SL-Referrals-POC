@@ -1,0 +1,52 @@
+App As appinfo:
+    BackEnabled: =true
+    OnStart: |-
+        =Set(varRecordId, GUID(Param("recordId")));
+        Set(varEntityName, Param("entityName"));
+        Set(varActionName, Param("actionName"));
+        Set(
+           varActionTitle,
+           Switch(
+               varActionName,
+               "RequestInformation", "Request Information",
+               "Onward", "Onward for Approval",
+               "Authorise", "Authorise Referral Item",
+               "AuthoriseWithRecommendations", "Authorise with Recommendations",
+               "AuthoriseWithConditions", "Authorise with Conditions",
+               "Reject", "Reject Referral Item",
+               "Cancel", "Cancel",
+               "CompletePartial", "Complete Partial Outcome",
+               "CompleteRejected", "Complete Rejected Outcome",
+               "Referral Action"
+           )
+        );
+        Set(
+           varRequiresAuthority,
+           varActionName = "Onward"
+        );
+        Set(
+           varCommentLabel,
+           Switch(
+               varActionName,
+               "RequestInformation", "Information required from underwriter",
+               "Onward", "Reason for onward approval",
+               "Authorise", "Decision rationale",
+               "AuthoriseWithRecommendations", "Decision rationale and recommendations",
+               "AuthoriseWithConditions", "Decision rationale and conditions",
+               "Reject", "Rejection rationale",
+               "Cancel", "Cancellation reason",
+               "CompletePartial", "Partial outcome completion rationale",
+               "CompleteRejected", "Rejected outcome completion rationale",
+               "Comment"
+           )
+        );
+        Set(varIsSubmitting, false);
+    Theme: =PowerAppsTheme
+
+    Host As hostControl.DefaultHostControlVariant:
+        OnCancel: =false
+        OnEdit: =false
+        OnNew: =false
+        OnSave: =false
+        OnView: =false
+
