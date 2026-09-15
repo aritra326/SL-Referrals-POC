@@ -92,9 +92,18 @@ Status, Status Reason.
 | `01-Country.csv` | Country | 8 |
 | `02-Product.csv` | Product | 5 |
 | `03-CoverSection.csv` | Cover / Section | 10 |
-| `04-AuthorityLevel.csv` | Authority Level | 4 |
+| `04-AuthorityLevel.csv` | Authority Level | 8 |
 | `05-ReferralReason.csv` | Referral Reason | 6 |
 | `06-UnderwriterAuthority.csv` | Underwriter Authority | 5 |
+
+`04-AuthorityLevel.csv` matches the target environment's actual scheme: **Level 1** through
+**Level 7**, plus a non-approving **Level C** (Comparison Rank 1–8, Can Approve Referrals = Yes
+for 1–7, No for C) — not a named-role scheme. `06-UnderwriterAuthority.csv`'s Authority
+Assignment Name follows the environment's own `{Underwriter} – {Product} – {Licence Scheme}`
+pattern and includes Licence Location, matching a real record there
+(`Aritra Bhattacharya – Marine Hull – SL UK & RSAL`, Level 5). Every other file that referenced
+an authority level (`05-ReferralReason.csv`, `12-ReferralItem.csv`) was remapped to these Level
+names.
 | `07-Account.csv` | Account (2 brokers, 3 customers) | 5 |
 | `08-Opportunity.csv` | Opportunity | 8 |
 | `09-Policy.csv` | Policy | 8 |

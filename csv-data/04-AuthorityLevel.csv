@@ -1,5 +1,9 @@
 Authority Level Name,Level Code,Comparison Rank,Can Approve Referrals,Display Order
-Underwriter,UW,1,No,1
-Senior Underwriter,SUW,2,Yes,2
-Chief Underwriter,CUW,3,Yes,3
-Divisional Director,DD,4,Yes,4
+Level 1,1,1,Yes,1
+Level 2,2,2,Yes,2
+Level 3,3,3,Yes,3
+Level 4,4,4,Yes,4
+Level 5,5,5,Yes,5
+Level 6,6,6,Yes,6
+Level 7,7,7,Yes,7
+Level C,C,8,No,8
