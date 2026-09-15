@@ -25,7 +25,66 @@ export const Tables = {
     Opportunity: { logicalName: "opportunity", entitySet: "opportunities", idField: "opportunityid" },
     Account: { logicalName: "account", entitySet: "accounts", idField: "accountid" },
     SystemUser: { logicalName: "systemuser", entitySet: "systemusers", idField: "systemuserid" },
+    Policy: { logicalName: "slcrm_policy", entitySet: "slcrm_policies", idField: "slcrm_policyid" },
+    Rational: { logicalName: "slcrm_rational", entitySet: "slcrm_rationals", idField: "slcrm_rationalid" },
 } as const;
+
+/** Policy (the renewal term a Rationale is written against). */
+export const Policy = {
+    name: "slcrm_name", // Policy Reference — the lineage key shared across renewal years
+    inceptionDate: "slcrm_inceptiondate",
+    nav: {
+        opportunity: "slcrm_Opportunity",
+        customer: "slcrm_CustomerInsured",
+        broker: "slcrm_Broker",
+        product: "slcrm_Product",
+    },
+} as const;
+
+/**
+ * Rationale ("slcrm_rational" — table name predates this feature and was not
+ * renamed to avoid touching every existing reference to it).
+ *
+ * `copyableFields` are the narrative columns the Copy Rationale page actually
+ * copies from a source record — see CopyRationaleApp. Everything else on the
+ * table (Underwriter, Status, Version, lineage fields) is assigned fresh on
+ * the new record rather than copied, per the source concept: a copy reuses
+ * the underwriting narrative, not the previous year's metadata.
+ */
+export const Rational = {
+    name: "slcrm_name",
+    policyReference: "slcrm_policyreference",
+    renewalYear: "slcrm_renewalyear",
+    version: "slcrm_version",
+    status: "slcrm_status",
+    isCurrent: "slcrm_iscurrent",
+    copiedOn: "slcrm_copiedon",
+    copyableFields: [
+        "slcrm_capacityconsiderations",
+        "slcrm_captivearrangements",
+        "slcrm_claimsexperience",
+        "slcrm_licencelevel",
+        "slcrm_negotiationoutcomestext",
+        "slcrm_overseasterritoryexposures",
+        "slcrm_ppmcategory",
+        "slcrm_pricing",
+        "slcrm_qualityassessmenttext",
+        "slcrm_riskmanagementarrangements",
+        "slcrm_sanctionsconsiderations",
+        "slcrm_underwriteropinion",
+    ] as const,
+    nav: {
+        opportunity: "slcrm_Opportunity",
+        policy: "slcrm_Policy",
+        customer: "slcrm_CustomerInsured",
+        underwriter: "slcrm_Underwriter",
+        sourceRational: "slcrm_SourceRational",
+        copiedBy: "slcrm_CopiedBy",
+    },
+} as const;
+
+/** slcrm_rational's slcrm_status choice (added for the Copy Rationale feature). */
+export const RationalStatus = { draft: 100000000, final: 100000001 } as const;
 
 /** Referral Request (the parent). */
 export const ReferralRequest = {
