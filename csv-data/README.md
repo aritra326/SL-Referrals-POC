@@ -56,12 +56,15 @@ installed, only files 1–7 (the reference/lookup data) will import as-is — th
 for the environment this batch is meant for, but worth knowing if you reuse these files
 elsewhere.
 
-## Columns you must set after import
+## User columns are pre-filled with real names
 
-A handful of required columns point at a Dataverse **user** (Underwriter, Decision By,
-Participant User, Recipient User). A system user record is provisioned by licensing, not by
-data import, so these are intentionally **blank** in the CSVs — column headers marked
-`(SET TO A REAL USER AFTER IMPORT)`:
+Underwriter, Decision By, Participant User and Recipient User are populated with seven real
+full names from the target environment — Vikram Arora, Jade Norridge, Aditya Vichare, Michael
+Tanner, Ian Fischer, Lahari Iruvuri, Balachandar Siva — so these resolve on import the same
+way any other lookup column does, with no post-import step. Assignment isn't random: the same
+underwriter carries a renewal chain year over year (Vikram Arora owns Anchor Bay's FY23–FY26
+Marine Cargo programme throughout), and notification recipients follow the underwriter who
+owns that referral.
 
 - `06-UnderwriterAuthority.csv` — Underwriter
 - `10-Rational.csv` — Underwriter
@@ -69,9 +72,10 @@ data import, so these are intentionally **blank** in the CSVs — column headers
 - `14-ReferralParticipant.csv` — Participant User
 - `15-ReferralNotification.csv` — Recipient User
 
-After import, bulk-edit each of these to a real user in your environment (select all rows in
-the grid → Edit columns), or the import wizard's "Set a default value" step can point every
-blank row at yourself in one pass.
+These names must exist as users in the target environment for the lookup to resolve — a
+system user record still can't be created by data import itself (that's provisioned by
+licensing). If a name doesn't match anyone there, that one row's lookup will come through
+blank rather than fail the whole import; re-point it manually afterward.
 
 ## Choice columns
 

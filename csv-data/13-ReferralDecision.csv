@@ -1,5 +1,5 @@
-Decision Number,Referral Item,Decision Type,Decision Comments,Decision By (SET TO A REAL USER AFTER IMPORT)
-DEC-CARGO LI,Cargo limit exceeds authority,Authorised,Loss history supports the requested limit; authorised as submitted.,
-DEC-VESSEL A,Vessel age outside standard appetite,Authorised With Recommendation,Authorised subject to an annual class survey warranty being added to the policy.,
-DEC-SPRINKLE,Sprinkler warranty pricing credit,Authorised,Pricing credit approved based on the independently certified sprinkler system.,
-DEC-RENEWAL ,Renewal limit increase exceeds authority,Authorised,Clean year-one experience supports the increase; authorised as submitted.,
+Decision Number,Referral Item,Decision Type,Decision Comments,Decision By
+DEC-CARGO LI,Cargo limit exceeds authority,Authorised,Loss history supports the requested limit; authorised as submitted.,Jade Norridge
+DEC-VESSEL A,Vessel age outside standard appetite,Authorised With Recommendation,Authorised subject to an annual class survey warranty being added to the policy.,Ian Fischer
+DEC-SPRINKLE,Sprinkler warranty pricing credit,Authorised,Pricing credit approved based on the independently certified sprinkler system.,Lahari Iruvuri
+DEC-RENEWAL ,Renewal limit increase exceeds authority,Authorised,Clean year-one experience supports the increase; authorised as submitted.,Michael Tanner
