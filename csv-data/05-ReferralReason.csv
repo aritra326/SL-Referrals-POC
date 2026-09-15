@@ -1,0 +1,7 @@
+Referral Reason Name,Reason Code,Business / Risk Description,Default Required Authority Level,Requires Cover / Section,Requires Pricing Information
+Limit Exceeds Authority,LIM-EXC,Requested limit is above the underwriter's individual authority and needs sign-off from a higher level.,Senior Underwriter,Yes,No
+Sanctioned Territory Exposure,SANC-TERR,Risk has an exposure in or trades with a territory subject to sanctions screening.,Chief Underwriter,No,No
+Non-Standard Wording Requested,WORD-NONSTD,Broker has requested wording that deviates from the standard approved policy wording.,Senior Underwriter,Yes,No
+Adverse Claims History,CLAIMS-ADV,Risk has a claims history that falls outside normal underwriting appetite.,Senior Underwriter,No,Yes
+New Class of Business,NEW-CLASS,Risk falls into a class of business the underwriter is not yet authorised to write independently.,Chief Underwriter,Yes,No
+Pricing Below Technical Rate,PRICE-BELOW,Quoted premium falls below the technical (actuarially indicated) rate for the risk.,Divisional Director,No,Yes

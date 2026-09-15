@@ -1,0 +1,11 @@
+Name,Cover Code,Product,Is leaf
+Transit Cover,MC-TRN,Marine Cargo,Yes
+Storage Cover,MC-STO,Marine Cargo,Yes
+Hull Cover,HM-HUL,Marine Hull & Machinery,Yes
+Machinery Breakdown,HM-MBD,Marine Hull & Machinery,Yes
+Buildings,PR-BLD,Property,Yes
+Contents,PR-CON,Property,Yes
+Employers Liability,CA-EL,Casualty,Yes
+Public Liability,CA-PL,Casualty,Yes
+Upstream,EN-UPS,Energy,Yes
+Downstream,EN-DWN,Energy,Yes

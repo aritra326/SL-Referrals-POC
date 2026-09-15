@@ -1,0 +1,9 @@
+Notification Number,Referral,Referral Item,Referral Decision,Event Type,Processing Status,Template Key,Recipient User (SET TO A REAL USER AFTER IMPORT)
+NOTIF-0001,REF-2023-0001,Cargo limit exceeds authority,,Submitted,Sent,referral-submitted,
+NOTIF-0002,REF-2023-0001,Cargo limit exceeds authority,DEC-CARGO LI,Decision Recorded,Sent,referral-decided,
+NOTIF-0003,REF-2025-0002,Vessel age outside standard appetite,,Submitted,Sent,referral-submitted,
+NOTIF-0004,REF-2025-0002,Vessel age outside standard appetite,DEC-VESSEL A,Decision Recorded,Sent,referral-decided,
+NOTIF-0005,REF-2025-0003,Sprinkler warranty pricing credit,DEC-SPRINKLE,Decision Recorded,Sent,referral-decided,
+NOTIF-0006,REF-2025-0004,New class of business for this underwriter,,Submitted,Pending,referral-submitted,
+NOTIF-0007,REF-2026-0001,Renewal limit increase exceeds authority,DEC-RENEWAL ,Decision Recorded,Sent,referral-decided,
+NOTIF-0008,REF-2026-0002,Additional vessel adverse claims history,,Submitted,Pending,referral-submitted,

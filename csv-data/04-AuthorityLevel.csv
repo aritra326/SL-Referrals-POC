@@ -1,0 +1,5 @@
+Authority Level Name,Level Code,Comparison Rank,Can Approve Referrals,Display Order
+Underwriter,UW,1,No,1
+Senior Underwriter,SUW,2,Yes,2
+Chief Underwriter,CUW,3,Yes,3
+Divisional Director,DD,4,Yes,4
