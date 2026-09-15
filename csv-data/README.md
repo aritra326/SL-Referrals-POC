@@ -38,8 +38,8 @@ file points at must be imported first. Import in this numbered order:
 | 2 | `02-Product.csv` | — |
 | 3 | `03-CoverSection.csv` | Product |
 | 4 | `04-AuthorityLevel.csv` | — |
-| 5 | `05-ReferralReason.csv` | Authority Level (optional column) |
-| 6 | `06-UnderwriterAuthority.csv` | Authority Level, Product |
+| 5 | `05-UnderwriterAuthority.csv` | Authority Level, Product |
+| 6 | `06-ReferralReason.csv` | **Underwriter Authority** (not Authority Level — see below) |
 | 7 | `07-Account.csv` | — |
 | 8 | `08-Opportunity.csv` | Account |
 | 9 | `09-Policy.csv` | Opportunity, Account |
@@ -56,6 +56,28 @@ installed, only files 1–7 (the reference/lookup data) will import as-is — th
 for the environment this batch is meant for, but worth knowing if you reuse these files
 elsewhere.
 
+## Two similarly-named authority-level fields point at two different tables
+
+`04-AuthorityLevel.csv` matches the target environment's actual scheme: **Level 1** through
+**Level 7**, plus a non-approving **Level C** (Comparison Rank 1–8, Can Approve Referrals = Yes
+for 1–7, No for C) — not a named-role scheme.
+
+Two columns in this data set reference "authority level," but they're lookups to **different
+tables** — confirmed against the live environment's metadata, not assumed:
+
+- **Referral Item → Required Authority Level** → `slcrm_authoritylevel` (Authority Level). Its
+  values in `12-ReferralItem.csv` are plain `Level 3`, `Level 5`, etc.
+- **Referral Reason → Default Required Authority Level** → `slcrm_underwriterauthority`
+  (**Underwriter Authority**, despite the field name). Its values in `06-ReferralReason.csv`
+  are full Authority Assignment Names (e.g. `Vikram Arora - Marine Cargo - SL UK & RSAL`), not
+  bare Level text — a bare `Level 3` there has no matching record and the import fails to
+  resolve the lookup. This is also why Underwriter Authority is imported (file 5) before
+  Referral Reason (file 6), not after.
+
+`05-UnderwriterAuthority.csv`'s Authority Assignment Name follows the environment's own
+`{Underwriter} – {Product} – {Licence Scheme}` pattern and includes Licence Location, matching
+a real record there (`Aritra Bhattacharya – Marine Hull – SL UK & RSAL`, Level 5).
+
 ## User columns are pre-filled with real names
 
 Underwriter, Decision By, Participant User and Recipient User are populated with seven real
@@ -66,7 +88,7 @@ underwriter carries a renewal chain year over year (Vikram Arora owns Anchor Bay
 Marine Cargo programme throughout), and notification recipients follow the underwriter who
 owns that referral.
 
-- `06-UnderwriterAuthority.csv` — Underwriter
+- `05-UnderwriterAuthority.csv` — Underwriter
 - `10-Rational.csv` — Underwriter
 - `13-ReferralDecision.csv` — Decision By
 - `14-ReferralParticipant.csv` — Participant User
@@ -93,17 +115,8 @@ Status, Status Reason.
 | `02-Product.csv` | Product | 5 |
 | `03-CoverSection.csv` | Cover / Section | 10 |
 | `04-AuthorityLevel.csv` | Authority Level | 8 |
-| `05-ReferralReason.csv` | Referral Reason | 6 |
-| `06-UnderwriterAuthority.csv` | Underwriter Authority | 5 |
-
-`04-AuthorityLevel.csv` matches the target environment's actual scheme: **Level 1** through
-**Level 7**, plus a non-approving **Level C** (Comparison Rank 1–8, Can Approve Referrals = Yes
-for 1–7, No for C) — not a named-role scheme. `06-UnderwriterAuthority.csv`'s Authority
-Assignment Name follows the environment's own `{Underwriter} – {Product} – {Licence Scheme}`
-pattern and includes Licence Location, matching a real record there
-(`Aritra Bhattacharya – Marine Hull – SL UK & RSAL`, Level 5). Every other file that referenced
-an authority level (`05-ReferralReason.csv`, `12-ReferralItem.csv`) was remapped to these Level
-names.
+| `05-UnderwriterAuthority.csv` | Underwriter Authority | 5 |
+| `06-ReferralReason.csv` | Referral Reason | 6 |
 | `07-Account.csv` | Account (2 brokers, 3 customers) | 5 |
 | `08-Opportunity.csv` | Opportunity | 8 |
 | `09-Policy.csv` | Policy | 8 |

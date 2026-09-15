@@ -1,0 +1,7 @@
+Referral Reason Name,Reason Code,Business / Risk Description,Default Required Authority Level,Requires Cover / Section,Requires Pricing Information
+Limit Exceeds Authority,LIM-EXC,Requested limit is above the underwriter's individual authority and needs sign-off from a higher level.,Vikram Arora - Marine Cargo - SL UK & RSAL,Yes,No
+Sanctioned Territory Exposure,SANC-TERR,Risk has an exposure in or trades with a territory subject to sanctions screening.,Ian Fischer - Marine Hull & Machinery - SL UK & RSAL,No,No
+Non-Standard Wording Requested,WORD-NONSTD,Broker has requested wording that deviates from the standard approved policy wording.,Aditya Vichare - Property - CL UK,Yes,No
+Adverse Claims History,CLAIMS-ADV,Risk has a claims history that falls outside normal underwriting appetite.,Vikram Arora - Marine Cargo - SL UK & RSAL,No,Yes
+New Class of Business,NEW-CLASS,Risk falls into a class of business the underwriter is not yet authorised to write independently.,Ian Fischer - Marine Hull & Machinery - SL UK & RSAL,Yes,No
+Pricing Below Technical Rate,PRICE-BELOW,Quoted premium falls below the technical (actuarially indicated) rate for the risk.,Lahari Iruvuri - Casualty - CL UK,No,Yes
