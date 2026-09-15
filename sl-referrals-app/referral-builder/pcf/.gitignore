@@ -21,3 +21,7 @@
 
 # macos
 .DS_Store
+
+# Web-resource build output and generated upload payloads
+webresource/dist
+webresource/payload
