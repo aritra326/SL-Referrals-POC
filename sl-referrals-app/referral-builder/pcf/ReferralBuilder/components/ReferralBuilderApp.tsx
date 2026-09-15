@@ -1,4 +1,4 @@
-import * as React from "react";
+﻿import * as React from "react";
 import {
     Badge,
     Button,
@@ -299,9 +299,11 @@ export const ReferralBuilderApp: React.FC<ReferralBuilderAppProps> = ({
     /* ---------------- render ---------------- */
     if (loading) {
         return (
-            <FluentProvider theme={webLightTheme} className={s.root}>
-                <div className={s.centre}>
-                    <Spinner label="Loading referral data…" />
+            <FluentProvider theme={webLightTheme} style={{ height: "100%" }}>
+                <div className={s.root}>
+                    <div className={s.centre}>
+                        <Spinner label="Loading referral dataâ€¦" />
+                    </div>
                 </div>
             </FluentProvider>
         );
@@ -324,7 +326,8 @@ export const ReferralBuilderApp: React.FC<ReferralBuilderAppProps> = ({
     ];
 
     return (
-        <FluentProvider theme={webLightTheme} className={s.root}>
+        <FluentProvider theme={webLightTheme} style={{ height: "100%" }}>
+          <div className={s.root}>
             <div className={s.scroll}>
                 <div className={s.shell}>
                     <div className={s.head} data-scroll-top>
@@ -335,7 +338,7 @@ export const ReferralBuilderApp: React.FC<ReferralBuilderAppProps> = ({
                             </p>
                         </div>
                         <Badge appearance="outline" color="informative" size="large">
-                            Draft — not yet submitted
+                            Draft â€” not yet submitted
                         </Badge>
                     </div>
 
@@ -380,7 +383,7 @@ export const ReferralBuilderApp: React.FC<ReferralBuilderAppProps> = ({
                                         <li key={i}>{m}</li>
                                     ))}
                                 </ul>
-                                {errorList.length > 6 && <div>…and {errorList.length - 6} more.</div>}
+                                {errorList.length > 6 && <div>â€¦and {errorList.length - 6} more.</div>}
                             </MessageBarBody>
                         </MessageBar>
                     )}
@@ -499,7 +502,7 @@ export const ReferralBuilderApp: React.FC<ReferralBuilderAppProps> = ({
                                                 label="Business / risk description"
                                                 required
                                                 validationMessage={showErrors ? errors.context.description : undefined}
-                                                hint="One short paragraph the approver reads first — what the risk is and why it is being referred."
+                                                hint="One short paragraph the approver reads first â€” what the risk is and why it is being referred."
                                             >
                                                 <Textarea
                                                     className={s.grow}
@@ -522,7 +525,7 @@ export const ReferralBuilderApp: React.FC<ReferralBuilderAppProps> = ({
                                         <span className={s.cardIcon}><ClipboardTaskListLtrRegular /></span>
                                         <div>
                                             <h2 className={s.cardTitle}>Referral items</h2>
-                                            <p className={s.cardDesc}>One item per reason — each is approved or rejected independently</p>
+                                            <p className={s.cardDesc}>One item per reason â€” each is approved or rejected independently</p>
                                         </div>
                                     </div>
                                     <Button appearance="secondary" icon={<AddRegular />} onClick={addItem}>Add item</Button>
@@ -564,18 +567,18 @@ export const ReferralBuilderApp: React.FC<ReferralBuilderAppProps> = ({
                                 <div className={s.stat}>
                                     <span className={s.statKey}>Product</span>
                                     <span className={s.statVal}>
-                                        {products.find((p) => p.id === draft.productId)?.label ?? "—"}
+                                        {products.find((p) => p.id === draft.productId)?.label ?? "â€”"}
                                     </span>
                                 </div>
                                 <div className={s.stat}>
                                     <span className={s.statKey}>Priority</span>
                                     <span className={s.statVal}>
-                                        {PRIORITIES.find((p) => p.id === String(draft.priority))?.label ?? "—"}
+                                        {PRIORITIES.find((p) => p.id === String(draft.priority))?.label ?? "â€”"}
                                     </span>
                                 </div>
                                 <div className={s.stat}>
                                     <span className={s.statKey}>Highest authority</span>
-                                    <span className={s.statVal}>{highestLevel?.label ?? "—"}</span>
+                                    <span className={s.statVal}>{highestLevel?.label ?? "â€”"}</span>
                                 </div>
                                 <ul className={s.checklist}>
                                     {checklist.map(([label, ok], i) => (
@@ -591,7 +594,7 @@ export const ReferralBuilderApp: React.FC<ReferralBuilderAppProps> = ({
                                 <h3 className={s.railTitle}><InfoRegular />How approval works</h3>
                                 <p className={s.infoText}>
                                     Each item is routed to an approver who holds sufficient authority for the product.
-                                    Items are decided independently — some may be authorised while others are rejected
+                                    Items are decided independently â€” some may be authorised while others are rejected
                                     or sent back for more information.
                                 </p>
                             </div>
@@ -606,7 +609,7 @@ export const ReferralBuilderApp: React.FC<ReferralBuilderAppProps> = ({
                     <div className={s.cmdStatus}>
                         {isValid ? <CheckmarkCircleRegular /> : <CircleRegular />}
                         {isValid
-                            ? `Ready to save — ${draft.items.length} item${draft.items.length > 1 ? "s" : ""}`
+                            ? `Ready to save â€” ${draft.items.length} item${draft.items.length > 1 ? "s" : ""}`
                             : `${errorList.length} field${errorList.length === 1 ? "" : "s"} still to complete`}
                     </div>
                     <div className={s.cmdButtons}>
@@ -624,6 +627,7 @@ export const ReferralBuilderApp: React.FC<ReferralBuilderAppProps> = ({
                     </div>
                 </div>
             </div>
+          </div>
         </FluentProvider>
     );
 };

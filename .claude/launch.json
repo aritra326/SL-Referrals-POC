@@ -1,0 +1,11 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "referral-builder-harness",
+      "runtimeExecutable": "node",
+      "runtimeArgs": ["sl-referrals-app/referral-builder/pcf/webresource/dev/serve.js"],
+      "port": 5599
+    }
+  ]
+}

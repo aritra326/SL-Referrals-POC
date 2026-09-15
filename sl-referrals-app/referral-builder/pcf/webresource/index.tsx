@@ -10,6 +10,7 @@
 import * as React from "react";
 import * as ReactDOM from "react-dom";
 import { ReferralBuilderApp } from "../ReferralBuilder/components/ReferralBuilderApp";
+import { ErrorBoundary } from "../ReferralBuilder/components/ErrorBoundary";
 import { createHostContext, resolveUserId } from "./XrmHost";
 
 function param(name: string): string {
@@ -55,12 +56,16 @@ async function start(): Promise<void> {
         const userId = await resolveUserId();
 
         ReactDOM.render(
-            React.createElement(ReferralBuilderApp, {
-                context: createHostContext(userId),
-                sourceEntityName: launchParam("entityName"),
-                sourceRecordId: launchParam("recordId"),
-                mode: launchParam("mode") || "create",
-            }),
+            React.createElement(
+                ErrorBoundary,
+                null,
+                React.createElement(ReferralBuilderApp, {
+                    context: createHostContext(userId),
+                    sourceEntityName: launchParam("entityName"),
+                    sourceRecordId: launchParam("recordId"),
+                    mode: launchParam("mode") || "create",
+                })
+            ),
             container
         );
     } catch (err) {

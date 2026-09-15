@@ -5,6 +5,21 @@ import { makeStyles, shorthands, tokens } from "@fluentui/react-components";
  * inherits the host app's theme (including dark mode) rather than hard-coding it.
  */
 export const useStyles = makeStyles({
+    /**
+     * Layout for the app shell. This must live one level INSIDE the
+     * FluentProvider, never on it.
+     *
+     * Fluent v9 renders popup surfaces (the Dropdown listbox, menus, tooltips)
+     * into a portal wrapped in a second FluentProvider that inherits the root
+     * provider's className. Anything layout- or paint-related on the provider
+     * therefore also lands on an absolutely-positioned, z-index 1000000 portal:
+     * `height: 100%` made that portal fill the viewport, and FluentProvider's
+     * own background colour turned it into an opaque sheet over the whole form.
+     * Opening any dropdown blanked the page, with no error logged anywhere.
+     *
+     * The provider gets its height from an inline style instead — inline styles
+     * are not copied onto the portal the way className is.
+     */
     root: {
         display: "flex",
         flexDirection: "column",
