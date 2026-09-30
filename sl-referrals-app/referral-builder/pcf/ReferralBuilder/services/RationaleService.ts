@@ -1,5 +1,5 @@
 import { DataverseService, bindTo, stripBraces, toFriendlyError } from "./DataverseService";
-import { Tables, Policy, Rational, RationalStatus } from "../config/DataverseSchema";
+import { Tables, Opportunity, Rational, RationalStatus } from "../config/DataverseSchema";
 
 /** One prior year's rationale, as shown in the "pick one to copy" list. */
 export interface RationaleOption {
@@ -23,19 +23,23 @@ export interface PolicyContext {
 /**
  * Data access + the copy operation for the Copy Rationale page.
  *
- * The "same policy" scope described in the source concept (five years of
- * renewal each producing a new Opportunity, each Opportunity producing a new
- * Policy row, each of those Policy rows sharing one Policy Reference) is
- * resolved through `slcrm_policyreference` — a denormalized copy of that
- * reference stamped onto every Rationale at creation time. That trades a
- * clean relational lookup for a filter Dataverse can answer in one call
- * instead of an expand-and-filter across three tables.
+ * Data model: Policy 1:N Opportunity (one Opportunity per renewal, via
+ * Opportunity.slcrm_Policy) and Opportunity 1:N Rationale. "Same policy"
+ * history is therefore every Final Rationale whose Opportunity points at the
+ * same Policy as the current Opportunity.
  */
 export class RationaleService {
     constructor(private readonly dv: DataverseService) {}
 
     /** Resolves the Policy (and its Policy Reference / customer) linked to an Opportunity, if any. */
     public async loadPolicyForOpportunity(opportunityId: string): Promise<PolicyContext | null> {
+        const opps = await this.dv.retrieveMultiple<Record<string, string | undefined>>(
+            Tables.Opportunity.logicalName,
+            `?$select=${Opportunity.policyValue}&$filter=opportunityid eq ${stripBraces(opportunityId)}&$top=1`
+        );
+        const policyId = stripBraces(opps[0]?.[Opportunity.policyValue] ?? "");
+        if (!policyId) return null;
+
         const rows = await this.dv.retrieveMultiple<{
             slcrm_policyid: string;
             slcrm_name: string;
@@ -46,7 +50,7 @@ export class RationaleService {
             // Selecting a lookup's id needs the "_field_value" wrapped form —
             // the bare attribute name 404s ("Could not find a property named").
             `?$select=slcrm_policyid,slcrm_name,_slcrm_customerinsured_value` +
-                `&$filter=_slcrm_opportunity_value eq ${stripBraces(opportunityId)}` +
+                `&$filter=slcrm_policyid eq ${policyId}` +
                 `&$top=1`
         );
         const row = rows[0];
@@ -64,8 +68,8 @@ export class RationaleService {
      * Every Final rationale that shares the given Policy Reference, excluding
      * whatever is already on the current opportunity. Newest renewal year first.
      */
-    public async loadCopyableRationales(policyReference: string, excludeOpportunityId: string): Promise<RationaleOption[]> {
-        if (!policyReference) return [];
+    public async loadCopyableRationales(policyId: string, excludeOpportunityId: string): Promise<RationaleOption[]> {
+        if (!policyId) return [];
 
         const select = [
             "slcrm_rationalid",
@@ -78,7 +82,7 @@ export class RationaleService {
         ].join(",");
 
         const filter =
-            `${Rational.policyReference} eq '${escapeOData(policyReference)}'` +
+            `${Rational.nav.opportunity}/${Opportunity.policyValue} eq ${stripBraces(policyId)}` +
             ` and ${Rational.status} eq ${RationalStatus.final}` +
             ` and _slcrm_opportunity_value ne ${stripBraces(excludeOpportunityId)}`;
 
@@ -148,8 +152,4 @@ export class RationaleService {
             );
         }
     }
-}
-
-function escapeOData(value: string): string {
-    return value.replace(/'/g, "''");
 }

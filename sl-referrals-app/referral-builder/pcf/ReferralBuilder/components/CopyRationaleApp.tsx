@@ -64,7 +64,7 @@ export const CopyRationaleApp: React.FC<CopyRationaleAppProps> = ({ context, opp
                 setPolicy(pol);
 
                 if (pol) {
-                    const opts = await services.rational.loadCopyableRationales(pol.policyReference, opportunityId);
+                    const opts = await services.rational.loadCopyableRationales(pol.policyId, opportunityId);
                     if (cancelled) return;
                     setOptions(opts);
                 }

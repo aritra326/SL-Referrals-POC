@@ -29,12 +29,18 @@ export const Tables = {
     Rational: { logicalName: "slcrm_rational", entitySet: "slcrm_rationals", idField: "slcrm_rationalid" },
 } as const;
 
-/** Policy (the renewal term a Rationale is written against). */
+/** Opportunity columns added by SL Referrals. Policy 1:N Opportunity: one Policy, one Opportunity per renewal. */
+export const Opportunity = {
+    policyValue: "_slcrm_policy_value",
+    nav: { policy: "slcrm_Policy" },
+} as const;
+
+/** Policy (one record per policy; each renewal is an Opportunity that points at it). */
 export const Policy = {
-    name: "slcrm_name", // Policy Reference — the lineage key shared across renewal years
+    name: "slcrm_name", // Policy Reference
     inceptionDate: "slcrm_inceptiondate",
     nav: {
-        opportunity: "slcrm_Opportunity",
+        opportunity: "slcrm_Opportunity", // legacy inverted lookup, no longer used by Copy Rationale
         customer: "slcrm_CustomerInsured",
         broker: "slcrm_Broker",
         product: "slcrm_Product",
