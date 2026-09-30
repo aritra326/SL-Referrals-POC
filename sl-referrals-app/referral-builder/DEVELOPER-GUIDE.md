@@ -332,9 +332,18 @@ exists nearby, so dark mode keeps working.
 All of this logic lives in `RationaleService.ts`, not in the component. Two things you'll most
 likely be asked to change:
 
+- **Data model:** Policy 1:N Opportunity (one Opportunity per renewal, via the
+  `Opportunity.slcrm_Policy` lookup) and Opportunity 1:N Rationale. There is exactly one Policy
+  row per policy; renewals never create a new Policy row. In the POC the renewal Opportunity is
+  created by hand and its Policy lookup is set; in production the system creates it.
 - **Which rationales are offered to copy from:** the `loadCopyableRationales` method — currently
-  filters to `Status = Final` and the same Policy Reference, excluding the current Opportunity.
-  Change the filter there.
+  every `Status = Final` Rationale whose Opportunity points at the same Policy as the current
+  Opportunity, excluding the current Opportunity. Change the filter there.
+- **Known gap:** the new Rationale's Renewal Year is the current calendar year
+  (`CopyRationaleApp.tsx`), not the year of the renewal Opportunity.
+- **Deploy gotcha:** Dynamics can keep serving a stale `slcrm_copyrationale.js` from a versioned
+  URL after a re-upload. `copy-rationale.html` therefore loads the script with a `?v=` query
+  string; bump it whenever you redeploy the bundle.
 - **Which fields get copied vs. left blank on the new record:** the `Rational.copyableFields`
   array in `DataverseSchema.ts` — add or remove a Dataverse field's logical name there to
   include/exclude it from copying. Fields not listed are always left for the underwriter to fill
