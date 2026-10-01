@@ -226,7 +226,7 @@ SLCRM.ReferralCommands = (function () {
             const apiName = getApiName(context.entityName);
 
             const request = {
-                Target: {
+                entity: {
                     entityType: context.entityName,
                     id: context.recordId
                 },
@@ -240,7 +240,7 @@ SLCRM.ReferralCommands = (function () {
 
             request.getMetadata = function () {
                 const parameterTypes = {
-                    Target: {
+                    entity: {
                         typeName: "mscrm." + context.entityName,
                         structuralProperty: 5
                     },
@@ -259,7 +259,7 @@ SLCRM.ReferralCommands = (function () {
                 };
 
                 return {
-                    boundParameter: "Target",
+                    boundParameter: "entity",
                     parameterTypes: parameterTypes,
                     operationType: 0,
                     operationName: apiName

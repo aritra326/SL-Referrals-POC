@@ -163,3 +163,15 @@ inside the zip, imported with `pac solution import --publish-changes`. No code, 
 Verified by re-exporting: both packages (`SL_Referrals_1_0_0_12.zip` unmanaged, `..._managed.zip`) contain the Decisions subgrid,
 the Decision form's Authority and Audit tabs and the new view. **Not yet viewed in the rendered app** (the browser pane was not
 signed in), so open one Referral Item and one Referral Decision once to confirm they render.
+
+---
+
+# Deployment 4: fix for "Target is not a valid parameter" (solution 1.0.0.13)
+
+Symptom: clicking Submit Referral (or any Referral Request command) failed with
+`The parameter 'Target' in the request payload is not a valid parameter for the operation 'slcrm_ExecuteReferralRequestAction'`.
+Cause: `slcrm_ReferralCommands.js` called `Xrm.WebApi.online.execute` for a **bound** Custom API but named the bound record parameter
+`Target`. Xrm requires the name `entity` for the bound parameter; any other name is sent in the body as an ordinary parameter, which the
+API does not define. (The decision dialog calls the API by URL, so it was not affected.)
+Fix: `boundParameter`, the request property and the parameter-type key are now `entity`. Only the web resource changed; exports for 1.0.0.13 are in `solution-export/`.
+Not yet re-tested by clicking the button in the app (browser pane not signed in): hard-reload the app and try Submit.
