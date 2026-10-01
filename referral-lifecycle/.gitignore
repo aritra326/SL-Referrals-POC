@@ -1,0 +1,9 @@
+bin/
+obj/
+.vs/
+TestResults/
+*.snk
+*.user
+out/
+src/Referral.Dialog/node_modules/
+src/Referral.Dialog/dist/

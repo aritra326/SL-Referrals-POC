@@ -1,0 +1,13 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+  <!-- Thin IPlugin entry points registered on the two Custom APIs. -->
+  <PropertyGroup>
+    <AssemblyName>SLCRM.ReferralLifecycle</AssemblyName>
+    <RootNamespace>Referral.Plugins</RootNamespace>
+  </PropertyGroup>
+  <ItemGroup>
+    <PackageReference Include="Microsoft.CrmSdk.CoreAssemblies" Version="9.0.2.60" />
+    <ProjectReference Include="..\Referral.Domain\Referral.Domain.csproj" />
+    <ProjectReference Include="..\Referral.Application\Referral.Application.csproj" />
+    <ProjectReference Include="..\Referral.Dataverse\Referral.Dataverse.csproj" />
+  </ItemGroup>
+</Project>

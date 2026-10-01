@@ -1,3 +1,8 @@
+> **SUPERSEDED (2026-10-01).** This scaffold was never built or deployed. It is replaced by the layered, tested
+> solution in [`/referral-lifecycle`](../../../referral-lifecycle/README.md). Do not build or register this project:
+> its status and decision labels (for example "Sent for Approval" on items, "Recorded" on decisions) do not exist in
+> the live environment. Kept for reference only.
+
 # SLCRM.ReferralLifecycle — plug-in project
 
 Implements the two deployed Custom APIs' server-side logic:

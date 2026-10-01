@@ -1,0 +1,8 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+  <!-- Reads and writes Dataverse tables. The only place schema names live. -->
+  <ItemGroup>
+    <PackageReference Include="Microsoft.CrmSdk.CoreAssemblies" Version="9.0.2.60" />
+    <ProjectReference Include="..\Referral.Domain\Referral.Domain.csproj" />
+    <ProjectReference Include="..\Referral.Application\Referral.Application.csproj" />
+  </ItemGroup>
+</Project>

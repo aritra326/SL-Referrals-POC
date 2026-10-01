@@ -1,0 +1,6 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+  <!-- Use cases that orchestrate the domain rules through small interfaces. No Dataverse SDK. -->
+  <ItemGroup>
+    <ProjectReference Include="..\Referral.Domain\Referral.Domain.csproj" />
+  </ItemGroup>
+</Project>
