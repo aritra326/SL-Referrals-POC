@@ -151,3 +151,15 @@ expired authority, a missing rank setting, concurrent edits. These need the team
 * The `SMOKE-REF-*` test referrals and the `SMOKE - Test Higher Authority - Marine Hull` assignment are still in Dev. Decision immutability now
   blocks deleting their decisions; use `slcrm_AllowDecisionMaintenance` for the clean-up (see [demo-authorization.md](demo-authorization.md)).
 * Final packages: `SL_Referrals_1_0_0_11.zip` (unmanaged) and `SL_Referrals_1_0_0_11_managed.zip`.
+
+---
+
+# Deployment 3: Referral Item and Referral Decision forms (solution 1.0.0.12)
+
+Date: 2026-10-01, Dev, solution SL_Referrals (publisher SL CRM). The forms were redesigned from the ChatGPT form discussion;
+the layout is in [forms.md](forms.md). Method: exported solution, edited the form XML (and added the "Decisions by Item" view)
+inside the zip, imported with `pac solution import --publish-changes`. No code, plug-in or data change.
+
+Verified by re-exporting: both packages (`SL_Referrals_1_0_0_12.zip` unmanaged, `..._managed.zip`) contain the Decisions subgrid,
+the Decision form's Authority and Audit tabs and the new view. **Not yet viewed in the rendered app** (the browser pane was not
+signed in), so open one Referral Item and one Referral Decision once to confirm they render.
