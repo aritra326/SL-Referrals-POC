@@ -234,6 +234,25 @@ namespace Referral.Dataverse.Tests
         }
 
         [Fact]
+        public void GetAuthoritiesForProduct_AsksForActiveAssignmentsOfThatProductOnly()
+        {
+            QueryExpression asked = null;
+            _service
+                .Setup(s => s.RetrieveMultiple(It.IsAny<QueryBase>()))
+                .Callback<QueryBase>(q => asked = (QueryExpression)q)
+                .Returns(new EntityCollection());
+            var productId = Guid.NewGuid();
+
+            var result = _repository.GetAuthoritiesForProduct(productId);
+
+            Assert.Empty(result);
+            Assert.Equal(Schema.Authority.Table, asked.EntityName);
+            Assert.False(asked.ColumnSet.AllColumns);
+            Assert.Contains(asked.Criteria.Conditions, c => c.AttributeName == Schema.Authority.Product && (Guid)c.Values[0] == productId);
+            Assert.Contains(asked.Criteria.Conditions, c => c.AttributeName == Schema.StateCode && (int)c.Values[0] == 0);
+        }
+
+        [Fact]
         public void CreateDecision_ShortensTheRecommendationsColumnButNeverTheComments()
         {
             Entity written = null;

@@ -40,7 +40,7 @@ namespace Referral.Application
             ItemRecord item = _repository.GetItem(request.ItemId);
             ParentRecord parent = _repository.GetParent(item.ParentId);
 
-            RequireCurrentRevision(item);
+            CallerRules.RequireCurrentRevision(item);
             CallerRules.RequireReferralOpen(parent);
             ItemStatus targetStatus = ItemTransitionRules.GetTargetStatus(action, item.Status);
 
@@ -272,16 +272,6 @@ namespace Referral.Application
             }
 
             return _repository.CreateRevision(item, _clock.UtcNow);
-        }
-
-        private static void RequireCurrentRevision(ItemRecord item)
-        {
-            if (!item.IsCurrentRevision)
-            {
-                throw new LifecycleException(
-                    LifecycleErrorCodes.StatusConflict,
-                    "This item has been replaced by a newer revision. Open the latest revision instead.");
-            }
         }
     }
 }

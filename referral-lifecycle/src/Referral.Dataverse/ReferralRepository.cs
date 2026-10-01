@@ -94,27 +94,33 @@ namespace Referral.Dataverse
             };
         }
 
+        private static readonly string[] AuthorityColumns =
+        {
+            Schema.StateCode, Schema.StatusCode, Schema.Authority.Name, Schema.Authority.EffectiveFrom, Schema.Authority.EffectiveTo,
+            Schema.Authority.Level, Schema.Authority.Product, Schema.Authority.Underwriter
+        };
+
         public AuthorityFacts GetAuthority(Guid assignmentId)
         {
-            Entity assignment = RetrieveOrNull(
-                Schema.Authority.Table,
-                assignmentId,
-                Schema.StateCode,
-                Schema.StatusCode,
-                Schema.Authority.EffectiveFrom,
-                Schema.Authority.EffectiveTo,
-                Schema.Authority.Level,
-                Schema.Authority.Product,
-                Schema.Authority.Underwriter);
+            Entity assignment = RetrieveOrNull(Schema.Authority.Table, assignmentId, AuthorityColumns);
+            return assignment == null ? null : ToAuthorityFacts(assignment);
+        }
 
-            if (assignment == null)
-            {
-                return null;
-            }
+        public IList<AuthorityFacts> GetAuthoritiesForProduct(Guid productId)
+        {
+            var query = new QueryExpression(Schema.Authority.Table) { ColumnSet = new ColumnSet(AuthorityColumns) };
+            query.Criteria.AddCondition(Schema.Authority.Product, ConditionOperator.Equal, productId);
+            query.Criteria.AddCondition(Schema.StateCode, ConditionOperator.Equal, 0);
 
+            return _service.RetrieveMultiple(query).Entities.Select(ToAuthorityFacts).ToList();
+        }
+
+        private AuthorityFacts ToAuthorityFacts(Entity assignment)
+        {
             var facts = new AuthorityFacts
             {
                 AssignmentId = assignment.Id,
+                AssignmentName = assignment.GetAttributeValue<string>(Schema.Authority.Name),
                 ProductId = IdOf(assignment, Schema.Authority.Product),
                 UnderwriterId = IdOf(assignment, Schema.Authority.Underwriter),
                 IsActive = assignment.GetAttributeValue<OptionSetValue>(Schema.StateCode).Value == 0,

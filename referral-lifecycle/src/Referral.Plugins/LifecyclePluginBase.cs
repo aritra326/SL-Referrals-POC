@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using Microsoft.Xrm.Sdk;
 using Referral.Application;
@@ -64,8 +65,20 @@ namespace Referral.Plugins
         /// <summary>The table the Custom API is bound to.</summary>
         protected abstract string TargetTable { get; }
 
-        /// <summary>Runs the use case and returns the id to send back as ResultRecordId.</summary>
-        protected abstract Guid Run(PluginCall call, LifecycleServices services);
+        /// <summary>Most Custom APIs need an ActionName; the read-only ones do not.</summary>
+        protected virtual bool RequiresActionName
+        {
+            get { return true; }
+        }
+
+        /// <summary>Runs the use case and returns the output parameters to send back, keyed by parameter name.</summary>
+        protected abstract IDictionary<string, object> Run(PluginCall call, LifecycleServices services);
+
+        /// <summary>The common output: the id of the affected record.</summary>
+        protected static IDictionary<string, object> Result(Guid recordId)
+        {
+            return new Dictionary<string, object> { { ResultOutputName, recordId } };
+        }
 
         public void Execute(IServiceProvider serviceProvider)
         {
@@ -82,9 +95,12 @@ namespace Referral.Plugins
                 // Writes run as the system user because the caller's own security roles are not meant to allow
                 // writing decisions. Who the caller is, and what they may do, is checked in the use case instead.
                 IOrganizationService service = factory.CreateOrganizationService(null);
-                Guid resultId = Run(call, CreateServices(service, tracing));
+                IDictionary<string, object> outputs = Run(call, CreateServices(service, tracing));
 
-                context.OutputParameters[ResultOutputName] = resultId;
+                foreach (KeyValuePair<string, object> output in outputs)
+                {
+                    context.OutputParameters[output.Key] = output.Value;
+                }
             }
             catch (LifecycleException ex)
             {
@@ -145,7 +161,7 @@ namespace Referral.Plugins
             }
 
             string actionName = ReadInput<string>(context, "ActionName");
-            if (string.IsNullOrWhiteSpace(actionName))
+            if (RequiresActionName && string.IsNullOrWhiteSpace(actionName))
             {
                 throw new InvalidPluginExecutionException("The request did not say which action to run (ActionName).");
             }

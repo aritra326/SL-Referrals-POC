@@ -84,6 +84,11 @@ namespace Referral.Application.Tests
             return Authorities.TryGetValue(assignmentId, out facts) ? facts : null;
         }
 
+        public IList<AuthorityFacts> GetAuthoritiesForProduct(Guid productId)
+        {
+            return Authorities.Values.Where(a => a.ProductId == productId).ToList();
+        }
+
         public int? GetAuthorityLevelRank(Guid levelId)
         {
             int rank;

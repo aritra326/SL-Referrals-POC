@@ -3,6 +3,14 @@ import { TargetTable } from "./dialogActions";
 /** The browser's fetch, or a fake in tests. */
 export type FetchLike = (input: string, init?: RequestInit) => Promise<Response>;
 
+/** One authority the server says the item may be sent onward to. */
+export interface EligibleAuthorityOption {
+    id: string;
+    name: string;
+    level: string;
+    rank: number;
+}
+
 export interface RecordContext {
     /** For example the item number. */
     heading: string;
@@ -66,12 +74,16 @@ export async function runAction(
     target: TargetTable,
     recordId: string,
     actionName: string,
-    comment: string
+    comment: string,
+    newAuthorityId?: string
 ): Promise<string> {
     const table = TABLES[target];
     const body: Record<string, string> = { ActionName: actionName };
     if (comment.trim().length > 0) {
         body.Comment = comment.trim();
+    }
+    if (newAuthorityId) {
+        body.NewAuthorityId = clean(newAuthorityId);
     }
 
     let response: Response;
@@ -132,4 +144,37 @@ export async function loadContext(
         };
     }
     return { heading: row.slcrm_name || "Referral", subheading: "", status };
+}
+
+/** Asks the server which authorities the item can be sent onward to. The server applies the real eligibility rules. */
+export async function loadEligibleAuthorities(
+    fetchFn: FetchLike,
+    baseUrl: string,
+    itemId: string
+): Promise<EligibleAuthorityOption[]> {
+    let response: Response;
+    try {
+        response = await fetchFn(
+            `${baseUrl}${API_ROOT}slcrm_referralitems(${clean(itemId)})/Microsoft.Dynamics.CRM.slcrm_GetEligibleAuthorities`,
+            {
+                method: "POST",
+                credentials: "same-origin",
+                headers: { "Content-Type": "application/json", Accept: "application/json", "OData-Version": "4.0" },
+                body: "{}",
+            }
+        );
+    } catch {
+        throw new LifecycleError("", "The server could not be reached. Check your connection and try again.");
+    }
+
+    if (!response.ok) {
+        throw toLifecycleError(await readErrorMessage(response), response.status);
+    }
+
+    const result = await response.json();
+    try {
+        return JSON.parse((result && result.AuthoritiesJson) || "[]") as EligibleAuthorityOption[];
+    } catch {
+        throw new LifecycleError("", "The list of authorities could not be read.");
+    }
 }

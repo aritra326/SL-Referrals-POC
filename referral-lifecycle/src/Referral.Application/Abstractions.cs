@@ -23,6 +23,9 @@ namespace Referral.Application
         /// <summary>Null when the assignment does not exist.</summary>
         AuthorityFacts GetAuthority(Guid assignmentId);
 
+        /// <summary>Every authority assignment recorded for the product (any status; the caller applies the eligibility rule).</summary>
+        IList<AuthorityFacts> GetAuthoritiesForProduct(Guid productId);
+
         /// <summary>Null when the level does not exist or has no rank.</summary>
         int? GetAuthorityLevelRank(Guid levelId);
 

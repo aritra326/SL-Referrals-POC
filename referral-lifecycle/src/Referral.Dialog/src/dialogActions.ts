@@ -16,6 +16,8 @@ export interface DialogAction {
     confirmLabel: string;
     /** One sentence telling the user what will happen. */
     consequence: string;
+    /** The user must also choose an authority from the list the server says is eligible (Onward). */
+    requiresAuthority?: boolean;
 }
 
 const ACTIONS: DialogAction[] = [
@@ -60,6 +62,17 @@ const ACTIONS: DialogAction[] = [
         consequence: "The item goes back to the underwriter and a decision record is created.",
     },
     {
+        name: "Onward",
+        target: "slcrm_referralitem",
+        title: "Onward for approval",
+        commentLabel: "Reason for routing onward",
+        commentHint: "Required. Why does this item need a higher authority?",
+        commentRequired: true,
+        confirmLabel: "Send onward",
+        consequence: "The item goes to the authority you choose and a permanent decision record is created.",
+        requiresAuthority: true,
+    },
+    {
         name: "CompleteRejected",
         target: "slcrm_referralrequest",
         title: "Close referral as rejected",
@@ -99,6 +112,14 @@ export function findAction(target: string, name: string): DialogAction | undefin
 export function validateComment(action: DialogAction, comment: string): string | null {
     if (action.commentRequired && comment.trim().length === 0) {
         return `Enter the ${action.commentLabel.toLowerCase()} before you continue.`;
+    }
+    return null;
+}
+
+/** Returns the message to show when no authority has been chosen, or null when one has (or none is needed). */
+export function validateAuthority(action: DialogAction, authorityId: string): string | null {
+    if (action.requiresAuthority && !authorityId) {
+        return "Choose the authority to send the item to.";
     }
     return null;
 }

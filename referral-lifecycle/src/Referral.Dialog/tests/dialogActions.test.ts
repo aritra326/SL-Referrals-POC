@@ -1,4 +1,4 @@
-import { findAction, validateComment } from "../src/dialogActions";
+import { findAction, validateAuthority, validateComment } from "../src/dialogActions";
 
 describe("dialog actions", () => {
     test("Authorise does not require a comment", () => {
@@ -24,7 +24,7 @@ describe("dialog actions", () => {
     });
 
     test("unknown actions are not found", () => {
-        expect(findAction("slcrm_referralitem", "Onward")).toBeUndefined();
+        expect(findAction("slcrm_referralitem", "Approve")).toBeUndefined();
         expect(findAction("account", "Authorise")).toBeUndefined();
     });
 
@@ -32,5 +32,19 @@ describe("dialog actions", () => {
         for (const name of ["Authorise", "Reject", "AuthoriseWithRecommendations", "RequestInformation"]) {
             expect(findAction("slcrm_referralitem", name)!.consequence.length).toBeGreaterThan(10);
         }
+    });
+
+    test("Onward needs a comment and a chosen authority", () => {
+        const action = findAction("slcrm_referralitem", "Onward")!;
+        expect(action.requiresAuthority).toBe(true);
+        expect(action.commentRequired).toBe(true);
+        expect(validateAuthority(action, "")).toMatch(/choose the authority/i);
+        expect(validateAuthority(action, "11111111-1111-1111-1111-111111111111")).toBeNull();
+    });
+
+    test("other actions never ask for an authority", () => {
+        const reject = findAction("slcrm_referralitem", "Reject")!;
+        expect(reject.requiresAuthority).toBeFalsy();
+        expect(validateAuthority(reject, "")).toBeNull();
     });
 });

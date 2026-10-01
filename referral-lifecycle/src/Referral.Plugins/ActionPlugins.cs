@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using Referral.Application;
 using Referral.Dataverse;
 
@@ -20,11 +21,11 @@ namespace Referral.Plugins
             get { return Schema.Item.Table; }
         }
 
-        protected override Guid Run(PluginCall call, LifecycleServices services)
+        protected override IDictionary<string, object> Run(PluginCall call, LifecycleServices services)
         {
             var service = new ItemActionService(services.Repository, services.Settings, services.Clock, services.Trace);
 
-            return service.Execute(new ItemActionRequest
+            return Result(service.Execute(new ItemActionRequest
             {
                 ItemId = call.TargetId,
                 ActionName = call.ActionName,
@@ -32,7 +33,7 @@ namespace Referral.Plugins
                 NewAuthorityId = call.NewAuthorityId,
                 CallerId = call.CallerId,
                 CorrelationId = call.CorrelationId
-            });
+            }));
         }
     }
 
@@ -52,18 +53,18 @@ namespace Referral.Plugins
             get { return Schema.Parent.Table; }
         }
 
-        protected override Guid Run(PluginCall call, LifecycleServices services)
+        protected override IDictionary<string, object> Run(PluginCall call, LifecycleServices services)
         {
             var service = new ParentActionService(services.Repository, services.Settings, services.Clock, services.Trace);
 
-            return service.Execute(new ParentActionRequest
+            return Result(service.Execute(new ParentActionRequest
             {
                 ParentId = call.TargetId,
                 ActionName = call.ActionName,
                 Comment = call.Comment,
                 CallerId = call.CallerId,
                 CorrelationId = call.CorrelationId
-            });
+            }));
         }
     }
 }

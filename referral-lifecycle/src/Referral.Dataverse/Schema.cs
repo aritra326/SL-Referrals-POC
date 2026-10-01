@@ -105,6 +105,7 @@ namespace Referral.Dataverse
         public static class Authority
         {
             public const string Table = "slcrm_underwriterauthority";
+            public const string Name = "slcrm_name";
             public const string Level = "slcrm_authoritylevel";
             public const string Product = "slcrm_productclassofbusiness";
             public const string Underwriter = "slcrm_underwriter";

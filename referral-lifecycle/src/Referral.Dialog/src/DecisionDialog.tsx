@@ -1,13 +1,15 @@
 import * as React from "react";
-import { DialogAction, validateComment } from "./dialogActions";
-import { LifecycleError, RecordContext } from "./lifecycleApi";
+import { DialogAction, validateAuthority, validateComment } from "./dialogActions";
+import { EligibleAuthorityOption, LifecycleError, RecordContext } from "./lifecycleApi";
 
 export interface DecisionDialogProps {
     action: DialogAction;
     /** Reads the item/referral details shown at the top. */
     loadContext: () => Promise<RecordContext>;
+    /** Only for actions that send the item to someone: asks the server who is eligible. */
+    loadAuthorities?: () => Promise<EligibleAuthorityOption[]>;
     /** Calls the server. Rejects with a LifecycleError when the server refuses. */
-    submit: (comment: string) => Promise<void>;
+    submit: (comment: string, authorityId?: string) => Promise<void>;
     /** Called when the user cancels (false) or after the server accepted the action (true). The host closes the dialog and refreshes. */
     onFinished: (completed: boolean) => void;
 }
@@ -20,9 +22,16 @@ function describeError(error: unknown): { message: string; code: string } {
     return { message: "Something went wrong. Please try again.", code: "" };
 }
 
-export const DecisionDialog: React.FC<DecisionDialogProps> = ({ action, loadContext, submit, onFinished }) => {
+type AuthorityList =
+    | { state: "loading" }
+    | { state: "ready"; options: EligibleAuthorityOption[] }
+    | { state: "failed"; message: string; code: string };
+
+export const DecisionDialog: React.FC<DecisionDialogProps> = ({ action, loadContext, loadAuthorities, submit, onFinished }) => {
     const [context, setContext] = React.useState<RecordContext | null>(null);
     const [contextFailed, setContextFailed] = React.useState(false);
+    const [authorities, setAuthorities] = React.useState<AuthorityList>({ state: "loading" });
+    const [authorityId, setAuthorityId] = React.useState("");
     const [comment, setComment] = React.useState("");
     const [validation, setValidation] = React.useState<string | null>(null);
     const [busy, setBusy] = React.useState(false);
@@ -42,12 +51,28 @@ export const DecisionDialog: React.FC<DecisionDialogProps> = ({ action, loadCont
         };
     }, []);
 
+    React.useEffect(() => {
+        if (!loadAuthorities) {
+            return;
+        }
+        let cancelled = false;
+        loadAuthorities()
+            .then((options) => !cancelled && setAuthorities({ state: "ready", options }))
+            .catch((error) => !cancelled && setAuthorities({ state: "failed", ...describeError(error) }));
+        return () => {
+            cancelled = true;
+        };
+    }, []);
+
+    const noOneToChoose = !!action.requiresAuthority && authorities.state === "ready" && authorities.options.length === 0;
+    const cannotSubmit = busy || done || (!!action.requiresAuthority && authorities.state !== "ready") || noOneToChoose;
+
     const confirm = async (): Promise<void> => {
         if (submitting.current || done) {
             return;
         }
 
-        const problem = validateComment(action, comment);
+        const problem = validateAuthority(action, authorityId) || validateComment(action, comment);
         setValidation(problem);
         if (problem) {
             return;
@@ -57,7 +82,11 @@ export const DecisionDialog: React.FC<DecisionDialogProps> = ({ action, loadCont
         setBusy(true);
         setFailure(null);
         try {
-            await submit(comment);
+            if (action.requiresAuthority) {
+                await submit(comment, authorityId);
+            } else {
+                await submit(comment);
+            }
             setDone(true);
             onFinished(true);
         } catch (error) {
@@ -87,6 +116,42 @@ export const DecisionDialog: React.FC<DecisionDialogProps> = ({ action, loadCont
             </div>
 
             <p className="consequence">{action.consequence}</p>
+
+            {action.requiresAuthority && (
+                <fieldset className="authorities" disabled={busy || done}>
+                    <legend className="label">Send to *</legend>
+                    {authorities.state === "loading" && <div className="context-sub">Loading eligible authorities…</div>}
+                    {authorities.state === "failed" && (
+                        <div className="message error" role="alert">
+                            The eligible authorities could not be loaded: {authorities.message}
+                            {authorities.code && <span className="code"> ({authorities.code})</span>}
+                        </div>
+                    )}
+                    {noOneToChoose && (
+                        <div className="message" role="status">
+                            No eligible higher authority is available for this item.
+                        </div>
+                    )}
+                    {authorities.state === "ready" &&
+                        authorities.options.map((option) => (
+                            <label key={option.id} className="option">
+                                <input
+                                    type="radio"
+                                    name="authority"
+                                    value={option.id}
+                                    checked={authorityId === option.id}
+                                    onChange={() => {
+                                        setAuthorityId(option.id);
+                                        setValidation(null);
+                                    }}
+                                />
+                                <span>
+                                    {option.name} <span className="code">({option.level})</span>
+                                </span>
+                            </label>
+                        ))}
+                </fieldset>
+            )}
 
             <label htmlFor={inputId} className="label">
                 {action.commentLabel}
@@ -135,7 +200,7 @@ export const DecisionDialog: React.FC<DecisionDialogProps> = ({ action, loadCont
                 <button type="button" className="secondary" onClick={() => onFinished(false)} disabled={busy || done}>
                     Cancel
                 </button>
-                <button type="button" className="primary" onClick={confirm} disabled={busy || done}>
+                <button type="button" className="primary" onClick={confirm} disabled={cannotSubmit}>
                     {action.confirmLabel}
                 </button>
             </div>

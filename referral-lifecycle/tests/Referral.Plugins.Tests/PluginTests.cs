@@ -63,10 +63,10 @@ namespace Referral.Plugins.Tests
             return new LifecycleServices();
         }
 
-        protected override Guid Run(PluginCall call, LifecycleServices services)
+        protected override IDictionary<string, object> Run(PluginCall call, LifecycleServices services)
         {
             Captured = call;
-            return Behaviour(call);
+            return Result(Behaviour(call));
         }
     }
 
@@ -445,6 +445,97 @@ namespace Referral.Plugins.Tests
                 Clock = new SystemClock(),
                 Trace = new TracingServiceTrace(tracing)
             };
+        }
+    }
+}
+
+namespace Referral.Plugins.Tests
+{
+    public class EligibleAuthoritiesPluginTests
+    {
+        private class PluginWithFakeData : EligibleAuthoritiesPlugin
+        {
+            public Mock<IReferralRepository> Repository = new Mock<IReferralRepository>();
+
+            protected override LifecycleServices CreateServices(IOrganizationService service, ITracingService tracing)
+            {
+                var provider = new Mock<ILifecycleSettingsProvider>();
+                provider.Setup(p => p.Load()).Returns(new LifecycleSettings { RankDirection = RankDirection.HigherNumberGreater });
+                return new LifecycleServices
+                {
+                    Repository = Repository.Object,
+                    Settings = provider.Object,
+                    Clock = new SystemClock(),
+                    Trace = new TracingServiceTrace(tracing)
+                };
+            }
+        }
+
+        [Fact]
+        public void ToJson_WritesIdNameLevelAndRank()
+        {
+            var id = Guid.NewGuid();
+
+            string json = EligibleAuthoritiesPlugin.ToJson(new List<EligibleAuthority>
+            {
+                new EligibleAuthority { AssignmentId = id, AssignmentName = "Dana Lee - Marine Hull", LevelName = "Level 6", Rank = 6 }
+            });
+
+            Assert.Equal("[{\"id\":\"" + id.ToString("D") + "\",\"name\":\"Dana Lee - Marine Hull\",\"level\":\"Level 6\",\"rank\":6}]", json);
+        }
+
+        [Fact]
+        public void ToJson_EscapesQuotesBackslashesAndControlCharacters()
+        {
+            string json = EligibleAuthoritiesPlugin.ToJson(new List<EligibleAuthority>
+            {
+                new EligibleAuthority { AssignmentId = Guid.Empty, AssignmentName = "A \"quoted\" \\ name\nline", LevelName = null, Rank = 1 }
+            });
+
+            Assert.Contains("\"name\":\"A \\\"quoted\\\" \\\\ name\\nline\"", json);
+            Assert.Contains("\"level\":\"\"", json);
+        }
+
+        [Fact]
+        public void ToJson_OfNoAuthorities_IsAnEmptyArray()
+        {
+            Assert.Equal("[]", EligibleAuthoritiesPlugin.ToJson(new List<EligibleAuthority>()));
+        }
+
+        [Fact]
+        public void TheRequestNeedsNoActionName()
+        {
+            var h = new PluginHarness("slcrm_GetEligibleAuthorities", "slcrm_referralitem");
+            h.Inputs.Remove("ActionName");
+            var plugin = new PluginWithFakeData();
+            plugin.Repository.Setup(r => r.GetItem(h.TargetId)).Throws(new LifecycleException(LifecycleErrorCodes.NotFound, "gone"));
+
+            var error = Assert.Throws<InvalidPluginExecutionException>(() => plugin.Execute(h.Provider.Object));
+
+            Assert.StartsWith("SLR-NOTFOUND", error.Message);
+        }
+
+        [Fact]
+        public void AnItemThatCannotBeSentOnward_ReturnsTheRuleMessage()
+        {
+            var h = new PluginHarness("slcrm_GetEligibleAuthorities", "slcrm_referralitem");
+            var plugin = new PluginWithFakeData();
+            var parentId = Guid.NewGuid();
+            plugin.Repository.Setup(r => r.GetItem(h.TargetId)).Returns(new ItemRecord { Id = h.TargetId, ParentId = parentId, Status = ItemStatus.Draft, IsCurrentRevision = true });
+            plugin.Repository.Setup(r => r.GetParent(parentId)).Returns(new ParentRecord { Id = parentId, Status = ParentStatus.SentForApproval });
+
+            var error = Assert.Throws<InvalidPluginExecutionException>(() => plugin.Execute(h.Provider.Object));
+
+            Assert.StartsWith("SLR-STATUS-409", error.Message);
+            Assert.False(h.Outputs.Contains(EligibleAuthoritiesPlugin.AuthoritiesOutputName));
+        }
+
+        [Fact]
+        public void ARegistrationOnTheWrongMessage_IsRejected()
+        {
+            var h = new PluginHarness("slcrm_ExecuteReferralItemAction", "slcrm_referralitem");
+
+            Assert.Throws<InvalidPluginExecutionException>(() => new PluginWithFakeData().Execute(h.Provider.Object));
         }
     }
 }

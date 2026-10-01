@@ -103,6 +103,16 @@ namespace Referral.Application
             }
         }
 
+        public static void RequireCurrentRevision(ItemRecord item)
+        {
+            if (!item.IsCurrentRevision)
+            {
+                throw new LifecycleException(
+                    LifecycleErrorCodes.StatusConflict,
+                    "This item has been replaced by a newer revision. Open the latest revision instead.");
+            }
+        }
+
         public static void RequireReferralOpen(ParentRecord parent)
         {
             if (!ParentStatusRules.IsActive(parent.Status))

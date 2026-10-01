@@ -9,6 +9,10 @@ namespace Referral.Domain
     public class AuthorityFacts
     {
         public Guid AssignmentId { get; set; }
+
+        /// <summary>The assignment's display name, for example "Jane Smith - Marine Hull".</summary>
+        public string AssignmentName { get; set; }
+
         public Guid? ProductId { get; set; }
         public Guid? UnderwriterId { get; set; }
 

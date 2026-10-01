@@ -8,7 +8,7 @@ import * as React from "react";
 import * as ReactDOM from "react-dom";
 import { DecisionDialog } from "./DecisionDialog";
 import { findAction, TargetTable } from "./dialogActions";
-import { loadContext, runAction } from "./lifecycleApi";
+import { loadContext, loadEligibleAuthorities, runAction } from "./lifecycleApi";
 
 function launchParams(search: string): URLSearchParams {
     const outer = new URLSearchParams(search);
@@ -58,8 +58,11 @@ function start(): void {
         <DecisionDialog
             action={action}
             loadContext={() => loadContext(fetchFn, baseUrl, target as TargetTable, recordId)}
-            submit={async (comment) => {
-                await runAction(fetchFn, baseUrl, target as TargetTable, recordId, action.name, comment);
+            loadAuthorities={
+                action.requiresAuthority ? () => loadEligibleAuthorities(fetchFn, baseUrl, recordId) : undefined
+            }
+            submit={async (comment, authorityId) => {
+                await runAction(fetchFn, baseUrl, target as TargetTable, recordId, action.name, comment, authorityId);
             }}
             onFinished={() => closeDialog(window)}
         />,

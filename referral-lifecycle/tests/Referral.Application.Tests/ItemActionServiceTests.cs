@@ -568,6 +568,7 @@ namespace Referral.Application.Tests
             public System.Collections.Generic.IList<ItemRecord> GetCurrentItems(Guid parentId) { return _inner.GetCurrentItems(parentId); }
             public bool HasSuccessorRevision(Guid itemId) { return _inner.HasSuccessorRevision(itemId); }
             public AuthorityFacts GetAuthority(Guid assignmentId) { return _inner.GetAuthority(assignmentId); }
+            public System.Collections.Generic.IList<AuthorityFacts> GetAuthoritiesForProduct(Guid productId) { return _inner.GetAuthoritiesForProduct(productId); }
             public int? GetAuthorityLevelRank(Guid levelId) { return _inner.GetAuthorityLevelRank(levelId); }
             public int GetLastDecisionSequence(Guid itemId) { return _inner.GetLastDecisionSequence(itemId); }
             public string GetUserFullName(Guid userId) { return _inner.GetUserFullName(userId); }
