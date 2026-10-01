@@ -23,3 +23,5 @@ sl-referrals-app/get-lookup-schemanames-log.txt
 sl-referrals-app/create-icons-log.txt
 sl-referrals-app/create-table-icons-log.txt
 sl-referrals-app/tmp-*.json
+referral-lifecycle/.dotnet/
+referral-lifecycle/.tools/
