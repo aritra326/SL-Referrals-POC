@@ -179,7 +179,9 @@ namespace Referral.Plugins
             object value = context.InputParameters[key];
             if (value is Guid)
             {
-                return (Guid)value;
+                // Dataverse sends an empty Guid for an optional Guid parameter the caller left out.
+                var id = (Guid)value;
+                return id == Guid.Empty ? (Guid?)null : id;
             }
 
             Guid parsed;

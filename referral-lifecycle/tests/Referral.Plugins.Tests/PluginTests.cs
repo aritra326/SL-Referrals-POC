@@ -150,6 +150,18 @@ namespace Referral.Plugins.Tests
         }
 
         [Fact]
+        public void AnEmptyGuid_SentByDataverseForAnOmittedOptionalParameter_IsTreatedAsNotSupplied()
+        {
+            PluginHarness h = ForCapturing();
+            h.Inputs["NewAuthorityId"] = Guid.Empty;
+            var plugin = new CapturingPlugin();
+
+            plugin.Execute(h.Provider.Object);
+
+            Assert.Null(plugin.Captured.NewAuthorityId);
+        }
+
+        [Fact]
         public void AnAuthorityIdSentAsText_IsAccepted()
         {
             PluginHarness h = ForCapturing();
