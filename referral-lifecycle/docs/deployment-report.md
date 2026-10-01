@@ -175,3 +175,10 @@ Cause: `slcrm_ReferralCommands.js` called `Xrm.WebApi.online.execute` for a **bo
 API does not define. (The decision dialog calls the API by URL, so it was not affected.)
 Fix: `boundParameter`, the request property and the parameter-type key are now `entity`. Only the web resource changed; exports for 1.0.0.13 are in `solution-export/`.
 Not yet re-tested by clicking the button in the app (browser pane not signed in): hard-reload the app and try Submit.
+
+---
+
+# Deployment 5: Underwriter Rationale placement (solution 1.0.0.14)
+
+On the Referral Item form, Underwriter Rationale now sits in the Summary tab's "Approval question" section directly under
+Requested Decision / Exception. Form layout only. Exports for 1.0.0.14 are in `solution-export/`.
