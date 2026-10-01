@@ -25,3 +25,5 @@ sl-referrals-app/create-table-icons-log.txt
 sl-referrals-app/tmp-*.json
 referral-lifecycle/.dotnet/
 referral-lifecycle/.tools/
+referral-lifecycle/src/Referral.Dialog/npm-install.log
+referral-lifecycle/out/
