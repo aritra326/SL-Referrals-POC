@@ -84,3 +84,70 @@ overrides are not implemented.
 3. Run the checks that need a second user (see above).
 4. Delete the `SMOKE-REF-*` test referrals and their decisions when finished with them.
 5. Decide whether to build the Onward authority picker, and whether to remove the "Cancel Item" button.
+
+---
+
+# Deployment 2: confirmed POC decisions (solution 1.0.0.11)
+
+Date: 2026-10-01, same Dev environment and solution. Baseline taken before this round: the 1.0.0.9 and 1.0.0.10 states are
+in `solution-export/` (1.0.0.10 was exported as the base for the 1.0.0.11 import and is superseded by the final 1.0.0.11 exports).
+
+## What changed in the environment
+
+| Change | Detail |
+|---|---|
+| Plug-in assembly | Updated in place with `pac plugin push` (91,648 bytes). New types: `EligibleAuthoritiesPlugin`, `ReferralDecisionGuardPlugin` |
+| Custom API | `slcrm_GetEligibleAuthorities` (bound to Referral Item, response `AuthoritiesJson`) bound to `EligibleAuthoritiesPlugin` |
+| Plug-in steps | Two Pre-Operation, synchronous steps on Referral Decision: **Update** (filtering attributes = the evidence columns) and **Delete** |
+| New columns on Referral Decision | `slcrm_authoritylevelused` (lookup to Authority Level, delete restricted) and `slcrm_canapprovereferralssnapshot` (Yes/No) |
+| Changed column | `slcrm_recommendations`: single line 100 characters -> **multiline, 4000 characters**, converted in place |
+| Environment variables | New: `slcrm_EnforceTeamRoles` (default true), `slcrm_AllowDecisionMaintenance` (default false). Set: `slcrm_EnablePartialCompletion` = true (current value) |
+| Command bar | App action "Cancel item" on Referral Item set to hidden |
+| Web resources | `slcrm_referraldecision.html/.js` (picker table, new wording) and `slcrm_ReferralCommands.js` (cancel-item safeguard; demo guard; Onward through the dialog), imported as 1.0.0.11 |
+
+Not done by the tooling because they are security changes: creating the two Owner teams and tightening security roles. See
+[demo-authorization.md](demo-authorization.md) and [open-questions.md](open-questions.md) section 3.
+
+## Test results
+
+| Suite | Tests | Result |
+|---|---|---|
+| Referral.Domain.Tests | 127 | passed |
+| Referral.Application.Tests | 114 | passed |
+| Referral.Dataverse.Tests | 40 | passed |
+| Referral.Plugins.Tests | 39 | passed |
+| Referral.Dialog (jest) | 84 | passed |
+
+Every changed rule has tests; the mapping from decision to tests is in [decisions.md](decisions.md).
+
+## Smoke test in the environment (records `SMOKE-REF-4` to `SMOKE-REF-7`)
+
+| Check | Result |
+|---|---|
+| Decision immutability | Editing an evidence column of an existing decision: refused `SLR-DECISION-IMMUTABLE`. Deleting it: refused. The row was unchanged afterwards |
+| Decision snapshot | After Authorise with Recommendations: authority used, **Level 5 as authority level used**, rank 5, **can-approve = yes**, deciding user, decision time all stored |
+| Full-length recommendations | A 2000-character recommendation stored in full in the Recommendations column (and in Comments) |
+| Recommendation limit | 4001 characters refused with `SLR-DECISION-FIELD: Recommendations can be at most 4000 characters (you entered 4001)`; nothing written |
+| Authorise with Conditions | Refused `SLR-FEATURE-001` |
+| Complete Partial Outcome | Referral became **Partially Authorised - Completed** (inactive); the rejected item stayed **Rejected**; the comment stored as the outcome summary |
+| Superseded | After Reject then Create Revision: the old item is **Superseded**, inactive, not current, Superseded On set; its decision still reads Rejected; the new item is a Revision Draft; the referral is Revision in Progress |
+| Counts | `slcrm_opencurrentitemcount` and the deprecated `slcrm_openitemcount` hold the same value |
+| Onward picker (dialog, opened from the Referral Item command bar) | Showed a table: Approver, Level, Rank, Licence / scheme, Product, with the one eligible higher assignment and not my own or lower ones. Confirm with no choice or no reason: validation messages. Confirm with both: the item moved to the chosen assignment and approver, item and referral became Onward for Approval, the decision recorded the destination and the deciding authority's snapshot |
+| Cancel Item | Not in the Referral Item command bar (the flyout lists Start Review, Authorise, Reject, Resubmit, Request more information, Authorise with recommendations, Authorise with condition, Route onward, Create revision) |
+
+Not exercised in the environment (unit-tested only): the team rule (`SLR-ROLE-403`) because the two teams do not exist yet, wrong-caller,
+expired authority, a missing rank setting, concurrent edits. These need the teams and a second test user.
+
+## Problems found and fixed during deployment
+
+1. **A byte-order mark stopped the dialog rendering.** Saving the HTML with PowerShell 5.1 `-Encoding utf8` added a BOM; the app showed "No data available".
+   Fixed in the deployed file and the source, and a jest test (`webresourceFiles.test.ts`) now guards the uploaded files.
+2. **An old browser tab kept showing "No data available" after the fix.** A fresh tab rendered the dialog correctly. If a dialog looks blank after a
+   redeploy, hard-reload or open a new tab before suspecting the code.
+3. The earlier empty-Guid bug (Onward without an authority) was fixed in the first deployment.
+
+## Housekeeping
+
+* The `SMOKE-REF-*` test referrals and the `SMOKE - Test Higher Authority - Marine Hull` assignment are still in Dev. Decision immutability now
+  blocks deleting their decisions; use `slcrm_AllowDecisionMaintenance` for the clean-up (see [demo-authorization.md](demo-authorization.md)).
+* Final packages: `SL_Referrals_1_0_0_11.zip` (unmanaged) and `SL_Referrals_1_0_0_11_managed.zip`.
