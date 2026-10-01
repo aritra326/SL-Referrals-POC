@@ -21,7 +21,7 @@ Start with these documents:
 ```
 referral-lifecycle/
   ReferralLifecycle.sln          open this in Visual Studio 2022
-  global.json                    pins .NET SDK 8.0.x for command-line builds
+  global.json                    pins .NET SDK 9.0.x for command-line builds
   src/
     Referral.Domain/             pure rules: statuses, transitions, aggregation, authority predicate. No Dataverse.
     Referral.Application/        use cases (ItemActionService, ParentActionService) behind small interfaces
@@ -47,7 +47,7 @@ A rule lives in exactly one place. If you need to change *when something is allo
 
 * **Visual Studio 2022** with the **.NET desktop development** workload and the **.NET Framework 4.6.2 targeting pack**
   (Individual components). The plug-in assembly targets **.NET Framework 4.6.2**, which is what Dataverse requires.
-* **.NET SDK 8.0.x** for command-line builds (`dotnet --list-sdks` must show 8.0.x; `global.json` pins it).
+* **.NET SDK 9.0.x** for command-line builds (`dotnet --list-sdks` must show 9.0.x; `global.json` pins it).
 * **Node.js 18+** for the dialog (`src/Referral.Dialog`).
 * **Power Platform CLI** (`pac`) signed in to the target environment, for export and import.
 * Windows PowerShell 5.1 (the scripts use .NET Framework cryptography).
@@ -116,7 +116,7 @@ Microsoft.Xrm.Sdk is not merged because Dataverse provides it.
 | "registered on the wrong message" | The plug-in type is bound to the wrong Custom API. See [docs/plugin-registration.md](docs/plugin-registration.md). |
 | Button does nothing after a redeploy | The browser or Dynamics cached the old script. Bump the `?v=` in `decision-dialog.html` and redeploy. |
 | Unexpected error with a reference number | Open **Settings > Plug-in Trace Log** (enable tracing first) and search for that correlation id. |
-| `dotnet` says SDK 8.0.100 was not found | Install .NET SDK 8.0.x, or run `dotnet --list-sdks` to see what is installed. |
+| `dotnet` says SDK 9.0.100 was not found | Install .NET SDK 9.0.x, or run `dotnet --list-sdks` to see what is installed. |
 
 ## Conventions
 
