@@ -50,8 +50,11 @@ namespace Referral.Plugins
 
                 json.Append("{\"id\":\"").Append(a.AssignmentId.ToString("D")).Append("\",")
                     .Append("\"name\":").Append(Quote(a.AssignmentName)).Append(',')
+                    .Append("\"approver\":").Append(Quote(a.ApproverName)).Append(',')
                     .Append("\"level\":").Append(Quote(a.LevelName)).Append(',')
-                    .Append("\"rank\":").Append(a.Rank).Append('}');
+                    .Append("\"rank\":").Append(a.Rank).Append(',')
+                    .Append("\"licence\":").Append(Quote(a.LicenceScheme)).Append(',')
+                    .Append("\"product\":").Append(Quote(a.ProductName)).Append('}');
             }
 
             return json.Append(']').ToString();

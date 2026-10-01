@@ -57,7 +57,6 @@ SLCRM.ReferralCommands = (function () {
             "slcrm_referralrequest:CompleteRejected": "requestor",
             "slcrm_referralitem:Resubmit": "requestor",
             "slcrm_referralitem:CreateRevision": "requestor",
-            "slcrm_referralitem:Cancel": "requestor",
             "slcrm_referralitem:StartReview": "approver",
             "slcrm_referralitem:RequestInformation": "approver",
             "slcrm_referralitem:Onward": "approver",
@@ -421,8 +420,17 @@ SLCRM.ReferralCommands = (function () {
         createRevision: function (primaryControl) {
             return confirmAndExecute(primaryControl, "CreateRevision", "Create revision", "Create a new draft revision and supersede this version?");
         },
-        cancelItem: function (primaryControl) {
-            return openLifecycleDialog(primaryControl, "Cancel", "Cancel referral item");
+        // Cancellation is a referral-level operation only. The same handler serves the "Cancel Referral" button;
+        // if it is ever invoked on a single item, say so instead of calling an action the server will refuse.
+        cancelItem: async function (primaryControl) {
+            if (primaryControl.data.entity.getEntityName() === "slcrm_referralitem") {
+                await Xrm.Navigation.openAlertDialog({
+                    text: "A single item cannot be cancelled. Open the referral and use Cancel Referral instead."
+                });
+                return;
+            }
+
+            return openLifecycleDialog(primaryControl, "Cancel", "Cancel referral");
         }
     };
 })();

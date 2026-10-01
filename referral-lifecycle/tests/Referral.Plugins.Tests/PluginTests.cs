@@ -478,10 +478,10 @@ namespace Referral.Plugins.Tests
 
             string json = EligibleAuthoritiesPlugin.ToJson(new List<EligibleAuthority>
             {
-                new EligibleAuthority { AssignmentId = id, AssignmentName = "Dana Lee - Marine Hull", LevelName = "Level 6", Rank = 6 }
+                new EligibleAuthority { AssignmentId = id, AssignmentName = "Dana Lee - Marine Hull", ApproverName = "Dana Lee", LevelName = "Level 6", Rank = 6, LicenceScheme = "Lloyd's", ProductName = "Marine Hull" }
             });
 
-            Assert.Equal("[{\"id\":\"" + id.ToString("D") + "\",\"name\":\"Dana Lee - Marine Hull\",\"level\":\"Level 6\",\"rank\":6}]", json);
+            Assert.Equal("[{\"id\":\"" + id.ToString("D") + "\",\"name\":\"Dana Lee - Marine Hull\",\"approver\":\"Dana Lee\",\"level\":\"Level 6\",\"rank\":6,\"licence\":\"Lloyd's\",\"product\":\"Marine Hull\"}]", json);
         }
 
         [Fact]

@@ -1,40 +1,63 @@
-# Open questions and decisions needed
+# Open questions
 
-Nothing here has been guessed into production logic. Each item says what the code does **today** and what decision
-unblocks the next step. "PO" means product owner.
+Last updated 2026-10-01 after the product-owner decisions. Nothing here is guessed into production logic.
+The three sections say what has been **decided**, what is **deferred to production design**, and what is genuinely **still open**.
 
-## Blocking a feature
+## 1. Confirmed POC decisions (no longer open)
 
-| # | Question | What the code does today | Decision / action needed |
-|---|---|---|---|
-| 1 | **Onward for Approval needs an authority picker.** The Custom API parameter is now fixed (optional Guid `NewAuthorityId` on both APIs, 2026-10-01). | The plug-in accepts the authority and enforces the onward rules (eligible, strictly higher, not yourself, not the same assignment); these are unit-tested. The command bar still opens the existing `slcrm_ReferralLifecycleDialog` custom page for Onward, which appears to be an empty shell. | Build an authority picker for Onward (the decision dialog covers only comment-style actions). Until then Onward can only be called directly, with the authority id. |
-| 2 | **Authorise with Conditions.** The spec says "feature-gated, off until confirmed" and the environment has **no Conditions decision type**. | Refused (`SLR-FEATURE-001`; if the switch were on, `SLR-ACTION-UNSUPPORTED`). | PO confirms the feature; then add a "Conditions" choice value to Decision Type and a decision type mapping. |
-| 3 | **Complete Partial Outcome.** Spec: needed only if an underwriter may accept a reduced scope without revising rejected items. | Implemented but **off** (`slcrm_EnablePartialCompletion = false`). | PO confirms, then set the variable to `true`. |
+These were open questions and have been decided. The full record, with where each is implemented and tested, is in
+[decisions.md](decisions.md).
 
-## Assumptions the code makes (please confirm)
+| Was open | Decision |
+|---|---|
+| Onward needs an authority picker | Implemented: picks an Underwriting Authority assignment; server re-validates (decision 1) |
+| Authorise with Conditions | Not enabled for the POC; no Conditions decision type (2) |
+| Complete Partial Outcome | Enabled (3) |
+| Rank direction | Higher number = more authority; Can Approve is independent (4) |
+| Which authority column | `slcrm_underwriterauthority`; the other is deprecated (5) |
+| Product used for eligibility | The Referral Request's product only (6) |
+| Who is a Manager | No Manager in the POC; two teams give the action role (7) |
+| Onward to yourself | Not allowed (8) |
+| Superseded items | The revised rejected item becomes Superseded (9) |
+| Item-level Cancel | Not supported; command hidden (10) |
+| Accept Rejection acknowledgement | A non-blank comment is enough (11) |
+| Referral cancel after decisions | Allowed; decided items untouched (12) |
+| All items cancelled, referral open | Keep `SLR-AGG-ALLCANCELLED` (13) |
+| Snapshot integrity | Minimum decision snapshots implemented (14) |
+| Reason-specific template fields | Not implemented; seam added (15) |
+| Idempotency / ExpectedRowVersion | Not added to the APIs (16) |
+| Notification outbox | Not implemented (17) |
+| Decision immutability guard | Implemented (18) |
+| Recommendations 100-character column | Now multiline, 4000 characters (19) |
+| Two open-count columns | `slcrm_opencurrentitemcount` is canonical (20) |
+| Where the spec lives | `docs/specification/` (21) |
 
-| # | Rule | Current behaviour | Why it is open |
-|---|---|---|---|
-| 4 | **Rank direction.** Does a higher comparison rank mean more authority? | Environment variable `slcrm_RankDirection`, deployed as `HigherNumberGreater`. If the variable is missing or invalid every decision fails with `CONFIG-RANK-001`. | Spec 5.2: "an assumption, not a confirmed business rule". Note the seed data: Level C has rank 8 but cannot approve referrals. |
-| 5 | **Which item column holds the responsible authority.** The spec names `Selected Underwriting Authority`; the Referral Builder fills in `slcrm_underwriterauthority`, and `slcrm_selectedunderwritingauthority` is empty on every record. | The code uses `slcrm_underwriterauthority` (what the app actually populates). One constant in `Schema.cs`. | Confirm which column is the intended one, and retire the other. |
-| 6 | **Product used for eligibility.** | The **referral's** product must equal the authority's product (spec 8.4). The item also has its own product lookup, which is ignored. | Confirm they are always the same. |
-| 7 | **Who is "Manager".** The spec says "Primary UW/Manager" may submit, resubmit, revise, cancel and complete. | Only the **primary underwriter** may. A manager who is not the primary underwriter is refused. | Define the manager rule (role, team, hierarchy) before it can be enforced. |
-| 8 | **Onward to the same person.** Spec: "not same assignment/user unless PO permits". | Refused for the same assignment **or** the same user as the caller. | PO says whether routing to yourself under a higher assignment is ever allowed. |
-| 9 | **Superseded items.** The item status "Superseded" exists, but the spec says the rejected row stays immutable ("Rejected row remains immutable"). | On a revision the rejected row keeps its status "Rejected", is marked **not current**, and gets a Superseded On timestamp. The status "Superseded" is never set. | Confirm whether the old row should show "Superseded". Changing it is one line, but it would also change how counts and reports read. |
-| 10 | **Item-level Cancel.** Spec 11.4 defines cancellation only as a referral operation ("Cancel Referral"). | Item-level `Cancel` is refused with a message to cancel the referral. The command bar still has a "Cancel Item" button. | Confirm whether a single item can be cancelled; remove the button if not. |
-| 11 | **Accept Rejection acknowledgement.** Spec has an `Acknowledgement` parameter; the deployed API only has `Comment`. | A non-blank comment is required and stored as the outcome summary. | Confirm that is an acceptable acknowledgement, or add a parameter. |
-| 12 | **Referral cancel after a decision.** Spec: "final items remain evidence if policy disallows cancellation after decision (TBC)". | Open items are cancelled; items that already have an outcome are kept. | Confirm the policy. |
-| 13 | **All items cancelled but referral not cancelled.** | Error `SLR-AGG-ALLCANCELLED` (the spec says to repair it by cancelling the referral, not to infer it). | None; documented for support staff. |
+## 2. Deferred for production design
 
-## Not implemented because the schema or spec cannot support it yet
+Not needed for the POC. Each has a defined interim behaviour so nothing is guessed.
 
-| # | Gap | Impact |
+| Topic | POC behaviour | Needs deciding for production |
 |---|---|---|
-| 14 | **Snapshot-integrity checks** from spec 8.4 (`AuthorityRankSnapshot`, `CanApproveReferralsSnapshot`, `SnapshotIntegrity`). The columns do not exist on Underwriting Authority. | Eligibility reads the live level instead. Safe, but a level change is picked up immediately rather than being compared with a snapshot. |
-| 15 | **Reason-specific template fields** at submit. The required fields per referral reason are not defined in the repository. | Submit checks only the common fields: reason, cover, summary, details, rationale, required level, authority, approver. |
-| 16 | **Client request id / idempotency and ExpectedRowVersion** parameters from the spec. The deployed APIs have neither. | A retry is stopped by the state machine; concurrent edits are caught with the row version the plug-in reads itself. A stale browser screen cannot be detected. |
-| 17 | **Notification outbox** (`slcrm_referralnotification`) rows. Spec says "Notification: Yes". | No rows are written; nothing for a delivery flow to pick up. Out of scope of this brief. |
-| 18 | **Decision immutability guard.** The spec adds Pre-Update/Delete plug-ins that block edits to decisions. | Not built. Mitigation: do not give users Create/Write/Delete on Referral Decision in security roles. |
-| 19 | **Recommendations column is 100 characters** on the decision table. | Full text is kept in Decision Comments; the 100-character column holds a shortened copy. Consider widening it or making it a memo. |
-| 20 | **Count columns.** Both `slcrm_openitemcount` and `slcrm_opencurrentitemcount` exist. | Both are written with the same value. Confirm which one to keep. |
-| 21 | **Copy of the spec is not in the repository.** `original-spec.txt` is git-ignored. | Rule sources in these docs cite its section numbers; keep a copy somewhere the team can read. |
+| **Production access model** (business units, teams, security roles, any "Manager") | Two demo teams give an action role; the server also checks it; Primary Underwriter and Assigned Approver rules stay | The real BU/team/role model; whether a Manager exists and how it is derived. See [demo-authorization.md](demo-authorization.md) for how to replace the demo layer |
+| **Authorise with Conditions** | Off; refused with `SLR-FEATURE-001` | Who satisfies a condition, whether the referral stays open, whether quoting/binding may continue, whether re-approval is needed, who confirms satisfaction; then add the decision type |
+| **Reason-specific required fields** at submit | Common fields only, through `ISubmitRule` | The required fields per referral reason |
+| **Explicit idempotency and stale-screen detection** | State-machine checks plus a row-version guard on item writes (not full stale-screen detection) | Add `ClientRequestId` / `ExpectedRowVersion` to the Custom APIs |
+| **Notifications** (outbox and delivery) | None; lifecycle code never sends email | Outbox rows in `slcrm_referralnotification` and a Power Automate delivery flow |
+| **Multi-product referrals** | One product per referral; the item product is informational | Revisit the eligibility model if a referral may span products |
+| **Cover and other eligibility dimensions** (cover/section, licence scheme and location, country) | Eligibility uses product, status, dates, level, rank and Can Approve only (spec 8.4). Licence scheme is displayed in the picker, not enforced | Which of these dimensions become real rules |
+| **Authority-table snapshot columns** (spec 8.4 snapshot integrity) | Not present on Underwriting Authority; eligibility reads the live level. **Decisions** store their own snapshot (decision 14) | Whether the authority table also needs snapshot columns |
+| **Retiring duplicate columns** | `slcrm_selectedunderwritingauthority` and `slcrm_openitemcount` kept, marked deprecated | Dependency analysis of forms, views and code, then removal |
+| **Command visibility** | Buttons stay visible; a click by the wrong team gets a clear message (UI) and is refused (server) | Hide buttons by team with Command Designer visibility formulas |
+
+## 3. Still open (needs an answer or an action)
+
+| # | Item | Why it matters | Owner |
+|---|---|---|---|
+| 1 | **Create the two Owner teams** `SL Referral Requestors` and `SL Referral Approvers` and add test users | Until they exist the team rule is not enforced (nobody is locked out). This is a security change, so it is for an administrator. Steps: [demo-authorization.md](demo-authorization.md) | Administrator |
+| 2 | **Remove Write and Delete on Referral Decision** from security roles | Defence in depth for decision immutability. The plug-in already refuses, but roles should agree | Administrator |
+| 3 | **"Authorise with Conditions" button is still visible** and always refuses | Decision 2 keeps the feature off but does not say whether to hide the button. Same reasoning as the hidden Cancel Item button | Product owner |
+| 4 | **Which command opens the Referral Builder ("Create Referral")?** | The demo layer gates the commands in `slcrm_ReferralCommands.js`; the Builder entry point is not one of them, so Create Referral is not yet limited to Requestors | Product owner / developer |
+| 5 | **Is 4000 characters enough for Recommendations?** | It is the largest a multiline text column allows when converted in place. A separate memo column would allow more | Product owner |
+| 6 | **Clean-up of the `SMOKE-REF-*` test referrals** | Decision immutability now blocks deleting their decision rows. Deleting them needs `slcrm_AllowDecisionMaintenance = true` for the duration, then back to false | Administrator |
+| 7 | **Classic ribbon "Cancel Item"** | The modern app action is hidden. The older classic-ribbon definition for the same button is still in the solution; confirm it does not appear in the app | Developer |
+| 8 | **Second-user checks** | Wrong-caller refusal, expired authority, missing rank setting and concurrent edits are unit-tested but not yet run in the environment (only one interactive test user exists). See [integration-test-plan.md](integration-test-plan.md) | Developer with a second test user |

@@ -13,6 +13,18 @@ namespace Referral.Domain
         /// <summary>The assignment's display name, for example "Jane Smith - Marine Hull".</summary>
         public string AssignmentName { get; set; }
 
+        /// <summary>The Authority Level row the assignment points at. Stored on decisions as part of the evidence.</summary>
+        public Guid? LevelId { get; set; }
+
+        /// <summary>The underwriter's full name, for display in the onward picker.</summary>
+        public string UnderwriterName { get; set; }
+
+        /// <summary>The licence scheme label, for display only. It is not part of the eligibility rule (spec 8.4).</summary>
+        public string LicenceScheme { get; set; }
+
+        /// <summary>The product name, for display only.</summary>
+        public string ProductName { get; set; }
+
         public Guid? ProductId { get; set; }
         public Guid? UnderwriterId { get; set; }
 
@@ -170,8 +182,20 @@ namespace Referral.Domain
         /// <summary>Allows "Authorise with Conditions". Off by default until the product owner confirms it (spec 11.2).</summary>
         public bool EnableConditionalDecision { get; set; }
 
-        /// <summary>Allows "Complete Partial Outcome". Off by default until the product owner confirms it (spec 11.2).</summary>
+        /// <summary>Allows "Complete Partial Outcome". Confirmed for the POC and switched on in the environment; the code default stays off.</summary>
         public bool EnablePartialCompletion { get; set; }
+
+        /// <summary>
+        /// POC: when true, a user must be in the matching team (SL Referral Requestors / SL Referral Approvers) to run a command.
+        /// A team that does not exist in the environment is not enforced, so nobody is locked out before the teams are created.
+        /// </summary>
+        public bool EnforceTeamRoles { get; set; }
+
+        /// <summary>
+        /// Explicit, isolated exception for migration or administration: lets Referral Decision rows be updated or deleted.
+        /// Off by default. Decisions are audit evidence and are otherwise immutable.
+        /// </summary>
+        public bool AllowDecisionMaintenance { get; set; }
 
         public RankDirection RequireRankDirection()
         {

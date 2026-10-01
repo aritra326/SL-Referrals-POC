@@ -10,8 +10,11 @@ namespace Referral.Application
     {
         public Guid AssignmentId { get; set; }
         public string AssignmentName { get; set; }
+        public string ApproverName { get; set; }
         public string LevelName { get; set; }
         public int Rank { get; set; }
+        public string LicenceScheme { get; set; }
+        public string ProductName { get; set; }
     }
 
     /// <summary>
@@ -28,6 +31,7 @@ namespace Referral.Application
         private readonly IClock _clock;
         private readonly ITrace _trace;
         private readonly AuthorityChecker _authority;
+        private readonly ActionRoleChecker _roles;
 
         public EligibleAuthorityService(
             IReferralRepository repository,
@@ -40,6 +44,7 @@ namespace Referral.Application
             _clock = clock;
             _trace = trace;
             _authority = new AuthorityChecker(repository, clock);
+            _roles = new ActionRoleChecker(repository, settings, trace);
         }
 
         public IList<EligibleAuthority> Find(Guid itemId, Guid callerId)
@@ -50,6 +55,7 @@ namespace Referral.Application
             CallerRules.RequireCurrentRevision(item);
             CallerRules.RequireReferralOpen(parent);
             ItemTransitionRules.GetTargetStatus(ItemAction.Onward, item.Status);
+            _roles.Require(ActionRoleRules.RoleFor(ItemAction.Onward), callerId);
             CallerRules.RequireAssignedApprover(item, callerId);
 
             RankDirection direction = _settings.Load().RequireRankDirection();
@@ -68,8 +74,11 @@ namespace Referral.Application
                 {
                     AssignmentId = candidate.AssignmentId,
                     AssignmentName = candidate.AssignmentName,
+                    ApproverName = candidate.UnderwriterName,
                     LevelName = candidate.LevelName,
-                    Rank = candidate.LevelRank.Value
+                    Rank = candidate.LevelRank.Value,
+                    LicenceScheme = candidate.LicenceScheme,
+                    ProductName = candidate.ProductName
                 })
                 .OrderBy(e => e.Rank)
                 .ThenBy(e => e.AssignmentName)

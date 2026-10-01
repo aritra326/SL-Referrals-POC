@@ -37,12 +37,18 @@ namespace Referral.Dataverse
             Dictionary<string, string> values = ReadValues(
                 Schema.Setting.RankDirection,
                 Schema.Setting.EnableConditionalDecision,
-                Schema.Setting.EnablePartialCompletion);
+                Schema.Setting.EnablePartialCompletion,
+                Schema.Setting.EnforceTeamRoles,
+                Schema.Setting.AllowDecisionMaintenance);
 
             var settings = new LifecycleSettings
             {
                 EnableConditionalDecision = IsTrue(GetValue(values, Schema.Setting.EnableConditionalDecision)),
-                EnablePartialCompletion = IsTrue(GetValue(values, Schema.Setting.EnablePartialCompletion))
+                EnablePartialCompletion = IsTrue(GetValue(values, Schema.Setting.EnablePartialCompletion)),
+
+                // Team roles are enforced unless the variable says otherwise. A missing team is skipped by the use case.
+                EnforceTeamRoles = GetValue(values, Schema.Setting.EnforceTeamRoles) == null || IsTrue(GetValue(values, Schema.Setting.EnforceTeamRoles)),
+                AllowDecisionMaintenance = IsTrue(GetValue(values, Schema.Setting.AllowDecisionMaintenance))
             };
 
             string rank = GetValue(values, Schema.Setting.RankDirection);

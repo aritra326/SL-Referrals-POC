@@ -24,7 +24,14 @@ namespace Referral.Dataverse
             public const string ReferralReason = "slcrm_referralreason";
             public const string CoverSection = "slcrm_coversection";
             public const string RequiredAuthorityLevel = "slcrm_requiredauthoritylevel";
+            /// <summary>The CANONICAL Underwriting Authority lookup on a Referral Item (the Referral Builder fills it in).</summary>
             public const string AuthorityAssignment = "slcrm_underwriterauthority";
+
+            /// <summary>DEPRECATED and unused. Do not use for new work. Not deleted yet because its dependencies are unchecked.</summary>
+            public const string DeprecatedSelectedAuthority = "slcrm_selectedunderwritingauthority";
+
+            /// <summary>Informational only. Approver eligibility uses the Referral Request product, never this column.</summary>
+            public const string InformationalProduct = "slcrm_product";
             public const string AssignedApprover = "slcrm_assignedapprover";
             public const string AssignedApproverSnapshot = "slcrm_assignedapproversnapshot";
             public const string PreviousItem = "slcrm_previousreferralitem";
@@ -67,7 +74,10 @@ namespace Referral.Dataverse
             public const string OutcomeSummary = "slcrm_outcomesummary";
             public const string LastAggregatedOn = "slcrm_lastaggregatedon";
             public const string TotalItemCount = "slcrm_totalcurrentitemcount";
+            /// <summary>The CANONICAL count: current Referral Items that remain open/actionable.</summary>
             public const string OpenItemCount = "slcrm_opencurrentitemcount";
+
+            /// <summary>DEPRECATED. Kept in step with the canonical count for compatibility until its dependencies are removed.</summary>
             public const string OpenItemCountLegacy = "slcrm_openitemcount";
             public const string AuthorisedItemCount = "slcrm_authorisedcurrentitemcount";
             public const string RejectedItemCount = "slcrm_rejectedcurrentitemcount";
@@ -94,12 +104,24 @@ namespace Referral.Dataverse
             public const string AuthorityUsed = "slcrm_authorityassignmentused";
             public const string AuthorityLevelSnapshot = "slcrm_authoritylevelsnapshot";
             public const string AuthorityRankSnapshot = "slcrm_authorityranksnapshot";
+            public const string AuthorityLevelUsed = "slcrm_authoritylevelused";
+            public const string CanApproveReferralsSnapshot = "slcrm_canapprovereferralssnapshot";
             public const string PreviousItemStatus = "slcrm_previousitemstatus";
             public const string NewItemStatus = "slcrm_newitemstatus";
             public const string CorrelationId = "slcrm_correlationid";
 
-            /// <summary>The Recommendations column is a 100-character text column in the environment.</summary>
-            public const int RecommendationsMaxLength = 100;
+            /// <summary>
+            /// Columns that make up the decision evidence. The decision guard plug-in refuses to change them after creation.
+            /// </summary>
+            public static readonly string[] Protected =
+            {
+                "slcrm_name", "slcrm_referralitem", "slcrm_referral", "slcrm_decisionby", "slcrm_decisionon", "slcrm_decisiontype",
+                "slcrm_decisionsequence", "slcrm_itemrevisionnumber", "slcrm_decisioncomments", "slcrm_recommendations",
+                "slcrm_informationrequested", "slcrm_rejectedreason", "slcrm_onwardauthorityassignment",
+                "slcrm_onwardapproversnapshot", "slcrm_authorityassignmentused", "slcrm_authoritylevelused",
+                "slcrm_authoritylevelsnapshot", "slcrm_authorityranksnapshot", "slcrm_canapprovereferralssnapshot",
+                "slcrm_previousitemstatus", "slcrm_newitemstatus", "slcrm_correlationid", "slcrm_clientrequestid"
+            };
         }
 
         public static class Authority
@@ -111,6 +133,7 @@ namespace Referral.Dataverse
             public const string Underwriter = "slcrm_underwriter";
             public const string EffectiveFrom = "slcrm_effectivefrom";
             public const string EffectiveTo = "slcrm_effectiveto";
+            public const string LicenceScheme = "slcrm_licencescheme";
         }
 
         public static class AuthorityLevel
@@ -128,11 +151,22 @@ namespace Referral.Dataverse
             public const string IsDisabled = "isdisabled";
         }
 
+        public static class Team
+        {
+            public const string Table = "team";
+            public const string Name = "name";
+            public const string MembershipTable = "teammembership";
+            public const string MembershipTeam = "teamid";
+            public const string MembershipUser = "systemuserid";
+        }
+
         public static class Setting
         {
             public const string RankDirection = "slcrm_RankDirection";
             public const string EnableConditionalDecision = "slcrm_EnableConditionalDecision";
             public const string EnablePartialCompletion = "slcrm_EnablePartialCompletion";
+            public const string EnforceTeamRoles = "slcrm_EnforceTeamRoles";
+            public const string AllowDecisionMaintenance = "slcrm_AllowDecisionMaintenance";
         }
 
         public const string StatusCode = "statuscode";

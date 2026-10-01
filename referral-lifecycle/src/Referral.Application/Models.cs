@@ -102,9 +102,15 @@ namespace Referral.Application
         public string RejectionReason { get; set; }
         public Guid? OnwardAuthorityId { get; set; }
         public string OnwardApproverSnapshot { get; set; }
+        /// <summary>
+        /// Evidence of the authority behind the decision, captured at decision time so that later changes to the live
+        /// Authority Level cannot rewrite why the decision was valid. The deciding user is <see cref="DecidedBy"/>.
+        /// </summary>
         public Guid? AuthorityAssignmentUsedId { get; set; }
+        public Guid? AuthorityLevelUsedId { get; set; }
         public string AuthorityLevelSnapshot { get; set; }
         public int? AuthorityRankSnapshot { get; set; }
+        public bool? CanApproveReferralsSnapshot { get; set; }
         public string CorrelationId { get; set; }
     }
 
@@ -120,6 +126,12 @@ namespace Referral.Application
         public Guid CallerId { get; set; }
 
         public string CorrelationId { get; set; }
+
+        /// <summary>
+        /// Reserved for explicit idempotency. The deployed Custom APIs do not carry it yet, so it is always null today;
+        /// duplicates are stopped by the status rules instead. Adding it later should not need a use-case rewrite.
+        /// </summary>
+        public string ClientRequestId { get; set; }
     }
 
     /// <summary>What the caller asked for on a Referral Request.</summary>

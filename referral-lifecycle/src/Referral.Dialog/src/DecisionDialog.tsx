@@ -132,24 +132,44 @@ export const DecisionDialog: React.FC<DecisionDialogProps> = ({ action, loadCont
                             No eligible higher authority is available for this item.
                         </div>
                     )}
-                    {authorities.state === "ready" &&
-                        authorities.options.map((option) => (
-                            <label key={option.id} className="option">
-                                <input
-                                    type="radio"
-                                    name="authority"
-                                    value={option.id}
-                                    checked={authorityId === option.id}
-                                    onChange={() => {
-                                        setAuthorityId(option.id);
-                                        setValidation(null);
-                                    }}
-                                />
-                                <span>
-                                    {option.name} <span className="code">({option.level})</span>
-                                </span>
-                            </label>
-                        ))}
+                    {authorities.state === "ready" && authorities.options.length > 0 && (
+                        <table className="picker">
+                            <thead>
+                                <tr>
+                                    <th></th>
+                                    <th>Approver</th>
+                                    <th>Level</th>
+                                    <th>Rank</th>
+                                    <th>Licence / scheme</th>
+                                    <th>Product</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {authorities.options.map((option) => (
+                                    <tr key={option.id} className={authorityId === option.id ? "selected" : undefined}>
+                                        <td>
+                                            <input
+                                                type="radio"
+                                                name="authority"
+                                                aria-label={option.name}
+                                                value={option.id}
+                                                checked={authorityId === option.id}
+                                                onChange={() => {
+                                                    setAuthorityId(option.id);
+                                                    setValidation(null);
+                                                }}
+                                            />
+                                        </td>
+                                        <td>{option.approver || option.name}</td>
+                                        <td>{option.level}</td>
+                                        <td>{option.rank}</td>
+                                        <td>{option.licence || "-"}</td>
+                                        <td>{option.product || "-"}</td>
+                                    </tr>
+                                ))}
+                            </tbody>
+                        </table>
+                    )}
                 </fieldset>
             )}
 
@@ -161,6 +181,7 @@ export const DecisionDialog: React.FC<DecisionDialogProps> = ({ action, loadCont
                 id={inputId}
                 className="comment"
                 rows={5}
+                maxLength={action.commentMaxLength}
                 value={comment}
                 placeholder={action.commentHint}
                 disabled={busy || done}

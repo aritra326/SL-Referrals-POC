@@ -9,9 +9,12 @@ Start with these documents:
 
 | Document | What it is |
 |---|---|
+| [docs/decisions.md](docs/decisions.md) | The 21 confirmed POC decisions, where each is implemented and tested |
+| [docs/specification/README.md](docs/specification/README.md) | The version-controlled specification and an index of its sections |
 | [docs/lifecycle.md](docs/lifecycle.md) | Exactly which transitions are enforced, by whom, and which operation performs them |
 | [docs/schema-map.md](docs/schema-map.md) | Tables, columns, status labels and option values found in the environment |
 | [docs/plugin-registration.md](docs/plugin-registration.md) | How the plug-ins are attached (Custom API main operation, no message steps) |
+| [docs/demo-authorization.md](docs/demo-authorization.md) | The temporary team-based layer that decides who may start each command, and how to set up the two teams |
 | [docs/open-questions.md](docs/open-questions.md) | Rules still waiting for a product-owner decision, and what the code does meanwhile |
 | [docs/integration-test-plan.md](docs/integration-test-plan.md) | What the unit tests cannot prove and how to check it in the environment |
 | [docs/deployment-report.md](docs/deployment-report.md) | What was deployed, where, and the smoke-test result |

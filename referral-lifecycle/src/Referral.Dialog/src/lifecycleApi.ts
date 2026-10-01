@@ -6,9 +6,13 @@ export type FetchLike = (input: string, init?: RequestInit) => Promise<Response>
 /** One authority the server says the item may be sent onward to. */
 export interface EligibleAuthorityOption {
     id: string;
+    /** The assignment name, for example "Dana Lee - Marine Hull". */
     name: string;
+    approver?: string;
     level: string;
     rank: number;
+    licence?: string;
+    product?: string;
 }
 
 export interface RecordContext {

@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 
 namespace Referral.Domain
 {
@@ -11,6 +11,8 @@ namespace Referral.Domain
         public const string StatusConflict = "SLR-STATUS-409";
         public const string ConcurrencyConflict = "SLR-CONCURRENCY-412";
         public const string NotPermitted = "SLR-AUTH-403";
+        public const string RoleRequired = "SLR-ROLE-403";
+        public const string DecisionImmutable = "SLR-DECISION-IMMUTABLE";
         public const string AuthorityMissingInput = "SLR-AUTH-MISSINGINPUT";
         public const string AuthorityStatus = "SLR-AUTH-STATUS";
         public const string AuthorityProduct = "SLR-AUTH-PRODUCT";

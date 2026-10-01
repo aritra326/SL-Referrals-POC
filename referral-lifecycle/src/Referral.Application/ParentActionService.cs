@@ -17,19 +17,24 @@ namespace Referral.Application
         private readonly IClock _clock;
         private readonly ITrace _trace;
         private readonly AuthorityChecker _authority;
+        private readonly ActionRoleChecker _roles;
+        private readonly SubmitValidator _submitValidator;
         private readonly ParentRecalculator _recalculator;
 
         public ParentActionService(
             IReferralRepository repository,
             ILifecycleSettingsProvider settings,
             IClock clock,
-            ITrace trace)
+            ITrace trace,
+            SubmitValidator submitValidator = null)
         {
             _repository = repository;
             _settings = settings;
             _clock = clock;
             _trace = trace;
             _authority = new AuthorityChecker(repository, clock);
+            _roles = new ActionRoleChecker(repository, settings, trace);
+            _submitValidator = submitValidator ?? new SubmitValidator();
             _recalculator = new ParentRecalculator(repository, clock, trace);
         }
 
@@ -40,6 +45,7 @@ namespace Referral.Application
             _trace.Write("Referral action " + action + " on referral " + request.ParentId);
 
             ParentRecord parent = _repository.GetParent(request.ParentId);
+            _roles.Require(ActionRoleRules.RoleFor(action), request.CallerId);
             CallerRules.RequirePrimaryUnderwriter(parent, request.CallerId);
 
             switch (action)
@@ -82,7 +88,7 @@ namespace Referral.Application
             RankDirection direction = _settings.Load().RequireRankDirection();
             foreach (ItemRecord item in drafts)
             {
-                RequireSubmitFields(item);
+                _submitValidator.Require(item, parent);
                 _authority.RequireEligible(item.AuthorityAssignmentId, parent, item.RequiredAuthorityLevelId, direction);
             }
 
@@ -131,7 +137,7 @@ namespace Referral.Application
                         "Enter a change summary on item " + item.Label + " before submitting the revision.");
                 }
 
-                RequireSubmitFields(item);
+                _submitValidator.Require(item, parent);
                 _authority.RequireEligible(item.AuthorityAssignmentId, parent, item.RequiredAuthorityLevelId, direction);
             }
 
@@ -150,30 +156,6 @@ namespace Referral.Application
             if (!parent.ProductId.HasValue)
             {
                 throw new LifecycleException(LifecycleErrorCodes.ValidationField, "Choose the product on the referral before submitting.");
-            }
-        }
-
-        /// <summary>
-        /// Only the fields that apply to every referral reason. Reason-specific template fields are not checked
-        /// because the template rules are not confirmed (see docs/open-questions.md).
-        /// </summary>
-        private static void RequireSubmitFields(ItemRecord item)
-        {
-            var missing = new List<string>();
-            if (!item.ReferralReasonId.HasValue) missing.Add("referral reason");
-            if (!item.CoverSectionId.HasValue) missing.Add("cover");
-            if (string.IsNullOrWhiteSpace(item.ItemSummary)) missing.Add("item summary");
-            if (string.IsNullOrWhiteSpace(item.ReferralDetails)) missing.Add("referral details");
-            if (string.IsNullOrWhiteSpace(item.UnderwriterRationale)) missing.Add("underwriter rationale");
-            if (!item.RequiredAuthorityLevelId.HasValue) missing.Add("required authority level");
-            if (!item.AuthorityAssignmentId.HasValue) missing.Add("underwriting authority");
-            if (!item.AssignedApproverId.HasValue) missing.Add("assigned approver");
-
-            if (missing.Count > 0)
-            {
-                throw new LifecycleException(
-                    LifecycleErrorCodes.ValidationField,
-                    "Item " + item.Label + " is missing: " + string.Join(", ", missing) + ".");
             }
         }
 

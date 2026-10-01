@@ -253,7 +253,7 @@ namespace Referral.Dataverse.Tests
         }
 
         [Fact]
-        public void CreateDecision_ShortensTheRecommendationsColumnButNeverTheComments()
+        public void CreateDecision_WritesRecommendationsInFullAndTheAuthoritySnapshot()
         {
             Entity written = null;
             _service.Setup(s => s.Create(It.IsAny<Entity>())).Callback<Entity>(e => written = e).Returns(Guid.NewGuid());
@@ -265,7 +265,8 @@ namespace Referral.Dataverse.Tests
             _service
                 .Setup(s => s.Execute(It.Is<OrganizationRequest>(r => IsColumn(r, Schema.Decision.Table, Schema.Decision.DecisionType))))
                 .Returns(new RetrieveAttributeResponse { Results = new ParameterCollection { { "AttributeMetadata", column } } });
-            string longText = new string('r', 250);
+            string longText = new string('r', 2500);
+            var levelId = Guid.NewGuid();
 
             _repository.CreateDecision(new NewDecision
             {
@@ -278,13 +279,19 @@ namespace Referral.Dataverse.Tests
                 PreviousItemStatus = ItemStatus.Submitted,
                 NewItemStatus = ItemStatus.AuthorisedWithRecommendations,
                 Recommendations = longText,
-                Comments = longText
+                Comments = longText,
+                AuthorityLevelUsedId = levelId,
+                CanApproveReferralsSnapshot = true,
+                AuthorityRankSnapshot = 6
             });
 
-            Assert.Equal(Schema.Decision.RecommendationsMaxLength, written.GetAttributeValue<string>(Schema.Decision.Recommendations).Length);
+            Assert.Equal(longText, written.GetAttributeValue<string>(Schema.Decision.Recommendations));
             Assert.Equal(longText, written.GetAttributeValue<string>(Schema.Decision.Comments));
             Assert.Equal(633650001, written.GetAttributeValue<OptionSetValue>(Schema.Decision.DecisionType).Value);
             Assert.Equal("Submitted", written.GetAttributeValue<string>(Schema.Decision.PreviousItemStatus));
+            Assert.Equal(levelId, written.GetAttributeValue<EntityReference>(Schema.Decision.AuthorityLevelUsed).Id);
+            Assert.True(written.GetAttributeValue<bool>(Schema.Decision.CanApproveReferralsSnapshot));
+            Assert.Equal(6, written.GetAttributeValue<int>(Schema.Decision.AuthorityRankSnapshot));
         }
     }
 }

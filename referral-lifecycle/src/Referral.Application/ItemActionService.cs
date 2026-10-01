@@ -15,6 +15,7 @@ namespace Referral.Application
         private readonly IClock _clock;
         private readonly ITrace _trace;
         private readonly AuthorityChecker _authority;
+        private readonly ActionRoleChecker _roles;
         private readonly ParentRecalculator _recalculator;
 
         public ItemActionService(
@@ -28,6 +29,7 @@ namespace Referral.Application
             _clock = clock;
             _trace = trace;
             _authority = new AuthorityChecker(repository, clock);
+            _roles = new ActionRoleChecker(repository, settings, trace);
             _recalculator = new ParentRecalculator(repository, clock, trace);
         }
 
@@ -43,6 +45,7 @@ namespace Referral.Application
             CallerRules.RequireCurrentRevision(item);
             CallerRules.RequireReferralOpen(parent);
             ItemStatus targetStatus = ItemTransitionRules.GetTargetStatus(action, item.Status);
+            _roles.Require(ActionRoleRules.RoleFor(action), request.CallerId);
 
             Guid resultId = item.Id;
             switch (action)
@@ -139,8 +142,10 @@ namespace Referral.Application
                 PreviousItemStatus = item.Status,
                 NewItemStatus = targetStatus,
                 AuthorityAssignmentUsedId = item.AuthorityAssignmentId,
+                AuthorityLevelUsedId = current.LevelId,
                 AuthorityLevelSnapshot = current.LevelName,
                 AuthorityRankSnapshot = current.LevelRank,
+                CanApproveReferralsSnapshot = current.LevelCanApproveReferrals,
                 CorrelationId = request.CorrelationId
             };
 

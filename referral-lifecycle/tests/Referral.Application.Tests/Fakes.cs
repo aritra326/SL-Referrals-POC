@@ -23,7 +23,7 @@ namespace Referral.Application.Tests
 
     public class FakeSettings : ILifecycleSettingsProvider
     {
-        public LifecycleSettings Settings = new LifecycleSettings { RankDirection = RankDirection.HigherNumberGreater };
+        public LifecycleSettings Settings = new LifecycleSettings { RankDirection = RankDirection.HigherNumberGreater, EnforceTeamRoles = true };
 
         public LifecycleSettings Load()
         {
@@ -42,6 +42,9 @@ namespace Referral.Application.Tests
         public List<NewDecision> Decisions = new List<NewDecision>();
         public List<ParentOutcome> LastCounts = new List<ParentOutcome>();
         public HashSet<Guid> ItemsWithSuccessor = new HashSet<Guid>();
+
+        /// <summary>Teams that exist, and who is in each. A team that is not in this map does not exist.</summary>
+        public Dictionary<string, HashSet<Guid>> Teams = new Dictionary<string, HashSet<Guid>>(StringComparer.OrdinalIgnoreCase);
 
         /// <summary>Number of write calls (item updates, parent updates, decisions, revisions).</summary>
         public int WriteCount;
@@ -100,6 +103,17 @@ namespace Referral.Application.Tests
             return Decisions.Where(d => d.ItemId == itemId).Select(d => d.Sequence).DefaultIfEmpty(0).Max();
         }
 
+        public bool TeamExists(string teamName)
+        {
+            return Teams.ContainsKey(teamName);
+        }
+
+        public bool IsTeamMember(Guid userId, string teamName)
+        {
+            HashSet<Guid> members;
+            return Teams.TryGetValue(teamName, out members) && members.Contains(userId);
+        }
+
         public string GetUserFullName(Guid userId)
         {
             string name;
@@ -147,6 +161,7 @@ namespace Referral.Application.Tests
         {
             WriteCount++;
             rejectedItem.IsCurrentRevision = false;
+            rejectedItem.Status = ItemStatus.Superseded;
             ItemsWithSuccessor.Add(rejectedItem.Id);
 
             var revision = new ItemRecord

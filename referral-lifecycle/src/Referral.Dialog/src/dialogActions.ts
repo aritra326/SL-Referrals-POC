@@ -13,6 +13,8 @@ export interface DialogAction {
     commentLabel: string;
     commentHint: string;
     commentRequired: boolean;
+    /** Longest comment the server accepts, when there is a limit. */
+    commentMaxLength?: number;
     confirmLabel: string;
     /** One sentence telling the user what will happen. */
     consequence: string;
@@ -48,6 +50,7 @@ const ACTIONS: DialogAction[] = [
         commentLabel: "Recommendations",
         commentHint: "Required. The advice that goes with this authorisation.",
         commentRequired: true,
+        commentMaxLength: 4000,
         confirmLabel: "Authorise",
         consequence: "The item is authorised with your recommendations and a decision record is created.",
     },
@@ -75,22 +78,22 @@ const ACTIONS: DialogAction[] = [
     {
         name: "CompleteRejected",
         target: "slcrm_referralrequest",
-        title: "Close referral as rejected",
-        commentLabel: "Acknowledgement",
-        commentHint: "Required. Confirm that you accept the rejection.",
+        title: "Accept rejection",
+        commentLabel: "Comment",
+        commentHint: "Required. Please confirm your acceptance of the rejected outcome and provide a comment.",
         commentRequired: true,
         confirmLabel: "Close as rejected",
-        consequence: "The referral is closed as Rejected and can no longer be changed.",
+        consequence: "Please confirm your acceptance of the rejected outcome and provide a comment. The referral is closed as Rejected and can no longer be changed.",
     },
     {
         name: "CompletePartial",
         target: "slcrm_referralrequest",
         title: "Complete partial outcome",
         commentLabel: "Outcome summary",
-        commentHint: "Optional. Summarise the reduced scope you are accepting.",
+        commentHint: "Optional. Summarise the authorised scope you are proceeding with.",
         commentRequired: false,
         confirmLabel: "Complete",
-        consequence: "The referral is closed as Partially Authorised and can no longer be changed.",
+        consequence: "You proceed with the authorised items only. The rejected items stay as historical evidence and the referral is closed as Partially Authorised.",
     },
     {
         name: "Cancel",

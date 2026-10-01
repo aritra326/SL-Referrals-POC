@@ -513,7 +513,7 @@ namespace Referral.Application.Tests
             Guid newId = s.ItemService().Execute(s.ItemRequest("CreateRevision", caller: s.PrimaryUnderwriterId));
 
             Assert.NotEqual(s.Item.Id, newId);
-            Assert.Equal(ItemStatus.Rejected, s.Item.Status);
+            Assert.Equal(ItemStatus.Superseded, s.Item.Status);
             Assert.False(s.Item.IsCurrentRevision);
             Assert.Equal(ItemStatus.RevisionDraft, s.Repository.Items[newId].Status);
             Assert.Equal(2, s.Repository.Items[newId].RevisionNumber);
@@ -572,6 +572,8 @@ namespace Referral.Application.Tests
             public int? GetAuthorityLevelRank(Guid levelId) { return _inner.GetAuthorityLevelRank(levelId); }
             public int GetLastDecisionSequence(Guid itemId) { return _inner.GetLastDecisionSequence(itemId); }
             public string GetUserFullName(Guid userId) { return _inner.GetUserFullName(userId); }
+            public bool TeamExists(string teamName) { return _inner.TeamExists(teamName); }
+            public bool IsTeamMember(Guid userId, string teamName) { return _inner.IsTeamMember(userId, teamName); }
             public void UpdateParent(ParentUpdate update) { _inner.UpdateParent(update); }
             public Guid CreateDecision(NewDecision decision) { return _inner.CreateDecision(decision); }
             public Guid CreateRevision(ItemRecord item, DateTime nowUtc) { return _inner.CreateRevision(item, nowUtc); }

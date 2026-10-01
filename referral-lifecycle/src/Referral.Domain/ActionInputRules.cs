@@ -8,6 +8,9 @@ namespace Referral.Domain
     /// </summary>
     public static class ActionInputRules
     {
+        /// <summary>The Recommendations column holds up to 4000 characters. Longer text is refused, never shortened.</summary>
+        public const int MaxRecommendationsLength = 4000;
+
         /// <summary>Is the Comment mandatory for this item action? Authorise is deliberately optional (spec 11.4).</summary>
         public static bool IsCommentRequired(ItemAction action)
         {
@@ -30,6 +33,13 @@ namespace Referral.Domain
             if (IsCommentRequired(action) && string.IsNullOrWhiteSpace(comment))
             {
                 throw new LifecycleException(LifecycleErrorCodes.DecisionField, DescribeMissingComment(action));
+            }
+
+            if (action == ItemAction.AuthoriseWithRecommendations && comment != null && comment.Length > MaxRecommendationsLength)
+            {
+                throw new LifecycleException(
+                    LifecycleErrorCodes.DecisionField,
+                    "Recommendations can be at most " + MaxRecommendationsLength + " characters (you entered " + comment.Length + ").");
             }
 
             if (action == ItemAction.Onward && !newAuthorityId.HasValue)

@@ -34,6 +34,12 @@ namespace Referral.Application
 
         string GetUserFullName(Guid userId);
 
+        /// <summary>True when a team with this exact name exists in the environment.</summary>
+        bool TeamExists(string teamName);
+
+        /// <summary>True when the user is a member of the named team.</summary>
+        bool IsTeamMember(Guid userId, string teamName);
+
         void UpdateItem(ItemUpdate update);
 
         void UpdateParent(ParentUpdate update);
@@ -42,8 +48,9 @@ namespace Referral.Application
         Guid CreateDecision(NewDecision decision);
 
         /// <summary>
-        /// Starts a new revision of a rejected item: the old row stops being current, the new row is a copy
-        /// in "Revision Draft". Returns the new item's id.
+        /// Starts a new revision of a rejected item. The old row stays as immutable evidence but stops being current,
+        /// gets a Superseded On timestamp and the status Superseded (its rejection stays in Referral Decision history).
+        /// The new row is a copy in "Revision Draft". Returns the new item's id.
         /// </summary>
         Guid CreateRevision(ItemRecord rejectedItem, DateTime nowUtc);
     }

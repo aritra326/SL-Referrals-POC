@@ -16,17 +16,34 @@
 |---|---|
 | `Referral.Plugins.ReferralItemActionPlugin` | Main operation of `slcrm_ExecuteReferralItemAction` |
 | `Referral.Plugins.ReferralRequestActionPlugin` | Main operation of `slcrm_ExecuteReferralRequestAction` |
+| `Referral.Plugins.EligibleAuthoritiesPlugin` | Main operation of `slcrm_GetEligibleAuthorities` (read-only; Onward picker) |
+| `Referral.Plugins.ReferralDecisionGuardPlugin` | Keeps Referral Decision rows immutable (message steps below) |
 
 ## How they are attached: Custom API binding, not message steps
 
 These are **Custom API main-operation plug-ins**. Each Custom API record has a `plugintypeid` column; setting it to the
-type above makes Dataverse run that type as the API's main operation. **No `sdkmessageprocessingstep` is created and
-no images are used**, so there is nothing to register in the Plug-in Registration Tool beyond the assembly.
+type above makes Dataverse run that type as the API's main operation. **No `sdkmessageprocessingstep` is created for them and
+no images are used**, so there is nothing to register in the Plug-in Registration Tool beyond the assembly. The only SDK message
+steps are the two decision-guard steps below.
 
 | Custom API | `plugintypeid` set to | Stage | Mode | Filtering attributes | Images |
 |---|---|---|---|---|---|
 | `slcrm_ExecuteReferralItemAction` | `ReferralItemActionPlugin` | Main Operation (30) | Synchronous | n/a | none |
 | `slcrm_ExecuteReferralRequestAction` | `ReferralRequestActionPlugin` | Main Operation (30) | Synchronous | n/a | none |
+| `slcrm_GetEligibleAuthorities` | `EligibleAuthoritiesPlugin` | Main Operation (30) | Synchronous | n/a | none |
+
+## Message steps: the decision guard (the only SDK steps)
+
+| Message | Primary table | Stage | Mode | Filtering attributes | Images | Rank |
+|---|---|---|---|---|---|---|
+| Update | `slcrm_referraldecision` | Pre-Operation (20) | Synchronous | the evidence columns (`Schema.Decision.Protected`: name, item, referral, decision by/on/type/sequence, revision number, comments, recommendations, information requested, rejected reason, onward authority and snapshot, authority used, authority level used, level/rank/can-approve snapshots, previous/new status, correlation and client request ids) | none | 1 |
+| Delete | `slcrm_referraldecision` | Pre-Operation (20) | Synchronous | n/a | none | 1 |
+
+* Not registered on **Create**: the lifecycle Custom API creates decisions and must never be blocked.
+* The Update step's filtering attributes mean unrelated system updates (owner assignment, state changes) do not run it; the
+  plug-in re-checks the changed columns anyway.
+* The explicit exception `slcrm_AllowDecisionMaintenance` is read as the **system user** so a caller cannot influence it.
+* Refusal code: `SLR-DECISION-IMMUTABLE`. Security roles should also drop Write and Delete on Referral Decision (defence in depth).
 
 Why no images: the plug-in needs the *current* row, which it reads itself with a minimal column list, together with
 the row version used for the concurrency check. A pre-image could be stale by the time the user clicks.

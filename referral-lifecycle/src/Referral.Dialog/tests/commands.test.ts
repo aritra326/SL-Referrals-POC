@@ -26,6 +26,7 @@ function loadCommands(world: World = {}) {
     const save = jest.fn().mockResolvedValue(undefined);
     const execute = jest.fn().mockResolvedValue({ ok: true, status: 204 });
     const openErrorDialog = jest.fn().mockResolvedValue(undefined);
+    const openAlertDialog = jest.fn().mockResolvedValue(undefined);
 
     const form: any = {
         data: {
@@ -53,7 +54,7 @@ function loadCommands(world: World = {}) {
     const fakeWindow: any = { sessionStorage: (global as any).window.sessionStorage };
     fakeWindow.sessionStorage.clear();
     const fakeXrm = {
-        Navigation: { navigateTo, openErrorDialog, openConfirmDialog: jest.fn().mockResolvedValue({ confirmed: true }), openForm: jest.fn() },
+        Navigation: { navigateTo, openErrorDialog, openAlertDialog, openConfirmDialog: jest.fn().mockResolvedValue({ confirmed: true }), openForm: jest.fn() },
         Utility: {
             showProgressIndicator: jest.fn(),
             closeProgressIndicator: jest.fn(),
@@ -65,7 +66,7 @@ function loadCommands(world: World = {}) {
     const code = fs.readFileSync(path.join(__dirname, "..", "commands", "slcrm_ReferralCommands.js"), "utf8");
     new Function("window", "Xrm", "console", code + "\nwindow.SLCRM = SLCRM;")(fakeWindow, fakeXrm, { warn: jest.fn() });
 
-    return { commands: fakeWindow.SLCRM.ReferralCommands, navigateTo, form, save, execute, openErrorDialog, retrieveMultipleRecords };
+    return { commands: fakeWindow.SLCRM.ReferralCommands, navigateTo, form, save, execute, openErrorDialog, openAlertDialog, retrieveMultipleRecords };
 }
 
 describe("command bar routing", () => {
@@ -232,5 +233,34 @@ describe("demo authorization layer (team membership decides who may start a comm
         await commands.authoriseWithConditions(form);
 
         expect(navigateTo).not.toHaveBeenCalled();
+    });
+});
+
+describe("item-level cancel is not supported", () => {
+    test("Cancel Item on an item explains that the referral must be cancelled instead, and calls nothing", async () => {
+        const { commands, navigateTo, execute, openAlertDialog, form } = loadCommands({ memberOf: BOTH, entityName: "slcrm_referralitem" });
+
+        await commands.cancelItem(form);
+
+        expect(openAlertDialog.mock.calls[0][0].text).toMatch(/cannot be cancelled.*Cancel Referral/i);
+        expect(navigateTo).not.toHaveBeenCalled();
+        expect(execute).not.toHaveBeenCalled();
+    });
+
+    test("the same handler still cancels a referral through the dialog", async () => {
+        const { commands, navigateTo, openAlertDialog, form } = loadCommands({ memberOf: [REQUESTORS], entityName: "slcrm_referralrequest" });
+
+        await commands.cancelItem(form);
+
+        expect(openAlertDialog).not.toHaveBeenCalled();
+        expect(navigateTo.mock.calls[0][0].data).toContain("entityName=slcrm_referralrequest&actionName=Cancel");
+    });
+
+    test("there is no item-level Cancel in the demo access table, so no team is asked for", async () => {
+        const { commands, openErrorDialog, form } = loadCommands({ memberOf: [], entityName: "slcrm_referralitem" });
+
+        await commands.cancelItem(form);
+
+        expect(openErrorDialog).not.toHaveBeenCalled();
     });
 });

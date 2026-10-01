@@ -97,7 +97,7 @@ namespace Referral.Dataverse
         private static readonly string[] AuthorityColumns =
         {
             Schema.StateCode, Schema.StatusCode, Schema.Authority.Name, Schema.Authority.EffectiveFrom, Schema.Authority.EffectiveTo,
-            Schema.Authority.Level, Schema.Authority.Product, Schema.Authority.Underwriter
+            Schema.Authority.Level, Schema.Authority.Product, Schema.Authority.Underwriter, Schema.Authority.LicenceScheme
         };
 
         public AuthorityFacts GetAuthority(Guid assignmentId)
@@ -122,6 +122,8 @@ namespace Referral.Dataverse
                 AssignmentId = assignment.Id,
                 AssignmentName = assignment.GetAttributeValue<string>(Schema.Authority.Name),
                 ProductId = IdOf(assignment, Schema.Authority.Product),
+                ProductName = FormattedName(assignment, Schema.Authority.Product),
+                LicenceScheme = FormattedName(assignment, Schema.Authority.LicenceScheme),
                 UnderwriterId = IdOf(assignment, Schema.Authority.Underwriter),
                 IsActive = assignment.GetAttributeValue<OptionSetValue>(Schema.StateCode).Value == 0,
                 StatusIsCurrent = _options.IsCurrentAuthorityStatus(assignment.GetAttributeValue<OptionSetValue>(Schema.StatusCode).Value),
@@ -154,6 +156,7 @@ namespace Referral.Dataverse
                 return;
             }
 
+            facts.LevelId = levelId;
             facts.LevelIsActive = level.GetAttributeValue<OptionSetValue>(Schema.StateCode).Value == 0;
             facts.LevelCanApproveReferrals = level.GetAttributeValue<bool>(Schema.AuthorityLevel.CanApprove);
             facts.LevelRank = level.GetAttributeValue<int?>(Schema.AuthorityLevel.Rank);
@@ -168,8 +171,9 @@ namespace Referral.Dataverse
                 return;
             }
 
-            Entity user = RetrieveOrNull(Schema.SystemUser.Table, facts.UnderwriterId.Value, Schema.SystemUser.IsDisabled);
+            Entity user = RetrieveOrNull(Schema.SystemUser.Table, facts.UnderwriterId.Value, Schema.SystemUser.IsDisabled, Schema.SystemUser.FullName);
             facts.UnderwriterIsDisabled = user == null || user.GetAttributeValue<bool>(Schema.SystemUser.IsDisabled);
+            facts.UnderwriterName = user == null ? null : user.GetAttributeValue<string>(Schema.SystemUser.FullName);
         }
 
         public int? GetAuthorityLevelRank(Guid levelId)
@@ -190,6 +194,22 @@ namespace Referral.Dataverse
 
             Entity last = _service.RetrieveMultiple(query).Entities.FirstOrDefault();
             return last == null ? 0 : last.GetAttributeValue<int?>(Schema.Decision.Sequence).GetValueOrDefault();
+        }
+
+        public bool TeamExists(string teamName)
+        {
+            var query = new QueryExpression(Schema.Team.Table) { ColumnSet = new ColumnSet(false), TopCount = 1 };
+            query.Criteria.AddCondition(Schema.Team.Name, ConditionOperator.Equal, teamName);
+            return _service.RetrieveMultiple(query).Entities.Count > 0;
+        }
+
+        public bool IsTeamMember(Guid userId, string teamName)
+        {
+            var query = new QueryExpression(Schema.Team.Table) { ColumnSet = new ColumnSet(false), TopCount = 1 };
+            query.Criteria.AddCondition(Schema.Team.Name, ConditionOperator.Equal, teamName);
+            LinkEntity membership = query.AddLink(Schema.Team.MembershipTable, Schema.Team.MembershipTeam, Schema.Team.MembershipTeam);
+            membership.LinkCriteria.AddCondition(Schema.Team.MembershipUser, ConditionOperator.Equal, userId);
+            return _service.RetrieveMultiple(query).Entities.Count > 0;
         }
 
         public string GetUserFullName(Guid userId)
@@ -314,9 +334,12 @@ namespace Referral.Dataverse
             SetTextIfPresent(row, Schema.Decision.OnwardApproverSnapshot, decision.OnwardApproverSnapshot);
             SetTextIfPresent(row, Schema.Decision.AuthorityLevelSnapshot, decision.AuthorityLevelSnapshot);
             SetTextIfPresent(row, Schema.Decision.CorrelationId, decision.CorrelationId);
-            SetTextIfPresent(row, Schema.Decision.Recommendations, Truncate(decision.Recommendations, Schema.Decision.RecommendationsMaxLength));
+            // Recommendations are narrative: written in full, never shortened.
+            SetTextIfPresent(row, Schema.Decision.Recommendations, decision.Recommendations);
 
             if (decision.AuthorityRankSnapshot.HasValue) row[Schema.Decision.AuthorityRankSnapshot] = decision.AuthorityRankSnapshot.Value;
+            if (decision.CanApproveReferralsSnapshot.HasValue) row[Schema.Decision.CanApproveReferralsSnapshot] = decision.CanApproveReferralsSnapshot.Value;
+            SetLookup(row, Schema.Decision.AuthorityLevelUsed, Schema.AuthorityLevel.Table, decision.AuthorityLevelUsedId);
             SetLookup(row, Schema.Decision.OnwardAuthority, Schema.Authority.Table, decision.OnwardAuthorityId);
             SetLookup(row, Schema.Decision.AuthorityUsed, Schema.Authority.Table, decision.AuthorityAssignmentUsedId);
 
@@ -339,6 +362,7 @@ namespace Referral.Dataverse
             closeOld[Schema.Item.IsCurrentRevision] = false;
             closeOld[Schema.Item.SupersededOn] = nowUtc;
             closeOld[Schema.Item.CurrentUniquenessKey] = null;
+            SetStatus(closeOld, _options.ForItemStatus(ItemStatus.Superseded));
             _service.Update(closeOld);
 
             var revision = new Entity(Schema.Item.Table);
@@ -408,6 +432,12 @@ namespace Referral.Dataverse
             return _service.RetrieveMultiple(query).Entities.FirstOrDefault();
         }
 
+        /// <summary>The label Dataverse shows for a lookup or choice column, or null when it has none.</summary>
+        private static string FormattedName(Entity row, string column)
+        {
+            return row.FormattedValues.Contains(column) ? row.FormattedValues[column] : null;
+        }
+
         private static Guid? IdOf(Entity row, string lookupColumn)
         {
             EntityReference reference = row.GetAttributeValue<EntityReference>(lookupColumn);
@@ -442,16 +472,6 @@ namespace Referral.Dataverse
             {
                 row[column] = value;
             }
-        }
-
-        private static string Truncate(string value, int maxLength)
-        {
-            if (string.IsNullOrEmpty(value) || value.Length <= maxLength)
-            {
-                return value;
-            }
-
-            return value.Substring(0, maxLength - 3) + "...";
         }
 
         private static LifecycleException NotFound(string what)
