@@ -112,12 +112,13 @@ counts as in force.
 
 | Unique name | Bound to | Request parameters | Response |
 |---|---|---|---|
-| `slcrm_ExecuteReferralItemAction` | `slcrm_referralitem` | `ActionName` (String, required), `Comment` (String), `NewAuthorityID` (**Boolean**) | `ResultRecordId` (Guid) |
-| `slcrm_ExecuteReferralRequestAction` | `slcrm_referralrequest` | `ActionName` (String, required), `Comment` (String), `NewAuthorityID` (**Boolean**) | `ResultRecordId` (Guid) |
+| `slcrm_ExecuteReferralItemAction` | `slcrm_referralitem` | `ActionName` (String, required), `Comment` (String), `NewAuthorityId` (Guid, optional) | `ResultRecordId` (Guid) |
+| `slcrm_ExecuteReferralRequestAction` | `slcrm_referralrequest` | `ActionName` (String, required), `Comment` (String), `NewAuthorityId` (Guid, optional) | `ResultRecordId` (Guid) |
 
-Mismatch to be aware of: the parameter is spelled `NewAuthorityID` and typed Boolean, but the command-bar script sends
-`NewAuthorityId` as a Guid. The plug-in reads the name ignoring case and accepts a Guid, but a Boolean cannot carry an
-authority, so **Onward for Approval cannot work until the parameter is corrected** (open questions).
+History: the parameter was originally deployed as `NewAuthorityID` of type **Boolean**, which cannot carry an authority
+and did not match the Guid `NewAuthorityId` sent by the command bar. On 2026-10-01 it was deleted and recreated on both
+APIs as an optional **Guid** named `NewAuthorityId` (in the `SL_Referrals` solution). The plug-in still reads the name
+ignoring case.
 
 ## Settings (Dataverse environment variables, created by this work)
 
