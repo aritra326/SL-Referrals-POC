@@ -1,0 +1,33 @@
+# SL Referrals data + dialog files
+
+Exported from Dev (`61858932.crm17.dynamics.com`) with solution **1.0.0.19**.
+
+## Move the app and data to another environment
+1. Import `solution-export/SL_Referrals_1_0_0_19.zip` (or `_managed.zip`) into the target. This creates the tables,
+   forms, app, theme and the web resources below.
+2. `az login` to the target tenant, then:
+   ```powershell
+   .\Import-Data.ps1 -OrgUrl https://<target>.crm.dynamics.com
+   ```
+   Records are upserted by their original GUID, so it is safe to re-run. Users are matched by email; anyone not found
+   becomes the user running the import. Run it before registering the lifecycle plug-ins, otherwise the decision guard
+   may reject the historic decisions.
+3. Re-export from Dev at any time with `.\Export-Data.ps1`.
+
+## Contents of `data/`
+account (6), opportunity (14), and the 13 `slcrm_` tables (country 3, product 6, cover section 8, authority level 8,
+referral reason 15, policy 5, rationale 11, underwriter authority 9, referral request 17, referral item 27, referral
+decision 14, participant 6, notification 6). Only the accounts and opportunities the referrals point at are included.
+`manifest.json` holds the import order.
+
+## `dialog-files/` (as deployed in Dev)
+| File | Web resource | What it is |
+|---|---|---|
+| `copyrationale.html` / `.js` | `slcrm_copyrationale.*` | Copy Rationale dialog |
+| `referraldecision.html` / `.js` | `slcrm_referraldecision.*` | Referral lifecycle decision dialog |
+| `ReferralCommands.js` | `slcrm_ReferralCommands.js` | Command bar handlers that open the dialogs |
+| `referralbuilder.html` / `.js` | `slcrm_referralbuilder.*` | New Referral builder page |
+| `OpportunityCommands.js` | `slcrm_OpportunityCommands.js` | Opportunity command bar handler |
+
+The `.js` files are bundles; the readable source is under `referral-lifecycle/src/Referral.Dialog` and
+`sl-referrals-app/referral-builder/pcf/webresource`.

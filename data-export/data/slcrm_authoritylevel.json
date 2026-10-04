@@ -1,0 +1,142 @@
+﻿{
+    "table":  "slcrm_authoritylevel",
+    "set":  "slcrm_authoritylevels",
+    "records":  [
+                    {
+                        "id":  "cbbacfae-88b0-f111-aaab-002248db53bb",
+                        "fields":  {
+                                       "slcrm_comparisonrank":  1,
+                                       "slcrm_name":  "Level 1",
+                                       "slcrm_levelcode":  "1",
+                                       "slcrm_canapprovereferrals":  true,
+                                       "slcrm_displayorder":  1,
+                                       "statuscode":  1
+                                   },
+                        "lookups":  [
+
+                                    ],
+                        "users":  [
+
+                                  ]
+                    },
+                    {
+                        "id":  "ccbacfae-88b0-f111-aaab-002248db53bb",
+                        "fields":  {
+                                       "slcrm_comparisonrank":  2,
+                                       "slcrm_name":  "Level 2",
+                                       "slcrm_levelcode":  "2",
+                                       "slcrm_canapprovereferrals":  true,
+                                       "slcrm_displayorder":  2,
+                                       "statuscode":  1
+                                   },
+                        "lookups":  [
+
+                                    ],
+                        "users":  [
+
+                                  ]
+                    },
+                    {
+                        "id":  "cdbacfae-88b0-f111-aaab-002248db53bb",
+                        "fields":  {
+                                       "slcrm_comparisonrank":  3,
+                                       "slcrm_name":  "Level 3",
+                                       "slcrm_levelcode":  "3",
+                                       "slcrm_canapprovereferrals":  true,
+                                       "slcrm_displayorder":  3,
+                                       "statuscode":  1
+                                   },
+                        "lookups":  [
+
+                                    ],
+                        "users":  [
+
+                                  ]
+                    },
+                    {
+                        "id":  "cebacfae-88b0-f111-aaab-002248db53bb",
+                        "fields":  {
+                                       "slcrm_comparisonrank":  4,
+                                       "slcrm_name":  "Level 4",
+                                       "slcrm_levelcode":  "4",
+                                       "slcrm_canapprovereferrals":  true,
+                                       "slcrm_displayorder":  4,
+                                       "statuscode":  1
+                                   },
+                        "lookups":  [
+
+                                    ],
+                        "users":  [
+
+                                  ]
+                    },
+                    {
+                        "id":  "cfbacfae-88b0-f111-aaab-002248db53bb",
+                        "fields":  {
+                                       "slcrm_comparisonrank":  5,
+                                       "slcrm_name":  "Level 5",
+                                       "slcrm_levelcode":  "5",
+                                       "slcrm_canapprovereferrals":  true,
+                                       "slcrm_displayorder":  5,
+                                       "statuscode":  1
+                                   },
+                        "lookups":  [
+
+                                    ],
+                        "users":  [
+
+                                  ]
+                    },
+                    {
+                        "id":  "d0bacfae-88b0-f111-aaab-002248db53bb",
+                        "fields":  {
+                                       "slcrm_comparisonrank":  6,
+                                       "slcrm_name":  "Level 6",
+                                       "slcrm_levelcode":  "6",
+                                       "slcrm_canapprovereferrals":  true,
+                                       "slcrm_displayorder":  6,
+                                       "statuscode":  1
+                                   },
+                        "lookups":  [
+
+                                    ],
+                        "users":  [
+
+                                  ]
+                    },
+                    {
+                        "id":  "d43187b5-88b0-f111-aaab-002248db53bb",
+                        "fields":  {
+                                       "slcrm_comparisonrank":  7,
+                                       "slcrm_name":  "Level 7",
+                                       "slcrm_levelcode":  "7",
+                                       "slcrm_canapprovereferrals":  true,
+                                       "slcrm_displayorder":  7,
+                                       "statuscode":  1
+                                   },
+                        "lookups":  [
+
+                                    ],
+                        "users":  [
+
+                                  ]
+                    },
+                    {
+                        "id":  "d53187b5-88b0-f111-aaab-002248db53bb",
+                        "fields":  {
+                                       "slcrm_comparisonrank":  8,
+                                       "slcrm_name":  "Level C",
+                                       "slcrm_levelcode":  "C",
+                                       "slcrm_canapprovereferrals":  false,
+                                       "slcrm_displayorder":  8,
+                                       "statuscode":  1
+                                   },
+                        "lookups":  [
+
+                                    ],
+                        "users":  [
+
+                                  ]
+                    }
+                ]
+}

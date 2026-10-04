@@ -1,0 +1,521 @@
+﻿{
+    "table":  "slcrm_rational",
+    "set":  "slcrm_rationals",
+    "records":  [
+                    {
+                        "id":  "6827a9b5-89b0-f111-aaab-002248db53bb",
+                        "fields":  {
+                                       "slcrm_name":  "Rationale-0001",
+                                       "slcrm_underwriteropinion":  "Risk is acceptable within current appetite; recommend proceeding.",
+                                       "slcrm_claimsexperience":  "No material losses in the last 3 policy years.",
+                                       "slcrm_pricing":  "Pricing broadly in line with technical rate; minor deviation justified by claims-free history.",
+                                       "slcrm_ppmcategory":  "Standard",
+                                       "statuscode":  1
+                                   },
+                        "lookups":  [
+                                        {
+                                            "attr":  "slcrm_opportunity",
+                                            "nav":  "slcrm_Opportunity",
+                                            "entity":  "opportunity",
+                                            "id":  "e90a0493-e8f0-ea11-a815-000d3a1b14a2"
+                                        },
+                                        {
+                                            "attr":  "slcrm_policy",
+                                            "nav":  "slcrm_Policy",
+                                            "entity":  "slcrm_policy",
+                                            "id":  "6327a9b5-89b0-f111-aaab-002248db53bb"
+                                        },
+                                        {
+                                            "attr":  "slcrm_customerinsured",
+                                            "nav":  "slcrm_CustomerInsured",
+                                            "entity":  "account",
+                                            "id":  "88cea450-cb0c-ea11-a813-000d3a1b1223"
+                                        }
+                                    ],
+                        "users":  [
+                                      {
+                                          "attr":  "slcrm_underwriter",
+                                          "nav":  "slcrm_Underwriter",
+                                          "email":  "AritraBhattacharya@61858932.onmicrosoft.com"
+                                      }
+                                  ]
+                    },
+                    {
+                        "id":  "479e2ebc-89b0-f111-aaab-002248db53bb",
+                        "fields":  {
+                                       "slcrm_name":  "Rationale-0002",
+                                       "slcrm_underwriteropinion":  "Risk is acceptable within current appetite; recommend proceeding.",
+                                       "slcrm_claimsexperience":  "No material losses in the last 3 policy years.",
+                                       "slcrm_pricing":  "Pricing broadly in line with technical rate; minor deviation justified by claims-free history.",
+                                       "slcrm_ppmcategory":  "Standard",
+                                       "statuscode":  1
+                                   },
+                        "lookups":  [
+                                        {
+                                            "attr":  "slcrm_opportunity",
+                                            "nav":  "slcrm_Opportunity",
+                                            "entity":  "opportunity",
+                                            "id":  "b052fc98-e8f0-ea11-a815-000d3a1b14a2"
+                                        },
+                                        {
+                                            "attr":  "slcrm_customerinsured",
+                                            "nav":  "slcrm_CustomerInsured",
+                                            "entity":  "account",
+                                            "id":  "b4cea450-cb0c-ea11-a813-000d3a1b1223"
+                                        }
+                                    ],
+                        "users":  [
+                                      {
+                                          "attr":  "slcrm_underwriter",
+                                          "nav":  "slcrm_Underwriter",
+                                          "email":  "davidm@Contoso.onmicrosoft.com"
+                                      }
+                                  ]
+                    },
+                    {
+                        "id":  "489e2ebc-89b0-f111-aaab-002248db53bb",
+                        "fields":  {
+                                       "slcrm_name":  "Rationale-0003",
+                                       "slcrm_underwriteropinion":  "Risk is acceptable within current appetite; recommend proceeding.",
+                                       "slcrm_claimsexperience":  "No material losses in the last 3 policy years.",
+                                       "slcrm_pricing":  "Pricing broadly in line with technical rate; minor deviation justified by claims-free history.",
+                                       "slcrm_ppmcategory":  "Standard",
+                                       "statuscode":  1
+                                   },
+                        "lookups":  [
+                                        {
+                                            "attr":  "slcrm_opportunity",
+                                            "nav":  "slcrm_Opportunity",
+                                            "entity":  "opportunity",
+                                            "id":  "becc5dba-b1f1-ea11-a815-000d3a1b14a2"
+                                        },
+                                        {
+                                            "attr":  "slcrm_customerinsured",
+                                            "nav":  "slcrm_CustomerInsured",
+                                            "entity":  "account",
+                                            "id":  "81883308-7ad5-ea11-a813-000d3a33f3b4"
+                                        }
+                                    ],
+                        "users":  [
+                                      {
+                                          "attr":  "slcrm_underwriter",
+                                          "nav":  "slcrm_Underwriter",
+                                          "email":  "alans@Contoso.onmicrosoft.com"
+                                      }
+                                  ]
+                    },
+                    {
+                        "id":  "499e2ebc-89b0-f111-aaab-002248db53bb",
+                        "fields":  {
+                                       "slcrm_name":  "Rationale-0004",
+                                       "slcrm_underwriteropinion":  "Risk is acceptable within current appetite; recommend proceeding.",
+                                       "slcrm_claimsexperience":  "No material losses in the last 3 policy years.",
+                                       "slcrm_pricing":  "Pricing broadly in line with technical rate; minor deviation justified by claims-free history.",
+                                       "slcrm_ppmcategory":  "Standard",
+                                       "statuscode":  1
+                                   },
+                        "lookups":  [
+                                        {
+                                            "attr":  "slcrm_opportunity",
+                                            "nav":  "slcrm_Opportunity",
+                                            "entity":  "opportunity",
+                                            "id":  "2ec06197-31ec-ea11-a817-000d3a1b14a2"
+                                        },
+                                        {
+                                            "attr":  "slcrm_customerinsured",
+                                            "nav":  "slcrm_CustomerInsured",
+                                            "entity":  "account",
+                                            "id":  "83883308-7ad5-ea11-a813-000d3a33f3b4"
+                                        }
+                                    ],
+                        "users":  [
+                                      {
+                                          "attr":  "slcrm_underwriter",
+                                          "nav":  "slcrm_Underwriter",
+                                          "email":  "jeremy@Contoso.onmicrosoft.com"
+                                      }
+                                  ]
+                    },
+                    {
+                        "id":  "a59606fb-1ab1-f111-aaab-002248db53bb",
+                        "fields":  {
+                                       "slcrm_status":  100000001,
+                                       "slcrm_policyreference":  "POL-MDN-4471",
+                                       "slcrm_qualityassessmenttext":  "Risk information complete and consistent with site survey. Good quality submission.",
+                                       "slcrm_name":  "Rationale - 2021 Renewal",
+                                       "slcrm_version":  1,
+                                       "slcrm_captivearrangements":  "None disclosed.",
+                                       "slcrm_underwriteropinion":  "Acceptable risk at standard terms; recommend accepting as new business.",
+                                       "slcrm_iscurrent":  false,
+                                       "slcrm_claimsexperience":  "New business - no claims history available. Proceeding on declared risk information and site survey.",
+                                       "slcrm_renewalyear":  2021,
+                                       "slcrm_negotiationoutcomestext":  "Agreed at declared terms; broker did not request deviation from standard wording.",
+                                       "slcrm_riskmanagementarrangements":  "Sprinklered warehouse, monitored alarm, annual PPM contract in place.",
+                                       "slcrm_capacityconsiderations":  "Within treaty capacity; no facultative support required.",
+                                       "slcrm_overseasterritoryexposures":  "None - single UK site.",
+                                       "slcrm_sanctionsconsiderations":  "Sanctions screening clear.",
+                                       "slcrm_pricing":  "Technical rate, no loading or discount.",
+                                       "slcrm_ppmcategory":  "Category B",
+                                       "slcrm_licencelevel":  "Standard",
+                                       "statuscode":  1
+                                   },
+                        "lookups":  [
+                                        {
+                                            "attr":  "slcrm_opportunity",
+                                            "nav":  "slcrm_Opportunity",
+                                            "entity":  "opportunity",
+                                            "id":  "9a9606fb-1ab1-f111-aaab-002248db53bb"
+                                        },
+                                        {
+                                            "attr":  "slcrm_policy",
+                                            "nav":  "slcrm_Policy",
+                                            "entity":  "slcrm_policy",
+                                            "id":  "a49606fb-1ab1-f111-aaab-002248db53bb"
+                                        },
+                                        {
+                                            "attr":  "slcrm_customerinsured",
+                                            "nav":  "slcrm_CustomerInsured",
+                                            "entity":  "account",
+                                            "id":  "88cea450-cb0c-ea11-a813-000d3a1b1223"
+                                        }
+                                    ],
+                        "users":  [
+                                      {
+                                          "attr":  "slcrm_underwriter",
+                                          "nav":  "slcrm_Underwriter",
+                                          "email":  "AritraBhattacharya@61858932.onmicrosoft.com"
+                                      }
+                                  ]
+                    },
+                    {
+                        "id":  "a99606fb-1ab1-f111-aaab-002248db53bb",
+                        "fields":  {
+                                       "slcrm_status":  100000001,
+                                       "slcrm_policyreference":  "POL-MDN-4471",
+                                       "slcrm_qualityassessmenttext":  "Renewal declaration consistent with prior year. No material changes flagged.",
+                                       "slcrm_name":  "Rationale - 2022 Renewal",
+                                       "slcrm_version":  1,
+                                       "slcrm_captivearrangements":  "None disclosed.",
+                                       "slcrm_underwriteropinion":  "Clean first-year experience supports renewal at expiring terms.",
+                                       "slcrm_iscurrent":  false,
+                                       "slcrm_claimsexperience":  "One year clean experience since inception. No claims notified.",
+                                       "slcrm_renewalyear":  2022,
+                                       "slcrm_negotiationoutcomestext":  "Renewed at expiring terms; broker confirmed no material changes to the risk.",
+                                       "slcrm_riskmanagementarrangements":  "Sprinkler system serviced Mar 2022, certificate on file. PPM contract renewed.",
+                                       "slcrm_capacityconsiderations":  "Within treaty capacity, unchanged from prior year.",
+                                       "slcrm_overseasterritoryexposures":  "None - single UK site, unchanged.",
+                                       "slcrm_sanctionsconsiderations":  "Sanctions screening clear.",
+                                       "slcrm_pricing":  "Technical rate held flat given clean experience.",
+                                       "slcrm_ppmcategory":  "Category B",
+                                       "slcrm_licencelevel":  "Standard",
+                                       "statuscode":  1
+                                   },
+                        "lookups":  [
+                                        {
+                                            "attr":  "slcrm_opportunity",
+                                            "nav":  "slcrm_Opportunity",
+                                            "entity":  "opportunity",
+                                            "id":  "a69606fb-1ab1-f111-aaab-002248db53bb"
+                                        },
+                                        {
+                                            "attr":  "slcrm_policy",
+                                            "nav":  "slcrm_Policy",
+                                            "entity":  "slcrm_policy",
+                                            "id":  "a49606fb-1ab1-f111-aaab-002248db53bb"
+                                        },
+                                        {
+                                            "attr":  "slcrm_sourcerational",
+                                            "nav":  "slcrm_SourceRational",
+                                            "entity":  "slcrm_rational",
+                                            "id":  "a59606fb-1ab1-f111-aaab-002248db53bb"
+                                        },
+                                        {
+                                            "attr":  "slcrm_customerinsured",
+                                            "nav":  "slcrm_CustomerInsured",
+                                            "entity":  "account",
+                                            "id":  "88cea450-cb0c-ea11-a813-000d3a1b1223"
+                                        }
+                                    ],
+                        "users":  [
+                                      {
+                                          "attr":  "slcrm_underwriter",
+                                          "nav":  "slcrm_Underwriter",
+                                          "email":  "AritraBhattacharya@61858932.onmicrosoft.com"
+                                      }
+                                  ]
+                    },
+                    {
+                        "id":  "00c9e601-1bb1-f111-aaab-002248db53bb",
+                        "fields":  {
+                                       "slcrm_status":  100000001,
+                                       "slcrm_policyreference":  "POL-MDN-4471",
+                                       "slcrm_qualityassessmenttext":  "Good quality claim narrative supplied by broker with root-cause detail.",
+                                       "slcrm_name":  "Rationale - 2023 Renewal",
+                                       "slcrm_version":  1,
+                                       "slcrm_captivearrangements":  "None disclosed.",
+                                       "slcrm_underwriteropinion":  "Isolated water-escape claim with clear remedial fix. Acceptable to renew flat.",
+                                       "slcrm_iscurrent":  false,
+                                       "slcrm_claimsexperience":  "One escape-of-water claim, GBP 8,400 incurred, root cause (failed valve) rectified. No other claims.",
+                                       "slcrm_renewalyear":  2023,
+                                       "slcrm_negotiationoutcomestext":  "Broker pushed back on a proposed loading given the claim was a one-off with a clear remedial fix; agreed to hold terms flat in exchange for a risk improvement undertaking.",
+                                       "slcrm_riskmanagementarrangements":  "Sprinkler system serviced Mar 2023. Failed pipework valve replaced and isolation procedure added to site PPM checklist following the claim.",
+                                       "slcrm_capacityconsiderations":  "Within treaty capacity, unchanged.",
+                                       "slcrm_overseasterritoryexposures":  "None - single UK site, unchanged.",
+                                       "slcrm_sanctionsconsiderations":  "Sanctions screening clear.",
+                                       "slcrm_pricing":  "Rate held flat; no loading given remedial action taken.",
+                                       "slcrm_ppmcategory":  "Category B",
+                                       "slcrm_licencelevel":  "Standard",
+                                       "statuscode":  1
+                                   },
+                        "lookups":  [
+                                        {
+                                            "attr":  "slcrm_opportunity",
+                                            "nav":  "slcrm_Opportunity",
+                                            "entity":  "opportunity",
+                                            "id":  "aa9606fb-1ab1-f111-aaab-002248db53bb"
+                                        },
+                                        {
+                                            "attr":  "slcrm_policy",
+                                            "nav":  "slcrm_Policy",
+                                            "entity":  "slcrm_policy",
+                                            "id":  "a49606fb-1ab1-f111-aaab-002248db53bb"
+                                        },
+                                        {
+                                            "attr":  "slcrm_sourcerational",
+                                            "nav":  "slcrm_SourceRational",
+                                            "entity":  "slcrm_rational",
+                                            "id":  "a99606fb-1ab1-f111-aaab-002248db53bb"
+                                        },
+                                        {
+                                            "attr":  "slcrm_customerinsured",
+                                            "nav":  "slcrm_CustomerInsured",
+                                            "entity":  "account",
+                                            "id":  "88cea450-cb0c-ea11-a813-000d3a1b1223"
+                                        }
+                                    ],
+                        "users":  [
+                                      {
+                                          "attr":  "slcrm_underwriter",
+                                          "nav":  "slcrm_Underwriter",
+                                          "email":  "AritraBhattacharya@61858932.onmicrosoft.com"
+                                      }
+                                  ]
+                    },
+                    {
+                        "id":  "12c9e601-1bb1-f111-aaab-002248db53bb",
+                        "fields":  {
+                                       "slcrm_status":  100000001,
+                                       "slcrm_policyreference":  "POL-MDN-4471",
+                                       "slcrm_qualityassessmenttext":  "Updated site survey received for the new unit; construction and protections consistent with the existing building.",
+                                       "slcrm_name":  "Rationale - 2024 Renewal",
+                                       "slcrm_version":  1,
+                                       "slcrm_captivearrangements":  "None disclosed.",
+                                       "slcrm_underwriteropinion":  "Growth in a well-managed risk; acceptable to renew with pro-rata adjustment.",
+                                       "slcrm_iscurrent":  false,
+                                       "slcrm_claimsexperience":  "No claims since the 2023 water-escape. Remedial action from that claim appears effective.",
+                                       "slcrm_renewalyear":  2024,
+                                       "slcrm_negotiationoutcomestext":  "Agreed a pro-rata increase in sums insured for the additional unit; broker accepted the incremental premium without further negotiation.",
+                                       "slcrm_riskmanagementarrangements":  "New unit fitted with sprinklers to the same standard as the original building; single monitored alarm covers both units. PPM contract extended to cover the new unit.",
+                                       "slcrm_capacityconsiderations":  "Increased sums insured still within treaty capacity.",
+                                       "slcrm_overseasterritoryexposures":  "None - single UK site, footprint expanded on same site.",
+                                       "slcrm_sanctionsconsiderations":  "Sanctions screening clear.",
+                                       "slcrm_pricing":  "Rate flat; incremental premium pro-rata for added sums insured.",
+                                       "slcrm_ppmcategory":  "Category B",
+                                       "slcrm_licencelevel":  "Standard",
+                                       "statuscode":  1
+                                   },
+                        "lookups":  [
+                                        {
+                                            "attr":  "slcrm_opportunity",
+                                            "nav":  "slcrm_Opportunity",
+                                            "entity":  "opportunity",
+                                            "id":  "02c9e601-1bb1-f111-aaab-002248db53bb"
+                                        },
+                                        {
+                                            "attr":  "slcrm_policy",
+                                            "nav":  "slcrm_Policy",
+                                            "entity":  "slcrm_policy",
+                                            "id":  "a49606fb-1ab1-f111-aaab-002248db53bb"
+                                        },
+                                        {
+                                            "attr":  "slcrm_sourcerational",
+                                            "nav":  "slcrm_SourceRational",
+                                            "entity":  "slcrm_rational",
+                                            "id":  "00c9e601-1bb1-f111-aaab-002248db53bb"
+                                        },
+                                        {
+                                            "attr":  "slcrm_customerinsured",
+                                            "nav":  "slcrm_CustomerInsured",
+                                            "entity":  "account",
+                                            "id":  "88cea450-cb0c-ea11-a813-000d3a1b1223"
+                                        }
+                                    ],
+                        "users":  [
+                                      {
+                                          "attr":  "slcrm_underwriter",
+                                          "nav":  "slcrm_Underwriter",
+                                          "email":  "AritraBhattacharya@61858932.onmicrosoft.com"
+                                      }
+                                  ]
+                    },
+                    {
+                        "id":  "af5e2908-1bb1-f111-aaab-002248db53bb",
+                        "fields":  {
+                                       "slcrm_status":  100000001,
+                                       "slcrm_policyreference":  "POL-MDN-4471",
+                                       "slcrm_qualityassessmenttext":  "Renewal declaration consistent with 2024. No material changes flagged by broker or site contact.",
+                                       "slcrm_name":  "Rationale - 2025 Renewal",
+                                       "slcrm_version":  1,
+                                       "slcrm_captivearrangements":  "None disclosed.",
+                                       "slcrm_underwriteropinion":  "Stable risk, two clean years since the 2023 claim; recommend renewing flat.",
+                                       "slcrm_iscurrent":  true,
+                                       "slcrm_claimsexperience":  "Clean year - no claims notified since the 2024 renewal.",
+                                       "slcrm_renewalyear":  2025,
+                                       "slcrm_negotiationoutcomestext":  "Renewed at expiring terms; broker confirmed no changes to occupation, construction or protections.",
+                                       "slcrm_riskmanagementarrangements":  "Sprinkler system serviced Mar 2025, certificate on file for both units. PPM contract renewed, no defects noted.",
+                                       "slcrm_capacityconsiderations":  "Within treaty capacity, unchanged from 2024.",
+                                       "slcrm_overseasterritoryexposures":  "None - single UK site, unchanged.",
+                                       "slcrm_sanctionsconsiderations":  "Sanctions screening clear.",
+                                       "slcrm_pricing":  "Technical rate held flat given continued clean experience.",
+                                       "slcrm_ppmcategory":  "Category B",
+                                       "slcrm_licencelevel":  "Standard",
+                                       "statuscode":  1
+                                   },
+                        "lookups":  [
+                                        {
+                                            "attr":  "slcrm_opportunity",
+                                            "nav":  "slcrm_Opportunity",
+                                            "entity":  "opportunity",
+                                            "id":  "14c9e601-1bb1-f111-aaab-002248db53bb"
+                                        },
+                                        {
+                                            "attr":  "slcrm_policy",
+                                            "nav":  "slcrm_Policy",
+                                            "entity":  "slcrm_policy",
+                                            "id":  "a49606fb-1ab1-f111-aaab-002248db53bb"
+                                        },
+                                        {
+                                            "attr":  "slcrm_sourcerational",
+                                            "nav":  "slcrm_SourceRational",
+                                            "entity":  "slcrm_rational",
+                                            "id":  "12c9e601-1bb1-f111-aaab-002248db53bb"
+                                        },
+                                        {
+                                            "attr":  "slcrm_customerinsured",
+                                            "nav":  "slcrm_CustomerInsured",
+                                            "entity":  "account",
+                                            "id":  "88cea450-cb0c-ea11-a813-000d3a1b1223"
+                                        }
+                                    ],
+                        "users":  [
+                                      {
+                                          "attr":  "slcrm_underwriter",
+                                          "nav":  "slcrm_Underwriter",
+                                          "email":  "AritraBhattacharya@61858932.onmicrosoft.com"
+                                      }
+                                  ]
+                    },
+                    {
+                        "id":  "1bcaec52-e9bc-f111-aaad-e4fade0d3397",
+                        "fields":  {
+                                       "slcrm_status":  100000000,
+                                       "slcrm_policyreference":  "POL-MDN-4471",
+                                       "slcrm_name":  "Rationale — 2026",
+                                       "slcrm_version":  1,
+                                       "slcrm_iscurrent":  true,
+                                       "slcrm_renewalyear":  2026,
+                                       "statuscode":  1
+                                   },
+                        "lookups":  [
+                                        {
+                                            "attr":  "slcrm_opportunity",
+                                            "nav":  "slcrm_Opportunity",
+                                            "entity":  "opportunity",
+                                            "id":  "7f017587-e7bc-f111-aaad-e4fade0d3397"
+                                        },
+                                        {
+                                            "attr":  "slcrm_policy",
+                                            "nav":  "slcrm_Policy",
+                                            "entity":  "slcrm_policy",
+                                            "id":  "a49606fb-1ab1-f111-aaab-002248db53bb"
+                                        },
+                                        {
+                                            "attr":  "slcrm_customerinsured",
+                                            "nav":  "slcrm_CustomerInsured",
+                                            "entity":  "account",
+                                            "id":  "88cea450-cb0c-ea11-a813-000d3a1b1223"
+                                        }
+                                    ],
+                        "users":  [
+                                      {
+                                          "attr":  "slcrm_underwriter",
+                                          "nav":  "slcrm_Underwriter",
+                                          "email":  "AritraBhattacharya@61858932.onmicrosoft.com"
+                                      }
+                                  ]
+                    },
+                    {
+                        "id":  "b19ebd6b-e9bc-f111-aaad-e4fade0d3397",
+                        "fields":  {
+                                       "slcrm_status":  100000000,
+                                       "slcrm_policyreference":  "POL-MDN-4471",
+                                       "slcrm_qualityassessmenttext":  "Risk information complete and consistent with site survey. Good quality submission.",
+                                       "slcrm_name":  "Rationale — 2026 (from 2021)",
+                                       "slcrm_version":  1,
+                                       "slcrm_captivearrangements":  "None disclosed.",
+                                       "slcrm_underwriteropinion":  "Acceptable risk at standard terms; recommend accepting as new business.",
+                                       "slcrm_iscurrent":  true,
+                                       "slcrm_claimsexperience":  "New business - no claims history available. Proceeding on declared risk information and site survey.",
+                                       "slcrm_renewalyear":  2026,
+                                       "slcrm_negotiationoutcomestext":  "Agreed at declared terms; broker did not request deviation from standard wording.",
+                                       "slcrm_riskmanagementarrangements":  "Sprinklered warehouse, monitored alarm, annual PPM contract in place.",
+                                       "slcrm_capacityconsiderations":  "Within treaty capacity; no facultative support required.",
+                                       "slcrm_copiedon":  "2026-09-30T16:10:17Z",
+                                       "slcrm_overseasterritoryexposures":  "None - single UK site.",
+                                       "slcrm_sanctionsconsiderations":  "Sanctions screening clear.",
+                                       "slcrm_pricing":  "Technical rate, no loading or discount.",
+                                       "slcrm_ppmcategory":  "Category B",
+                                       "slcrm_licencelevel":  "Standard",
+                                       "statuscode":  1
+                                   },
+                        "lookups":  [
+                                        {
+                                            "attr":  "slcrm_opportunity",
+                                            "nav":  "slcrm_Opportunity",
+                                            "entity":  "opportunity",
+                                            "id":  "7f017587-e7bc-f111-aaad-e4fade0d3397"
+                                        },
+                                        {
+                                            "attr":  "slcrm_policy",
+                                            "nav":  "slcrm_Policy",
+                                            "entity":  "slcrm_policy",
+                                            "id":  "a49606fb-1ab1-f111-aaab-002248db53bb"
+                                        },
+                                        {
+                                            "attr":  "slcrm_sourcerational",
+                                            "nav":  "slcrm_SourceRational",
+                                            "entity":  "slcrm_rational",
+                                            "id":  "a59606fb-1ab1-f111-aaab-002248db53bb"
+                                        },
+                                        {
+                                            "attr":  "slcrm_customerinsured",
+                                            "nav":  "slcrm_CustomerInsured",
+                                            "entity":  "account",
+                                            "id":  "88cea450-cb0c-ea11-a813-000d3a1b1223"
+                                        }
+                                    ],
+                        "users":  [
+                                      {
+                                          "attr":  "slcrm_copiedby",
+                                          "nav":  "slcrm_CopiedBy",
+                                          "email":  "AritraBhattacharya@61858932.onmicrosoft.com"
+                                      },
+                                      {
+                                          "attr":  "slcrm_underwriter",
+                                          "nav":  "slcrm_Underwriter",
+                                          "email":  "AritraBhattacharya@61858932.onmicrosoft.com"
+                                      }
+                                  ]
+                    }
+                ]
+}

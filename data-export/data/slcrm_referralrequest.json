@@ -1,0 +1,993 @@
+﻿{
+    "table":  "slcrm_referralrequest",
+    "set":  "slcrm_referralrequests",
+    "records":  [
+                    {
+                        "id":  "4b9e2ebc-89b0-f111-aaab-002248db53bb",
+                        "fields":  {
+                                       "slcrm_policynumber":  "P001",
+                                       "statuscode":  633650004,
+                                       "slcrm_name":  "REF-001000",
+                                       "slcrm_haseverbeensubmitted":  true,
+                                       "slcrm_submittedon":  "2026-10-01T18:39:45Z",
+                                       "slcrm_authorisedcurrentitemcount":  1,
+                                       "slcrm_priority":  633650001,
+                                       "slcrm_sourcesystem":  633650000,
+                                       "slcrm_inceptioneffectivedate":  "2026-10-01T00:00:00Z",
+                                       "slcrm_cancelledcurrentitemcount":  0,
+                                       "slcrm_lastsubmittedon":  "2026-10-01T18:39:45Z",
+                                       "slcrm_policytype":  633650000,
+                                       "slcrm_transactiontype":  633650001,
+                                       "slcrm_quotenumber":  "Q001",
+                                       "slcrm_lastaggregatedon":  "2026-10-01T18:42:27Z",
+                                       "slcrm_totalcurrentitemcount":  2,
+                                       "slcrm_commonbusinessriskdescription":  "Referral for underwriting review of a marine risk requiring additional authority.",
+                                       "slcrm_explicitlycancelled":  false,
+                                       "slcrm_openitemcount":  1,
+                                       "slcrm_rejectedcurrentitemcount":  0,
+                                       "slcrm_opencurrentitemcount":  1
+                                   },
+                        "lookups":  [
+                                        {
+                                            "attr":  "slcrm_broker",
+                                            "nav":  "slcrm_Broker",
+                                            "entity":  "account",
+                                            "id":  "a4cea450-cb0c-ea11-a813-000d3a1b1223"
+                                        },
+                                        {
+                                            "attr":  "slcrm_opportunity",
+                                            "nav":  "slcrm_Opportunity",
+                                            "entity":  "opportunity",
+                                            "id":  "e90a0493-e8f0-ea11-a815-000d3a1b14a2"
+                                        },
+                                        {
+                                            "attr":  "slcrm_countryofreferral",
+                                            "nav":  "slcrm_CountryofReferral",
+                                            "entity":  "slcrm_country",
+                                            "id":  "d32edf43-89b0-f111-aaab-002248db53bb"
+                                        },
+                                        {
+                                            "attr":  "slcrm_customerinsured",
+                                            "nav":  "slcrm_CustomerInsured",
+                                            "entity":  "account",
+                                            "id":  "88cea450-cb0c-ea11-a813-000d3a1b1223"
+                                        },
+                                        {
+                                            "attr":  "slcrm_product",
+                                            "nav":  "slcrm_Product",
+                                            "entity":  "slcrm_product",
+                                            "id":  "d63187b5-88b0-f111-aaab-002248db53bb"
+                                        }
+                                    ],
+                        "users":  [
+                                      {
+                                          "attr":  "slcrm_submittedby",
+                                          "nav":  "slcrm_SubmittedBy",
+                                          "email":  "AritraBhattacharya@61858932.onmicrosoft.com"
+                                      },
+                                      {
+                                          "attr":  "slcrm_primaryunderwriter",
+                                          "nav":  "slcrm_PrimaryUnderwriter",
+                                          "email":  "AritraBhattacharya@61858932.onmicrosoft.com"
+                                      }
+                                  ]
+                    },
+                    {
+                        "id":  "4c9e2ebc-89b0-f111-aaab-002248db53bb",
+                        "fields":  {
+                                       "statuscode":  633650001,
+                                       "slcrm_name":  "REF-001001",
+                                       "slcrm_haseverbeensubmitted":  false,
+                                       "slcrm_priority":  633650002,
+                                       "slcrm_sourcesystem":  633650000,
+                                       "slcrm_inceptioneffectivedate":  "2026-10-01T00:00:00Z",
+                                       "slcrm_policytype":  633650000,
+                                       "slcrm_commonbusinessriskdescription":  "Referral for underwriting review of a marine risk requiring additional authority.",
+                                       "slcrm_explicitlycancelled":  false
+                                   },
+                        "lookups":  [
+                                        {
+                                            "attr":  "slcrm_broker",
+                                            "nav":  "slcrm_Broker",
+                                            "entity":  "account",
+                                            "id":  "83883308-7ad5-ea11-a813-000d3a33f3b4"
+                                        },
+                                        {
+                                            "attr":  "slcrm_opportunity",
+                                            "nav":  "slcrm_Opportunity",
+                                            "entity":  "opportunity",
+                                            "id":  "b052fc98-e8f0-ea11-a815-000d3a1b14a2"
+                                        },
+                                        {
+                                            "attr":  "slcrm_countryofreferral",
+                                            "nav":  "slcrm_CountryofReferral",
+                                            "entity":  "slcrm_country",
+                                            "id":  "da2edf43-89b0-f111-aaab-002248db53bb"
+                                        },
+                                        {
+                                            "attr":  "slcrm_customerinsured",
+                                            "nav":  "slcrm_CustomerInsured",
+                                            "entity":  "account",
+                                            "id":  "b4cea450-cb0c-ea11-a813-000d3a1b1223"
+                                        },
+                                        {
+                                            "attr":  "slcrm_product",
+                                            "nav":  "slcrm_Product",
+                                            "entity":  "slcrm_product",
+                                            "id":  "d73187b5-88b0-f111-aaab-002248db53bb"
+                                        }
+                                    ],
+                        "users":  [
+                                      {
+                                          "attr":  "slcrm_primaryunderwriter",
+                                          "nav":  "slcrm_PrimaryUnderwriter",
+                                          "email":  "davidm@Contoso.onmicrosoft.com"
+                                      }
+                                  ]
+                    },
+                    {
+                        "id":  "649e2ebc-89b0-f111-aaab-002248db53bb",
+                        "fields":  {
+                                       "statuscode":  633650002,
+                                       "slcrm_name":  "REF-001002",
+                                       "slcrm_haseverbeensubmitted":  true,
+                                       "slcrm_submittedon":  "2026-09-10T09:00:00Z",
+                                       "slcrm_priority":  633650000,
+                                       "slcrm_sourcesystem":  633650000,
+                                       "slcrm_inceptioneffectivedate":  "2026-10-01T00:00:00Z",
+                                       "slcrm_lastsubmittedon":  "2026-09-10T09:00:00Z",
+                                       "slcrm_policytype":  633650000,
+                                       "slcrm_commonbusinessriskdescription":  "Referral for underwriting review of a marine risk requiring additional authority.",
+                                       "slcrm_explicitlycancelled":  false
+                                   },
+                        "lookups":  [
+                                        {
+                                            "attr":  "slcrm_broker",
+                                            "nav":  "slcrm_Broker",
+                                            "entity":  "account",
+                                            "id":  "dbdd0b93-4a1b-4848-b83a-39352f6b2e7a"
+                                        },
+                                        {
+                                            "attr":  "slcrm_opportunity",
+                                            "nav":  "slcrm_Opportunity",
+                                            "entity":  "opportunity",
+                                            "id":  "becc5dba-b1f1-ea11-a815-000d3a1b14a2"
+                                        },
+                                        {
+                                            "attr":  "slcrm_countryofreferral",
+                                            "nav":  "slcrm_CountryofReferral",
+                                            "entity":  "slcrm_country",
+                                            "id":  "d92edf43-89b0-f111-aaab-002248db53bb"
+                                        },
+                                        {
+                                            "attr":  "slcrm_customerinsured",
+                                            "nav":  "slcrm_CustomerInsured",
+                                            "entity":  "account",
+                                            "id":  "81883308-7ad5-ea11-a813-000d3a33f3b4"
+                                        },
+                                        {
+                                            "attr":  "slcrm_product",
+                                            "nav":  "slcrm_Product",
+                                            "entity":  "slcrm_product",
+                                            "id":  "d93187b5-88b0-f111-aaab-002248db53bb"
+                                        }
+                                    ],
+                        "users":  [
+                                      {
+                                          "attr":  "slcrm_submittedby",
+                                          "nav":  "slcrm_SubmittedBy",
+                                          "email":  "alans@Contoso.onmicrosoft.com"
+                                      },
+                                      {
+                                          "attr":  "slcrm_primaryunderwriter",
+                                          "nav":  "slcrm_PrimaryUnderwriter",
+                                          "email":  "alans@Contoso.onmicrosoft.com"
+                                      }
+                                  ]
+                    },
+                    {
+                        "id":  "0ec75ac3-89b0-f111-aaab-002248db53bb",
+                        "fields":  {
+                                       "statuscode":  633650002,
+                                       "slcrm_name":  "REF-001003",
+                                       "slcrm_haseverbeensubmitted":  true,
+                                       "slcrm_submittedon":  "2026-09-10T09:00:00Z",
+                                       "slcrm_priority":  633650001,
+                                       "slcrm_sourcesystem":  633650000,
+                                       "slcrm_inceptioneffectivedate":  "2026-10-01T00:00:00Z",
+                                       "slcrm_lastsubmittedon":  "2026-09-10T09:00:00Z",
+                                       "slcrm_policytype":  633650000,
+                                       "slcrm_commonbusinessriskdescription":  "Referral for underwriting review of a marine risk requiring additional authority.",
+                                       "slcrm_explicitlycancelled":  false
+                                   },
+                        "lookups":  [
+                                        {
+                                            "attr":  "slcrm_broker",
+                                            "nav":  "slcrm_Broker",
+                                            "entity":  "account",
+                                            "id":  "88cea450-cb0c-ea11-a813-000d3a1b1223"
+                                        },
+                                        {
+                                            "attr":  "slcrm_opportunity",
+                                            "nav":  "slcrm_Opportunity",
+                                            "entity":  "opportunity",
+                                            "id":  "2ec06197-31ec-ea11-a817-000d3a1b14a2"
+                                        },
+                                        {
+                                            "attr":  "slcrm_countryofreferral",
+                                            "nav":  "slcrm_CountryofReferral",
+                                            "entity":  "slcrm_country",
+                                            "id":  "d32edf43-89b0-f111-aaab-002248db53bb"
+                                        },
+                                        {
+                                            "attr":  "slcrm_customerinsured",
+                                            "nav":  "slcrm_CustomerInsured",
+                                            "entity":  "account",
+                                            "id":  "83883308-7ad5-ea11-a813-000d3a33f3b4"
+                                        },
+                                        {
+                                            "attr":  "slcrm_product",
+                                            "nav":  "slcrm_Product",
+                                            "entity":  "slcrm_product",
+                                            "id":  "d83187b5-88b0-f111-aaab-002248db53bb"
+                                        }
+                                    ],
+                        "users":  [
+                                      {
+                                          "attr":  "slcrm_submittedby",
+                                          "nav":  "slcrm_SubmittedBy",
+                                          "email":  "jeremy@Contoso.onmicrosoft.com"
+                                      },
+                                      {
+                                          "attr":  "slcrm_primaryunderwriter",
+                                          "nav":  "slcrm_PrimaryUnderwriter",
+                                          "email":  "jeremy@Contoso.onmicrosoft.com"
+                                      }
+                                  ]
+                    },
+                    {
+                        "id":  "0fc75ac3-89b0-f111-aaab-002248db53bb",
+                        "fields":  {
+                                       "statuscode":  633650004,
+                                       "slcrm_name":  "REF-001004",
+                                       "slcrm_haseverbeensubmitted":  true,
+                                       "slcrm_submittedon":  "2026-09-10T09:00:00Z",
+                                       "slcrm_priority":  633650000,
+                                       "slcrm_sourcesystem":  633650000,
+                                       "slcrm_inceptioneffectivedate":  "2026-10-01T00:00:00Z",
+                                       "slcrm_lastsubmittedon":  "2026-09-10T09:00:00Z",
+                                       "slcrm_policytype":  633650000,
+                                       "slcrm_commonbusinessriskdescription":  "Referral for underwriting review of a marine risk requiring additional authority.",
+                                       "slcrm_explicitlycancelled":  false
+                                   },
+                        "lookups":  [
+                                        {
+                                            "attr":  "slcrm_broker",
+                                            "nav":  "slcrm_Broker",
+                                            "entity":  "account",
+                                            "id":  "b4cea450-cb0c-ea11-a813-000d3a1b1223"
+                                        },
+                                        {
+                                            "attr":  "slcrm_opportunity",
+                                            "nav":  "slcrm_Opportunity",
+                                            "entity":  "opportunity",
+                                            "id":  "14741c9e-4b9e-ea11-a811-000d3a1bb122"
+                                        },
+                                        {
+                                            "attr":  "slcrm_countryofreferral",
+                                            "nav":  "slcrm_CountryofReferral",
+                                            "entity":  "slcrm_country",
+                                            "id":  "d32edf43-89b0-f111-aaab-002248db53bb"
+                                        },
+                                        {
+                                            "attr":  "slcrm_customerinsured",
+                                            "nav":  "slcrm_CustomerInsured",
+                                            "entity":  "account",
+                                            "id":  "a4cea450-cb0c-ea11-a813-000d3a1b1223"
+                                        },
+                                        {
+                                            "attr":  "slcrm_product",
+                                            "nav":  "slcrm_Product",
+                                            "entity":  "slcrm_product",
+                                            "id":  "da3187b5-88b0-f111-aaab-002248db53bb"
+                                        }
+                                    ],
+                        "users":  [
+                                      {
+                                          "attr":  "slcrm_submittedby",
+                                          "nav":  "slcrm_SubmittedBy",
+                                          "email":  "AritraBhattacharya@61858932.onmicrosoft.com"
+                                      },
+                                      {
+                                          "attr":  "slcrm_primaryunderwriter",
+                                          "nav":  "slcrm_PrimaryUnderwriter",
+                                          "email":  "AritraBhattacharya@61858932.onmicrosoft.com"
+                                      }
+                                  ]
+                    },
+                    {
+                        "id":  "a2d932e4-89b0-f111-aaab-002248db53bb",
+                        "fields":  {
+                                       "statuscode":  633650014,
+                                       "slcrm_name":  "REF-001006",
+                                       "slcrm_haseverbeensubmitted":  true,
+                                       "slcrm_submittedon":  "2026-09-10T09:00:00Z",
+                                       "slcrm_priority":  633650001,
+                                       "slcrm_sourcesystem":  633650000,
+                                       "slcrm_inceptioneffectivedate":  "2026-10-01T00:00:00Z",
+                                       "slcrm_lastsubmittedon":  "2026-09-10T09:00:00Z",
+                                       "slcrm_policytype":  633650000,
+                                       "slcrm_commonbusinessriskdescription":  "Referral for underwriting review of a marine risk requiring additional authority.",
+                                       "slcrm_explicitlycancelled":  false
+                                   },
+                        "lookups":  [
+                                        {
+                                            "attr":  "slcrm_broker",
+                                            "nav":  "slcrm_Broker",
+                                            "entity":  "account",
+                                            "id":  "81883308-7ad5-ea11-a813-000d3a33f3b4"
+                                        },
+                                        {
+                                            "attr":  "slcrm_opportunity",
+                                            "nav":  "slcrm_Opportunity",
+                                            "entity":  "opportunity",
+                                            "id":  "90a128af-1f73-ea11-a811-000d3a1bb5a2"
+                                        },
+                                        {
+                                            "attr":  "slcrm_countryofreferral",
+                                            "nav":  "slcrm_CountryofReferral",
+                                            "entity":  "slcrm_country",
+                                            "id":  "d92edf43-89b0-f111-aaab-002248db53bb"
+                                        },
+                                        {
+                                            "attr":  "slcrm_customerinsured",
+                                            "nav":  "slcrm_CustomerInsured",
+                                            "entity":  "account",
+                                            "id":  "dbdd0b93-4a1b-4848-b83a-39352f6b2e7a"
+                                        },
+                                        {
+                                            "attr":  "slcrm_product",
+                                            "nav":  "slcrm_Product",
+                                            "entity":  "slcrm_product",
+                                            "id":  "43028dbc-88b0-f111-aaab-002248db53bb"
+                                        }
+                                    ],
+                        "users":  [
+                                      {
+                                          "attr":  "slcrm_submittedby",
+                                          "nav":  "slcrm_SubmittedBy",
+                                          "email":  "davidm@Contoso.onmicrosoft.com"
+                                      },
+                                      {
+                                          "attr":  "slcrm_primaryunderwriter",
+                                          "nav":  "slcrm_PrimaryUnderwriter",
+                                          "email":  "davidm@Contoso.onmicrosoft.com"
+                                      }
+                                  ]
+                    },
+                    {
+                        "id":  "4e6e4386-a3b0-f111-aaab-002248db53bb",
+                        "fields":  {
+                                       "statuscode":  633650001,
+                                       "slcrm_name":  "REF-001007",
+                                       "slcrm_haseverbeensubmitted":  false,
+                                       "slcrm_priority":  633650001,
+                                       "slcrm_sourcesystem":  633650000,
+                                       "slcrm_inceptioneffectivedate":  "2026-09-23T00:00:00Z",
+                                       "slcrm_policytype":  633650000,
+                                       "slcrm_commonbusinessriskdescription":  "test description",
+                                       "slcrm_explicitlycancelled":  false
+                                   },
+                        "lookups":  [
+                                        {
+                                            "attr":  "slcrm_opportunity",
+                                            "nav":  "slcrm_Opportunity",
+                                            "entity":  "opportunity",
+                                            "id":  "a09c2889-a016-eb11-a813-002248029f77"
+                                        },
+                                        {
+                                            "attr":  "slcrm_countryofreferral",
+                                            "nav":  "slcrm_CountryofReferral",
+                                            "entity":  "slcrm_country",
+                                            "id":  "d92edf43-89b0-f111-aaab-002248db53bb"
+                                        },
+                                        {
+                                            "attr":  "slcrm_customerinsured",
+                                            "nav":  "slcrm_CustomerInsured",
+                                            "entity":  "account",
+                                            "id":  "81883308-7ad5-ea11-a813-000d3a33f3b4"
+                                        },
+                                        {
+                                            "attr":  "slcrm_product",
+                                            "nav":  "slcrm_Product",
+                                            "entity":  "slcrm_product",
+                                            "id":  "d93187b5-88b0-f111-aaab-002248db53bb"
+                                        }
+                                    ],
+                        "users":  [
+                                      {
+                                          "attr":  "slcrm_primaryunderwriter",
+                                          "nav":  "slcrm_PrimaryUnderwriter",
+                                          "email":  "AritraBhattacharya@61858932.onmicrosoft.com"
+                                      }
+                                  ]
+                    },
+                    {
+                        "id":  "863142ec-a3b0-f111-aaab-002248db53bb",
+                        "fields":  {
+                                       "statuscode":  633650001,
+                                       "slcrm_name":  "REF-001008",
+                                       "slcrm_haseverbeensubmitted":  false,
+                                       "slcrm_priority":  633650001,
+                                       "slcrm_sourcesystem":  633650000,
+                                       "slcrm_policytype":  633650000,
+                                       "slcrm_commonbusinessriskdescription":  "testasdsadas",
+                                       "slcrm_explicitlycancelled":  false
+                                   },
+                        "lookups":  [
+                                        {
+                                            "attr":  "slcrm_opportunity",
+                                            "nav":  "slcrm_Opportunity",
+                                            "entity":  "opportunity",
+                                            "id":  "becc5dba-b1f1-ea11-a815-000d3a1b14a2"
+                                        },
+                                        {
+                                            "attr":  "slcrm_countryofreferral",
+                                            "nav":  "slcrm_CountryofReferral",
+                                            "entity":  "slcrm_country",
+                                            "id":  "d32edf43-89b0-f111-aaab-002248db53bb"
+                                        },
+                                        {
+                                            "attr":  "slcrm_customerinsured",
+                                            "nav":  "slcrm_CustomerInsured",
+                                            "entity":  "account",
+                                            "id":  "81883308-7ad5-ea11-a813-000d3a33f3b4"
+                                        },
+                                        {
+                                            "attr":  "slcrm_product",
+                                            "nav":  "slcrm_Product",
+                                            "entity":  "slcrm_product",
+                                            "id":  "da3187b5-88b0-f111-aaab-002248db53bb"
+                                        }
+                                    ],
+                        "users":  [
+                                      {
+                                          "attr":  "slcrm_primaryunderwriter",
+                                          "nav":  "slcrm_PrimaryUnderwriter",
+                                          "email":  "AritraBhattacharya@61858932.onmicrosoft.com"
+                                      }
+                                  ]
+                    },
+                    {
+                        "id":  "c10a0ec1-a5b0-f111-aaab-002248db53bb",
+                        "fields":  {
+                                       "slcrm_policynumber":  "asda",
+                                       "statuscode":  633650001,
+                                       "slcrm_name":  "REF-001009",
+                                       "slcrm_haseverbeensubmitted":  false,
+                                       "slcrm_priority":  633650001,
+                                       "slcrm_policytype":  633650000,
+                                       "slcrm_transactiontype":  633650001,
+                                       "slcrm_quotenumber":  "ads",
+                                       "slcrm_explicitlycancelled":  false
+                                   },
+                        "lookups":  [
+                                        {
+                                            "attr":  "slcrm_broker",
+                                            "nav":  "slcrm_Broker",
+                                            "entity":  "account",
+                                            "id":  "88cea450-cb0c-ea11-a813-000d3a1b1223"
+                                        },
+                                        {
+                                            "attr":  "slcrm_opportunity",
+                                            "nav":  "slcrm_Opportunity",
+                                            "entity":  "opportunity",
+                                            "id":  "e90a0493-e8f0-ea11-a815-000d3a1b14a2"
+                                        },
+                                        {
+                                            "attr":  "slcrm_customerinsured",
+                                            "nav":  "slcrm_CustomerInsured",
+                                            "entity":  "account",
+                                            "id":  "81883308-7ad5-ea11-a813-000d3a33f3b4"
+                                        },
+                                        {
+                                            "attr":  "slcrm_product",
+                                            "nav":  "slcrm_Product",
+                                            "entity":  "slcrm_product",
+                                            "id":  "d63187b5-88b0-f111-aaab-002248db53bb"
+                                        }
+                                    ],
+                        "users":  [
+
+                                  ]
+                    },
+                    {
+                        "id":  "b3707bf4-56b1-f111-aaab-7ced8d5ff0da",
+                        "fields":  {
+                                       "statuscode":  633650001,
+                                       "slcrm_name":  "REF-001010",
+                                       "slcrm_haseverbeensubmitted":  false,
+                                       "slcrm_priority":  633650001,
+                                       "slcrm_sourcesystem":  633650000,
+                                       "slcrm_policytype":  633650000,
+                                       "slcrm_commonbusinessriskdescription":  "Test",
+                                       "slcrm_explicitlycancelled":  false
+                                   },
+                        "lookups":  [
+                                        {
+                                            "attr":  "slcrm_opportunity",
+                                            "nav":  "slcrm_Opportunity",
+                                            "entity":  "opportunity",
+                                            "id":  "71ecca72-0d1c-48ce-a21b-0d6650b1e904"
+                                        },
+                                        {
+                                            "attr":  "slcrm_customerinsured",
+                                            "nav":  "slcrm_CustomerInsured",
+                                            "entity":  "account",
+                                            "id":  "83883308-7ad5-ea11-a813-000d3a33f3b4"
+                                        },
+                                        {
+                                            "attr":  "slcrm_product",
+                                            "nav":  "slcrm_Product",
+                                            "entity":  "slcrm_product",
+                                            "id":  "d73187b5-88b0-f111-aaab-002248db53bb"
+                                        }
+                                    ],
+                        "users":  [
+                                      {
+                                          "attr":  "slcrm_primaryunderwriter",
+                                          "nav":  "slcrm_PrimaryUnderwriter",
+                                          "email":  "AritraBhattacharya@61858932.onmicrosoft.com"
+                                      }
+                                  ]
+                    },
+                    {
+                        "id":  "0ae777f8-90bd-f111-aaad-e4fade0d2043",
+                        "fields":  {
+                                       "statuscode":  633650015,
+                                       "slcrm_name":  "SMOKE-REF-1",
+                                       "slcrm_haseverbeensubmitted":  true,
+                                       "slcrm_submittedon":  "2026-10-01T12:10:02Z",
+                                       "slcrm_authorisedcurrentitemcount":  2,
+                                       "slcrm_priority":  633650001,
+                                       "slcrm_sourcesystem":  633650000,
+                                       "slcrm_inceptioneffectivedate":  "2026-10-01T00:00:00Z",
+                                       "slcrm_cancelledcurrentitemcount":  0,
+                                       "slcrm_lastsubmittedon":  "2026-10-01T12:10:24Z",
+                                       "slcrm_policytype":  633650000,
+                                       "slcrm_lastaggregatedon":  "2026-10-01T12:10:25Z",
+                                       "slcrm_totalcurrentitemcount":  2,
+                                       "slcrm_commonbusinessriskdescription":  "SMOKE TEST record created by the lifecycle deployment. Safe to delete.",
+                                       "slcrm_explicitlycancelled":  false,
+                                       "slcrm_openitemcount":  0,
+                                       "slcrm_rejectedcurrentitemcount":  0,
+                                       "slcrm_opencurrentitemcount":  0
+                                   },
+                        "lookups":  [
+                                        {
+                                            "attr":  "slcrm_opportunity",
+                                            "nav":  "slcrm_Opportunity",
+                                            "entity":  "opportunity",
+                                            "id":  "e90a0493-e8f0-ea11-a815-000d3a1b14a2"
+                                        },
+                                        {
+                                            "attr":  "slcrm_countryofreferral",
+                                            "nav":  "slcrm_CountryofReferral",
+                                            "entity":  "slcrm_country",
+                                            "id":  "d32edf43-89b0-f111-aaab-002248db53bb"
+                                        },
+                                        {
+                                            "attr":  "slcrm_customerinsured",
+                                            "nav":  "slcrm_CustomerInsured",
+                                            "entity":  "account",
+                                            "id":  "88cea450-cb0c-ea11-a813-000d3a1b1223"
+                                        },
+                                        {
+                                            "attr":  "slcrm_product",
+                                            "nav":  "slcrm_Product",
+                                            "entity":  "slcrm_product",
+                                            "id":  "d63187b5-88b0-f111-aaab-002248db53bb"
+                                        }
+                                    ],
+                        "users":  [
+                                      {
+                                          "attr":  "slcrm_submittedby",
+                                          "nav":  "slcrm_SubmittedBy",
+                                          "email":  "AritraBhattacharya@61858932.onmicrosoft.com"
+                                      },
+                                      {
+                                          "attr":  "slcrm_primaryunderwriter",
+                                          "nav":  "slcrm_PrimaryUnderwriter",
+                                          "email":  "AritraBhattacharya@61858932.onmicrosoft.com"
+                                      }
+                                  ]
+                    },
+                    {
+                        "id":  "dffbc11d-91bd-f111-aaad-e4fade0d2043",
+                        "fields":  {
+                                       "slcrm_completedon":  "2026-10-01T12:10:45Z",
+                                       "statuscode":  633650019,
+                                       "slcrm_name":  "SMOKE-REF-2",
+                                       "slcrm_haseverbeensubmitted":  true,
+                                       "slcrm_submittedon":  "2026-10-01T12:10:44Z",
+                                       "slcrm_authorisedcurrentitemcount":  0,
+                                       "slcrm_priority":  633650001,
+                                       "slcrm_sourcesystem":  633650000,
+                                       "slcrm_inceptioneffectivedate":  "2026-10-01T00:00:00Z",
+                                       "slcrm_cancelledcurrentitemcount":  1,
+                                       "slcrm_lastsubmittedon":  "2026-10-01T12:10:44Z",
+                                       "slcrm_policytype":  633650000,
+                                       "slcrm_lastaggregatedon":  "2026-10-01T12:10:45Z",
+                                       "slcrm_totalcurrentitemcount":  1,
+                                       "slcrm_cancellationreason":  "smoke cancel",
+                                       "slcrm_commonbusinessriskdescription":  "SMOKE TEST record created by the lifecycle deployment. Safe to delete.",
+                                       "slcrm_explicitlycancelled":  true,
+                                       "slcrm_openitemcount":  0,
+                                       "slcrm_rejectedcurrentitemcount":  0,
+                                       "slcrm_opencurrentitemcount":  0
+                                   },
+                        "lookups":  [
+                                        {
+                                            "attr":  "slcrm_opportunity",
+                                            "nav":  "slcrm_Opportunity",
+                                            "entity":  "opportunity",
+                                            "id":  "e90a0493-e8f0-ea11-a815-000d3a1b14a2"
+                                        },
+                                        {
+                                            "attr":  "slcrm_countryofreferral",
+                                            "nav":  "slcrm_CountryofReferral",
+                                            "entity":  "slcrm_country",
+                                            "id":  "d32edf43-89b0-f111-aaab-002248db53bb"
+                                        },
+                                        {
+                                            "attr":  "slcrm_customerinsured",
+                                            "nav":  "slcrm_CustomerInsured",
+                                            "entity":  "account",
+                                            "id":  "88cea450-cb0c-ea11-a813-000d3a1b1223"
+                                        },
+                                        {
+                                            "attr":  "slcrm_product",
+                                            "nav":  "slcrm_Product",
+                                            "entity":  "slcrm_product",
+                                            "id":  "d63187b5-88b0-f111-aaab-002248db53bb"
+                                        }
+                                    ],
+                        "users":  [
+                                      {
+                                          "attr":  "slcrm_completedby",
+                                          "nav":  "slcrm_CompletedBy",
+                                          "email":  "AritraBhattacharya@61858932.onmicrosoft.com"
+                                      },
+                                      {
+                                          "attr":  "slcrm_submittedby",
+                                          "nav":  "slcrm_SubmittedBy",
+                                          "email":  "AritraBhattacharya@61858932.onmicrosoft.com"
+                                      },
+                                      {
+                                          "attr":  "slcrm_primaryunderwriter",
+                                          "nav":  "slcrm_PrimaryUnderwriter",
+                                          "email":  "AritraBhattacharya@61858932.onmicrosoft.com"
+                                      }
+                                  ]
+                    },
+                    {
+                        "id":  "a1e52950-91bd-f111-aaad-e4fade0d2043",
+                        "fields":  {
+                                       "slcrm_completedon":  "2026-10-01T12:12:15Z",
+                                       "statuscode":  633650019,
+                                       "slcrm_name":  "SMOKE-REF-3",
+                                       "slcrm_haseverbeensubmitted":  true,
+                                       "slcrm_submittedon":  "2026-10-01T12:12:14Z",
+                                       "slcrm_authorisedcurrentitemcount":  0,
+                                       "slcrm_priority":  633650001,
+                                       "slcrm_sourcesystem":  633650000,
+                                       "slcrm_inceptioneffectivedate":  "2026-10-01T00:00:00Z",
+                                       "slcrm_cancelledcurrentitemcount":  1,
+                                       "slcrm_lastsubmittedon":  "2026-10-01T12:12:14Z",
+                                       "slcrm_policytype":  633650000,
+                                       "slcrm_lastaggregatedon":  "2026-10-01T12:12:15Z",
+                                       "slcrm_totalcurrentitemcount":  1,
+                                       "slcrm_cancellationreason":  "smoke cleanup",
+                                       "slcrm_commonbusinessriskdescription":  "SMOKE TEST record created by the lifecycle deployment. Safe to delete.",
+                                       "slcrm_explicitlycancelled":  true,
+                                       "slcrm_openitemcount":  0,
+                                       "slcrm_rejectedcurrentitemcount":  0,
+                                       "slcrm_opencurrentitemcount":  0
+                                   },
+                        "lookups":  [
+                                        {
+                                            "attr":  "slcrm_opportunity",
+                                            "nav":  "slcrm_Opportunity",
+                                            "entity":  "opportunity",
+                                            "id":  "e90a0493-e8f0-ea11-a815-000d3a1b14a2"
+                                        },
+                                        {
+                                            "attr":  "slcrm_countryofreferral",
+                                            "nav":  "slcrm_CountryofReferral",
+                                            "entity":  "slcrm_country",
+                                            "id":  "d32edf43-89b0-f111-aaab-002248db53bb"
+                                        },
+                                        {
+                                            "attr":  "slcrm_customerinsured",
+                                            "nav":  "slcrm_CustomerInsured",
+                                            "entity":  "account",
+                                            "id":  "88cea450-cb0c-ea11-a813-000d3a1b1223"
+                                        },
+                                        {
+                                            "attr":  "slcrm_product",
+                                            "nav":  "slcrm_Product",
+                                            "entity":  "slcrm_product",
+                                            "id":  "d63187b5-88b0-f111-aaab-002248db53bb"
+                                        }
+                                    ],
+                        "users":  [
+                                      {
+                                          "attr":  "slcrm_completedby",
+                                          "nav":  "slcrm_CompletedBy",
+                                          "email":  "AritraBhattacharya@61858932.onmicrosoft.com"
+                                      },
+                                      {
+                                          "attr":  "slcrm_submittedby",
+                                          "nav":  "slcrm_SubmittedBy",
+                                          "email":  "AritraBhattacharya@61858932.onmicrosoft.com"
+                                      },
+                                      {
+                                          "attr":  "slcrm_primaryunderwriter",
+                                          "nav":  "slcrm_PrimaryUnderwriter",
+                                          "email":  "AritraBhattacharya@61858932.onmicrosoft.com"
+                                      }
+                                  ]
+                    },
+                    {
+                        "id":  "72d70982-91bd-f111-aaad-e4fade0d2043",
+                        "fields":  {
+                                       "statuscode":  633650007,
+                                       "slcrm_name":  "SMOKE-REF-4",
+                                       "slcrm_haseverbeensubmitted":  true,
+                                       "slcrm_submittedon":  "2026-10-01T12:13:31Z",
+                                       "slcrm_authorisedcurrentitemcount":  0,
+                                       "slcrm_priority":  633650001,
+                                       "slcrm_sourcesystem":  633650000,
+                                       "slcrm_inceptioneffectivedate":  "2026-10-01T00:00:00Z",
+                                       "slcrm_cancelledcurrentitemcount":  0,
+                                       "slcrm_lastsubmittedon":  "2026-10-01T12:13:31Z",
+                                       "slcrm_policytype":  633650000,
+                                       "slcrm_lastaggregatedon":  "2026-10-01T12:14:28Z",
+                                       "slcrm_totalcurrentitemcount":  1,
+                                       "slcrm_commonbusinessriskdescription":  "SMOKE TEST record for the decision dialog. Safe to delete.",
+                                       "slcrm_explicitlycancelled":  false,
+                                       "slcrm_openitemcount":  0,
+                                       "slcrm_rejectedcurrentitemcount":  1,
+                                       "slcrm_opencurrentitemcount":  0
+                                   },
+                        "lookups":  [
+                                        {
+                                            "attr":  "slcrm_opportunity",
+                                            "nav":  "slcrm_Opportunity",
+                                            "entity":  "opportunity",
+                                            "id":  "e90a0493-e8f0-ea11-a815-000d3a1b14a2"
+                                        },
+                                        {
+                                            "attr":  "slcrm_countryofreferral",
+                                            "nav":  "slcrm_CountryofReferral",
+                                            "entity":  "slcrm_country",
+                                            "id":  "d32edf43-89b0-f111-aaab-002248db53bb"
+                                        },
+                                        {
+                                            "attr":  "slcrm_customerinsured",
+                                            "nav":  "slcrm_CustomerInsured",
+                                            "entity":  "account",
+                                            "id":  "88cea450-cb0c-ea11-a813-000d3a1b1223"
+                                        },
+                                        {
+                                            "attr":  "slcrm_product",
+                                            "nav":  "slcrm_Product",
+                                            "entity":  "slcrm_product",
+                                            "id":  "d63187b5-88b0-f111-aaab-002248db53bb"
+                                        }
+                                    ],
+                        "users":  [
+                                      {
+                                          "attr":  "slcrm_submittedby",
+                                          "nav":  "slcrm_SubmittedBy",
+                                          "email":  "AritraBhattacharya@61858932.onmicrosoft.com"
+                                      },
+                                      {
+                                          "attr":  "slcrm_primaryunderwriter",
+                                          "nav":  "slcrm_PrimaryUnderwriter",
+                                          "email":  "AritraBhattacharya@61858932.onmicrosoft.com"
+                                      }
+                                  ]
+                    },
+                    {
+                        "id":  "40ff1b56-a2bd-f111-aaad-e4fade0d2043",
+                        "fields":  {
+                                       "statuscode":  633650004,
+                                       "slcrm_name":  "SMOKE-REF-5",
+                                       "slcrm_haseverbeensubmitted":  true,
+                                       "slcrm_submittedon":  "2026-10-01T14:14:08Z",
+                                       "slcrm_authorisedcurrentitemcount":  0,
+                                       "slcrm_priority":  633650001,
+                                       "slcrm_sourcesystem":  633650000,
+                                       "slcrm_inceptioneffectivedate":  "2026-10-01T00:00:00Z",
+                                       "slcrm_cancelledcurrentitemcount":  0,
+                                       "slcrm_lastsubmittedon":  "2026-10-01T14:14:08Z",
+                                       "slcrm_policytype":  633650000,
+                                       "slcrm_lastaggregatedon":  "2026-10-01T14:44:36Z",
+                                       "slcrm_totalcurrentitemcount":  1,
+                                       "slcrm_commonbusinessriskdescription":  "SMOKE TEST record for the onward picker. Safe to delete.",
+                                       "slcrm_explicitlycancelled":  false,
+                                       "slcrm_openitemcount":  1,
+                                       "slcrm_rejectedcurrentitemcount":  0,
+                                       "slcrm_opencurrentitemcount":  1
+                                   },
+                        "lookups":  [
+                                        {
+                                            "attr":  "slcrm_opportunity",
+                                            "nav":  "slcrm_Opportunity",
+                                            "entity":  "opportunity",
+                                            "id":  "e90a0493-e8f0-ea11-a815-000d3a1b14a2"
+                                        },
+                                        {
+                                            "attr":  "slcrm_countryofreferral",
+                                            "nav":  "slcrm_CountryofReferral",
+                                            "entity":  "slcrm_country",
+                                            "id":  "d32edf43-89b0-f111-aaab-002248db53bb"
+                                        },
+                                        {
+                                            "attr":  "slcrm_customerinsured",
+                                            "nav":  "slcrm_CustomerInsured",
+                                            "entity":  "account",
+                                            "id":  "88cea450-cb0c-ea11-a813-000d3a1b1223"
+                                        },
+                                        {
+                                            "attr":  "slcrm_product",
+                                            "nav":  "slcrm_Product",
+                                            "entity":  "slcrm_product",
+                                            "id":  "d63187b5-88b0-f111-aaab-002248db53bb"
+                                        }
+                                    ],
+                        "users":  [
+                                      {
+                                          "attr":  "slcrm_submittedby",
+                                          "nav":  "slcrm_SubmittedBy",
+                                          "email":  "AritraBhattacharya@61858932.onmicrosoft.com"
+                                      },
+                                      {
+                                          "attr":  "slcrm_primaryunderwriter",
+                                          "nav":  "slcrm_PrimaryUnderwriter",
+                                          "email":  "AritraBhattacharya@61858932.onmicrosoft.com"
+                                      }
+                                  ]
+                    },
+                    {
+                        "id":  "250061c0-a5bd-f111-aaad-e4fade0d2043",
+                        "fields":  {
+                                       "slcrm_completedon":  "2026-10-01T14:39:56Z",
+                                       "statuscode":  633650017,
+                                       "slcrm_name":  "SMOKE-REF-6",
+                                       "slcrm_haseverbeensubmitted":  true,
+                                       "slcrm_submittedon":  "2026-10-01T14:38:32Z",
+                                       "slcrm_authorisedcurrentitemcount":  1,
+                                       "slcrm_priority":  633650001,
+                                       "slcrm_sourcesystem":  633650000,
+                                       "slcrm_inceptioneffectivedate":  "2026-10-01T00:00:00Z",
+                                       "slcrm_outcomesummary":  "Proceeding with the authorised scope",
+                                       "slcrm_cancelledcurrentitemcount":  0,
+                                       "slcrm_lastsubmittedon":  "2026-10-01T14:38:32Z",
+                                       "slcrm_policytype":  633650000,
+                                       "slcrm_lastaggregatedon":  "2026-10-01T14:39:56Z",
+                                       "slcrm_totalcurrentitemcount":  2,
+                                       "slcrm_commonbusinessriskdescription":  "SMOKE TEST record. Safe to delete (needs slcrm_AllowDecisionMaintenance).",
+                                       "slcrm_explicitlycancelled":  false,
+                                       "slcrm_openitemcount":  0,
+                                       "slcrm_rejectedcurrentitemcount":  1,
+                                       "slcrm_opencurrentitemcount":  0
+                                   },
+                        "lookups":  [
+                                        {
+                                            "attr":  "slcrm_opportunity",
+                                            "nav":  "slcrm_Opportunity",
+                                            "entity":  "opportunity",
+                                            "id":  "e90a0493-e8f0-ea11-a815-000d3a1b14a2"
+                                        },
+                                        {
+                                            "attr":  "slcrm_countryofreferral",
+                                            "nav":  "slcrm_CountryofReferral",
+                                            "entity":  "slcrm_country",
+                                            "id":  "d32edf43-89b0-f111-aaab-002248db53bb"
+                                        },
+                                        {
+                                            "attr":  "slcrm_customerinsured",
+                                            "nav":  "slcrm_CustomerInsured",
+                                            "entity":  "account",
+                                            "id":  "88cea450-cb0c-ea11-a813-000d3a1b1223"
+                                        },
+                                        {
+                                            "attr":  "slcrm_product",
+                                            "nav":  "slcrm_Product",
+                                            "entity":  "slcrm_product",
+                                            "id":  "d63187b5-88b0-f111-aaab-002248db53bb"
+                                        }
+                                    ],
+                        "users":  [
+                                      {
+                                          "attr":  "slcrm_completedby",
+                                          "nav":  "slcrm_CompletedBy",
+                                          "email":  "AritraBhattacharya@61858932.onmicrosoft.com"
+                                      },
+                                      {
+                                          "attr":  "slcrm_submittedby",
+                                          "nav":  "slcrm_SubmittedBy",
+                                          "email":  "AritraBhattacharya@61858932.onmicrosoft.com"
+                                      },
+                                      {
+                                          "attr":  "slcrm_primaryunderwriter",
+                                          "nav":  "slcrm_PrimaryUnderwriter",
+                                          "email":  "AritraBhattacharya@61858932.onmicrosoft.com"
+                                      }
+                                  ]
+                    },
+                    {
+                        "id":  "827422f3-a5bd-f111-aaad-e4fade0d2043",
+                        "fields":  {
+                                       "statuscode":  633650006,
+                                       "slcrm_name":  "SMOKE-REF-7",
+                                       "slcrm_haseverbeensubmitted":  true,
+                                       "slcrm_submittedon":  "2026-10-01T14:39:57Z",
+                                       "slcrm_authorisedcurrentitemcount":  0,
+                                       "slcrm_priority":  633650001,
+                                       "slcrm_sourcesystem":  633650000,
+                                       "slcrm_inceptioneffectivedate":  "2026-10-01T00:00:00Z",
+                                       "slcrm_cancelledcurrentitemcount":  0,
+                                       "slcrm_lastsubmittedon":  "2026-10-01T14:39:57Z",
+                                       "slcrm_policytype":  633650000,
+                                       "slcrm_lastaggregatedon":  "2026-10-01T14:39:58Z",
+                                       "slcrm_totalcurrentitemcount":  1,
+                                       "slcrm_commonbusinessriskdescription":  "SMOKE TEST record.",
+                                       "slcrm_explicitlycancelled":  false,
+                                       "slcrm_openitemcount":  1,
+                                       "slcrm_rejectedcurrentitemcount":  0,
+                                       "slcrm_opencurrentitemcount":  1
+                                   },
+                        "lookups":  [
+                                        {
+                                            "attr":  "slcrm_opportunity",
+                                            "nav":  "slcrm_Opportunity",
+                                            "entity":  "opportunity",
+                                            "id":  "e90a0493-e8f0-ea11-a815-000d3a1b14a2"
+                                        },
+                                        {
+                                            "attr":  "slcrm_countryofreferral",
+                                            "nav":  "slcrm_CountryofReferral",
+                                            "entity":  "slcrm_country",
+                                            "id":  "d32edf43-89b0-f111-aaab-002248db53bb"
+                                        },
+                                        {
+                                            "attr":  "slcrm_customerinsured",
+                                            "nav":  "slcrm_CustomerInsured",
+                                            "entity":  "account",
+                                            "id":  "88cea450-cb0c-ea11-a813-000d3a1b1223"
+                                        },
+                                        {
+                                            "attr":  "slcrm_product",
+                                            "nav":  "slcrm_Product",
+                                            "entity":  "slcrm_product",
+                                            "id":  "d63187b5-88b0-f111-aaab-002248db53bb"
+                                        }
+                                    ],
+                        "users":  [
+                                      {
+                                          "attr":  "slcrm_submittedby",
+                                          "nav":  "slcrm_SubmittedBy",
+                                          "email":  "AritraBhattacharya@61858932.onmicrosoft.com"
+                                      },
+                                      {
+                                          "attr":  "slcrm_primaryunderwriter",
+                                          "nav":  "slcrm_PrimaryUnderwriter",
+                                          "email":  "AritraBhattacharya@61858932.onmicrosoft.com"
+                                      }
+                                  ]
+                    }
+                ]
+}

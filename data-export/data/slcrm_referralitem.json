@@ -1,0 +1,1650 @@
+﻿{
+    "table":  "slcrm_referralitem",
+    "set":  "slcrm_referralitems",
+    "records":  [
+                    {
+                        "id":  "cadd89c1-8bb0-f111-aaab-002248db53bb",
+                        "fields":  {
+                                       "slcrm_itemsummary":  "Referral item for Marine Hull - Policy Duration",
+                                       "statuscode":  633650008,
+                                       "slcrm_referraldetails":  "Underwriter requests review of Policy Duration for this Marine Hull risk.",
+                                       "slcrm_referralitemnumber":  "RFI-001000",
+                                       "slcrm_iscurrentrevision":  true,
+                                       "slcrm_submittedon":  "2026-10-01T18:39:45Z",
+                                       "slcrm_sequence":  1,
+                                       "slcrm_revisionnumber":  1,
+                                       "slcrm_proposedduration":  18.0000000000,
+                                       "slcrm_underwriterrationale":  "tesr",
+                                       "slcrm_logicalitemid":  "ITEM-0001",
+                                       "slcrm_maxduration":  12.0000000000
+                                   },
+                        "lookups":  [
+                                        {
+                                            "attr":  "slcrm_requiredauthoritylevel",
+                                            "nav":  "slcrm_RequiredAuthorityLevel",
+                                            "entity":  "slcrm_authoritylevel",
+                                            "id":  "cebacfae-88b0-f111-aaab-002248db53bb"
+                                        },
+                                        {
+                                            "attr":  "slcrm_underwriterauthority",
+                                            "nav":  "slcrm_UnderwriterAuthority",
+                                            "entity":  "slcrm_underwriterauthority",
+                                            "id":  "cfc3f6a8-89b0-f111-aaab-002248db53bb"
+                                        },
+                                        {
+                                            "attr":  "slcrm_referral",
+                                            "nav":  "slcrm_Referral",
+                                            "entity":  "slcrm_referralrequest",
+                                            "id":  "4b9e2ebc-89b0-f111-aaab-002248db53bb"
+                                        },
+                                        {
+                                            "attr":  "slcrm_coversection",
+                                            "nav":  "slcrm_CoverSection",
+                                            "entity":  "slcrm_coversection",
+                                            "id":  "ed2edf43-89b0-f111-aaab-002248db53bb"
+                                        },
+                                        {
+                                            "attr":  "slcrm_referralreason",
+                                            "nav":  "slcrm_ReferralReason",
+                                            "entity":  "slcrm_referralreason",
+                                            "id":  "555b937b-89b0-f111-aaab-002248db53bb"
+                                        },
+                                        {
+                                            "attr":  "slcrm_product",
+                                            "nav":  "slcrm_Product",
+                                            "entity":  "slcrm_product",
+                                            "id":  "d63187b5-88b0-f111-aaab-002248db53bb"
+                                        }
+                                    ],
+                        "users":  [
+                                      {
+                                          "attr":  "slcrm_assignedapprover",
+                                          "nav":  "slcrm_AssignedApprover",
+                                          "email":  "AritraBhattacharya@61858932.onmicrosoft.com"
+                                      },
+                                      {
+                                          "attr":  "slcrm_submittedby",
+                                          "nav":  "slcrm_SubmittedBy",
+                                          "email":  "AritraBhattacharya@61858932.onmicrosoft.com"
+                                      }
+                                  ]
+                    },
+                    {
+                        "id":  "ccdd89c1-8bb0-f111-aaab-002248db53bb",
+                        "fields":  {
+                                       "slcrm_itemsummary":  "Referral item for Marine Cargo - Limits/Capacity",
+                                       "statuscode":  633650001,
+                                       "slcrm_referraldetails":  "Underwriter requests review of Limits/Capacity for this Marine Cargo risk.",
+                                       "slcrm_referralitemnumber":  "RFI-001002",
+                                       "slcrm_iscurrentrevision":  true,
+                                       "slcrm_sequence":  1,
+                                       "slcrm_revisionnumber":  1,
+                                       "slcrm_underwriterrationale":  "Test Data ",
+                                       "slcrm_logicalitemid":  "ITEM-0003"
+                                   },
+                        "lookups":  [
+                                        {
+                                            "attr":  "slcrm_requiredauthoritylevel",
+                                            "nav":  "slcrm_RequiredAuthorityLevel",
+                                            "entity":  "slcrm_authoritylevel",
+                                            "id":  "cebacfae-88b0-f111-aaab-002248db53bb"
+                                        },
+                                        {
+                                            "attr":  "slcrm_underwriterauthority",
+                                            "nav":  "slcrm_UnderwriterAuthority",
+                                            "entity":  "slcrm_underwriterauthority",
+                                            "id":  "1bfcffae-89b0-f111-aaab-002248db53bb"
+                                        },
+                                        {
+                                            "attr":  "slcrm_referral",
+                                            "nav":  "slcrm_Referral",
+                                            "entity":  "slcrm_referralrequest",
+                                            "id":  "4c9e2ebc-89b0-f111-aaab-002248db53bb"
+                                        },
+                                        {
+                                            "attr":  "slcrm_coversection",
+                                            "nav":  "slcrm_CoverSection",
+                                            "entity":  "slcrm_coversection",
+                                            "id":  "5b07e649-89b0-f111-aaab-002248db53bb"
+                                        },
+                                        {
+                                            "attr":  "slcrm_referralreason",
+                                            "nav":  "slcrm_ReferralReason",
+                                            "entity":  "slcrm_referralreason",
+                                            "id":  "0e15cb74-89b0-f111-aaab-002248db53bb"
+                                        },
+                                        {
+                                            "attr":  "slcrm_product",
+                                            "nav":  "slcrm_Product",
+                                            "entity":  "slcrm_product",
+                                            "id":  "d73187b5-88b0-f111-aaab-002248db53bb"
+                                        }
+                                    ],
+                        "users":  [
+                                      {
+                                          "attr":  "slcrm_assignedapprover",
+                                          "nav":  "slcrm_AssignedApprover",
+                                          "email":  "AritraBhattacharya@61858932.onmicrosoft.com"
+                                      }
+                                  ]
+                    },
+                    {
+                        "id":  "cddd89c1-8bb0-f111-aaab-002248db53bb",
+                        "fields":  {
+                                       "slcrm_itemsummary":  "Referral item for Marine Cargo - Appetite/Hazard Code",
+                                       "statuscode":  633650001,
+                                       "slcrm_referraldetails":  "Underwriter requests review of Appetite/Hazard Code for this Marine Cargo risk.",
+                                       "slcrm_referralitemnumber":  "RFI-001003",
+                                       "slcrm_iscurrentrevision":  true,
+                                       "slcrm_sequence":  2,
+                                       "slcrm_revisionnumber":  1,
+                                       "slcrm_underwriterrationale":  "Test Data ",
+                                       "slcrm_logicalitemid":  "ITEM-0004"
+                                   },
+                        "lookups":  [
+                                        {
+                                            "attr":  "slcrm_requiredauthoritylevel",
+                                            "nav":  "slcrm_RequiredAuthorityLevel",
+                                            "entity":  "slcrm_authoritylevel",
+                                            "id":  "cebacfae-88b0-f111-aaab-002248db53bb"
+                                        },
+                                        {
+                                            "attr":  "slcrm_underwriterauthority",
+                                            "nav":  "slcrm_UnderwriterAuthority",
+                                            "entity":  "slcrm_underwriterauthority",
+                                            "id":  "1bfcffae-89b0-f111-aaab-002248db53bb"
+                                        },
+                                        {
+                                            "attr":  "slcrm_referral",
+                                            "nav":  "slcrm_Referral",
+                                            "entity":  "slcrm_referralrequest",
+                                            "id":  "4c9e2ebc-89b0-f111-aaab-002248db53bb"
+                                        },
+                                        {
+                                            "attr":  "slcrm_coversection",
+                                            "nav":  "slcrm_CoverSection",
+                                            "entity":  "slcrm_coversection",
+                                            "id":  "5e07e649-89b0-f111-aaab-002248db53bb"
+                                        },
+                                        {
+                                            "attr":  "slcrm_referralreason",
+                                            "nav":  "slcrm_ReferralReason",
+                                            "entity":  "slcrm_referralreason",
+                                            "id":  "0d15cb74-89b0-f111-aaab-002248db53bb"
+                                        },
+                                        {
+                                            "attr":  "slcrm_product",
+                                            "nav":  "slcrm_Product",
+                                            "entity":  "slcrm_product",
+                                            "id":  "d73187b5-88b0-f111-aaab-002248db53bb"
+                                        }
+                                    ],
+                        "users":  [
+                                      {
+                                          "attr":  "slcrm_assignedapprover",
+                                          "nav":  "slcrm_AssignedApprover",
+                                          "email":  "AritraBhattacharya@61858932.onmicrosoft.com"
+                                      }
+                                  ]
+                    },
+                    {
+                        "id":  "cedd89c1-8bb0-f111-aaab-002248db53bb",
+                        "fields":  {
+                                       "slcrm_itemsummary":  "Referral item for Marine Liability - Authorised Geography",
+                                       "statuscode":  633650002,
+                                       "slcrm_referraldetails":  "Underwriter requests review of Authorised Geography for this Marine Liability risk.",
+                                       "slcrm_referralitemnumber":  "RFI-001004",
+                                       "slcrm_iscurrentrevision":  true,
+                                       "slcrm_sequence":  1,
+                                       "slcrm_revisionnumber":  1,
+                                       "slcrm_underwriterrationale":  "Test Data ",
+                                       "slcrm_logicalitemid":  "ITEM-0005"
+                                   },
+                        "lookups":  [
+                                        {
+                                            "attr":  "slcrm_requiredauthoritylevel",
+                                            "nav":  "slcrm_RequiredAuthorityLevel",
+                                            "entity":  "slcrm_authoritylevel",
+                                            "id":  "cebacfae-88b0-f111-aaab-002248db53bb"
+                                        },
+                                        {
+                                            "attr":  "slcrm_underwriterauthority",
+                                            "nav":  "slcrm_UnderwriterAuthority",
+                                            "entity":  "slcrm_underwriterauthority",
+                                            "id":  "1afcffae-89b0-f111-aaab-002248db53bb"
+                                        },
+                                        {
+                                            "attr":  "slcrm_referral",
+                                            "nav":  "slcrm_Referral",
+                                            "entity":  "slcrm_referralrequest",
+                                            "id":  "649e2ebc-89b0-f111-aaab-002248db53bb"
+                                        },
+                                        {
+                                            "attr":  "slcrm_coversection",
+                                            "nav":  "slcrm_CoverSection",
+                                            "entity":  "slcrm_coversection",
+                                            "id":  "6007e649-89b0-f111-aaab-002248db53bb"
+                                        },
+                                        {
+                                            "attr":  "slcrm_referralreason",
+                                            "nav":  "slcrm_ReferralReason",
+                                            "entity":  "slcrm_referralreason",
+                                            "id":  "c4e2c981-89b0-f111-aaab-002248db53bb"
+                                        },
+                                        {
+                                            "attr":  "slcrm_product",
+                                            "nav":  "slcrm_Product",
+                                            "entity":  "slcrm_product",
+                                            "id":  "d93187b5-88b0-f111-aaab-002248db53bb"
+                                        }
+                                    ],
+                        "users":  [
+                                      {
+                                          "attr":  "slcrm_assignedapprover",
+                                          "nav":  "slcrm_AssignedApprover",
+                                          "email":  "AritraBhattacharya@61858932.onmicrosoft.com"
+                                      }
+                                  ]
+                    },
+                    {
+                        "id":  "cfdd89c1-8bb0-f111-aaab-002248db53bb",
+                        "fields":  {
+                                       "slcrm_itemsummary":  "Referral item for Marine Liability - Pricing (incl AP/TP TRI)",
+                                       "statuscode":  633650003,
+                                       "slcrm_referraldetails":  "Underwriter requests review of Pricing (incl AP/TP TRI) for this Marine Liability risk.",
+                                       "slcrm_referralitemnumber":  "RFI-001005",
+                                       "slcrm_pricingrationale":  "Proposed premium reflects competitive market pressure; technical premium confirms adequacy.",
+                                       "slcrm_iscurrentrevision":  true,
+                                       "slcrm_technicalpremium":  118000.0000000000,
+                                       "slcrm_sequence":  2,
+                                       "slcrm_revisionnumber":  1,
+                                       "slcrm_proposedpremium":  125000.0000000000,
+                                       "slcrm_underwriterrationale":  "Test Data ",
+                                       "slcrm_logicalitemid":  "ITEM-0006"
+                                   },
+                        "lookups":  [
+                                        {
+                                            "attr":  "slcrm_requiredauthoritylevel",
+                                            "nav":  "slcrm_RequiredAuthorityLevel",
+                                            "entity":  "slcrm_authoritylevel",
+                                            "id":  "cebacfae-88b0-f111-aaab-002248db53bb"
+                                        },
+                                        {
+                                            "attr":  "slcrm_underwriterauthority",
+                                            "nav":  "slcrm_UnderwriterAuthority",
+                                            "entity":  "slcrm_underwriterauthority",
+                                            "id":  "1afcffae-89b0-f111-aaab-002248db53bb"
+                                        },
+                                        {
+                                            "attr":  "slcrm_referral",
+                                            "nav":  "slcrm_Referral",
+                                            "entity":  "slcrm_referralrequest",
+                                            "id":  "649e2ebc-89b0-f111-aaab-002248db53bb"
+                                        },
+                                        {
+                                            "attr":  "slcrm_coversection",
+                                            "nav":  "slcrm_CoverSection",
+                                            "entity":  "slcrm_coversection",
+                                            "id":  "6007e649-89b0-f111-aaab-002248db53bb"
+                                        },
+                                        {
+                                            "attr":  "slcrm_referralreason",
+                                            "nav":  "slcrm_ReferralReason",
+                                            "entity":  "slcrm_referralreason",
+                                            "id":  "545b937b-89b0-f111-aaab-002248db53bb"
+                                        },
+                                        {
+                                            "attr":  "slcrm_product",
+                                            "nav":  "slcrm_Product",
+                                            "entity":  "slcrm_product",
+                                            "id":  "d93187b5-88b0-f111-aaab-002248db53bb"
+                                        }
+                                    ],
+                        "users":  [
+                                      {
+                                          "attr":  "slcrm_assignedapprover",
+                                          "nav":  "slcrm_AssignedApprover",
+                                          "email":  "AritraBhattacharya@61858932.onmicrosoft.com"
+                                      }
+                                  ]
+                    },
+                    {
+                        "id":  "2ccfd5c7-8bb0-f111-aaab-002248db53bb",
+                        "fields":  {
+                                       "slcrm_itemsummary":  "Referral item for Marine Freight - Policy Duration",
+                                       "statuscode":  633650002,
+                                       "slcrm_referraldetails":  "Underwriter requests review of Policy Duration for this Marine Freight risk.",
+                                       "slcrm_referralitemnumber":  "RFI-001006",
+                                       "slcrm_iscurrentrevision":  true,
+                                       "slcrm_sequence":  1,
+                                       "slcrm_revisionnumber":  1,
+                                       "slcrm_proposedduration":  18.0000000000,
+                                       "slcrm_underwriterrationale":  "Test Data ",
+                                       "slcrm_logicalitemid":  "ITEM-0007",
+                                       "slcrm_maxduration":  12.0000000000
+                                   },
+                        "lookups":  [
+                                        {
+                                            "attr":  "slcrm_requiredauthoritylevel",
+                                            "nav":  "slcrm_RequiredAuthorityLevel",
+                                            "entity":  "slcrm_authoritylevel",
+                                            "id":  "cebacfae-88b0-f111-aaab-002248db53bb"
+                                        },
+                                        {
+                                            "attr":  "slcrm_underwriterauthority",
+                                            "nav":  "slcrm_UnderwriterAuthority",
+                                            "entity":  "slcrm_underwriterauthority",
+                                            "id":  "1cfcffae-89b0-f111-aaab-002248db53bb"
+                                        },
+                                        {
+                                            "attr":  "slcrm_referral",
+                                            "nav":  "slcrm_Referral",
+                                            "entity":  "slcrm_referralrequest",
+                                            "id":  "0ec75ac3-89b0-f111-aaab-002248db53bb"
+                                        },
+                                        {
+                                            "attr":  "slcrm_coversection",
+                                            "nav":  "slcrm_CoverSection",
+                                            "entity":  "slcrm_coversection",
+                                            "id":  "5f07e649-89b0-f111-aaab-002248db53bb"
+                                        },
+                                        {
+                                            "attr":  "slcrm_referralreason",
+                                            "nav":  "slcrm_ReferralReason",
+                                            "entity":  "slcrm_referralreason",
+                                            "id":  "555b937b-89b0-f111-aaab-002248db53bb"
+                                        },
+                                        {
+                                            "attr":  "slcrm_product",
+                                            "nav":  "slcrm_Product",
+                                            "entity":  "slcrm_product",
+                                            "id":  "d83187b5-88b0-f111-aaab-002248db53bb"
+                                        }
+                                    ],
+                        "users":  [
+                                      {
+                                          "attr":  "slcrm_assignedapprover",
+                                          "nav":  "slcrm_AssignedApprover",
+                                          "email":  "AritraBhattacharya@61858932.onmicrosoft.com"
+                                      }
+                                  ]
+                    },
+                    {
+                        "id":  "2fcfd5c7-8bb0-f111-aaab-002248db53bb",
+                        "fields":  {
+                                       "slcrm_itemsummary":  "Referral item for Marine Trades - Limits/Capacity",
+                                       "statuscode":  633650006,
+                                       "slcrm_referraldetails":  "Underwriter requests review of Limits/Capacity for this Marine Trades risk.",
+                                       "slcrm_referralitemnumber":  "RFI-001008",
+                                       "slcrm_iscurrentrevision":  true,
+                                       "slcrm_sequence":  1,
+                                       "slcrm_revisionnumber":  1,
+                                       "slcrm_underwriterrationale":  "Test Data ",
+                                       "slcrm_logicalitemid":  "ITEM-0009"
+                                   },
+                        "lookups":  [
+                                        {
+                                            "attr":  "slcrm_requiredauthoritylevel",
+                                            "nav":  "slcrm_RequiredAuthorityLevel",
+                                            "entity":  "slcrm_authoritylevel",
+                                            "id":  "cebacfae-88b0-f111-aaab-002248db53bb"
+                                        },
+                                        {
+                                            "attr":  "slcrm_referral",
+                                            "nav":  "slcrm_Referral",
+                                            "entity":  "slcrm_referralrequest",
+                                            "id":  "0fc75ac3-89b0-f111-aaab-002248db53bb"
+                                        },
+                                        {
+                                            "attr":  "slcrm_coversection",
+                                            "nav":  "slcrm_CoverSection",
+                                            "entity":  "slcrm_coversection",
+                                            "id":  "6107e649-89b0-f111-aaab-002248db53bb"
+                                        },
+                                        {
+                                            "attr":  "slcrm_referralreason",
+                                            "nav":  "slcrm_ReferralReason",
+                                            "entity":  "slcrm_referralreason",
+                                            "id":  "0e15cb74-89b0-f111-aaab-002248db53bb"
+                                        },
+                                        {
+                                            "attr":  "slcrm_product",
+                                            "nav":  "slcrm_Product",
+                                            "entity":  "slcrm_product",
+                                            "id":  "da3187b5-88b0-f111-aaab-002248db53bb"
+                                        }
+                                    ],
+                        "users":  [
+                                      {
+                                          "attr":  "slcrm_assignedapprover",
+                                          "nav":  "slcrm_AssignedApprover",
+                                          "email":  "davidm@Contoso.onmicrosoft.com"
+                                      }
+                                  ]
+                    },
+                    {
+                        "id":  "30cfd5c7-8bb0-f111-aaab-002248db53bb",
+                        "fields":  {
+                                       "slcrm_itemsummary":  "Referral item for Marine Trades - Appetite/Hazard Code",
+                                       "statuscode":  633650006,
+                                       "slcrm_referraldetails":  "Underwriter requests review of Appetite/Hazard Code for this Marine Trades risk.",
+                                       "slcrm_referralitemnumber":  "RFI-001009",
+                                       "slcrm_iscurrentrevision":  true,
+                                       "slcrm_sequence":  2,
+                                       "slcrm_revisionnumber":  1,
+                                       "slcrm_underwriterrationale":  "Test Data ",
+                                       "slcrm_logicalitemid":  "ITEM-0010"
+                                   },
+                        "lookups":  [
+                                        {
+                                            "attr":  "slcrm_requiredauthoritylevel",
+                                            "nav":  "slcrm_RequiredAuthorityLevel",
+                                            "entity":  "slcrm_authoritylevel",
+                                            "id":  "cebacfae-88b0-f111-aaab-002248db53bb"
+                                        },
+                                        {
+                                            "attr":  "slcrm_referral",
+                                            "nav":  "slcrm_Referral",
+                                            "entity":  "slcrm_referralrequest",
+                                            "id":  "0fc75ac3-89b0-f111-aaab-002248db53bb"
+                                        },
+                                        {
+                                            "attr":  "slcrm_coversection",
+                                            "nav":  "slcrm_CoverSection",
+                                            "entity":  "slcrm_coversection",
+                                            "id":  "6107e649-89b0-f111-aaab-002248db53bb"
+                                        },
+                                        {
+                                            "attr":  "slcrm_referralreason",
+                                            "nav":  "slcrm_ReferralReason",
+                                            "entity":  "slcrm_referralreason",
+                                            "id":  "0d15cb74-89b0-f111-aaab-002248db53bb"
+                                        },
+                                        {
+                                            "attr":  "slcrm_product",
+                                            "nav":  "slcrm_Product",
+                                            "entity":  "slcrm_product",
+                                            "id":  "da3187b5-88b0-f111-aaab-002248db53bb"
+                                        }
+                                    ],
+                        "users":  [
+                                      {
+                                          "attr":  "slcrm_assignedapprover",
+                                          "nav":  "slcrm_AssignedApprover",
+                                          "email":  "davidm@Contoso.onmicrosoft.com"
+                                      }
+                                  ]
+                    },
+                    {
+                        "id":  "e8a31e2a-8cb0-f111-aaab-002248db53bb",
+                        "fields":  {
+                                       "slcrm_itemsummary":  "Referral item for Marine Hull - Reinsurance (Incl. Fac)",
+                                       "statuscode":  633650006,
+                                       "slcrm_referraldetails":  "Underwriter requests review of Reinsurance (Incl. Fac) for this Marine Hull risk.",
+                                       "slcrm_referralitemnumber":  "RFI-001012",
+                                       "slcrm_iscurrentrevision":  true,
+                                       "slcrm_reinsurancetype":  100000000,
+                                       "slcrm_submittedon":  "2026-10-01T18:39:45Z",
+                                       "slcrm_retentionamount":  500000.0000000000,
+                                       "slcrm_sequence":  2,
+                                       "slcrm_placementdetail":  "Facultative placement with lead reinsurer at 40% share.",
+                                       "slcrm_revisionnumber":  1,
+                                       "slcrm_underwriterrationale":  "Test Data ",
+                                       "slcrm_logicalitemid":  "ITEM-0002",
+                                       "slcrm_assignedapproversnapshot":  "Microsoft Flow"
+                                   },
+                        "lookups":  [
+                                        {
+                                            "attr":  "slcrm_requiredauthoritylevel",
+                                            "nav":  "slcrm_RequiredAuthorityLevel",
+                                            "entity":  "slcrm_authoritylevel",
+                                            "id":  "cebacfae-88b0-f111-aaab-002248db53bb"
+                                        },
+                                        {
+                                            "attr":  "slcrm_underwriterauthority",
+                                            "nav":  "slcrm_UnderwriterAuthority",
+                                            "entity":  "slcrm_underwriterauthority",
+                                            "id":  "3eff1b56-a2bd-f111-aaad-e4fade0d2043"
+                                        },
+                                        {
+                                            "attr":  "slcrm_referral",
+                                            "nav":  "slcrm_Referral",
+                                            "entity":  "slcrm_referralrequest",
+                                            "id":  "4b9e2ebc-89b0-f111-aaab-002248db53bb"
+                                        },
+                                        {
+                                            "attr":  "slcrm_coversection",
+                                            "nav":  "slcrm_CoverSection",
+                                            "entity":  "slcrm_coversection",
+                                            "id":  "5807e649-89b0-f111-aaab-002248db53bb"
+                                        },
+                                        {
+                                            "attr":  "slcrm_referralreason",
+                                            "nav":  "slcrm_ReferralReason",
+                                            "entity":  "slcrm_referralreason",
+                                            "id":  "b8e2c981-89b0-f111-aaab-002248db53bb"
+                                        },
+                                        {
+                                            "attr":  "slcrm_product",
+                                            "nav":  "slcrm_Product",
+                                            "entity":  "slcrm_product",
+                                            "id":  "d63187b5-88b0-f111-aaab-002248db53bb"
+                                        }
+                                    ],
+                        "users":  [
+                                      {
+                                          "attr":  "slcrm_assignedapprover",
+                                          "nav":  "slcrm_AssignedApprover",
+                                          "email":  "flowdev@microsoft.com"
+                                      },
+                                      {
+                                          "attr":  "slcrm_submittedby",
+                                          "nav":  "slcrm_SubmittedBy",
+                                          "email":  "AritraBhattacharya@61858932.onmicrosoft.com"
+                                      }
+                                  ]
+                    },
+                    {
+                        "id":  "e9a31e2a-8cb0-f111-aaab-002248db53bb",
+                        "fields":  {
+                                       "slcrm_itemsummary":  "Referral item for Marine Freight - Reinsurance (Incl. Fac)",
+                                       "statuscode":  633650003,
+                                       "slcrm_referraldetails":  "Underwriter requests review of Reinsurance (Incl. Fac) for this Marine Freight risk.",
+                                       "slcrm_referralitemnumber":  "RFI-001013",
+                                       "slcrm_iscurrentrevision":  true,
+                                       "slcrm_reinsurancetype":  100000000,
+                                       "slcrm_retentionamount":  500000.0000000000,
+                                       "slcrm_sequence":  2,
+                                       "slcrm_placementdetail":  "Facultative placement with lead reinsurer at 40% share.",
+                                       "slcrm_revisionnumber":  1,
+                                       "slcrm_underwriterrationale":  "Test Data ",
+                                       "slcrm_logicalitemid":  "ITEM-0008"
+                                   },
+                        "lookups":  [
+                                        {
+                                            "attr":  "slcrm_requiredauthoritylevel",
+                                            "nav":  "slcrm_RequiredAuthorityLevel",
+                                            "entity":  "slcrm_authoritylevel",
+                                            "id":  "cebacfae-88b0-f111-aaab-002248db53bb"
+                                        },
+                                        {
+                                            "attr":  "slcrm_underwriterauthority",
+                                            "nav":  "slcrm_UnderwriterAuthority",
+                                            "entity":  "slcrm_underwriterauthority",
+                                            "id":  "1cfcffae-89b0-f111-aaab-002248db53bb"
+                                        },
+                                        {
+                                            "attr":  "slcrm_referral",
+                                            "nav":  "slcrm_Referral",
+                                            "entity":  "slcrm_referralrequest",
+                                            "id":  "0ec75ac3-89b0-f111-aaab-002248db53bb"
+                                        },
+                                        {
+                                            "attr":  "slcrm_coversection",
+                                            "nav":  "slcrm_CoverSection",
+                                            "entity":  "slcrm_coversection",
+                                            "id":  "5f07e649-89b0-f111-aaab-002248db53bb"
+                                        },
+                                        {
+                                            "attr":  "slcrm_referralreason",
+                                            "nav":  "slcrm_ReferralReason",
+                                            "entity":  "slcrm_referralreason",
+                                            "id":  "b8e2c981-89b0-f111-aaab-002248db53bb"
+                                        },
+                                        {
+                                            "attr":  "slcrm_product",
+                                            "nav":  "slcrm_Product",
+                                            "entity":  "slcrm_product",
+                                            "id":  "d83187b5-88b0-f111-aaab-002248db53bb"
+                                        }
+                                    ],
+                        "users":  [
+                                      {
+                                          "attr":  "slcrm_assignedapprover",
+                                          "nav":  "slcrm_AssignedApprover",
+                                          "email":  "AritraBhattacharya@61858932.onmicrosoft.com"
+                                      }
+                                  ]
+                    },
+                    {
+                        "id":  "c59c2731-8cb0-f111-aaab-002248db53bb",
+                        "fields":  {
+                                       "slcrm_itemsummary":  "Referral item for Ports \u0026 Terminals - Authorised Geography",
+                                       "statuscode":  633650008,
+                                       "slcrm_referraldetails":  "Underwriter requests review of Authorised Geography for this Ports \u0026 Terminals risk.",
+                                       "slcrm_referralitemnumber":  "RFI-001014",
+                                       "slcrm_iscurrentrevision":  true,
+                                       "slcrm_sequence":  1,
+                                       "slcrm_revisionnumber":  1,
+                                       "slcrm_underwriterrationale":  "Test Data ",
+                                       "slcrm_logicalitemid":  "ITEM-0011"
+                                   },
+                        "lookups":  [
+                                        {
+                                            "attr":  "slcrm_requiredauthoritylevel",
+                                            "nav":  "slcrm_RequiredAuthorityLevel",
+                                            "entity":  "slcrm_authoritylevel",
+                                            "id":  "cebacfae-88b0-f111-aaab-002248db53bb"
+                                        },
+                                        {
+                                            "attr":  "slcrm_underwriterauthority",
+                                            "nav":  "slcrm_UnderwriterAuthority",
+                                            "entity":  "slcrm_underwriterauthority",
+                                            "id":  "6227a9b5-89b0-f111-aaab-002248db53bb"
+                                        },
+                                        {
+                                            "attr":  "slcrm_referral",
+                                            "nav":  "slcrm_Referral",
+                                            "entity":  "slcrm_referralrequest",
+                                            "id":  "a2d932e4-89b0-f111-aaab-002248db53bb"
+                                        },
+                                        {
+                                            "attr":  "slcrm_coversection",
+                                            "nav":  "slcrm_CoverSection",
+                                            "entity":  "slcrm_coversection",
+                                            "id":  "6207e649-89b0-f111-aaab-002248db53bb"
+                                        },
+                                        {
+                                            "attr":  "slcrm_referralreason",
+                                            "nav":  "slcrm_ReferralReason",
+                                            "entity":  "slcrm_referralreason",
+                                            "id":  "c4e2c981-89b0-f111-aaab-002248db53bb"
+                                        },
+                                        {
+                                            "attr":  "slcrm_product",
+                                            "nav":  "slcrm_Product",
+                                            "entity":  "slcrm_product",
+                                            "id":  "43028dbc-88b0-f111-aaab-002248db53bb"
+                                        }
+                                    ],
+                        "users":  [
+                                      {
+                                          "attr":  "slcrm_assignedapprover",
+                                          "nav":  "slcrm_AssignedApprover",
+                                          "email":  "AritraBhattacharya@61858932.onmicrosoft.com"
+                                      }
+                                  ]
+                    },
+                    {
+                        "id":  "c69c2731-8cb0-f111-aaab-002248db53bb",
+                        "fields":  {
+                                       "slcrm_itemsummary":  "Referral item for Ports \u0026 Terminals - Limits/Capacity",
+                                       "statuscode":  633650014,
+                                       "slcrm_referraldetails":  "Underwriter requests review of Limits/Capacity for this Ports \u0026 Terminals risk.",
+                                       "slcrm_referralitemnumber":  "RFI-001015",
+                                       "slcrm_iscurrentrevision":  true,
+                                       "slcrm_requestedlimit":  2000000.0000000000,
+                                       "slcrm_sequence":  2,
+                                       "slcrm_currentauthoritylimit":  1500000.0000000000,
+                                       "slcrm_revisionnumber":  1,
+                                       "slcrm_logicalitemid":  "ITEM-0012"
+                                   },
+                        "lookups":  [
+                                        {
+                                            "attr":  "slcrm_requiredauthoritylevel",
+                                            "nav":  "slcrm_RequiredAuthorityLevel",
+                                            "entity":  "slcrm_authoritylevel",
+                                            "id":  "cebacfae-88b0-f111-aaab-002248db53bb"
+                                        },
+                                        {
+                                            "attr":  "slcrm_underwriterauthority",
+                                            "nav":  "slcrm_UnderwriterAuthority",
+                                            "entity":  "slcrm_underwriterauthority",
+                                            "id":  "6227a9b5-89b0-f111-aaab-002248db53bb"
+                                        },
+                                        {
+                                            "attr":  "slcrm_referral",
+                                            "nav":  "slcrm_Referral",
+                                            "entity":  "slcrm_referralrequest",
+                                            "id":  "a2d932e4-89b0-f111-aaab-002248db53bb"
+                                        },
+                                        {
+                                            "attr":  "slcrm_coversection",
+                                            "nav":  "slcrm_CoverSection",
+                                            "entity":  "slcrm_coversection",
+                                            "id":  "6207e649-89b0-f111-aaab-002248db53bb"
+                                        },
+                                        {
+                                            "attr":  "slcrm_referralreason",
+                                            "nav":  "slcrm_ReferralReason",
+                                            "entity":  "slcrm_referralreason",
+                                            "id":  "0e15cb74-89b0-f111-aaab-002248db53bb"
+                                        },
+                                        {
+                                            "attr":  "slcrm_product",
+                                            "nav":  "slcrm_Product",
+                                            "entity":  "slcrm_product",
+                                            "id":  "43028dbc-88b0-f111-aaab-002248db53bb"
+                                        }
+                                    ],
+                        "users":  [
+                                      {
+                                          "attr":  "slcrm_assignedapprover",
+                                          "nav":  "slcrm_AssignedApprover",
+                                          "email":  "AritraBhattacharya@61858932.onmicrosoft.com"
+                                      }
+                                  ]
+                    },
+                    {
+                        "id":  "4f6e4386-a3b0-f111-aaab-002248db53bb",
+                        "fields":  {
+                                       "statuscode":  633650001,
+                                       "slcrm_referralitemnumber":  "RFI-001016",
+                                       "slcrm_iscurrentrevision":  true,
+                                       "slcrm_sequence":  1,
+                                       "slcrm_revisionnumber":  1,
+                                       "slcrm_underwriterrationale":  "tesrt ",
+                                       "slcrm_logicalitemid":  "ITEM-0001"
+                                   },
+                        "lookups":  [
+                                        {
+                                            "attr":  "slcrm_requiredauthoritylevel",
+                                            "nav":  "slcrm_RequiredAuthorityLevel",
+                                            "entity":  "slcrm_authoritylevel",
+                                            "id":  "cdbacfae-88b0-f111-aaab-002248db53bb"
+                                        },
+                                        {
+                                            "attr":  "slcrm_underwriterauthority",
+                                            "nav":  "slcrm_UnderwriterAuthority",
+                                            "entity":  "slcrm_underwriterauthority",
+                                            "id":  "1afcffae-89b0-f111-aaab-002248db53bb"
+                                        },
+                                        {
+                                            "attr":  "slcrm_referral",
+                                            "nav":  "slcrm_Referral",
+                                            "entity":  "slcrm_referralrequest",
+                                            "id":  "4e6e4386-a3b0-f111-aaab-002248db53bb"
+                                        },
+                                        {
+                                            "attr":  "slcrm_coversection",
+                                            "nav":  "slcrm_CoverSection",
+                                            "entity":  "slcrm_coversection",
+                                            "id":  "6007e649-89b0-f111-aaab-002248db53bb"
+                                        },
+                                        {
+                                            "attr":  "slcrm_referralreason",
+                                            "nav":  "slcrm_ReferralReason",
+                                            "entity":  "slcrm_referralreason",
+                                            "id":  "0d15cb74-89b0-f111-aaab-002248db53bb"
+                                        },
+                                        {
+                                            "attr":  "slcrm_product",
+                                            "nav":  "slcrm_Product",
+                                            "entity":  "slcrm_product",
+                                            "id":  "d93187b5-88b0-f111-aaab-002248db53bb"
+                                        }
+                                    ],
+                        "users":  [
+
+                                  ]
+                    },
+                    {
+                        "id":  "873142ec-a3b0-f111-aaab-002248db53bb",
+                        "fields":  {
+                                       "statuscode":  633650001,
+                                       "slcrm_referralitemnumber":  "RFI-001017",
+                                       "slcrm_iscurrentrevision":  true,
+                                       "slcrm_sequence":  1,
+                                       "slcrm_revisionnumber":  1,
+                                       "slcrm_underwriterrationale":  "Test",
+                                       "slcrm_logicalitemid":  "ITEM-0001"
+                                   },
+                        "lookups":  [
+                                        {
+                                            "attr":  "slcrm_requiredauthoritylevel",
+                                            "nav":  "slcrm_RequiredAuthorityLevel",
+                                            "entity":  "slcrm_authoritylevel",
+                                            "id":  "cbbacfae-88b0-f111-aaab-002248db53bb"
+                                        },
+                                        {
+                                            "attr":  "slcrm_referral",
+                                            "nav":  "slcrm_Referral",
+                                            "entity":  "slcrm_referralrequest",
+                                            "id":  "863142ec-a3b0-f111-aaab-002248db53bb"
+                                        },
+                                        {
+                                            "attr":  "slcrm_coversection",
+                                            "nav":  "slcrm_CoverSection",
+                                            "entity":  "slcrm_coversection",
+                                            "id":  "6107e649-89b0-f111-aaab-002248db53bb"
+                                        },
+                                        {
+                                            "attr":  "slcrm_referralreason",
+                                            "nav":  "slcrm_ReferralReason",
+                                            "entity":  "slcrm_referralreason",
+                                            "id":  "585b937b-89b0-f111-aaab-002248db53bb"
+                                        },
+                                        {
+                                            "attr":  "slcrm_product",
+                                            "nav":  "slcrm_Product",
+                                            "entity":  "slcrm_product",
+                                            "id":  "da3187b5-88b0-f111-aaab-002248db53bb"
+                                        }
+                                    ],
+                        "users":  [
+
+                                  ]
+                    },
+                    {
+                        "id":  "883142ec-a3b0-f111-aaab-002248db53bb",
+                        "fields":  {
+                                       "statuscode":  633650001,
+                                       "slcrm_referralitemnumber":  "RFI-001018",
+                                       "slcrm_iscurrentrevision":  true,
+                                       "slcrm_sequence":  2,
+                                       "slcrm_revisionnumber":  1,
+                                       "slcrm_underwriterrationale":  "test ",
+                                       "slcrm_logicalitemid":  "ITEM-0002"
+                                   },
+                        "lookups":  [
+                                        {
+                                            "attr":  "slcrm_requiredauthoritylevel",
+                                            "nav":  "slcrm_RequiredAuthorityLevel",
+                                            "entity":  "slcrm_authoritylevel",
+                                            "id":  "ccbacfae-88b0-f111-aaab-002248db53bb"
+                                        },
+                                        {
+                                            "attr":  "slcrm_referral",
+                                            "nav":  "slcrm_Referral",
+                                            "entity":  "slcrm_referralrequest",
+                                            "id":  "863142ec-a3b0-f111-aaab-002248db53bb"
+                                        },
+                                        {
+                                            "attr":  "slcrm_coversection",
+                                            "nav":  "slcrm_CoverSection",
+                                            "entity":  "slcrm_coversection",
+                                            "id":  "6107e649-89b0-f111-aaab-002248db53bb"
+                                        },
+                                        {
+                                            "attr":  "slcrm_referralreason",
+                                            "nav":  "slcrm_ReferralReason",
+                                            "entity":  "slcrm_referralreason",
+                                            "id":  "0d15cb74-89b0-f111-aaab-002248db53bb"
+                                        },
+                                        {
+                                            "attr":  "slcrm_product",
+                                            "nav":  "slcrm_Product",
+                                            "entity":  "slcrm_product",
+                                            "id":  "da3187b5-88b0-f111-aaab-002248db53bb"
+                                        }
+                                    ],
+                        "users":  [
+
+                                  ]
+                    },
+                    {
+                        "id":  "b5707bf4-56b1-f111-aaab-7ced8d5ff0da",
+                        "fields":  {
+                                       "statuscode":  633650001,
+                                       "slcrm_referralitemnumber":  "RFI-001019",
+                                       "slcrm_iscurrentrevision":  true,
+                                       "slcrm_sequence":  1,
+                                       "slcrm_revisionnumber":  1,
+                                       "slcrm_underwriterrationale":  "Test",
+                                       "slcrm_logicalitemid":  "ITEM-0001"
+                                   },
+                        "lookups":  [
+                                        {
+                                            "attr":  "slcrm_requiredauthoritylevel",
+                                            "nav":  "slcrm_RequiredAuthorityLevel",
+                                            "entity":  "slcrm_authoritylevel",
+                                            "id":  "ccbacfae-88b0-f111-aaab-002248db53bb"
+                                        },
+                                        {
+                                            "attr":  "slcrm_underwriterauthority",
+                                            "nav":  "slcrm_UnderwriterAuthority",
+                                            "entity":  "slcrm_underwriterauthority",
+                                            "id":  "1efcffae-89b0-f111-aaab-002248db53bb"
+                                        },
+                                        {
+                                            "attr":  "slcrm_referral",
+                                            "nav":  "slcrm_Referral",
+                                            "entity":  "slcrm_referralrequest",
+                                            "id":  "b3707bf4-56b1-f111-aaab-7ced8d5ff0da"
+                                        },
+                                        {
+                                            "attr":  "slcrm_coversection",
+                                            "nav":  "slcrm_CoverSection",
+                                            "entity":  "slcrm_coversection",
+                                            "id":  "5e07e649-89b0-f111-aaab-002248db53bb"
+                                        },
+                                        {
+                                            "attr":  "slcrm_referralreason",
+                                            "nav":  "slcrm_ReferralReason",
+                                            "entity":  "slcrm_referralreason",
+                                            "id":  "0e15cb74-89b0-f111-aaab-002248db53bb"
+                                        },
+                                        {
+                                            "attr":  "slcrm_product",
+                                            "nav":  "slcrm_Product",
+                                            "entity":  "slcrm_product",
+                                            "id":  "d73187b5-88b0-f111-aaab-002248db53bb"
+                                        }
+                                    ],
+                        "users":  [
+
+                                  ]
+                    },
+                    {
+                        "id":  "0be777f8-90bd-f111-aaad-e4fade0d2043",
+                        "fields":  {
+                                       "slcrm_itemsummary":  "SMOKE item 1",
+                                       "statuscode":  633650008,
+                                       "slcrm_referraldetails":  "Smoke test details",
+                                       "slcrm_referralitemnumber":  "RFI-001020",
+                                       "slcrm_iscurrentrevision":  true,
+                                       "slcrm_submittedon":  "2026-10-01T12:10:02Z",
+                                       "slcrm_revisionnumber":  1,
+                                       "slcrm_underwriterrationale":  "Smoke test rationale",
+                                       "slcrm_logicalitemid":  "SMOKE-ITEM-1"
+                                   },
+                        "lookups":  [
+                                        {
+                                            "attr":  "slcrm_requiredauthoritylevel",
+                                            "nav":  "slcrm_RequiredAuthorityLevel",
+                                            "entity":  "slcrm_authoritylevel",
+                                            "id":  "cebacfae-88b0-f111-aaab-002248db53bb"
+                                        },
+                                        {
+                                            "attr":  "slcrm_underwriterauthority",
+                                            "nav":  "slcrm_UnderwriterAuthority",
+                                            "entity":  "slcrm_underwriterauthority",
+                                            "id":  "cfc3f6a8-89b0-f111-aaab-002248db53bb"
+                                        },
+                                        {
+                                            "attr":  "slcrm_referral",
+                                            "nav":  "slcrm_Referral",
+                                            "entity":  "slcrm_referralrequest",
+                                            "id":  "0ae777f8-90bd-f111-aaad-e4fade0d2043"
+                                        },
+                                        {
+                                            "attr":  "slcrm_coversection",
+                                            "nav":  "slcrm_CoverSection",
+                                            "entity":  "slcrm_coversection",
+                                            "id":  "ed2edf43-89b0-f111-aaab-002248db53bb"
+                                        },
+                                        {
+                                            "attr":  "slcrm_referralreason",
+                                            "nav":  "slcrm_ReferralReason",
+                                            "entity":  "slcrm_referralreason",
+                                            "id":  "555b937b-89b0-f111-aaab-002248db53bb"
+                                        },
+                                        {
+                                            "attr":  "slcrm_product",
+                                            "nav":  "slcrm_Product",
+                                            "entity":  "slcrm_product",
+                                            "id":  "d63187b5-88b0-f111-aaab-002248db53bb"
+                                        }
+                                    ],
+                        "users":  [
+                                      {
+                                          "attr":  "slcrm_assignedapprover",
+                                          "nav":  "slcrm_AssignedApprover",
+                                          "email":  "AritraBhattacharya@61858932.onmicrosoft.com"
+                                      },
+                                      {
+                                          "attr":  "slcrm_submittedby",
+                                          "nav":  "slcrm_SubmittedBy",
+                                          "email":  "AritraBhattacharya@61858932.onmicrosoft.com"
+                                      }
+                                  ]
+                    },
+                    {
+                        "id":  "0ce777f8-90bd-f111-aaad-e4fade0d2043",
+                        "fields":  {
+                                       "slcrm_supersededon":  "2026-10-01T12:10:23Z",
+                                       "slcrm_itemsummary":  "SMOKE item 2",
+                                       "statuscode":  633650010,
+                                       "slcrm_referraldetails":  "Smoke test details",
+                                       "slcrm_referralitemnumber":  "RFI-001021",
+                                       "slcrm_iscurrentrevision":  false,
+                                       "slcrm_submittedon":  "2026-10-01T12:10:02Z",
+                                       "slcrm_revisionnumber":  1,
+                                       "slcrm_underwriterrationale":  "Smoke test rationale",
+                                       "slcrm_logicalitemid":  "SMOKE-ITEM-2"
+                                   },
+                        "lookups":  [
+                                        {
+                                            "attr":  "slcrm_requiredauthoritylevel",
+                                            "nav":  "slcrm_RequiredAuthorityLevel",
+                                            "entity":  "slcrm_authoritylevel",
+                                            "id":  "cebacfae-88b0-f111-aaab-002248db53bb"
+                                        },
+                                        {
+                                            "attr":  "slcrm_underwriterauthority",
+                                            "nav":  "slcrm_UnderwriterAuthority",
+                                            "entity":  "slcrm_underwriterauthority",
+                                            "id":  "cfc3f6a8-89b0-f111-aaab-002248db53bb"
+                                        },
+                                        {
+                                            "attr":  "slcrm_referral",
+                                            "nav":  "slcrm_Referral",
+                                            "entity":  "slcrm_referralrequest",
+                                            "id":  "0ae777f8-90bd-f111-aaad-e4fade0d2043"
+                                        },
+                                        {
+                                            "attr":  "slcrm_coversection",
+                                            "nav":  "slcrm_CoverSection",
+                                            "entity":  "slcrm_coversection",
+                                            "id":  "ed2edf43-89b0-f111-aaab-002248db53bb"
+                                        },
+                                        {
+                                            "attr":  "slcrm_referralreason",
+                                            "nav":  "slcrm_ReferralReason",
+                                            "entity":  "slcrm_referralreason",
+                                            "id":  "555b937b-89b0-f111-aaab-002248db53bb"
+                                        },
+                                        {
+                                            "attr":  "slcrm_product",
+                                            "nav":  "slcrm_Product",
+                                            "entity":  "slcrm_product",
+                                            "id":  "d63187b5-88b0-f111-aaab-002248db53bb"
+                                        }
+                                    ],
+                        "users":  [
+                                      {
+                                          "attr":  "slcrm_assignedapprover",
+                                          "nav":  "slcrm_AssignedApprover",
+                                          "email":  "AritraBhattacharya@61858932.onmicrosoft.com"
+                                      },
+                                      {
+                                          "attr":  "slcrm_submittedby",
+                                          "nav":  "slcrm_SubmittedBy",
+                                          "email":  "AritraBhattacharya@61858932.onmicrosoft.com"
+                                      }
+                                  ]
+                    },
+                    {
+                        "id":  "508a7a11-91bd-f111-aaad-e4fade0d2043",
+                        "fields":  {
+                                       "slcrm_itemsummary":  "SMOKE item 2",
+                                       "statuscode":  633650014,
+                                       "slcrm_referraldetails":  "Smoke test details",
+                                       "slcrm_referralitemnumber":  "RFI-001022",
+                                       "slcrm_iscurrentrevision":  true,
+                                       "slcrm_revisionnumber":  2,
+                                       "slcrm_underwriterrationale":  "Smoke test rationale",
+                                       "slcrm_logicalitemid":  "SMOKE-ITEM-2",
+                                       "slcrm_changesummary":  "smoke: narrowed scope",
+                                       "slcrm_respondedon":  "2026-10-01T12:10:24Z"
+                                   },
+                        "lookups":  [
+                                        {
+                                            "attr":  "slcrm_requiredauthoritylevel",
+                                            "nav":  "slcrm_RequiredAuthorityLevel",
+                                            "entity":  "slcrm_authoritylevel",
+                                            "id":  "cebacfae-88b0-f111-aaab-002248db53bb"
+                                        },
+                                        {
+                                            "attr":  "slcrm_underwriterauthority",
+                                            "nav":  "slcrm_UnderwriterAuthority",
+                                            "entity":  "slcrm_underwriterauthority",
+                                            "id":  "cfc3f6a8-89b0-f111-aaab-002248db53bb"
+                                        },
+                                        {
+                                            "attr":  "slcrm_rootreferralitem",
+                                            "nav":  "slcrm_RootReferralItem",
+                                            "entity":  "slcrm_referralitem",
+                                            "id":  "0ce777f8-90bd-f111-aaad-e4fade0d2043"
+                                        },
+                                        {
+                                            "attr":  "slcrm_referral",
+                                            "nav":  "slcrm_Referral",
+                                            "entity":  "slcrm_referralrequest",
+                                            "id":  "0ae777f8-90bd-f111-aaad-e4fade0d2043"
+                                        },
+                                        {
+                                            "attr":  "slcrm_coversection",
+                                            "nav":  "slcrm_CoverSection",
+                                            "entity":  "slcrm_coversection",
+                                            "id":  "ed2edf43-89b0-f111-aaab-002248db53bb"
+                                        },
+                                        {
+                                            "attr":  "slcrm_previousreferralitem",
+                                            "nav":  "slcrm_PreviousReferralItem",
+                                            "entity":  "slcrm_referralitem",
+                                            "id":  "0ce777f8-90bd-f111-aaad-e4fade0d2043"
+                                        },
+                                        {
+                                            "attr":  "slcrm_referralreason",
+                                            "nav":  "slcrm_ReferralReason",
+                                            "entity":  "slcrm_referralreason",
+                                            "id":  "555b937b-89b0-f111-aaab-002248db53bb"
+                                        },
+                                        {
+                                            "attr":  "slcrm_product",
+                                            "nav":  "slcrm_Product",
+                                            "entity":  "slcrm_product",
+                                            "id":  "d63187b5-88b0-f111-aaab-002248db53bb"
+                                        }
+                                    ],
+                        "users":  [
+                                      {
+                                          "attr":  "slcrm_assignedapprover",
+                                          "nav":  "slcrm_AssignedApprover",
+                                          "email":  "AritraBhattacharya@61858932.onmicrosoft.com"
+                                      }
+                                  ]
+                    },
+                    {
+                        "id":  "e0fbc11d-91bd-f111-aaad-e4fade0d2043",
+                        "fields":  {
+                                       "slcrm_itemsummary":  "SMOKE2 item",
+                                       "statuscode":  633650011,
+                                       "slcrm_referraldetails":  "Smoke test details",
+                                       "slcrm_referralitemnumber":  "RFI-001023",
+                                       "slcrm_iscurrentrevision":  true,
+                                       "slcrm_submittedon":  "2026-10-01T12:10:44Z",
+                                       "slcrm_revisionnumber":  1,
+                                       "slcrm_underwriterrationale":  "Smoke test rationale",
+                                       "slcrm_logicalitemid":  "SMOKE2-ITEM-1"
+                                   },
+                        "lookups":  [
+                                        {
+                                            "attr":  "slcrm_requiredauthoritylevel",
+                                            "nav":  "slcrm_RequiredAuthorityLevel",
+                                            "entity":  "slcrm_authoritylevel",
+                                            "id":  "cebacfae-88b0-f111-aaab-002248db53bb"
+                                        },
+                                        {
+                                            "attr":  "slcrm_underwriterauthority",
+                                            "nav":  "slcrm_UnderwriterAuthority",
+                                            "entity":  "slcrm_underwriterauthority",
+                                            "id":  "cfc3f6a8-89b0-f111-aaab-002248db53bb"
+                                        },
+                                        {
+                                            "attr":  "slcrm_referral",
+                                            "nav":  "slcrm_Referral",
+                                            "entity":  "slcrm_referralrequest",
+                                            "id":  "dffbc11d-91bd-f111-aaad-e4fade0d2043"
+                                        },
+                                        {
+                                            "attr":  "slcrm_coversection",
+                                            "nav":  "slcrm_CoverSection",
+                                            "entity":  "slcrm_coversection",
+                                            "id":  "ed2edf43-89b0-f111-aaab-002248db53bb"
+                                        },
+                                        {
+                                            "attr":  "slcrm_referralreason",
+                                            "nav":  "slcrm_ReferralReason",
+                                            "entity":  "slcrm_referralreason",
+                                            "id":  "555b937b-89b0-f111-aaab-002248db53bb"
+                                        },
+                                        {
+                                            "attr":  "slcrm_product",
+                                            "nav":  "slcrm_Product",
+                                            "entity":  "slcrm_product",
+                                            "id":  "d63187b5-88b0-f111-aaab-002248db53bb"
+                                        }
+                                    ],
+                        "users":  [
+                                      {
+                                          "attr":  "slcrm_assignedapprover",
+                                          "nav":  "slcrm_AssignedApprover",
+                                          "email":  "AritraBhattacharya@61858932.onmicrosoft.com"
+                                      },
+                                      {
+                                          "attr":  "slcrm_submittedby",
+                                          "nav":  "slcrm_SubmittedBy",
+                                          "email":  "AritraBhattacharya@61858932.onmicrosoft.com"
+                                      }
+                                  ]
+                    },
+                    {
+                        "id":  "a3e52950-91bd-f111-aaad-e4fade0d2043",
+                        "fields":  {
+                                       "slcrm_itemsummary":  "SMOKE3 item",
+                                       "statuscode":  633650011,
+                                       "slcrm_referraldetails":  "Smoke test details",
+                                       "slcrm_referralitemnumber":  "RFI-001024",
+                                       "slcrm_iscurrentrevision":  true,
+                                       "slcrm_submittedon":  "2026-10-01T12:12:14Z",
+                                       "slcrm_revisionnumber":  1,
+                                       "slcrm_underwriterrationale":  "Smoke test rationale",
+                                       "slcrm_logicalitemid":  "SMOKE3-ITEM-1"
+                                   },
+                        "lookups":  [
+                                        {
+                                            "attr":  "slcrm_requiredauthoritylevel",
+                                            "nav":  "slcrm_RequiredAuthorityLevel",
+                                            "entity":  "slcrm_authoritylevel",
+                                            "id":  "cebacfae-88b0-f111-aaab-002248db53bb"
+                                        },
+                                        {
+                                            "attr":  "slcrm_underwriterauthority",
+                                            "nav":  "slcrm_UnderwriterAuthority",
+                                            "entity":  "slcrm_underwriterauthority",
+                                            "id":  "cfc3f6a8-89b0-f111-aaab-002248db53bb"
+                                        },
+                                        {
+                                            "attr":  "slcrm_referral",
+                                            "nav":  "slcrm_Referral",
+                                            "entity":  "slcrm_referralrequest",
+                                            "id":  "a1e52950-91bd-f111-aaad-e4fade0d2043"
+                                        },
+                                        {
+                                            "attr":  "slcrm_coversection",
+                                            "nav":  "slcrm_CoverSection",
+                                            "entity":  "slcrm_coversection",
+                                            "id":  "ed2edf43-89b0-f111-aaab-002248db53bb"
+                                        },
+                                        {
+                                            "attr":  "slcrm_referralreason",
+                                            "nav":  "slcrm_ReferralReason",
+                                            "entity":  "slcrm_referralreason",
+                                            "id":  "555b937b-89b0-f111-aaab-002248db53bb"
+                                        },
+                                        {
+                                            "attr":  "slcrm_product",
+                                            "nav":  "slcrm_Product",
+                                            "entity":  "slcrm_product",
+                                            "id":  "d63187b5-88b0-f111-aaab-002248db53bb"
+                                        }
+                                    ],
+                        "users":  [
+                                      {
+                                          "attr":  "slcrm_assignedapprover",
+                                          "nav":  "slcrm_AssignedApprover",
+                                          "email":  "AritraBhattacharya@61858932.onmicrosoft.com"
+                                      },
+                                      {
+                                          "attr":  "slcrm_submittedby",
+                                          "nav":  "slcrm_SubmittedBy",
+                                          "email":  "AritraBhattacharya@61858932.onmicrosoft.com"
+                                      }
+                                  ]
+                    },
+                    {
+                        "id":  "75d70982-91bd-f111-aaad-e4fade0d2043",
+                        "fields":  {
+                                       "slcrm_itemsummary":  "SMOKE4 item",
+                                       "statuscode":  633650010,
+                                       "slcrm_referraldetails":  "Smoke test details",
+                                       "slcrm_referralitemnumber":  "RFI-001025",
+                                       "slcrm_iscurrentrevision":  true,
+                                       "slcrm_submittedon":  "2026-10-01T12:13:31Z",
+                                       "slcrm_revisionnumber":  1,
+                                       "slcrm_underwriterrationale":  "Smoke test rationale",
+                                       "slcrm_logicalitemid":  "SMOKE4-ITEM-1"
+                                   },
+                        "lookups":  [
+                                        {
+                                            "attr":  "slcrm_requiredauthoritylevel",
+                                            "nav":  "slcrm_RequiredAuthorityLevel",
+                                            "entity":  "slcrm_authoritylevel",
+                                            "id":  "cebacfae-88b0-f111-aaab-002248db53bb"
+                                        },
+                                        {
+                                            "attr":  "slcrm_underwriterauthority",
+                                            "nav":  "slcrm_UnderwriterAuthority",
+                                            "entity":  "slcrm_underwriterauthority",
+                                            "id":  "cfc3f6a8-89b0-f111-aaab-002248db53bb"
+                                        },
+                                        {
+                                            "attr":  "slcrm_referral",
+                                            "nav":  "slcrm_Referral",
+                                            "entity":  "slcrm_referralrequest",
+                                            "id":  "72d70982-91bd-f111-aaad-e4fade0d2043"
+                                        },
+                                        {
+                                            "attr":  "slcrm_coversection",
+                                            "nav":  "slcrm_CoverSection",
+                                            "entity":  "slcrm_coversection",
+                                            "id":  "ed2edf43-89b0-f111-aaab-002248db53bb"
+                                        },
+                                        {
+                                            "attr":  "slcrm_referralreason",
+                                            "nav":  "slcrm_ReferralReason",
+                                            "entity":  "slcrm_referralreason",
+                                            "id":  "555b937b-89b0-f111-aaab-002248db53bb"
+                                        },
+                                        {
+                                            "attr":  "slcrm_product",
+                                            "nav":  "slcrm_Product",
+                                            "entity":  "slcrm_product",
+                                            "id":  "d63187b5-88b0-f111-aaab-002248db53bb"
+                                        }
+                                    ],
+                        "users":  [
+                                      {
+                                          "attr":  "slcrm_assignedapprover",
+                                          "nav":  "slcrm_AssignedApprover",
+                                          "email":  "AritraBhattacharya@61858932.onmicrosoft.com"
+                                      },
+                                      {
+                                          "attr":  "slcrm_submittedby",
+                                          "nav":  "slcrm_SubmittedBy",
+                                          "email":  "AritraBhattacharya@61858932.onmicrosoft.com"
+                                      }
+                                  ]
+                    },
+                    {
+                        "id":  "41ff1b56-a2bd-f111-aaad-e4fade0d2043",
+                        "fields":  {
+                                       "slcrm_itemsummary":  "SMOKE5 item",
+                                       "statuscode":  633650006,
+                                       "slcrm_referraldetails":  "Smoke test details",
+                                       "slcrm_referralitemnumber":  "RFI-001026",
+                                       "slcrm_iscurrentrevision":  true,
+                                       "slcrm_submittedon":  "2026-10-01T14:14:08Z",
+                                       "slcrm_revisionnumber":  1,
+                                       "slcrm_underwriterrationale":  "Smoke test rationale",
+                                       "slcrm_logicalitemid":  "SMOKE5-ITEM-1",
+                                       "slcrm_assignedapproversnapshot":  "Microsoft Flow"
+                                   },
+                        "lookups":  [
+                                        {
+                                            "attr":  "slcrm_requiredauthoritylevel",
+                                            "nav":  "slcrm_RequiredAuthorityLevel",
+                                            "entity":  "slcrm_authoritylevel",
+                                            "id":  "cebacfae-88b0-f111-aaab-002248db53bb"
+                                        },
+                                        {
+                                            "attr":  "slcrm_underwriterauthority",
+                                            "nav":  "slcrm_UnderwriterAuthority",
+                                            "entity":  "slcrm_underwriterauthority",
+                                            "id":  "3eff1b56-a2bd-f111-aaad-e4fade0d2043"
+                                        },
+                                        {
+                                            "attr":  "slcrm_referral",
+                                            "nav":  "slcrm_Referral",
+                                            "entity":  "slcrm_referralrequest",
+                                            "id":  "40ff1b56-a2bd-f111-aaad-e4fade0d2043"
+                                        },
+                                        {
+                                            "attr":  "slcrm_coversection",
+                                            "nav":  "slcrm_CoverSection",
+                                            "entity":  "slcrm_coversection",
+                                            "id":  "ed2edf43-89b0-f111-aaab-002248db53bb"
+                                        },
+                                        {
+                                            "attr":  "slcrm_referralreason",
+                                            "nav":  "slcrm_ReferralReason",
+                                            "entity":  "slcrm_referralreason",
+                                            "id":  "555b937b-89b0-f111-aaab-002248db53bb"
+                                        },
+                                        {
+                                            "attr":  "slcrm_product",
+                                            "nav":  "slcrm_Product",
+                                            "entity":  "slcrm_product",
+                                            "id":  "d63187b5-88b0-f111-aaab-002248db53bb"
+                                        }
+                                    ],
+                        "users":  [
+                                      {
+                                          "attr":  "slcrm_assignedapprover",
+                                          "nav":  "slcrm_AssignedApprover",
+                                          "email":  "flowdev@microsoft.com"
+                                      },
+                                      {
+                                          "attr":  "slcrm_submittedby",
+                                          "nav":  "slcrm_SubmittedBy",
+                                          "email":  "AritraBhattacharya@61858932.onmicrosoft.com"
+                                      }
+                                  ]
+                    },
+                    {
+                        "id":  "260061c0-a5bd-f111-aaad-e4fade0d2043",
+                        "fields":  {
+                                       "slcrm_itemsummary":  "SMOKE-REF-6 item 1",
+                                       "statuscode":  633650014,
+                                       "slcrm_referraldetails":  "d",
+                                       "slcrm_referralitemnumber":  "RFI-001027",
+                                       "slcrm_iscurrentrevision":  true,
+                                       "slcrm_submittedon":  "2026-10-01T14:38:32Z",
+                                       "slcrm_revisionnumber":  1,
+                                       "slcrm_underwriterrationale":  "r",
+                                       "slcrm_logicalitemid":  "SMOKE-REF-6-ITEM-1"
+                                   },
+                        "lookups":  [
+                                        {
+                                            "attr":  "slcrm_requiredauthoritylevel",
+                                            "nav":  "slcrm_RequiredAuthorityLevel",
+                                            "entity":  "slcrm_authoritylevel",
+                                            "id":  "cebacfae-88b0-f111-aaab-002248db53bb"
+                                        },
+                                        {
+                                            "attr":  "slcrm_underwriterauthority",
+                                            "nav":  "slcrm_UnderwriterAuthority",
+                                            "entity":  "slcrm_underwriterauthority",
+                                            "id":  "cfc3f6a8-89b0-f111-aaab-002248db53bb"
+                                        },
+                                        {
+                                            "attr":  "slcrm_referral",
+                                            "nav":  "slcrm_Referral",
+                                            "entity":  "slcrm_referralrequest",
+                                            "id":  "250061c0-a5bd-f111-aaad-e4fade0d2043"
+                                        },
+                                        {
+                                            "attr":  "slcrm_coversection",
+                                            "nav":  "slcrm_CoverSection",
+                                            "entity":  "slcrm_coversection",
+                                            "id":  "ed2edf43-89b0-f111-aaab-002248db53bb"
+                                        },
+                                        {
+                                            "attr":  "slcrm_referralreason",
+                                            "nav":  "slcrm_ReferralReason",
+                                            "entity":  "slcrm_referralreason",
+                                            "id":  "555b937b-89b0-f111-aaab-002248db53bb"
+                                        },
+                                        {
+                                            "attr":  "slcrm_product",
+                                            "nav":  "slcrm_Product",
+                                            "entity":  "slcrm_product",
+                                            "id":  "d63187b5-88b0-f111-aaab-002248db53bb"
+                                        }
+                                    ],
+                        "users":  [
+                                      {
+                                          "attr":  "slcrm_assignedapprover",
+                                          "nav":  "slcrm_AssignedApprover",
+                                          "email":  "AritraBhattacharya@61858932.onmicrosoft.com"
+                                      },
+                                      {
+                                          "attr":  "slcrm_submittedby",
+                                          "nav":  "slcrm_SubmittedBy",
+                                          "email":  "AritraBhattacharya@61858932.onmicrosoft.com"
+                                      }
+                                  ]
+                    },
+                    {
+                        "id":  "270061c0-a5bd-f111-aaad-e4fade0d2043",
+                        "fields":  {
+                                       "slcrm_itemsummary":  "SMOKE-REF-6 item 2",
+                                       "statuscode":  633650010,
+                                       "slcrm_referraldetails":  "d",
+                                       "slcrm_referralitemnumber":  "RFI-001028",
+                                       "slcrm_iscurrentrevision":  true,
+                                       "slcrm_submittedon":  "2026-10-01T14:38:32Z",
+                                       "slcrm_revisionnumber":  1,
+                                       "slcrm_underwriterrationale":  "r",
+                                       "slcrm_logicalitemid":  "SMOKE-REF-6-ITEM-2"
+                                   },
+                        "lookups":  [
+                                        {
+                                            "attr":  "slcrm_requiredauthoritylevel",
+                                            "nav":  "slcrm_RequiredAuthorityLevel",
+                                            "entity":  "slcrm_authoritylevel",
+                                            "id":  "cebacfae-88b0-f111-aaab-002248db53bb"
+                                        },
+                                        {
+                                            "attr":  "slcrm_underwriterauthority",
+                                            "nav":  "slcrm_UnderwriterAuthority",
+                                            "entity":  "slcrm_underwriterauthority",
+                                            "id":  "cfc3f6a8-89b0-f111-aaab-002248db53bb"
+                                        },
+                                        {
+                                            "attr":  "slcrm_referral",
+                                            "nav":  "slcrm_Referral",
+                                            "entity":  "slcrm_referralrequest",
+                                            "id":  "250061c0-a5bd-f111-aaad-e4fade0d2043"
+                                        },
+                                        {
+                                            "attr":  "slcrm_coversection",
+                                            "nav":  "slcrm_CoverSection",
+                                            "entity":  "slcrm_coversection",
+                                            "id":  "ed2edf43-89b0-f111-aaab-002248db53bb"
+                                        },
+                                        {
+                                            "attr":  "slcrm_referralreason",
+                                            "nav":  "slcrm_ReferralReason",
+                                            "entity":  "slcrm_referralreason",
+                                            "id":  "555b937b-89b0-f111-aaab-002248db53bb"
+                                        },
+                                        {
+                                            "attr":  "slcrm_product",
+                                            "nav":  "slcrm_Product",
+                                            "entity":  "slcrm_product",
+                                            "id":  "d63187b5-88b0-f111-aaab-002248db53bb"
+                                        }
+                                    ],
+                        "users":  [
+                                      {
+                                          "attr":  "slcrm_assignedapprover",
+                                          "nav":  "slcrm_AssignedApprover",
+                                          "email":  "AritraBhattacharya@61858932.onmicrosoft.com"
+                                      },
+                                      {
+                                          "attr":  "slcrm_submittedby",
+                                          "nav":  "slcrm_SubmittedBy",
+                                          "email":  "AritraBhattacharya@61858932.onmicrosoft.com"
+                                      }
+                                  ]
+                    },
+                    {
+                        "id":  "837422f3-a5bd-f111-aaad-e4fade0d2043",
+                        "fields":  {
+                                       "slcrm_supersededon":  "2026-10-01T14:39:58Z",
+                                       "slcrm_itemsummary":  "SMOKE-REF-7 item",
+                                       "statuscode":  633650012,
+                                       "slcrm_referraldetails":  "d",
+                                       "slcrm_referralitemnumber":  "RFI-001029",
+                                       "slcrm_iscurrentrevision":  false,
+                                       "slcrm_submittedon":  "2026-10-01T14:39:57Z",
+                                       "slcrm_revisionnumber":  1,
+                                       "slcrm_underwriterrationale":  "r",
+                                       "slcrm_logicalitemid":  "SMOKE-REF-7-ITEM-1"
+                                   },
+                        "lookups":  [
+                                        {
+                                            "attr":  "slcrm_requiredauthoritylevel",
+                                            "nav":  "slcrm_RequiredAuthorityLevel",
+                                            "entity":  "slcrm_authoritylevel",
+                                            "id":  "cebacfae-88b0-f111-aaab-002248db53bb"
+                                        },
+                                        {
+                                            "attr":  "slcrm_underwriterauthority",
+                                            "nav":  "slcrm_UnderwriterAuthority",
+                                            "entity":  "slcrm_underwriterauthority",
+                                            "id":  "cfc3f6a8-89b0-f111-aaab-002248db53bb"
+                                        },
+                                        {
+                                            "attr":  "slcrm_referral",
+                                            "nav":  "slcrm_Referral",
+                                            "entity":  "slcrm_referralrequest",
+                                            "id":  "827422f3-a5bd-f111-aaad-e4fade0d2043"
+                                        },
+                                        {
+                                            "attr":  "slcrm_coversection",
+                                            "nav":  "slcrm_CoverSection",
+                                            "entity":  "slcrm_coversection",
+                                            "id":  "ed2edf43-89b0-f111-aaab-002248db53bb"
+                                        },
+                                        {
+                                            "attr":  "slcrm_referralreason",
+                                            "nav":  "slcrm_ReferralReason",
+                                            "entity":  "slcrm_referralreason",
+                                            "id":  "555b937b-89b0-f111-aaab-002248db53bb"
+                                        },
+                                        {
+                                            "attr":  "slcrm_product",
+                                            "nav":  "slcrm_Product",
+                                            "entity":  "slcrm_product",
+                                            "id":  "d63187b5-88b0-f111-aaab-002248db53bb"
+                                        }
+                                    ],
+                        "users":  [
+                                      {
+                                          "attr":  "slcrm_assignedapprover",
+                                          "nav":  "slcrm_AssignedApprover",
+                                          "email":  "AritraBhattacharya@61858932.onmicrosoft.com"
+                                      },
+                                      {
+                                          "attr":  "slcrm_submittedby",
+                                          "nav":  "slcrm_SubmittedBy",
+                                          "email":  "AritraBhattacharya@61858932.onmicrosoft.com"
+                                      }
+                                  ]
+                    },
+                    {
+                        "id":  "ed1e22f9-a5bd-f111-aaad-e4fade0d2043",
+                        "fields":  {
+                                       "slcrm_itemsummary":  "SMOKE-REF-7 item",
+                                       "statuscode":  633650007,
+                                       "slcrm_referraldetails":  "d",
+                                       "slcrm_referralitemnumber":  "RFI-001030",
+                                       "slcrm_iscurrentrevision":  true,
+                                       "slcrm_revisionnumber":  2,
+                                       "slcrm_underwriterrationale":  "r",
+                                       "slcrm_logicalitemid":  "SMOKE-REF-7-ITEM-1"
+                                   },
+                        "lookups":  [
+                                        {
+                                            "attr":  "slcrm_requiredauthoritylevel",
+                                            "nav":  "slcrm_RequiredAuthorityLevel",
+                                            "entity":  "slcrm_authoritylevel",
+                                            "id":  "cebacfae-88b0-f111-aaab-002248db53bb"
+                                        },
+                                        {
+                                            "attr":  "slcrm_underwriterauthority",
+                                            "nav":  "slcrm_UnderwriterAuthority",
+                                            "entity":  "slcrm_underwriterauthority",
+                                            "id":  "cfc3f6a8-89b0-f111-aaab-002248db53bb"
+                                        },
+                                        {
+                                            "attr":  "slcrm_rootreferralitem",
+                                            "nav":  "slcrm_RootReferralItem",
+                                            "entity":  "slcrm_referralitem",
+                                            "id":  "837422f3-a5bd-f111-aaad-e4fade0d2043"
+                                        },
+                                        {
+                                            "attr":  "slcrm_referral",
+                                            "nav":  "slcrm_Referral",
+                                            "entity":  "slcrm_referralrequest",
+                                            "id":  "827422f3-a5bd-f111-aaad-e4fade0d2043"
+                                        },
+                                        {
+                                            "attr":  "slcrm_coversection",
+                                            "nav":  "slcrm_CoverSection",
+                                            "entity":  "slcrm_coversection",
+                                            "id":  "ed2edf43-89b0-f111-aaab-002248db53bb"
+                                        },
+                                        {
+                                            "attr":  "slcrm_previousreferralitem",
+                                            "nav":  "slcrm_PreviousReferralItem",
+                                            "entity":  "slcrm_referralitem",
+                                            "id":  "837422f3-a5bd-f111-aaad-e4fade0d2043"
+                                        },
+                                        {
+                                            "attr":  "slcrm_referralreason",
+                                            "nav":  "slcrm_ReferralReason",
+                                            "entity":  "slcrm_referralreason",
+                                            "id":  "555b937b-89b0-f111-aaab-002248db53bb"
+                                        },
+                                        {
+                                            "attr":  "slcrm_product",
+                                            "nav":  "slcrm_Product",
+                                            "entity":  "slcrm_product",
+                                            "id":  "d63187b5-88b0-f111-aaab-002248db53bb"
+                                        }
+                                    ],
+                        "users":  [
+                                      {
+                                          "attr":  "slcrm_assignedapprover",
+                                          "nav":  "slcrm_AssignedApprover",
+                                          "email":  "AritraBhattacharya@61858932.onmicrosoft.com"
+                                      }
+                                  ]
+                    }
+                ]
+}

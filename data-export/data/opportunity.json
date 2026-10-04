@@ -1,0 +1,220 @@
+﻿{
+    "table":  "opportunity",
+    "set":  "opportunities",
+    "records":  [
+                    {
+                        "id":  "becc5dba-b1f1-ea11-a815-000d3a1b14a2",
+                        "fields":  {
+                                       "name":  "1 Café Grande Espresso Machine for Alpine Ski House",
+                                       "closeprobability":  70,
+                                       "estimatedclosedate":  "2026-09-26",
+                                       "estimatedvalue":  14900.0000000000,
+                                       "description":  "Supply coffee machines for their new Building"
+                                   },
+                        "lookups":  [
+
+                                    ],
+                        "users":  [
+
+                                  ]
+                    },
+                    {
+                        "id":  "14741c9e-4b9e-ea11-a811-000d3a1bb122",
+                        "fields":  {
+                                       "name":  "5 Café A-100 Automatic",
+                                       "closeprobability":  85,
+                                       "estimatedclosedate":  "2026-09-09",
+                                       "estimatedvalue":  77500.0000000000,
+                                       "description":  "Supply coffee machines for their new Building",
+                                       "budgetamount":  40000.0000000000
+                                   },
+                        "lookups":  [
+
+                                    ],
+                        "users":  [
+
+                                  ]
+                    },
+                    {
+                        "id":  "e90a0493-e8f0-ea11-a815-000d3a1b14a2",
+                        "fields":  {
+                                       "name":  "10 Airpot XL Coffee Makers for Alpine Ski House",
+                                       "closeprobability":  65,
+                                       "estimatedclosedate":  "2026-10-03",
+                                       "estimatedvalue":  4990.0000000000,
+                                       "description":  "Adding coffee machines to HQ"
+                                   },
+                        "lookups":  [
+
+                                    ],
+                        "users":  [
+
+                                  ]
+                    },
+                    {
+                        "id":  "9a9606fb-1ab1-f111-aaab-002248db53bb",
+                        "fields":  {
+                                       "name":  "POL-MDN-4471 Renewal 2021 - Fabrikam, Inc.",
+                                       "estimatedclosedate":  "2021-09-01",
+                                       "description":  "Solid start of a new commercial property relationship. No prior claims history to assess."
+                                   },
+                        "lookups":  [
+
+                                    ],
+                        "users":  [
+
+                                  ]
+                    },
+                    {
+                        "id":  "7f017587-e7bc-f111-aaad-e4fade0d3397",
+                        "fields":  {
+                                       "name":  "POL-MDN-4471 Renewal 2027 - Fabrikam, Inc."
+                                   },
+                        "lookups":  [
+
+                                    ],
+                        "users":  [
+
+                                  ]
+                    },
+                    {
+                        "id":  "a09c2889-a016-eb11-a813-002248029f77",
+                        "fields":  {
+                                       "name":  "1 Café BG-1 Grinder for Alpine Ski House",
+                                       "closeprobability":  80,
+                                       "estimatedclosedate":  "2026-09-22",
+                                       "estimatedvalue":  4999.0000000000,
+                                       "description":  "Moving to the new line of coffee machines"
+                                   },
+                        "lookups":  [
+
+                                    ],
+                        "users":  [
+
+                                  ]
+                    },
+                    {
+                        "id":  "b052fc98-e8f0-ea11-a815-000d3a1b14a2",
+                        "fields":  {
+                                       "name":  "18 Airpot Coffee Makers for Northwind Traders",
+                                       "closeprobability":  93,
+                                       "estimatedclosedate":  "2026-09-24",
+                                       "estimatedvalue":  30582.0000000000,
+                                       "description":  "Buying new machines for their current offices",
+                                       "budgetamount":  10000.0000000000
+                                   },
+                        "lookups":  [
+
+                                    ],
+                        "users":  [
+
+                                  ]
+                    },
+                    {
+                        "id":  "aa9606fb-1ab1-f111-aaab-002248db53bb",
+                        "fields":  {
+                                       "name":  "POL-MDN-4471 Renewal 2023 - Fabrikam, Inc.",
+                                       "estimatedclosedate":  "2023-09-01",
+                                       "description":  "Second renewal. Minor claim notified (escape of water), otherwise stable."
+                                   },
+                        "lookups":  [
+
+                                    ],
+                        "users":  [
+
+                                  ]
+                    },
+                    {
+                        "id":  "2ec06197-31ec-ea11-a817-000d3a1b14a2",
+                        "fields":  {
+                                       "name":  "2 Café Corto for Northwind Traders",
+                                       "closeprobability":  80,
+                                       "estimatedclosedate":  "2026-10-18",
+                                       "estimatedvalue":  33800.0000000000,
+                                       "description":  "Espresso machines to their renovated cafeteria"
+                                   },
+                        "lookups":  [
+
+                                    ],
+                        "users":  [
+
+                                  ]
+                    },
+                    {
+                        "id":  "a69606fb-1ab1-f111-aaab-002248db53bb",
+                        "fields":  {
+                                       "name":  "POL-MDN-4471 Renewal 2022 - Fabrikam, Inc.",
+                                       "estimatedclosedate":  "2022-09-01",
+                                       "description":  "First renewal. Clean first year, no claims."
+                                   },
+                        "lookups":  [
+
+                                    ],
+                        "users":  [
+
+                                  ]
+                    },
+                    {
+                        "id":  "90a128af-1f73-ea11-a811-000d3a1bb5a2",
+                        "fields":  {
+                                       "name":  "2 Café Duo Espresso Machines for Fabrikam",
+                                       "closeprobability":  90,
+                                       "estimatedclosedate":  "2026-09-25",
+                                       "estimatedvalue":  25800.0000000000,
+                                       "description":  "Espresso machines to their renovated cafeteria",
+                                       "budgetamount":  34000.0000000000
+                                   },
+                        "lookups":  [
+
+                                    ],
+                        "users":  [
+
+                                  ]
+                    },
+                    {
+                        "id":  "71ecca72-0d1c-48ce-a21b-0d6650b1e904",
+                        "fields":  {
+                                       "name":  "3 Café Grande Espresso Machines for A. Datum",
+                                       "closeprobability":  90,
+                                       "estimatedclosedate":  "2026-09-12",
+                                       "estimatedvalue":  44700.0000000000,
+                                       "description":  "Espresso machines to their renovated cafeteria",
+                                       "budgetamount":  45000.0000000000
+                                   },
+                        "lookups":  [
+
+                                    ],
+                        "users":  [
+
+                                  ]
+                    },
+                    {
+                        "id":  "02c9e601-1bb1-f111-aaab-002248db53bb",
+                        "fields":  {
+                                       "name":  "POL-MDN-4471 Renewal 2024 - Fabrikam, Inc.",
+                                       "estimatedclosedate":  "2024-09-01",
+                                       "description":  "Third renewal. Business expanded - customer added a second storage unit at the same site."
+                                   },
+                        "lookups":  [
+
+                                    ],
+                        "users":  [
+
+                                  ]
+                    },
+                    {
+                        "id":  "14c9e601-1bb1-f111-aaab-002248db53bb",
+                        "fields":  {
+                                       "name":  "POL-MDN-4471 Renewal 2025 - Fabrikam, Inc.",
+                                       "estimatedclosedate":  "2025-09-01",
+                                       "description":  "Fourth renewal. Clean year, no claims, no changes to the insured premises."
+                                   },
+                        "lookups":  [
+
+                                    ],
+                        "users":  [
+
+                                  ]
+                    }
+                ]
+}

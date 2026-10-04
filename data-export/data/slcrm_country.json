@@ -1,0 +1,45 @@
+﻿{
+    "table":  "slcrm_country",
+    "set":  "slcrm_countries",
+    "records":  [
+                    {
+                        "id":  "d32edf43-89b0-f111-aaab-002248db53bb",
+                        "fields":  {
+                                       "slcrm_name":  "United Kingdom",
+                                       "statuscode":  1
+                                   },
+                        "lookups":  [
+
+                                    ],
+                        "users":  [
+
+                                  ]
+                    },
+                    {
+                        "id":  "d92edf43-89b0-f111-aaab-002248db53bb",
+                        "fields":  {
+                                       "slcrm_name":  "Spain",
+                                       "statuscode":  1
+                                   },
+                        "lookups":  [
+
+                                    ],
+                        "users":  [
+
+                                  ]
+                    },
+                    {
+                        "id":  "da2edf43-89b0-f111-aaab-002248db53bb",
+                        "fields":  {
+                                       "slcrm_name":  "France",
+                                       "statuscode":  1
+                                   },
+                        "lookups":  [
+
+                                    ],
+                        "users":  [
+
+                                  ]
+                    }
+                ]
+}

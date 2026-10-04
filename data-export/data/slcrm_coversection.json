@@ -1,0 +1,174 @@
+﻿{
+    "table":  "slcrm_coversection",
+    "set":  "slcrm_coversections",
+    "records":  [
+                    {
+                        "id":  "ed2edf43-89b0-f111-aaab-002248db53bb",
+                        "fields":  {
+                                       "slcrm_name":  "Hull All Risks",
+                                       "slcrm_displayorder":  10,
+                                       "statuscode":  1,
+                                       "slcrm_isleaf":  true,
+                                       "slcrm_covercode":  "HAR"
+                                   },
+                        "lookups":  [
+                                        {
+                                            "attr":  "slcrm_product",
+                                            "nav":  "slcrm_Product",
+                                            "entity":  "slcrm_product",
+                                            "id":  "d63187b5-88b0-f111-aaab-002248db53bb"
+                                        }
+                                    ],
+                        "users":  [
+
+                                  ]
+                    },
+                    {
+                        "id":  "5807e649-89b0-f111-aaab-002248db53bb",
+                        "fields":  {
+                                       "slcrm_name":  "Hull War Risks",
+                                       "slcrm_displayorder":  10,
+                                       "statuscode":  1,
+                                       "slcrm_isleaf":  true,
+                                       "slcrm_covercode":  "HWR"
+                                   },
+                        "lookups":  [
+                                        {
+                                            "attr":  "slcrm_product",
+                                            "nav":  "slcrm_Product",
+                                            "entity":  "slcrm_product",
+                                            "id":  "d63187b5-88b0-f111-aaab-002248db53bb"
+                                        }
+                                    ],
+                        "users":  [
+
+                                  ]
+                    },
+                    {
+                        "id":  "5b07e649-89b0-f111-aaab-002248db53bb",
+                        "fields":  {
+                                       "slcrm_name":  "Cargo Transit",
+                                       "slcrm_displayorder":  10,
+                                       "statuscode":  1,
+                                       "slcrm_isleaf":  true,
+                                       "slcrm_covercode":  "CGT"
+                                   },
+                        "lookups":  [
+                                        {
+                                            "attr":  "slcrm_product",
+                                            "nav":  "slcrm_Product",
+                                            "entity":  "slcrm_product",
+                                            "id":  "d73187b5-88b0-f111-aaab-002248db53bb"
+                                        }
+                                    ],
+                        "users":  [
+
+                                  ]
+                    },
+                    {
+                        "id":  "5e07e649-89b0-f111-aaab-002248db53bb",
+                        "fields":  {
+                                       "slcrm_name":  "Cargo Storage",
+                                       "slcrm_displayorder":  10,
+                                       "statuscode":  1,
+                                       "slcrm_isleaf":  true,
+                                       "slcrm_covercode":  "CGS"
+                                   },
+                        "lookups":  [
+                                        {
+                                            "attr":  "slcrm_product",
+                                            "nav":  "slcrm_Product",
+                                            "entity":  "slcrm_product",
+                                            "id":  "d73187b5-88b0-f111-aaab-002248db53bb"
+                                        }
+                                    ],
+                        "users":  [
+
+                                  ]
+                    },
+                    {
+                        "id":  "5f07e649-89b0-f111-aaab-002248db53bb",
+                        "fields":  {
+                                       "slcrm_name":  "Freight Demurrage",
+                                       "slcrm_displayorder":  10,
+                                       "statuscode":  1,
+                                       "slcrm_isleaf":  true,
+                                       "slcrm_covercode":  "FRD"
+                                   },
+                        "lookups":  [
+                                        {
+                                            "attr":  "slcrm_product",
+                                            "nav":  "slcrm_Product",
+                                            "entity":  "slcrm_product",
+                                            "id":  "d83187b5-88b0-f111-aaab-002248db53bb"
+                                        }
+                                    ],
+                        "users":  [
+
+                                  ]
+                    },
+                    {
+                        "id":  "6007e649-89b0-f111-aaab-002248db53bb",
+                        "fields":  {
+                                       "slcrm_name":  "Liability P\u0026I",
+                                       "slcrm_displayorder":  10,
+                                       "statuscode":  1,
+                                       "slcrm_isleaf":  true,
+                                       "slcrm_covercode":  "LPI"
+                                   },
+                        "lookups":  [
+                                        {
+                                            "attr":  "slcrm_product",
+                                            "nav":  "slcrm_Product",
+                                            "entity":  "slcrm_product",
+                                            "id":  "d93187b5-88b0-f111-aaab-002248db53bb"
+                                        }
+                                    ],
+                        "users":  [
+
+                                  ]
+                    },
+                    {
+                        "id":  "6107e649-89b0-f111-aaab-002248db53bb",
+                        "fields":  {
+                                       "slcrm_name":  "Trades Repairers",
+                                       "slcrm_displayorder":  10,
+                                       "statuscode":  1,
+                                       "slcrm_isleaf":  true,
+                                       "slcrm_covercode":  "TRR"
+                                   },
+                        "lookups":  [
+                                        {
+                                            "attr":  "slcrm_product",
+                                            "nav":  "slcrm_Product",
+                                            "entity":  "slcrm_product",
+                                            "id":  "da3187b5-88b0-f111-aaab-002248db53bb"
+                                        }
+                                    ],
+                        "users":  [
+
+                                  ]
+                    },
+                    {
+                        "id":  "6207e649-89b0-f111-aaab-002248db53bb",
+                        "fields":  {
+                                       "slcrm_name":  "Ports Terminal Operations",
+                                       "slcrm_displayorder":  10,
+                                       "statuscode":  1,
+                                       "slcrm_isleaf":  true,
+                                       "slcrm_covercode":  "PTO"
+                                   },
+                        "lookups":  [
+                                        {
+                                            "attr":  "slcrm_product",
+                                            "nav":  "slcrm_Product",
+                                            "entity":  "slcrm_product",
+                                            "id":  "43028dbc-88b0-f111-aaab-002248db53bb"
+                                        }
+                                    ],
+                        "users":  [
+
+                                  ]
+                    }
+                ]
+}

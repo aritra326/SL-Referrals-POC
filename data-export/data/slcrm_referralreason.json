@@ -1,0 +1,411 @@
+﻿{
+    "table":  "slcrm_referralreason",
+    "set":  "slcrm_referralreasons",
+    "records":  [
+                    {
+                        "id":  "0d15cb74-89b0-f111-aaab-002248db53bb",
+                        "fields":  {
+                                       "slcrm_requiresdurationinformation":  false,
+                                       "slcrm_requirespricinginformation":  false,
+                                       "slcrm_allowmultiplecurrentitems":  false,
+                                       "slcrm_requireslicencecheck":  false,
+                                       "slcrm_name":  "Appetite/Hazard Code",
+                                       "slcrm_requiresreinsuranceinformation":  false,
+                                       "slcrm_requiresgeographyinformation":  false,
+                                       "slcrm_requirescoversection":  true,
+                                       "slcrm_detailtemplate":  633650001,
+                                       "slcrm_displayorder":  10,
+                                       "slcrm_requireslimitinformation":  false,
+                                       "slcrm_reasoncode":  "APPETITE",
+                                       "slcrm_requiressupportingevidence":  false,
+                                       "statuscode":  1,
+                                       "slcrm_requireswordinginformation":  false,
+                                       "slcrm_defaultsladays":  5
+                                   },
+                        "lookups":  [
+
+                                    ],
+                        "users":  [
+
+                                  ]
+                    },
+                    {
+                        "id":  "0e15cb74-89b0-f111-aaab-002248db53bb",
+                        "fields":  {
+                                       "slcrm_requiresdurationinformation":  false,
+                                       "slcrm_requirespricinginformation":  false,
+                                       "slcrm_allowmultiplecurrentitems":  false,
+                                       "slcrm_requireslicencecheck":  false,
+                                       "slcrm_name":  "Limits/Capacity",
+                                       "slcrm_requiresreinsuranceinformation":  false,
+                                       "slcrm_requiresgeographyinformation":  false,
+                                       "slcrm_requirescoversection":  true,
+                                       "slcrm_detailtemplate":  633650002,
+                                       "slcrm_displayorder":  20,
+                                       "slcrm_requireslimitinformation":  false,
+                                       "slcrm_reasoncode":  "LIMITSCAP",
+                                       "slcrm_requiressupportingevidence":  false,
+                                       "statuscode":  1,
+                                       "slcrm_requireswordinginformation":  false,
+                                       "slcrm_defaultsladays":  5
+                                   },
+                        "lookups":  [
+
+                                    ],
+                        "users":  [
+
+                                  ]
+                    },
+                    {
+                        "id":  "545b937b-89b0-f111-aaab-002248db53bb",
+                        "fields":  {
+                                       "slcrm_requiresdurationinformation":  false,
+                                       "slcrm_requirespricinginformation":  false,
+                                       "slcrm_allowmultiplecurrentitems":  false,
+                                       "slcrm_requireslicencecheck":  false,
+                                       "slcrm_name":  "Pricing (incl AP/TP TRI)",
+                                       "slcrm_requiresreinsuranceinformation":  false,
+                                       "slcrm_requiresgeographyinformation":  false,
+                                       "slcrm_requirescoversection":  true,
+                                       "slcrm_detailtemplate":  633650003,
+                                       "slcrm_displayorder":  30,
+                                       "slcrm_requireslimitinformation":  false,
+                                       "slcrm_reasoncode":  "PRICING",
+                                       "slcrm_requiressupportingevidence":  false,
+                                       "statuscode":  1,
+                                       "slcrm_requireswordinginformation":  false,
+                                       "slcrm_defaultsladays":  5
+                                   },
+                        "lookups":  [
+
+                                    ],
+                        "users":  [
+
+                                  ]
+                    },
+                    {
+                        "id":  "555b937b-89b0-f111-aaab-002248db53bb",
+                        "fields":  {
+                                       "slcrm_requiresdurationinformation":  false,
+                                       "slcrm_requirespricinginformation":  false,
+                                       "slcrm_allowmultiplecurrentitems":  false,
+                                       "slcrm_requireslicencecheck":  false,
+                                       "slcrm_name":  "Policy Duration",
+                                       "slcrm_requiresreinsuranceinformation":  false,
+                                       "slcrm_requiresgeographyinformation":  false,
+                                       "slcrm_requirescoversection":  true,
+                                       "slcrm_detailtemplate":  633650004,
+                                       "slcrm_displayorder":  40,
+                                       "slcrm_requireslimitinformation":  false,
+                                       "slcrm_reasoncode":  "POLICYDUR",
+                                       "slcrm_requiressupportingevidence":  false,
+                                       "statuscode":  1,
+                                       "slcrm_requireswordinginformation":  false,
+                                       "slcrm_defaultsladays":  5
+                                   },
+                        "lookups":  [
+
+                                    ],
+                        "users":  [
+
+                                  ]
+                    },
+                    {
+                        "id":  "565b937b-89b0-f111-aaab-002248db53bb",
+                        "fields":  {
+                                       "slcrm_requiresdurationinformation":  false,
+                                       "slcrm_requirespricinginformation":  false,
+                                       "slcrm_allowmultiplecurrentitems":  false,
+                                       "slcrm_requireslicencecheck":  false,
+                                       "slcrm_name":  "Additional Covers",
+                                       "slcrm_requiresreinsuranceinformation":  false,
+                                       "slcrm_requiresgeographyinformation":  false,
+                                       "slcrm_requirescoversection":  true,
+                                       "slcrm_detailtemplate":  633650005,
+                                       "slcrm_displayorder":  50,
+                                       "slcrm_requireslimitinformation":  false,
+                                       "slcrm_reasoncode":  "ADDCOVER",
+                                       "slcrm_requiressupportingevidence":  false,
+                                       "statuscode":  1,
+                                       "slcrm_requireswordinginformation":  false,
+                                       "slcrm_defaultsladays":  5
+                                   },
+                        "lookups":  [
+
+                                    ],
+                        "users":  [
+
+                                  ]
+                    },
+                    {
+                        "id":  "575b937b-89b0-f111-aaab-002248db53bb",
+                        "fields":  {
+                                       "slcrm_requiresdurationinformation":  false,
+                                       "slcrm_requirespricinginformation":  false,
+                                       "slcrm_allowmultiplecurrentitems":  false,
+                                       "slcrm_requireslicencecheck":  false,
+                                       "slcrm_name":  "Specific Wording Issues",
+                                       "slcrm_requiresreinsuranceinformation":  false,
+                                       "slcrm_requiresgeographyinformation":  false,
+                                       "slcrm_requirescoversection":  true,
+                                       "slcrm_detailtemplate":  633650006,
+                                       "slcrm_displayorder":  60,
+                                       "slcrm_requireslimitinformation":  false,
+                                       "slcrm_reasoncode":  "WORDING",
+                                       "slcrm_requiressupportingevidence":  false,
+                                       "statuscode":  1,
+                                       "slcrm_requireswordinginformation":  false,
+                                       "slcrm_defaultsladays":  5
+                                   },
+                        "lookups":  [
+
+                                    ],
+                        "users":  [
+
+                                  ]
+                    },
+                    {
+                        "id":  "585b937b-89b0-f111-aaab-002248db53bb",
+                        "fields":  {
+                                       "slcrm_requiresdurationinformation":  false,
+                                       "slcrm_requirespricinginformation":  false,
+                                       "slcrm_allowmultiplecurrentitems":  false,
+                                       "slcrm_requireslicencecheck":  false,
+                                       "slcrm_name":  "US Exposure",
+                                       "slcrm_requiresreinsuranceinformation":  false,
+                                       "slcrm_requiresgeographyinformation":  false,
+                                       "slcrm_requirescoversection":  true,
+                                       "slcrm_detailtemplate":  633650007,
+                                       "slcrm_displayorder":  70,
+                                       "slcrm_requireslimitinformation":  false,
+                                       "slcrm_reasoncode":  "USEXP",
+                                       "slcrm_requiressupportingevidence":  false,
+                                       "statuscode":  1,
+                                       "slcrm_requireswordinginformation":  false,
+                                       "slcrm_defaultsladays":  5
+                                   },
+                        "lookups":  [
+
+                                    ],
+                        "users":  [
+
+                                  ]
+                    },
+                    {
+                        "id":  "595b937b-89b0-f111-aaab-002248db53bb",
+                        "fields":  {
+                                       "slcrm_requiresdurationinformation":  false,
+                                       "slcrm_requirespricinginformation":  false,
+                                       "slcrm_allowmultiplecurrentitems":  false,
+                                       "slcrm_requireslicencecheck":  false,
+                                       "slcrm_name":  "Risk Management",
+                                       "slcrm_requiresreinsuranceinformation":  false,
+                                       "slcrm_requiresgeographyinformation":  false,
+                                       "slcrm_requirescoversection":  true,
+                                       "slcrm_detailtemplate":  633650008,
+                                       "slcrm_displayorder":  80,
+                                       "slcrm_requireslimitinformation":  false,
+                                       "slcrm_reasoncode":  "RISKMGMT",
+                                       "slcrm_requiressupportingevidence":  false,
+                                       "statuscode":  1,
+                                       "slcrm_requireswordinginformation":  false,
+                                       "slcrm_defaultsladays":  5
+                                   },
+                        "lookups":  [
+
+                                    ],
+                        "users":  [
+
+                                  ]
+                    },
+                    {
+                        "id":  "b8e2c981-89b0-f111-aaab-002248db53bb",
+                        "fields":  {
+                                       "slcrm_requiresdurationinformation":  false,
+                                       "slcrm_requirespricinginformation":  false,
+                                       "slcrm_allowmultiplecurrentitems":  false,
+                                       "slcrm_requireslicencecheck":  false,
+                                       "slcrm_name":  "Reinsurance (Incl. Fac)",
+                                       "slcrm_requiresreinsuranceinformation":  false,
+                                       "slcrm_requiresgeographyinformation":  false,
+                                       "slcrm_requirescoversection":  true,
+                                       "slcrm_detailtemplate":  633650009,
+                                       "slcrm_displayorder":  90,
+                                       "slcrm_requireslimitinformation":  false,
+                                       "slcrm_reasoncode":  "REINSURANCE",
+                                       "slcrm_requiressupportingevidence":  false,
+                                       "statuscode":  1,
+                                       "slcrm_requireswordinginformation":  false,
+                                       "slcrm_defaultsladays":  5
+                                   },
+                        "lookups":  [
+
+                                    ],
+                        "users":  [
+
+                                  ]
+                    },
+                    {
+                        "id":  "c1e2c981-89b0-f111-aaab-002248db53bb",
+                        "fields":  {
+                                       "slcrm_requiresdurationinformation":  false,
+                                       "slcrm_requirespricinginformation":  false,
+                                       "slcrm_allowmultiplecurrentitems":  false,
+                                       "slcrm_requireslicencecheck":  false,
+                                       "slcrm_name":  "Void Cover / Declaration",
+                                       "slcrm_requiresreinsuranceinformation":  false,
+                                       "slcrm_requiresgeographyinformation":  false,
+                                       "slcrm_requirescoversection":  true,
+                                       "slcrm_detailtemplate":  633650010,
+                                       "slcrm_displayorder":  100,
+                                       "slcrm_requireslimitinformation":  false,
+                                       "slcrm_reasoncode":  "VOIDCOVER",
+                                       "slcrm_requiressupportingevidence":  false,
+                                       "statuscode":  1,
+                                       "slcrm_requireswordinginformation":  false,
+                                       "slcrm_defaultsladays":  5
+                                   },
+                        "lookups":  [
+
+                                    ],
+                        "users":  [
+
+                                  ]
+                    },
+                    {
+                        "id":  "c4e2c981-89b0-f111-aaab-002248db53bb",
+                        "fields":  {
+                                       "slcrm_requiresdurationinformation":  false,
+                                       "slcrm_requirespricinginformation":  false,
+                                       "slcrm_allowmultiplecurrentitems":  false,
+                                       "slcrm_requireslicencecheck":  false,
+                                       "slcrm_name":  "Authorised Geography",
+                                       "slcrm_requiresreinsuranceinformation":  false,
+                                       "slcrm_requiresgeographyinformation":  false,
+                                       "slcrm_requirescoversection":  true,
+                                       "slcrm_detailtemplate":  633650011,
+                                       "slcrm_displayorder":  110,
+                                       "slcrm_requireslimitinformation":  false,
+                                       "slcrm_reasoncode":  "AUTHGEO",
+                                       "slcrm_requiressupportingevidence":  false,
+                                       "statuscode":  1,
+                                       "slcrm_requireswordinginformation":  false,
+                                       "slcrm_defaultsladays":  5
+                                   },
+                        "lookups":  [
+
+                                    ],
+                        "users":  [
+
+                                  ]
+                    },
+                    {
+                        "id":  "c7e2c981-89b0-f111-aaab-002248db53bb",
+                        "fields":  {
+                                       "slcrm_requiresdurationinformation":  false,
+                                       "slcrm_requirespricinginformation":  false,
+                                       "slcrm_allowmultiplecurrentitems":  false,
+                                       "slcrm_requireslicencecheck":  false,
+                                       "slcrm_name":  "Country Moratorium",
+                                       "slcrm_requiresreinsuranceinformation":  false,
+                                       "slcrm_requiresgeographyinformation":  false,
+                                       "slcrm_requirescoversection":  true,
+                                       "slcrm_detailtemplate":  633650012,
+                                       "slcrm_displayorder":  120,
+                                       "slcrm_requireslimitinformation":  false,
+                                       "slcrm_reasoncode":  "CTRYMORAT",
+                                       "slcrm_requiressupportingevidence":  false,
+                                       "statuscode":  1,
+                                       "slcrm_requireswordinginformation":  false,
+                                       "slcrm_defaultsladays":  5
+                                   },
+                        "lookups":  [
+
+                                    ],
+                        "users":  [
+
+                                  ]
+                    },
+                    {
+                        "id":  "c9e2c981-89b0-f111-aaab-002248db53bb",
+                        "fields":  {
+                                       "slcrm_requiresdurationinformation":  false,
+                                       "slcrm_requirespricinginformation":  false,
+                                       "slcrm_allowmultiplecurrentitems":  false,
+                                       "slcrm_requireslicencecheck":  false,
+                                       "slcrm_name":  "Commission",
+                                       "slcrm_requiresreinsuranceinformation":  false,
+                                       "slcrm_requiresgeographyinformation":  false,
+                                       "slcrm_requirescoversection":  true,
+                                       "slcrm_detailtemplate":  633650000,
+                                       "slcrm_displayorder":  130,
+                                       "slcrm_requireslimitinformation":  false,
+                                       "slcrm_reasoncode":  "COMMISSION",
+                                       "slcrm_requiressupportingevidence":  false,
+                                       "statuscode":  1,
+                                       "slcrm_requireswordinginformation":  false,
+                                       "slcrm_defaultsladays":  5
+                                   },
+                        "lookups":  [
+
+                                    ],
+                        "users":  [
+
+                                  ]
+                    },
+                    {
+                        "id":  "dee2c981-89b0-f111-aaab-002248db53bb",
+                        "fields":  {
+                                       "slcrm_requiresdurationinformation":  false,
+                                       "slcrm_requirespricinginformation":  false,
+                                       "slcrm_allowmultiplecurrentitems":  false,
+                                       "slcrm_requireslicencecheck":  false,
+                                       "slcrm_name":  "Loss Record",
+                                       "slcrm_requiresreinsuranceinformation":  false,
+                                       "slcrm_requiresgeographyinformation":  false,
+                                       "slcrm_requirescoversection":  true,
+                                       "slcrm_detailtemplate":  633650000,
+                                       "slcrm_displayorder":  140,
+                                       "slcrm_requireslimitinformation":  false,
+                                       "slcrm_reasoncode":  "LOSSREC",
+                                       "slcrm_requiressupportingevidence":  false,
+                                       "statuscode":  1,
+                                       "slcrm_requireswordinginformation":  false,
+                                       "slcrm_defaultsladays":  5
+                                   },
+                        "lookups":  [
+
+                                    ],
+                        "users":  [
+
+                                  ]
+                    },
+                    {
+                        "id":  "1bd9c487-89b0-f111-aaab-002248db53bb",
+                        "fields":  {
+                                       "slcrm_requiresdurationinformation":  false,
+                                       "slcrm_requirespricinginformation":  false,
+                                       "slcrm_allowmultiplecurrentitems":  false,
+                                       "slcrm_requireslicencecheck":  false,
+                                       "slcrm_name":  "High Risk Country (Blue Flag)",
+                                       "slcrm_requiresreinsuranceinformation":  false,
+                                       "slcrm_requiresgeographyinformation":  false,
+                                       "slcrm_requirescoversection":  true,
+                                       "slcrm_detailtemplate":  633650000,
+                                       "slcrm_displayorder":  150,
+                                       "slcrm_requireslimitinformation":  false,
+                                       "slcrm_reasoncode":  "HIGHRISK",
+                                       "slcrm_requiressupportingevidence":  false,
+                                       "statuscode":  1,
+                                       "slcrm_requireswordinginformation":  false,
+                                       "slcrm_defaultsladays":  5
+                                   },
+                        "lookups":  [
+
+                                    ],
+                        "users":  [
+
+                                  ]
+                    }
+                ]
+}

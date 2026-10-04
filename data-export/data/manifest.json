@@ -1,0 +1,102 @@
+﻿{
+    "exportedFrom":  "https://61858932.crm17.dynamics.com",
+    "exportedOn":  "2026-10-04T15:37:12",
+    "importOrder":  [
+                        "account",
+                        "opportunity",
+                        "slcrm_country",
+                        "slcrm_product",
+                        "slcrm_coversection",
+                        "slcrm_authoritylevel",
+                        "slcrm_referralreason",
+                        "slcrm_policy",
+                        "slcrm_rational",
+                        "slcrm_underwriterauthority",
+                        "slcrm_referralrequest",
+                        "slcrm_referralitem",
+                        "slcrm_referraldecision",
+                        "slcrm_referralparticipant",
+                        "slcrm_referralnotification"
+                    ],
+    "sets":  {
+                 "slcrm_country":  "slcrm_countries",
+                 "contact":  "contacts",
+                 "systemuser":  "systemusers",
+                 "slcrm_product":  "slcrm_products",
+                 "slcrm_referralparticipant":  "slcrm_referralparticipants",
+                 "slcrm_underwriterauthority":  "slcrm_underwriterauthorities",
+                 "slcrm_rational":  "slcrm_rationals",
+                 "slcrm_authoritylevel":  "slcrm_authoritylevels",
+                 "slcrm_referralitem":  "slcrm_referralitems",
+                 "slcrm_coversection":  "slcrm_coversections",
+                 "account":  "accounts",
+                 "opportunity":  "opportunities",
+                 "slcrm_policy":  "slcrm_policies",
+                 "slcrm_referralnotification":  "slcrm_referralnotifications",
+                 "slcrm_referraldecision":  "slcrm_referraldecisions",
+                 "slcrm_referralrequest":  "slcrm_referralrequests",
+                 "slcrm_referralreason":  "slcrm_referralreasons"
+             },
+    "tables":  [
+                   {
+                       "table":  "slcrm_country",
+                       "count":  3
+                   },
+                   {
+                       "table":  "slcrm_product",
+                       "count":  6
+                   },
+                   {
+                       "table":  "slcrm_coversection",
+                       "count":  8
+                   },
+                   {
+                       "table":  "slcrm_authoritylevel",
+                       "count":  8
+                   },
+                   {
+                       "table":  "slcrm_referralreason",
+                       "count":  15
+                   },
+                   {
+                       "table":  "slcrm_policy",
+                       "count":  5
+                   },
+                   {
+                       "table":  "slcrm_rational",
+                       "count":  11
+                   },
+                   {
+                       "table":  "slcrm_underwriterauthority",
+                       "count":  9
+                   },
+                   {
+                       "table":  "slcrm_referralrequest",
+                       "count":  17
+                   },
+                   {
+                       "table":  "slcrm_referralitem",
+                       "count":  27
+                   },
+                   {
+                       "table":  "slcrm_referraldecision",
+                       "count":  14
+                   },
+                   {
+                       "table":  "slcrm_referralparticipant",
+                       "count":  6
+                   },
+                   {
+                       "table":  "slcrm_referralnotification",
+                       "count":  6
+                   },
+                   {
+                       "table":  "account",
+                       "count":  6
+                   },
+                   {
+                       "table":  "opportunity",
+                       "count":  14
+                   }
+               ]
+}

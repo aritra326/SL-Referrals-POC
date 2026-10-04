@@ -1,0 +1,168 @@
+﻿{
+    "table":  "slcrm_referralnotification",
+    "set":  "slcrm_referralnotifications",
+    "records":  [
+                    {
+                        "id":  "d6b6d6d4-8bb0-f111-aaab-002248db53bb",
+                        "fields":  {
+                                       "slcrm_processingstatus":  633650002,
+                                       "slcrm_templatekey":  "referral-notification",
+                                       "slcrm_name":  "RFN-001000",
+                                       "slcrm_senton":  "2026-09-10T09:05:00Z",
+                                       "slcrm_eventtype":  633650000,
+                                       "slcrm_deduplicationkey":  "DEDUP-4b9e2ebc-633650000",
+                                       "statuscode":  1
+                                   },
+                        "lookups":  [
+                                        {
+                                            "attr":  "slcrm_referral",
+                                            "nav":  "slcrm_Referral",
+                                            "entity":  "slcrm_referralrequest",
+                                            "id":  "4b9e2ebc-89b0-f111-aaab-002248db53bb"
+                                        }
+                                    ],
+                        "users":  [
+                                      {
+                                          "attr":  "slcrm_recipientuser",
+                                          "nav":  "slcrm_RecipientUser",
+                                          "email":  "AritraBhattacharya@61858932.onmicrosoft.com"
+                                      }
+                                  ]
+                    },
+                    {
+                        "id":  "17b7d6d4-8bb0-f111-aaab-002248db53bb",
+                        "fields":  {
+                                       "slcrm_processingstatus":  633650002,
+                                       "slcrm_templatekey":  "referral-notification",
+                                       "slcrm_name":  "RFN-001001",
+                                       "slcrm_senton":  "2026-09-10T09:05:00Z",
+                                       "slcrm_eventtype":  633650000,
+                                       "slcrm_deduplicationkey":  "DEDUP-4c9e2ebc-633650000",
+                                       "statuscode":  1
+                                   },
+                        "lookups":  [
+                                        {
+                                            "attr":  "slcrm_referral",
+                                            "nav":  "slcrm_Referral",
+                                            "entity":  "slcrm_referralrequest",
+                                            "id":  "4c9e2ebc-89b0-f111-aaab-002248db53bb"
+                                        }
+                                    ],
+                        "users":  [
+                                      {
+                                          "attr":  "slcrm_recipientuser",
+                                          "nav":  "slcrm_RecipientUser",
+                                          "email":  "davidm@Contoso.onmicrosoft.com"
+                                      }
+                                  ]
+                    },
+                    {
+                        "id":  "19b7d6d4-8bb0-f111-aaab-002248db53bb",
+                        "fields":  {
+                                       "slcrm_processingstatus":  633650002,
+                                       "slcrm_templatekey":  "referral-notification",
+                                       "slcrm_name":  "RFN-001002",
+                                       "slcrm_senton":  "2026-09-10T09:05:00Z",
+                                       "slcrm_eventtype":  633650004,
+                                       "slcrm_deduplicationkey":  "DEDUP-649e2ebc-633650004",
+                                       "statuscode":  1
+                                   },
+                        "lookups":  [
+                                        {
+                                            "attr":  "slcrm_referral",
+                                            "nav":  "slcrm_Referral",
+                                            "entity":  "slcrm_referralrequest",
+                                            "id":  "649e2ebc-89b0-f111-aaab-002248db53bb"
+                                        }
+                                    ],
+                        "users":  [
+                                      {
+                                          "attr":  "slcrm_recipientuser",
+                                          "nav":  "slcrm_RecipientUser",
+                                          "email":  "alans@Contoso.onmicrosoft.com"
+                                      }
+                                  ]
+                    },
+                    {
+                        "id":  "61b7d6d4-8bb0-f111-aaab-002248db53bb",
+                        "fields":  {
+                                       "slcrm_processingstatus":  633650002,
+                                       "slcrm_templatekey":  "referral-notification",
+                                       "slcrm_name":  "RFN-001003",
+                                       "slcrm_senton":  "2026-09-10T09:05:00Z",
+                                       "slcrm_eventtype":  633650004,
+                                       "slcrm_deduplicationkey":  "DEDUP-0ec75ac3-633650004",
+                                       "statuscode":  1
+                                   },
+                        "lookups":  [
+                                        {
+                                            "attr":  "slcrm_referral",
+                                            "nav":  "slcrm_Referral",
+                                            "entity":  "slcrm_referralrequest",
+                                            "id":  "0ec75ac3-89b0-f111-aaab-002248db53bb"
+                                        }
+                                    ],
+                        "users":  [
+                                      {
+                                          "attr":  "slcrm_recipientuser",
+                                          "nav":  "slcrm_RecipientUser",
+                                          "email":  "jeremy@Contoso.onmicrosoft.com"
+                                      }
+                                  ]
+                    },
+                    {
+                        "id":  "62b7d6d4-8bb0-f111-aaab-002248db53bb",
+                        "fields":  {
+                                       "slcrm_processingstatus":  633650002,
+                                       "slcrm_templatekey":  "referral-notification",
+                                       "slcrm_name":  "RFN-001004",
+                                       "slcrm_senton":  "2026-09-10T09:05:00Z",
+                                       "slcrm_eventtype":  633650004,
+                                       "slcrm_deduplicationkey":  "DEDUP-0fc75ac3-633650004",
+                                       "statuscode":  1
+                                   },
+                        "lookups":  [
+                                        {
+                                            "attr":  "slcrm_referral",
+                                            "nav":  "slcrm_Referral",
+                                            "entity":  "slcrm_referralrequest",
+                                            "id":  "0fc75ac3-89b0-f111-aaab-002248db53bb"
+                                        }
+                                    ],
+                        "users":  [
+                                      {
+                                          "attr":  "slcrm_recipientuser",
+                                          "nav":  "slcrm_RecipientUser",
+                                          "email":  "AritraBhattacharya@61858932.onmicrosoft.com"
+                                      }
+                                  ]
+                    },
+                    {
+                        "id":  "f06906db-8bb0-f111-aaab-002248db53bb",
+                        "fields":  {
+                                       "slcrm_processingstatus":  633650002,
+                                       "slcrm_templatekey":  "referral-notification",
+                                       "slcrm_name":  "RFN-001005",
+                                       "slcrm_senton":  "2026-09-10T09:05:00Z",
+                                       "slcrm_eventtype":  633650004,
+                                       "slcrm_deduplicationkey":  "DEDUP-a2d932e4-633650004",
+                                       "statuscode":  1
+                                   },
+                        "lookups":  [
+                                        {
+                                            "attr":  "slcrm_referral",
+                                            "nav":  "slcrm_Referral",
+                                            "entity":  "slcrm_referralrequest",
+                                            "id":  "a2d932e4-89b0-f111-aaab-002248db53bb"
+                                        }
+                                    ],
+                        "users":  [
+                                      {
+                                          "attr":  "slcrm_recipientuser",
+                                          "nav":  "slcrm_RecipientUser",
+                                          "email":  "davidm@Contoso.onmicrosoft.com"
+                                      }
+                                  ]
+                    }
+                ]
+}

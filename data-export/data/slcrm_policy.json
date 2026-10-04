@@ -1,0 +1,192 @@
+﻿{
+    "table":  "slcrm_policy",
+    "set":  "slcrm_policies",
+    "records":  [
+                    {
+                        "id":  "6327a9b5-89b0-f111-aaab-002248db53bb",
+                        "fields":  {
+                                       "slcrm_tradetype":  633650000,
+                                       "slcrm_name":  "POL-2026-0001",
+                                       "slcrm_inceptiondate":  "2026-09-01T00:00:00Z",
+                                       "slcrm_policytype":  633650000,
+                                       "slcrm_quoteid":  "Q-2026-0001",
+                                       "statuscode":  1
+                                   },
+                        "lookups":  [
+                                        {
+                                            "attr":  "slcrm_opportunity",
+                                            "nav":  "slcrm_Opportunity",
+                                            "entity":  "opportunity",
+                                            "id":  "e90a0493-e8f0-ea11-a815-000d3a1b14a2"
+                                        },
+                                        {
+                                            "attr":  "slcrm_broker",
+                                            "nav":  "slcrm_Broker",
+                                            "entity":  "account",
+                                            "id":  "a4cea450-cb0c-ea11-a813-000d3a1b1223"
+                                        },
+                                        {
+                                            "attr":  "slcrm_product",
+                                            "nav":  "slcrm_Product",
+                                            "entity":  "slcrm_product",
+                                            "id":  "d63187b5-88b0-f111-aaab-002248db53bb"
+                                        },
+                                        {
+                                            "attr":  "slcrm_customerinsured",
+                                            "nav":  "slcrm_CustomerInsured",
+                                            "entity":  "account",
+                                            "id":  "88cea450-cb0c-ea11-a813-000d3a1b1223"
+                                        }
+                                    ],
+                        "users":  [
+
+                                  ]
+                    },
+                    {
+                        "id":  "6427a9b5-89b0-f111-aaab-002248db53bb",
+                        "fields":  {
+                                       "slcrm_tradetype":  633650001,
+                                       "slcrm_name":  "POL-2026-0002",
+                                       "slcrm_inceptiondate":  "2026-09-01T00:00:00Z",
+                                       "slcrm_policytype":  633650001,
+                                       "slcrm_quoteid":  "Q-2026-0002",
+                                       "statuscode":  1
+                                   },
+                        "lookups":  [
+                                        {
+                                            "attr":  "slcrm_opportunity",
+                                            "nav":  "slcrm_Opportunity",
+                                            "entity":  "opportunity",
+                                            "id":  "b052fc98-e8f0-ea11-a815-000d3a1b14a2"
+                                        },
+                                        {
+                                            "attr":  "slcrm_broker",
+                                            "nav":  "slcrm_Broker",
+                                            "entity":  "account",
+                                            "id":  "83883308-7ad5-ea11-a813-000d3a33f3b4"
+                                        },
+                                        {
+                                            "attr":  "slcrm_product",
+                                            "nav":  "slcrm_Product",
+                                            "entity":  "slcrm_product",
+                                            "id":  "d73187b5-88b0-f111-aaab-002248db53bb"
+                                        },
+                                        {
+                                            "attr":  "slcrm_customerinsured",
+                                            "nav":  "slcrm_CustomerInsured",
+                                            "entity":  "account",
+                                            "id":  "b4cea450-cb0c-ea11-a813-000d3a1b1223"
+                                        }
+                                    ],
+                        "users":  [
+
+                                  ]
+                    },
+                    {
+                        "id":  "6527a9b5-89b0-f111-aaab-002248db53bb",
+                        "fields":  {
+                                       "slcrm_tradetype":  633650002,
+                                       "slcrm_name":  "POL-2026-0003",
+                                       "slcrm_inceptiondate":  "2026-09-01T00:00:00Z",
+                                       "slcrm_policytype":  633650000,
+                                       "slcrm_quoteid":  "Q-2026-0003",
+                                       "statuscode":  1
+                                   },
+                        "lookups":  [
+                                        {
+                                            "attr":  "slcrm_opportunity",
+                                            "nav":  "slcrm_Opportunity",
+                                            "entity":  "opportunity",
+                                            "id":  "becc5dba-b1f1-ea11-a815-000d3a1b14a2"
+                                        },
+                                        {
+                                            "attr":  "slcrm_broker",
+                                            "nav":  "slcrm_Broker",
+                                            "entity":  "account",
+                                            "id":  "dbdd0b93-4a1b-4848-b83a-39352f6b2e7a"
+                                        },
+                                        {
+                                            "attr":  "slcrm_product",
+                                            "nav":  "slcrm_Product",
+                                            "entity":  "slcrm_product",
+                                            "id":  "d93187b5-88b0-f111-aaab-002248db53bb"
+                                        },
+                                        {
+                                            "attr":  "slcrm_customerinsured",
+                                            "nav":  "slcrm_CustomerInsured",
+                                            "entity":  "account",
+                                            "id":  "81883308-7ad5-ea11-a813-000d3a33f3b4"
+                                        }
+                                    ],
+                        "users":  [
+
+                                  ]
+                    },
+                    {
+                        "id":  "6727a9b5-89b0-f111-aaab-002248db53bb",
+                        "fields":  {
+                                       "slcrm_tradetype":  633650003,
+                                       "slcrm_name":  "POL-2026-0004",
+                                       "slcrm_inceptiondate":  "2026-09-01T00:00:00Z",
+                                       "slcrm_policytype":  633650002,
+                                       "slcrm_quoteid":  "Q-2026-0004",
+                                       "statuscode":  1
+                                   },
+                        "lookups":  [
+                                        {
+                                            "attr":  "slcrm_opportunity",
+                                            "nav":  "slcrm_Opportunity",
+                                            "entity":  "opportunity",
+                                            "id":  "2ec06197-31ec-ea11-a817-000d3a1b14a2"
+                                        },
+                                        {
+                                            "attr":  "slcrm_broker",
+                                            "nav":  "slcrm_Broker",
+                                            "entity":  "account",
+                                            "id":  "88cea450-cb0c-ea11-a813-000d3a1b1223"
+                                        },
+                                        {
+                                            "attr":  "slcrm_product",
+                                            "nav":  "slcrm_Product",
+                                            "entity":  "slcrm_product",
+                                            "id":  "d83187b5-88b0-f111-aaab-002248db53bb"
+                                        },
+                                        {
+                                            "attr":  "slcrm_customerinsured",
+                                            "nav":  "slcrm_CustomerInsured",
+                                            "entity":  "account",
+                                            "id":  "83883308-7ad5-ea11-a813-000d3a33f3b4"
+                                        }
+                                    ],
+                        "users":  [
+
+                                  ]
+                    },
+                    {
+                        "id":  "a49606fb-1ab1-f111-aaab-002248db53bb",
+                        "fields":  {
+                                       "slcrm_tradetype":  633650000,
+                                       "slcrm_name":  "POL-MDN-4471",
+                                       "slcrm_inceptiondate":  "2021-09-01T00:00:00Z",
+                                       "statuscode":  1
+                                   },
+                        "lookups":  [
+                                        {
+                                            "attr":  "slcrm_opportunity",
+                                            "nav":  "slcrm_Opportunity",
+                                            "entity":  "opportunity",
+                                            "id":  "9a9606fb-1ab1-f111-aaab-002248db53bb"
+                                        },
+                                        {
+                                            "attr":  "slcrm_customerinsured",
+                                            "nav":  "slcrm_CustomerInsured",
+                                            "entity":  "account",
+                                            "id":  "88cea450-cb0c-ea11-a813-000d3a1b1223"
+                                        }
+                                    ],
+                        "users":  [
+
+                                  ]
+                    }
+                ]
+}

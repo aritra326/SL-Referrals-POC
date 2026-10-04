@@ -1,0 +1,84 @@
+﻿{
+    "table":  "slcrm_product",
+    "set":  "slcrm_products",
+    "records":  [
+                    {
+                        "id":  "d63187b5-88b0-f111-aaab-002248db53bb",
+                        "fields":  {
+                                       "statuscode":  1,
+                                       "slcrm_name":  "Marine Hull"
+                                   },
+                        "lookups":  [
+
+                                    ],
+                        "users":  [
+
+                                  ]
+                    },
+                    {
+                        "id":  "d73187b5-88b0-f111-aaab-002248db53bb",
+                        "fields":  {
+                                       "statuscode":  1,
+                                       "slcrm_name":  "Marine Cargo"
+                                   },
+                        "lookups":  [
+
+                                    ],
+                        "users":  [
+
+                                  ]
+                    },
+                    {
+                        "id":  "d83187b5-88b0-f111-aaab-002248db53bb",
+                        "fields":  {
+                                       "statuscode":  1,
+                                       "slcrm_name":  "Marine Freight"
+                                   },
+                        "lookups":  [
+
+                                    ],
+                        "users":  [
+
+                                  ]
+                    },
+                    {
+                        "id":  "d93187b5-88b0-f111-aaab-002248db53bb",
+                        "fields":  {
+                                       "statuscode":  1,
+                                       "slcrm_name":  "Marine Liability"
+                                   },
+                        "lookups":  [
+
+                                    ],
+                        "users":  [
+
+                                  ]
+                    },
+                    {
+                        "id":  "da3187b5-88b0-f111-aaab-002248db53bb",
+                        "fields":  {
+                                       "statuscode":  1,
+                                       "slcrm_name":  "Marine Trades"
+                                   },
+                        "lookups":  [
+
+                                    ],
+                        "users":  [
+
+                                  ]
+                    },
+                    {
+                        "id":  "43028dbc-88b0-f111-aaab-002248db53bb",
+                        "fields":  {
+                                       "statuscode":  1,
+                                       "slcrm_name":  "Ports \u0026 Terminals"
+                                   },
+                        "lookups":  [
+
+                                    ],
+                        "users":  [
+
+                                  ]
+                    }
+                ]
+}

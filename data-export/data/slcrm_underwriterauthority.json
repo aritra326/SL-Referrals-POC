@@ -1,0 +1,302 @@
+﻿{
+    "table":  "slcrm_underwriterauthority",
+    "set":  "slcrm_underwriterauthorities",
+    "records":  [
+                    {
+                        "id":  "cfc3f6a8-89b0-f111-aaab-002248db53bb",
+                        "fields":  {
+                                       "slcrm_licencelocation":  "United Kingdom",
+                                       "slcrm_name":  "Aritra Bhattacharya - Marine Hull",
+                                       "slcrm_effectiveto":  "2027-08-31T00:00:00Z",
+                                       "slcrm_licencescheme":  633650001,
+                                       "slcrm_effectivefrom":  "2026-09-01T00:00:00Z",
+                                       "slcrm_authorityassignmentnumber":  "UA-0001",
+                                       "statuscode":  633650001
+                                   },
+                        "lookups":  [
+                                        {
+                                            "attr":  "slcrm_productclassofbusiness",
+                                            "nav":  "slcrm_ProductClassofbusiness",
+                                            "entity":  "slcrm_product",
+                                            "id":  "d63187b5-88b0-f111-aaab-002248db53bb"
+                                        },
+                                        {
+                                            "attr":  "slcrm_authoritylevel",
+                                            "nav":  "slcrm_AuthorityLevel",
+                                            "entity":  "slcrm_authoritylevel",
+                                            "id":  "cfbacfae-88b0-f111-aaab-002248db53bb"
+                                        }
+                                    ],
+                        "users":  [
+                                      {
+                                          "attr":  "slcrm_underwriter",
+                                          "nav":  "slcrm_Underwriter",
+                                          "email":  "AritraBhattacharya@61858932.onmicrosoft.com"
+                                      }
+                                  ]
+                    },
+                    {
+                        "id":  "1afcffae-89b0-f111-aaab-002248db53bb",
+                        "fields":  {
+                                       "slcrm_licencelocation":  "United Kingdom",
+                                       "slcrm_name":  "Aritra Bhattacharya - Marine Liability",
+                                       "slcrm_effectiveto":  "2027-08-31T00:00:00Z",
+                                       "slcrm_licencescheme":  633650001,
+                                       "slcrm_effectivefrom":  "2026-09-01T00:00:00Z",
+                                       "slcrm_authorityassignmentnumber":  "UA-0002",
+                                       "statuscode":  633650001
+                                   },
+                        "lookups":  [
+                                        {
+                                            "attr":  "slcrm_productclassofbusiness",
+                                            "nav":  "slcrm_ProductClassofbusiness",
+                                            "entity":  "slcrm_product",
+                                            "id":  "d93187b5-88b0-f111-aaab-002248db53bb"
+                                        },
+                                        {
+                                            "attr":  "slcrm_authoritylevel",
+                                            "nav":  "slcrm_AuthorityLevel",
+                                            "entity":  "slcrm_authoritylevel",
+                                            "id":  "cebacfae-88b0-f111-aaab-002248db53bb"
+                                        }
+                                    ],
+                        "users":  [
+                                      {
+                                          "attr":  "slcrm_underwriter",
+                                          "nav":  "slcrm_Underwriter",
+                                          "email":  "AritraBhattacharya@61858932.onmicrosoft.com"
+                                      }
+                                  ]
+                    },
+                    {
+                        "id":  "1bfcffae-89b0-f111-aaab-002248db53bb",
+                        "fields":  {
+                                       "slcrm_licencelocation":  "United Kingdom",
+                                       "slcrm_name":  "David Mallory - Marine Cargo",
+                                       "slcrm_effectiveto":  "2027-08-31T00:00:00Z",
+                                       "slcrm_licencescheme":  633650001,
+                                       "slcrm_effectivefrom":  "2026-09-01T00:00:00Z",
+                                       "slcrm_authorityassignmentnumber":  "UA-0003",
+                                       "statuscode":  633650001
+                                   },
+                        "lookups":  [
+                                        {
+                                            "attr":  "slcrm_productclassofbusiness",
+                                            "nav":  "slcrm_ProductClassofbusiness",
+                                            "entity":  "slcrm_product",
+                                            "id":  "d73187b5-88b0-f111-aaab-002248db53bb"
+                                        },
+                                        {
+                                            "attr":  "slcrm_authoritylevel",
+                                            "nav":  "slcrm_AuthorityLevel",
+                                            "entity":  "slcrm_authoritylevel",
+                                            "id":  "cebacfae-88b0-f111-aaab-002248db53bb"
+                                        }
+                                    ],
+                        "users":  [
+                                      {
+                                          "attr":  "slcrm_underwriter",
+                                          "nav":  "slcrm_Underwriter",
+                                          "email":  "davidm@Contoso.onmicrosoft.com"
+                                      }
+                                  ]
+                    },
+                    {
+                        "id":  "1cfcffae-89b0-f111-aaab-002248db53bb",
+                        "fields":  {
+                                       "slcrm_licencelocation":  "United Kingdom",
+                                       "slcrm_name":  "David Mallory - Marine Freight",
+                                       "slcrm_effectiveto":  "2027-08-31T00:00:00Z",
+                                       "slcrm_licencescheme":  633650001,
+                                       "slcrm_effectivefrom":  "2026-09-01T00:00:00Z",
+                                       "slcrm_authorityassignmentnumber":  "UA-0004",
+                                       "statuscode":  633650001
+                                   },
+                        "lookups":  [
+                                        {
+                                            "attr":  "slcrm_productclassofbusiness",
+                                            "nav":  "slcrm_ProductClassofbusiness",
+                                            "entity":  "slcrm_product",
+                                            "id":  "d83187b5-88b0-f111-aaab-002248db53bb"
+                                        },
+                                        {
+                                            "attr":  "slcrm_authoritylevel",
+                                            "nav":  "slcrm_AuthorityLevel",
+                                            "entity":  "slcrm_authoritylevel",
+                                            "id":  "cdbacfae-88b0-f111-aaab-002248db53bb"
+                                        }
+                                    ],
+                        "users":  [
+                                      {
+                                          "attr":  "slcrm_underwriter",
+                                          "nav":  "slcrm_Underwriter",
+                                          "email":  "davidm@Contoso.onmicrosoft.com"
+                                      }
+                                  ]
+                    },
+                    {
+                        "id":  "1dfcffae-89b0-f111-aaab-002248db53bb",
+                        "fields":  {
+                                       "slcrm_licencelocation":  "United Kingdom",
+                                       "slcrm_name":  "Alan Steiner - Marine Liability",
+                                       "slcrm_effectiveto":  "2027-08-31T00:00:00Z",
+                                       "slcrm_licencescheme":  633650001,
+                                       "slcrm_effectivefrom":  "2026-09-01T00:00:00Z",
+                                       "slcrm_authorityassignmentnumber":  "UA-0005",
+                                       "statuscode":  633650001
+                                   },
+                        "lookups":  [
+                                        {
+                                            "attr":  "slcrm_productclassofbusiness",
+                                            "nav":  "slcrm_ProductClassofbusiness",
+                                            "entity":  "slcrm_product",
+                                            "id":  "d93187b5-88b0-f111-aaab-002248db53bb"
+                                        },
+                                        {
+                                            "attr":  "slcrm_authoritylevel",
+                                            "nav":  "slcrm_AuthorityLevel",
+                                            "entity":  "slcrm_authoritylevel",
+                                            "id":  "cdbacfae-88b0-f111-aaab-002248db53bb"
+                                        }
+                                    ],
+                        "users":  [
+                                      {
+                                          "attr":  "slcrm_underwriter",
+                                          "nav":  "slcrm_Underwriter",
+                                          "email":  "alans@Contoso.onmicrosoft.com"
+                                      }
+                                  ]
+                    },
+                    {
+                        "id":  "1efcffae-89b0-f111-aaab-002248db53bb",
+                        "fields":  {
+                                       "slcrm_licencelocation":  "United Kingdom",
+                                       "slcrm_name":  "Alan Steiner - Marine Cargo",
+                                       "slcrm_effectiveto":  "2027-08-31T00:00:00Z",
+                                       "slcrm_licencescheme":  633650001,
+                                       "slcrm_effectivefrom":  "2026-09-01T00:00:00Z",
+                                       "slcrm_authorityassignmentnumber":  "UA-0006",
+                                       "statuscode":  633650001
+                                   },
+                        "lookups":  [
+                                        {
+                                            "attr":  "slcrm_productclassofbusiness",
+                                            "nav":  "slcrm_ProductClassofbusiness",
+                                            "entity":  "slcrm_product",
+                                            "id":  "d73187b5-88b0-f111-aaab-002248db53bb"
+                                        },
+                                        {
+                                            "attr":  "slcrm_authoritylevel",
+                                            "nav":  "slcrm_AuthorityLevel",
+                                            "entity":  "slcrm_authoritylevel",
+                                            "id":  "cdbacfae-88b0-f111-aaab-002248db53bb"
+                                        }
+                                    ],
+                        "users":  [
+                                      {
+                                          "attr":  "slcrm_underwriter",
+                                          "nav":  "slcrm_Underwriter",
+                                          "email":  "alans@Contoso.onmicrosoft.com"
+                                      }
+                                  ]
+                    },
+                    {
+                        "id":  "1ffcffae-89b0-f111-aaab-002248db53bb",
+                        "fields":  {
+                                       "slcrm_licencelocation":  "United Kingdom",
+                                       "slcrm_name":  "Jeremy Johnson - Marine Hull",
+                                       "slcrm_effectiveto":  "2027-08-31T00:00:00Z",
+                                       "slcrm_licencescheme":  633650001,
+                                       "slcrm_effectivefrom":  "2026-09-01T00:00:00Z",
+                                       "slcrm_authorityassignmentnumber":  "UA-0007",
+                                       "statuscode":  633650001
+                                   },
+                        "lookups":  [
+                                        {
+                                            "attr":  "slcrm_productclassofbusiness",
+                                            "nav":  "slcrm_ProductClassofbusiness",
+                                            "entity":  "slcrm_product",
+                                            "id":  "d63187b5-88b0-f111-aaab-002248db53bb"
+                                        },
+                                        {
+                                            "attr":  "slcrm_authoritylevel",
+                                            "nav":  "slcrm_AuthorityLevel",
+                                            "entity":  "slcrm_authoritylevel",
+                                            "id":  "cebacfae-88b0-f111-aaab-002248db53bb"
+                                        }
+                                    ],
+                        "users":  [
+                                      {
+                                          "attr":  "slcrm_underwriter",
+                                          "nav":  "slcrm_Underwriter",
+                                          "email":  "jeremy@Contoso.onmicrosoft.com"
+                                      }
+                                  ]
+                    },
+                    {
+                        "id":  "6227a9b5-89b0-f111-aaab-002248db53bb",
+                        "fields":  {
+                                       "slcrm_licencelocation":  "United Kingdom",
+                                       "slcrm_name":  "Jeremy Johnson - Ports \u0026 Terminals",
+                                       "slcrm_effectiveto":  "2027-08-31T00:00:00Z",
+                                       "slcrm_licencescheme":  633650001,
+                                       "slcrm_effectivefrom":  "2026-09-01T00:00:00Z",
+                                       "slcrm_authorityassignmentnumber":  "UA-0008",
+                                       "statuscode":  633650001
+                                   },
+                        "lookups":  [
+                                        {
+                                            "attr":  "slcrm_productclassofbusiness",
+                                            "nav":  "slcrm_ProductClassofbusiness",
+                                            "entity":  "slcrm_product",
+                                            "id":  "43028dbc-88b0-f111-aaab-002248db53bb"
+                                        },
+                                        {
+                                            "attr":  "slcrm_authoritylevel",
+                                            "nav":  "slcrm_AuthorityLevel",
+                                            "entity":  "slcrm_authoritylevel",
+                                            "id":  "cebacfae-88b0-f111-aaab-002248db53bb"
+                                        }
+                                    ],
+                        "users":  [
+                                      {
+                                          "attr":  "slcrm_underwriter",
+                                          "nav":  "slcrm_Underwriter",
+                                          "email":  "jeremy@Contoso.onmicrosoft.com"
+                                      }
+                                  ]
+                    },
+                    {
+                        "id":  "3eff1b56-a2bd-f111-aaad-e4fade0d2043",
+                        "fields":  {
+                                       "slcrm_name":  "SMOKE - Test Higher Authority - Marine Hull",
+                                       "slcrm_effectiveto":  "2027-08-31T00:00:00Z",
+                                       "slcrm_licencescheme":  633650001,
+                                       "slcrm_effectivefrom":  "2026-09-01T00:00:00Z",
+                                       "slcrm_authorityassignmentnumber":  "UA-001000",
+                                       "statuscode":  633650001
+                                   },
+                        "lookups":  [
+                                        {
+                                            "attr":  "slcrm_productclassofbusiness",
+                                            "nav":  "slcrm_ProductClassofbusiness",
+                                            "entity":  "slcrm_product",
+                                            "id":  "d63187b5-88b0-f111-aaab-002248db53bb"
+                                        },
+                                        {
+                                            "attr":  "slcrm_authoritylevel",
+                                            "nav":  "slcrm_AuthorityLevel",
+                                            "entity":  "slcrm_authoritylevel",
+                                            "id":  "d0bacfae-88b0-f111-aaab-002248db53bb"
+                                        }
+                                    ],
+                        "users":  [
+                                      {
+                                          "attr":  "slcrm_underwriter",
+                                          "nav":  "slcrm_Underwriter",
+                                          "email":  "flowdev@microsoft.com"
+                                      }
+                                  ]
+                    }
+                ]
+}

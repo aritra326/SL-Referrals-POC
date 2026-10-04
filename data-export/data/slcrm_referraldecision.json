@@ -1,0 +1,628 @@
+﻿{
+    "table":  "slcrm_referraldecision",
+    "set":  "slcrm_referraldecisions",
+    "records":  [
+                    {
+                        "id":  "35cfd5c7-8bb0-f111-aaab-002248db53bb",
+                        "fields":  {
+                                       "slcrm_name":  "RFD-001000",
+                                       "slcrm_decisioncomments":  "Decision recorded following underwriting review; risk profile within delegated authority.",
+                                       "slcrm_decisiontype":  633650000,
+                                       "slcrm_decisionon":  "2026-09-12T10:00:00Z",
+                                       "statuscode":  1
+                                   },
+                        "lookups":  [
+                                        {
+                                            "attr":  "slcrm_referral",
+                                            "nav":  "slcrm_Referral",
+                                            "entity":  "slcrm_referralrequest",
+                                            "id":  "0fc75ac3-89b0-f111-aaab-002248db53bb"
+                                        },
+                                        {
+                                            "attr":  "slcrm_referralitem",
+                                            "nav":  "slcrm_ReferralItem",
+                                            "entity":  "slcrm_referralitem",
+                                            "id":  "2fcfd5c7-8bb0-f111-aaab-002248db53bb"
+                                        }
+                                    ],
+                        "users":  [
+                                      {
+                                          "attr":  "slcrm_decisionby",
+                                          "nav":  "slcrm_DecisionBy",
+                                          "email":  "davidm@Contoso.onmicrosoft.com"
+                                      }
+                                  ]
+                    },
+                    {
+                        "id":  "007fbace-8bb0-f111-aaab-002248db53bb",
+                        "fields":  {
+                                       "slcrm_name":  "RFD-001001",
+                                       "slcrm_decisioncomments":  "Decision recorded following underwriting review; risk profile within delegated authority.",
+                                       "slcrm_decisiontype":  633650000,
+                                       "slcrm_decisionon":  "2026-09-12T10:00:00Z",
+                                       "statuscode":  1
+                                   },
+                        "lookups":  [
+                                        {
+                                            "attr":  "slcrm_referral",
+                                            "nav":  "slcrm_Referral",
+                                            "entity":  "slcrm_referralrequest",
+                                            "id":  "0fc75ac3-89b0-f111-aaab-002248db53bb"
+                                        },
+                                        {
+                                            "attr":  "slcrm_referralitem",
+                                            "nav":  "slcrm_ReferralItem",
+                                            "entity":  "slcrm_referralitem",
+                                            "id":  "30cfd5c7-8bb0-f111-aaab-002248db53bb"
+                                        }
+                                    ],
+                        "users":  [
+                                      {
+                                          "attr":  "slcrm_decisionby",
+                                          "nav":  "slcrm_DecisionBy",
+                                          "email":  "davidm@Contoso.onmicrosoft.com"
+                                      }
+                                  ]
+                    },
+                    {
+                        "id":  "9f8d8239-8cb0-f111-aaab-002248db53bb",
+                        "fields":  {
+                                       "slcrm_name":  "RFD-001002",
+                                       "slcrm_decisioncomments":  "Decision recorded following underwriting review; risk profile within delegated authority.",
+                                       "slcrm_decisiontype":  633650000,
+                                       "slcrm_decisionon":  "2026-09-12T10:00:00Z",
+                                       "statuscode":  1
+                                   },
+                        "lookups":  [
+                                        {
+                                            "attr":  "slcrm_referral",
+                                            "nav":  "slcrm_Referral",
+                                            "entity":  "slcrm_referralrequest",
+                                            "id":  "a2d932e4-89b0-f111-aaab-002248db53bb"
+                                        },
+                                        {
+                                            "attr":  "slcrm_referralitem",
+                                            "nav":  "slcrm_ReferralItem",
+                                            "entity":  "slcrm_referralitem",
+                                            "id":  "c59c2731-8cb0-f111-aaab-002248db53bb"
+                                        }
+                                    ],
+                        "users":  [
+                                      {
+                                          "attr":  "slcrm_decisionby",
+                                          "nav":  "slcrm_DecisionBy",
+                                          "email":  "davidm@Contoso.onmicrosoft.com"
+                                      }
+                                  ]
+                    },
+                    {
+                        "id":  "a33c893f-8cb0-f111-aaab-002248db53bb",
+                        "fields":  {
+                                       "slcrm_name":  "RFD-001003",
+                                       "slcrm_decisioncomments":  "Authorised with advisory recommendations following underwriting review.",
+                                       "slcrm_decisiontype":  633650001,
+                                       "slcrm_decisionon":  "2026-09-12T10:00:00Z",
+                                       "statuscode":  1
+                                   },
+                        "lookups":  [
+                                        {
+                                            "attr":  "slcrm_referral",
+                                            "nav":  "slcrm_Referral",
+                                            "entity":  "slcrm_referralrequest",
+                                            "id":  "a2d932e4-89b0-f111-aaab-002248db53bb"
+                                        },
+                                        {
+                                            "attr":  "slcrm_referralitem",
+                                            "nav":  "slcrm_ReferralItem",
+                                            "entity":  "slcrm_referralitem",
+                                            "id":  "c69c2731-8cb0-f111-aaab-002248db53bb"
+                                        }
+                                    ],
+                        "users":  [
+                                      {
+                                          "attr":  "slcrm_decisionby",
+                                          "nav":  "slcrm_DecisionBy",
+                                          "email":  "davidm@Contoso.onmicrosoft.com"
+                                      }
+                                  ]
+                    },
+                    {
+                        "id":  "7f96488c-c7bd-f111-aaad-7ced8d5f6ab1",
+                        "fields":  {
+                                       "slcrm_newitemstatus":  "Authorised",
+                                       "slcrm_previousitemstatus":  "Submitted",
+                                       "slcrm_name":  "Decision 1 - Authorised",
+                                       "slcrm_decisioncomments":  "authorised",
+                                       "slcrm_decisiontype":  633650000,
+                                       "slcrm_authoritylevelsnapshot":  "Level 5",
+                                       "slcrm_correlationid":  "025dcc91-b148-4470-a758-fd5f07fa75af",
+                                       "slcrm_canapprovereferralssnapshot":  true,
+                                       "slcrm_authorityranksnapshot":  5,
+                                       "slcrm_decisionon":  "2026-10-01T18:40:18Z",
+                                       "slcrm_itemrevisionnumber":  1,
+                                       "slcrm_decisionsequence":  1,
+                                       "statuscode":  1
+                                   },
+                        "lookups":  [
+                                        {
+                                            "attr":  "slcrm_referral",
+                                            "nav":  "slcrm_Referral",
+                                            "entity":  "slcrm_referralrequest",
+                                            "id":  "4b9e2ebc-89b0-f111-aaab-002248db53bb"
+                                        },
+                                        {
+                                            "attr":  "slcrm_referralitem",
+                                            "nav":  "slcrm_ReferralItem",
+                                            "entity":  "slcrm_referralitem",
+                                            "id":  "cadd89c1-8bb0-f111-aaab-002248db53bb"
+                                        },
+                                        {
+                                            "attr":  "slcrm_authorityassignmentused",
+                                            "nav":  "slcrm_AuthorityAssignmentUsed",
+                                            "entity":  "slcrm_underwriterauthority",
+                                            "id":  "cfc3f6a8-89b0-f111-aaab-002248db53bb"
+                                        },
+                                        {
+                                            "attr":  "slcrm_authoritylevelused",
+                                            "nav":  "slcrm_AuthorityLevelUsed",
+                                            "entity":  "slcrm_authoritylevel",
+                                            "id":  "cfbacfae-88b0-f111-aaab-002248db53bb"
+                                        }
+                                    ],
+                        "users":  [
+                                      {
+                                          "attr":  "slcrm_decisionby",
+                                          "nav":  "slcrm_DecisionBy",
+                                          "email":  "AritraBhattacharya@61858932.onmicrosoft.com"
+                                      }
+                                  ]
+                    },
+                    {
+                        "id":  "713becd8-c7bd-f111-aaad-7ced8d5f6ab1",
+                        "fields":  {
+                                       "slcrm_newitemstatus":  "Onward for Approval",
+                                       "slcrm_previousitemstatus":  "Submitted",
+                                       "slcrm_name":  "Decision 1 - Onward for Approval",
+                                       "slcrm_decisioncomments":  "higher authority needed",
+                                       "slcrm_decisiontype":  633650003,
+                                       "slcrm_authoritylevelsnapshot":  "Level 5",
+                                       "slcrm_onwardapproversnapshot":  "Microsoft Flow",
+                                       "slcrm_correlationid":  "3fc82627-0bc8-423c-b71f-37cd506dd0ce",
+                                       "slcrm_canapprovereferralssnapshot":  true,
+                                       "slcrm_authorityranksnapshot":  5,
+                                       "slcrm_decisionon":  "2026-10-01T18:42:26Z",
+                                       "slcrm_itemrevisionnumber":  1,
+                                       "slcrm_decisionsequence":  1,
+                                       "statuscode":  1
+                                   },
+                        "lookups":  [
+                                        {
+                                            "attr":  "slcrm_referral",
+                                            "nav":  "slcrm_Referral",
+                                            "entity":  "slcrm_referralrequest",
+                                            "id":  "4b9e2ebc-89b0-f111-aaab-002248db53bb"
+                                        },
+                                        {
+                                            "attr":  "slcrm_referralitem",
+                                            "nav":  "slcrm_ReferralItem",
+                                            "entity":  "slcrm_referralitem",
+                                            "id":  "e8a31e2a-8cb0-f111-aaab-002248db53bb"
+                                        },
+                                        {
+                                            "attr":  "slcrm_authorityassignmentused",
+                                            "nav":  "slcrm_AuthorityAssignmentUsed",
+                                            "entity":  "slcrm_underwriterauthority",
+                                            "id":  "cfc3f6a8-89b0-f111-aaab-002248db53bb"
+                                        },
+                                        {
+                                            "attr":  "slcrm_onwardauthorityassignment",
+                                            "nav":  "slcrm_OnwardAuthorityAssignment",
+                                            "entity":  "slcrm_underwriterauthority",
+                                            "id":  "3eff1b56-a2bd-f111-aaad-e4fade0d2043"
+                                        },
+                                        {
+                                            "attr":  "slcrm_authoritylevelused",
+                                            "nav":  "slcrm_AuthorityLevelUsed",
+                                            "entity":  "slcrm_authoritylevel",
+                                            "id":  "cfbacfae-88b0-f111-aaab-002248db53bb"
+                                        }
+                                    ],
+                        "users":  [
+                                      {
+                                          "attr":  "slcrm_decisionby",
+                                          "nav":  "slcrm_DecisionBy",
+                                          "email":  "AritraBhattacharya@61858932.onmicrosoft.com"
+                                      }
+                                  ]
+                    },
+                    {
+                        "id":  "52aef90a-91bd-f111-aaad-e4fade0d2043",
+                        "fields":  {
+                                       "slcrm_newitemstatus":  "Authorised",
+                                       "slcrm_previousitemstatus":  "Submitted",
+                                       "slcrm_name":  "Decision 1 - Authorised",
+                                       "slcrm_decisioncomments":  "smoke authorise",
+                                       "slcrm_decisiontype":  633650000,
+                                       "slcrm_authoritylevelsnapshot":  "Level 5",
+                                       "slcrm_correlationid":  "8e66599d-c6fa-4c93-96b0-1f325bdb31e0",
+                                       "slcrm_authorityranksnapshot":  5,
+                                       "slcrm_decisionon":  "2026-10-01T12:10:10Z",
+                                       "slcrm_itemrevisionnumber":  1,
+                                       "slcrm_decisionsequence":  1,
+                                       "statuscode":  1
+                                   },
+                        "lookups":  [
+                                        {
+                                            "attr":  "slcrm_referral",
+                                            "nav":  "slcrm_Referral",
+                                            "entity":  "slcrm_referralrequest",
+                                            "id":  "0ae777f8-90bd-f111-aaad-e4fade0d2043"
+                                        },
+                                        {
+                                            "attr":  "slcrm_referralitem",
+                                            "nav":  "slcrm_ReferralItem",
+                                            "entity":  "slcrm_referralitem",
+                                            "id":  "0be777f8-90bd-f111-aaad-e4fade0d2043"
+                                        },
+                                        {
+                                            "attr":  "slcrm_authorityassignmentused",
+                                            "nav":  "slcrm_AuthorityAssignmentUsed",
+                                            "entity":  "slcrm_underwriterauthority",
+                                            "id":  "cfc3f6a8-89b0-f111-aaab-002248db53bb"
+                                        }
+                                    ],
+                        "users":  [
+                                      {
+                                          "attr":  "slcrm_decisionby",
+                                          "nav":  "slcrm_DecisionBy",
+                                          "email":  "AritraBhattacharya@61858932.onmicrosoft.com"
+                                      }
+                                  ]
+                    },
+                    {
+                        "id":  "55aef90a-91bd-f111-aaad-e4fade0d2043",
+                        "fields":  {
+                                       "slcrm_newitemstatus":  "Rejected",
+                                       "slcrm_previousitemstatus":  "Submitted",
+                                       "slcrm_name":  "Decision 1 - Rejected",
+                                       "slcrm_decisiontype":  633650004,
+                                       "slcrm_authoritylevelsnapshot":  "Level 5",
+                                       "slcrm_correlationid":  "a0da55df-62ee-4ead-800b-61f84a54b647",
+                                       "slcrm_rejectedreason":  "smoke reject: outside appetite",
+                                       "slcrm_authorityranksnapshot":  5,
+                                       "slcrm_decisionon":  "2026-10-01T12:10:11Z",
+                                       "slcrm_itemrevisionnumber":  1,
+                                       "slcrm_decisionsequence":  1,
+                                       "statuscode":  1
+                                   },
+                        "lookups":  [
+                                        {
+                                            "attr":  "slcrm_referral",
+                                            "nav":  "slcrm_Referral",
+                                            "entity":  "slcrm_referralrequest",
+                                            "id":  "0ae777f8-90bd-f111-aaad-e4fade0d2043"
+                                        },
+                                        {
+                                            "attr":  "slcrm_referralitem",
+                                            "nav":  "slcrm_ReferralItem",
+                                            "entity":  "slcrm_referralitem",
+                                            "id":  "0ce777f8-90bd-f111-aaad-e4fade0d2043"
+                                        },
+                                        {
+                                            "attr":  "slcrm_authorityassignmentused",
+                                            "nav":  "slcrm_AuthorityAssignmentUsed",
+                                            "entity":  "slcrm_underwriterauthority",
+                                            "id":  "cfc3f6a8-89b0-f111-aaab-002248db53bb"
+                                        }
+                                    ],
+                        "users":  [
+                                      {
+                                          "attr":  "slcrm_decisionby",
+                                          "nav":  "slcrm_DecisionBy",
+                                          "email":  "AritraBhattacharya@61858932.onmicrosoft.com"
+                                      }
+                                  ]
+                    },
+                    {
+                        "id":  "5a8a7a11-91bd-f111-aaad-e4fade0d2043",
+                        "fields":  {
+                                       "slcrm_newitemstatus":  "Authorised with Recommendations",
+                                       "slcrm_previousitemstatus":  "Resubmitted",
+                                       "slcrm_name":  "Decision 1 - Authorised With Recommendation",
+                                       "slcrm_decisioncomments":  "RRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRR",
+                                       "slcrm_decisiontype":  633650001,
+                                       "slcrm_authoritylevelsnapshot":  "Level 5",
+                                       "slcrm_correlationid":  "a63d6a89-46b9-445f-a06b-7d0d0a983d1a",
+                                       "slcrm_authorityranksnapshot":  5,
+                                       "slcrm_decisionon":  "2026-10-01T12:10:25Z",
+                                       "slcrm_itemrevisionnumber":  2,
+                                       "slcrm_decisionsequence":  1,
+                                       "slcrm_recommendations":  "RRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRR...",
+                                       "statuscode":  1
+                                   },
+                        "lookups":  [
+                                        {
+                                            "attr":  "slcrm_referral",
+                                            "nav":  "slcrm_Referral",
+                                            "entity":  "slcrm_referralrequest",
+                                            "id":  "0ae777f8-90bd-f111-aaad-e4fade0d2043"
+                                        },
+                                        {
+                                            "attr":  "slcrm_referralitem",
+                                            "nav":  "slcrm_ReferralItem",
+                                            "entity":  "slcrm_referralitem",
+                                            "id":  "508a7a11-91bd-f111-aaad-e4fade0d2043"
+                                        },
+                                        {
+                                            "attr":  "slcrm_authorityassignmentused",
+                                            "nav":  "slcrm_AuthorityAssignmentUsed",
+                                            "entity":  "slcrm_underwriterauthority",
+                                            "id":  "cfc3f6a8-89b0-f111-aaab-002248db53bb"
+                                        }
+                                    ],
+                        "users":  [
+                                      {
+                                          "attr":  "slcrm_decisionby",
+                                          "nav":  "slcrm_DecisionBy",
+                                          "email":  "AritraBhattacharya@61858932.onmicrosoft.com"
+                                      }
+                                  ]
+                    },
+                    {
+                        "id":  "8d1249a2-91bd-f111-aaad-e4fade0d2043",
+                        "fields":  {
+                                       "slcrm_newitemstatus":  "Rejected",
+                                       "slcrm_previousitemstatus":  "Submitted",
+                                       "slcrm_name":  "Decision 1 - Rejected",
+                                       "slcrm_decisiontype":  633650004,
+                                       "slcrm_authoritylevelsnapshot":  "Level 5",
+                                       "slcrm_correlationid":  "e2f1f47e-45ed-42a7-afad-d5050ea0790f",
+                                       "slcrm_rejectedreason":  "smoke: rejected through the dialog",
+                                       "slcrm_authorityranksnapshot":  5,
+                                       "slcrm_decisionon":  "2026-10-01T12:14:28Z",
+                                       "slcrm_itemrevisionnumber":  1,
+                                       "slcrm_decisionsequence":  1,
+                                       "statuscode":  1
+                                   },
+                        "lookups":  [
+                                        {
+                                            "attr":  "slcrm_referral",
+                                            "nav":  "slcrm_Referral",
+                                            "entity":  "slcrm_referralrequest",
+                                            "id":  "72d70982-91bd-f111-aaad-e4fade0d2043"
+                                        },
+                                        {
+                                            "attr":  "slcrm_referralitem",
+                                            "nav":  "slcrm_ReferralItem",
+                                            "entity":  "slcrm_referralitem",
+                                            "id":  "75d70982-91bd-f111-aaad-e4fade0d2043"
+                                        },
+                                        {
+                                            "attr":  "slcrm_authorityassignmentused",
+                                            "nav":  "slcrm_AuthorityAssignmentUsed",
+                                            "entity":  "slcrm_underwriterauthority",
+                                            "id":  "cfc3f6a8-89b0-f111-aaab-002248db53bb"
+                                        }
+                                    ],
+                        "users":  [
+                                      {
+                                          "attr":  "slcrm_decisionby",
+                                          "nav":  "slcrm_DecisionBy",
+                                          "email":  "AritraBhattacharya@61858932.onmicrosoft.com"
+                                      }
+                                  ]
+                    },
+                    {
+                        "id":  "e68a9ec6-a5bd-f111-aaad-e4fade0d2043",
+                        "fields":  {
+                                       "slcrm_newitemstatus":  "Authorised with Recommendations",
+                                       "slcrm_previousitemstatus":  "Submitted",
+                                       "slcrm_name":  "Decision 1 - Authorised With Recommendation",
+                                       "slcrm_decisioncomments":  "RRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRR",
+                                       "slcrm_decisiontype":  633650001,
+                                       "slcrm_authoritylevelsnapshot":  "Level 5",
+                                       "slcrm_correlationid":  "14850226-e004-4aef-a317-937efdec9dad",
+                                       "slcrm_canapprovereferralssnapshot":  true,
+                                       "slcrm_authorityranksnapshot":  5,
+                                       "slcrm_decisionon":  "2026-10-01T14:38:33Z",
+                                       "slcrm_itemrevisionnumber":  1,
+                                       "slcrm_decisionsequence":  1,
+                                       "slcrm_recommendations":  "RRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRR",
+                                       "statuscode":  1
+                                   },
+                        "lookups":  [
+                                        {
+                                            "attr":  "slcrm_referral",
+                                            "nav":  "slcrm_Referral",
+                                            "entity":  "slcrm_referralrequest",
+                                            "id":  "250061c0-a5bd-f111-aaad-e4fade0d2043"
+                                        },
+                                        {
+                                            "attr":  "slcrm_referralitem",
+                                            "nav":  "slcrm_ReferralItem",
+                                            "entity":  "slcrm_referralitem",
+                                            "id":  "260061c0-a5bd-f111-aaad-e4fade0d2043"
+                                        },
+                                        {
+                                            "attr":  "slcrm_authorityassignmentused",
+                                            "nav":  "slcrm_AuthorityAssignmentUsed",
+                                            "entity":  "slcrm_underwriterauthority",
+                                            "id":  "cfc3f6a8-89b0-f111-aaab-002248db53bb"
+                                        },
+                                        {
+                                            "attr":  "slcrm_authoritylevelused",
+                                            "nav":  "slcrm_AuthorityLevelUsed",
+                                            "entity":  "slcrm_authoritylevel",
+                                            "id":  "cfbacfae-88b0-f111-aaab-002248db53bb"
+                                        }
+                                    ],
+                        "users":  [
+                                      {
+                                          "attr":  "slcrm_decisionby",
+                                          "nav":  "slcrm_DecisionBy",
+                                          "email":  "AritraBhattacharya@61858932.onmicrosoft.com"
+                                      }
+                                  ]
+                    },
+                    {
+                        "id":  "807422f3-a5bd-f111-aaad-e4fade0d2043",
+                        "fields":  {
+                                       "slcrm_newitemstatus":  "Rejected",
+                                       "slcrm_previousitemstatus":  "Submitted",
+                                       "slcrm_name":  "Decision 1 - Rejected",
+                                       "slcrm_decisiontype":  633650004,
+                                       "slcrm_authoritylevelsnapshot":  "Level 5",
+                                       "slcrm_correlationid":  "95d0d064-2c7d-4647-88b6-05b1e2d9681b",
+                                       "slcrm_canapprovereferralssnapshot":  true,
+                                       "slcrm_rejectedreason":  "smoke reject",
+                                       "slcrm_authorityranksnapshot":  5,
+                                       "slcrm_decisionon":  "2026-10-01T14:39:56Z",
+                                       "slcrm_itemrevisionnumber":  1,
+                                       "slcrm_decisionsequence":  1,
+                                       "statuscode":  1
+                                   },
+                        "lookups":  [
+                                        {
+                                            "attr":  "slcrm_referral",
+                                            "nav":  "slcrm_Referral",
+                                            "entity":  "slcrm_referralrequest",
+                                            "id":  "250061c0-a5bd-f111-aaad-e4fade0d2043"
+                                        },
+                                        {
+                                            "attr":  "slcrm_referralitem",
+                                            "nav":  "slcrm_ReferralItem",
+                                            "entity":  "slcrm_referralitem",
+                                            "id":  "270061c0-a5bd-f111-aaad-e4fade0d2043"
+                                        },
+                                        {
+                                            "attr":  "slcrm_authorityassignmentused",
+                                            "nav":  "slcrm_AuthorityAssignmentUsed",
+                                            "entity":  "slcrm_underwriterauthority",
+                                            "id":  "cfc3f6a8-89b0-f111-aaab-002248db53bb"
+                                        },
+                                        {
+                                            "attr":  "slcrm_authoritylevelused",
+                                            "nav":  "slcrm_AuthorityLevelUsed",
+                                            "entity":  "slcrm_authoritylevel",
+                                            "id":  "cfbacfae-88b0-f111-aaab-002248db53bb"
+                                        }
+                                    ],
+                        "users":  [
+                                      {
+                                          "attr":  "slcrm_decisionby",
+                                          "nav":  "slcrm_DecisionBy",
+                                          "email":  "AritraBhattacharya@61858932.onmicrosoft.com"
+                                      }
+                                  ]
+                    },
+                    {
+                        "id":  "857422f3-a5bd-f111-aaad-e4fade0d2043",
+                        "fields":  {
+                                       "slcrm_newitemstatus":  "Rejected",
+                                       "slcrm_previousitemstatus":  "Submitted",
+                                       "slcrm_name":  "Decision 1 - Rejected",
+                                       "slcrm_decisiontype":  633650004,
+                                       "slcrm_authoritylevelsnapshot":  "Level 5",
+                                       "slcrm_correlationid":  "17c861d8-1efe-487f-9d8c-18e44de6a406",
+                                       "slcrm_canapprovereferralssnapshot":  true,
+                                       "slcrm_rejectedreason":  "smoke reject for revision",
+                                       "slcrm_authorityranksnapshot":  5,
+                                       "slcrm_decisionon":  "2026-10-01T14:39:57Z",
+                                       "slcrm_itemrevisionnumber":  1,
+                                       "slcrm_decisionsequence":  1,
+                                       "statuscode":  1
+                                   },
+                        "lookups":  [
+                                        {
+                                            "attr":  "slcrm_referral",
+                                            "nav":  "slcrm_Referral",
+                                            "entity":  "slcrm_referralrequest",
+                                            "id":  "827422f3-a5bd-f111-aaad-e4fade0d2043"
+                                        },
+                                        {
+                                            "attr":  "slcrm_referralitem",
+                                            "nav":  "slcrm_ReferralItem",
+                                            "entity":  "slcrm_referralitem",
+                                            "id":  "837422f3-a5bd-f111-aaad-e4fade0d2043"
+                                        },
+                                        {
+                                            "attr":  "slcrm_authorityassignmentused",
+                                            "nav":  "slcrm_AuthorityAssignmentUsed",
+                                            "entity":  "slcrm_underwriterauthority",
+                                            "id":  "cfc3f6a8-89b0-f111-aaab-002248db53bb"
+                                        },
+                                        {
+                                            "attr":  "slcrm_authoritylevelused",
+                                            "nav":  "slcrm_AuthorityLevelUsed",
+                                            "entity":  "slcrm_authoritylevel",
+                                            "id":  "cfbacfae-88b0-f111-aaab-002248db53bb"
+                                        }
+                                    ],
+                        "users":  [
+                                      {
+                                          "attr":  "slcrm_decisionby",
+                                          "nav":  "slcrm_DecisionBy",
+                                          "email":  "AritraBhattacharya@61858932.onmicrosoft.com"
+                                      }
+                                  ]
+                    },
+                    {
+                        "id":  "43d4f398-a6bd-f111-aaad-e4fade0d2043",
+                        "fields":  {
+                                       "slcrm_newitemstatus":  "Onward for Approval",
+                                       "slcrm_previousitemstatus":  "Submitted",
+                                       "slcrm_name":  "Decision 1 - Onward for Approval",
+                                       "slcrm_decisioncomments":  "smoke: needs level 6",
+                                       "slcrm_decisiontype":  633650003,
+                                       "slcrm_authoritylevelsnapshot":  "Level 5",
+                                       "slcrm_onwardapproversnapshot":  "Microsoft Flow",
+                                       "slcrm_correlationid":  "02ea0faf-b782-4995-a894-b665267687dc",
+                                       "slcrm_canapprovereferralssnapshot":  true,
+                                       "slcrm_authorityranksnapshot":  5,
+                                       "slcrm_decisionon":  "2026-10-01T14:44:36Z",
+                                       "slcrm_itemrevisionnumber":  1,
+                                       "slcrm_decisionsequence":  1,
+                                       "statuscode":  1
+                                   },
+                        "lookups":  [
+                                        {
+                                            "attr":  "slcrm_referral",
+                                            "nav":  "slcrm_Referral",
+                                            "entity":  "slcrm_referralrequest",
+                                            "id":  "40ff1b56-a2bd-f111-aaad-e4fade0d2043"
+                                        },
+                                        {
+                                            "attr":  "slcrm_referralitem",
+                                            "nav":  "slcrm_ReferralItem",
+                                            "entity":  "slcrm_referralitem",
+                                            "id":  "41ff1b56-a2bd-f111-aaad-e4fade0d2043"
+                                        },
+                                        {
+                                            "attr":  "slcrm_authorityassignmentused",
+                                            "nav":  "slcrm_AuthorityAssignmentUsed",
+                                            "entity":  "slcrm_underwriterauthority",
+                                            "id":  "cfc3f6a8-89b0-f111-aaab-002248db53bb"
+                                        },
+                                        {
+                                            "attr":  "slcrm_onwardauthorityassignment",
+                                            "nav":  "slcrm_OnwardAuthorityAssignment",
+                                            "entity":  "slcrm_underwriterauthority",
+                                            "id":  "3eff1b56-a2bd-f111-aaad-e4fade0d2043"
+                                        },
+                                        {
+                                            "attr":  "slcrm_authoritylevelused",
+                                            "nav":  "slcrm_AuthorityLevelUsed",
+                                            "entity":  "slcrm_authoritylevel",
+                                            "id":  "cfbacfae-88b0-f111-aaab-002248db53bb"
+                                        }
+                                    ],
+                        "users":  [
+                                      {
+                                          "attr":  "slcrm_decisionby",
+                                          "nav":  "slcrm_DecisionBy",
+                                          "email":  "AritraBhattacharya@61858932.onmicrosoft.com"
+                                      }
+                                  ]
+                    }
+                ]
+}
