@@ -1,4 +1,4 @@
-# SL Referrals data + dialog files
+﻿# SL Referrals data + dialog files
 
 Exported from Dev (`61858932.crm17.dynamics.com`) with solution **1.0.0.19**.
 
@@ -12,7 +12,12 @@ Exported from Dev (`61858932.crm17.dynamics.com`) with solution **1.0.0.19**.
    Records are upserted by their original GUID, so it is safe to re-run. Users are matched by email; anyone not found
    becomes the user running the import. Run it before registering the lifecycle plug-ins, otherwise the decision guard
    may reject the historic decisions.
-3. Re-export from Dev at any time with `.\Export-Data.ps1`.
+3. Apply the top-bar logo (themes cannot be put in a solution, so this is a separate step):
+   ```powershell
+   ..\sl-referrals-app\branding\Apply-Branding.ps1 -OrgUrl https://<target>.crm.dynamics.com
+   ```
+   The app tile icon comes with the solution; the top-bar logo comes from this theme. The theme is environment-wide.
+4. Re-export from Dev at any time with `.\Export-Data.ps1`.
 
 ## Contents of `data/`
 account (6), opportunity (14), and the 13 `slcrm_` tables (country 3, product 6, cover section 8, authority level 8,
@@ -31,3 +36,4 @@ decision 14, participant 6, notification 6). Only the accounts and opportunities
 
 The `.js` files are bundles; the readable source is under `referral-lifecycle/src/Referral.Dialog` and
 `sl-referrals-app/referral-builder/pcf/webresource`.
+
