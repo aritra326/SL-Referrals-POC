@@ -1,0 +1,10 @@
+<svg width="256" height="256" viewBox="0 0 256 256" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Referrals app icon: transparent background, Intact brand red -->
+  <path d="M64 28h80l48 48v152a12 12 0 0 1-12 12H64a12 12 0 0 1-12-12V40a12 12 0 0 1 12-12z" fill="#C8102E"/>
+  <path d="M144 28l48 48h-36a12 12 0 0 1-12-12V28z" fill="#8F0C21"/>
+  <rect x="80" y="104" width="80" height="10" rx="5" fill="#FFFFFF" fill-opacity=".85"/>
+  <rect x="80" y="130" width="56" height="10" rx="5" fill="#FFFFFF" fill-opacity=".85"/>
+  <circle cx="176" cy="192" r="40" fill="#FFFFFF"/>
+  <circle cx="176" cy="192" r="34" fill="#1A1919"/>
+  <path d="M158 192h34m0 0-14-14m14 14-14 14" stroke="#FFFFFF" stroke-width="9" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>
