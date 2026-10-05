@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Create referral</title>
+    <link rel="stylesheet" href="slcrm_common.css?v=1.0.0.20" />
+    <style>
+        /* Layout that only this page needs. Colours and buttons come from slcrm_common.css. */
+        html, body, #app { height: 100%; }
+        .root { display: flex; flex-direction: column; min-height: 100%; }
+        .shell { flex: 1; width: 100%; max-width: 1180px; margin: 0 auto; padding: 0 24px 24px; }
+        .centre { padding: 48px; text-align: center; color: var(--muted); }
+
+        .head {
+            display: flex;
+            align-items: flex-start;
+            justify-content: space-between;
+            gap: 24px;
+            flex-wrap: wrap;
+            padding: 24px 0 14px;
+            border-bottom: 1px solid var(--border);
+            margin-bottom: 24px;
+        }
+        .title { font-size: 28px; font-weight: 600; }
+        .subtitle { color: var(--muted); margin-top: 4px; }
+        .pill { border: 1px solid var(--border-strong); border-radius: 12px; padding: 3px 12px; color: var(--muted); }
+
+        /* Form on the left, summary on the right. On narrow screens the summary drops underneath. */
+        .layout { display: grid; grid-template-columns: minmax(0, 1fr) 320px; gap: 24px; align-items: start; }
+        @media (max-width: 1024px) { .layout { grid-template-columns: minmax(0, 1fr); } }
+
+        .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 16px 20px; }
+        .field.full { grid-column: 1 / -1; }
+        @media (max-width: 680px) { .grid-2 { grid-template-columns: 1fr; } }
+        .read-only { min-height: 32px; display: flex; align-items: center; padding: 0 8px; border-radius: 4px; background: #f3f2f1; color: #484644; }
+        .read-only.empty { color: var(--faint); font-style: italic; }
+
+        .items { display: flex; flex-direction: column; gap: 16px; }
+        .item { border: 1px solid var(--border); border-radius: 6px; background: #fff; overflow: hidden; }
+        .item.invalid-item { border-color: var(--danger); }
+        .item-head {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 12px;
+            padding: 8px 16px;
+            background: #f3f2f1;
+            border-bottom: 1px solid var(--border);
+        }
+        .item-title { display: flex; align-items: center; gap: 8px; font-weight: 600; min-width: 0; }
+        .item-number {
+            width: 24px;
+            height: 24px;
+            display: grid;
+            place-items: center;
+            border-radius: 4px;
+            background: var(--brand);
+            color: #fff;
+            font-size: 12px;
+            font-weight: 700;
+        }
+        .item-body { padding: 16px; }
+        button.small { padding: 2px 10px; font-size: 12px; }
+
+        .rail { display: flex; flex-direction: column; gap: 16px; position: sticky; top: 0; }
+        .rail-card, .info-card { background: #fff; border: 1px solid var(--border); border-radius: 6px; padding: 16px; }
+        .info-card { background: var(--brand-soft); border-color: #b4d6fa; color: #0b4a85; font-size: 12px; line-height: 1.5; }
+        .rail-title { font-size: 14px; font-weight: 600; margin-bottom: 10px; }
+        .stat { display: flex; justify-content: space-between; gap: 12px; padding: 6px 0; border-bottom: 1px solid #f3f2f1; font-size: 12px; }
+        .stat-key { color: var(--muted); }
+        .stat-value { font-weight: 600; text-align: right; }
+        .checklist { list-style: none; margin: 12px 0 0; padding: 0; display: flex; flex-direction: column; gap: 6px; font-size: 12px; }
+        .checklist .ok { color: #323130; }
+        .checklist .todo { color: var(--faint); }
+
+        .cmd-bar { position: sticky; bottom: 0; z-index: 10; background: #fff; border-top: 1px solid var(--border); box-shadow: 0 -2px 8px rgba(0, 0, 0, 0.08); }
+        .cmd-inner {
+            max-width: 1180px;
+            margin: 0 auto;
+            padding: 12px 24px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 16px;
+            flex-wrap: wrap;
+        }
+        .cmd-status { font-size: 12px; color: var(--muted); }
+        .cmd-buttons { display: flex; align-items: center; gap: 8px; }
+        button.link-button { border-color: transparent; background: none; }
+    </style>
+</head>
+<body>
+    <div id="app"><div style="padding:48px;text-align:center;color:#605e5c">Loading referral data&hellip;</div></div>
+    <script src="slcrm_common.js?v=1.0.0.20"></script>
+    <script src="slcrm_referralbuilder.js?v=1.0.0.20"></script>
+</body>
+</html>

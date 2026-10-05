@@ -1,9 +1,9 @@
-﻿# SL Referrals data + dialog files
+# SL Referrals data export and import
 
-Exported from Dev (`61858932.crm17.dynamics.com`) with solution **1.0.0.19**.
+Exported from Dev (`61858932.crm17.dynamics.com`), solution up to **1.0.0.19**. The Dev trial environment has since expired, so this folder and `solution-export/` are the only copy.
 
 ## Move the app and data to another environment
-1. Import `solution-export/SL_Referrals_1_0_0_19.zip` (or `_managed.zip`) into the target. This creates the tables,
+1. Import `solution-export/SL_Referrals_1_0_0_20.zip` (or `_managed.zip`) into the target. 1.0.0.20 carries the readable web resources. This creates the tables,
    forms, app, theme and the web resources below.
 2. `az login` to the target tenant, then:
    ```powershell
@@ -25,15 +25,12 @@ referral reason 15, policy 5, rationale 11, underwriter authority 9, referral re
 decision 14, participant 6, notification 6). Only the accounts and opportunities the referrals point at are included.
 `manifest.json` holds the import order.
 
-## `dialog-files/` (as deployed in Dev)
-| File | Web resource | What it is |
-|---|---|---|
-| `copyrationale.html` / `.js` | `slcrm_copyrationale.*` | Copy Rationale dialog |
-| `referraldecision.html` / `.js` | `slcrm_referraldecision.*` | Referral lifecycle decision dialog |
-| `ReferralCommands.js` | `slcrm_ReferralCommands.js` | Command bar handlers that open the dialogs |
-| `referralbuilder.html` / `.js` | `slcrm_referralbuilder.*` | New Referral builder page |
-| `OpportunityCommands.js` | `slcrm_OpportunityCommands.js` | Opportunity command bar handler |
+## Dialog, Copy Rationale and Referral Builder files
 
-The `.js` files are bundles; the readable source is under `referral-lifecycle/src/Referral.Dialog` and
-`sl-referrals-app/referral-builder/pcf/webresource`.
+These are now plain readable JavaScript in `sl-referrals-app/webresources/` (see its README.md). They are no longer copied here.
 
+## Note on opportunity links
+
+The first export lost each opportunity's link to its policy and customer. They were rebuilt from the rationales, policies and referrals
+(10 of 14 opportunities have a policy; the other 4 are Microsoft's sample cafe opportunities, which have none). `Export-Data.ps1` is fixed
+so a future export keeps those links.

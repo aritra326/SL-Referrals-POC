@@ -23,7 +23,7 @@ $skipAttrs = 'organizationid','ownerid','owninguser','owningteam','owningbusines
 # Whitelists for the standard tables (their full column set has many read-only/calculated columns).
 $std = @{
   account     = @{ set='accounts';      id='accountid';     cols='name','accountnumber','telephone1','emailaddress1','address1_line1','address1_city','address1_postalcode','address1_country','websiteurl','description' }
-  opportunity = @{ set='opportunities'; id='opportunityid'; cols='name','description','estimatedvalue','estimatedclosedate','budgetamount','closeprobability' }
+  opportunity = @{ set='opportunities'; id='opportunityid'; cols='name','parentaccountid','description','estimatedvalue','estimatedclosedate','budgetamount','closeprobability' }
 }
 $setNames = @{ account='accounts'; opportunity='opportunities'; systemuser='systemusers'; contact='contacts' }
 $userCache = @{}
@@ -32,6 +32,11 @@ function Get-UserEmail($id) {
     try { $userCache[$id] = (Invoke-RestMethod "$api/systemusers($id)?`$select=internalemailaddress" -Headers $h).internalemailaddress } catch { $userCache[$id] = $null }
   }
   $userCache[$id]
+}
+# Windows PowerShell 5.1 adds a byte-order mark with -Encoding UTF8, which breaks other tools. Write plain UTF-8 instead.
+function Write-Json($path) {
+  process { $text += $_ }
+  end { [IO.File]::WriteAllText($path, $text, (New-Object Text.UTF8Encoding($false))) }
 }
 function Get-All($url) {
   while ($url) { $r = Invoke-RestMethod $url -Headers $h; $r.value; $url = $r.'@odata.nextLink' }
@@ -50,7 +55,8 @@ function Convert-Row($row, $meta, $cols) {
     if ($n -match '^_(.+)_value$') {
       $attr = $Matches[1]
       if ($skipAttrs -contains $attr -or $attr -match '^(created|modified)') { continue }
-      if ($cols -and $cols -notcontains $attr) { continue }
+      # The whitelist is for the standard columns. Our own slcrm_* lookups (e.g. the opportunity's policy) are always kept.
+      if ($cols -and $cols -notcontains $attr -and $attr -notlike 'slcrm_*') { continue }
       $target = $row."$n@Microsoft.Dynamics.CRM.lookuplogicalname"
       $rels = @($meta.Rels | Where-Object ReferencingAttribute -eq $attr)
       $rel = $rels | Where-Object ReferencedEntity -eq $target | Select-Object -First 1
@@ -59,7 +65,7 @@ function Convert-Row($row, $meta, $cols) {
       else { $lookups += [ordered]@{ attr = $attr; nav = $rel.ReferencingEntityNavigationPropertyName; entity = $target; id = $p.Value } }
     }
     elseif ($n -ne $meta.Id) {
-      if ($cols) { if ($cols -notcontains $n) { continue } }
+      if ($cols) { if ($cols -notcontains $n -and $n -notlike 'slcrm_*') { continue } }
       elseif ($meta.Writable -notcontains $n -or $skipAttrs -contains $n) { continue }
       $fields[$n] = $p.Value
     }
@@ -73,7 +79,7 @@ foreach ($t in $slcrm) {
   $rows = @(Get-All "$api/$($meta.Set)")
   $recs = @($rows | ForEach-Object { Convert-Row $_ $meta $null })
   foreach ($r in $recs) { foreach ($l in $r.lookups) { if ($refs.ContainsKey($l.entity)) { $refs[$l.entity][$l.id] = $true } } }
-  [ordered]@{ table = $t; set = $meta.Set; records = $recs } | ConvertTo-Json -Depth 10 | Set-Content (Join-Path $OutDir "$t.json") -Encoding UTF8
+  [ordered]@{ table = $t; set = $meta.Set; records = $recs } | ConvertTo-Json -Depth 10 | Write-Json (Join-Path $OutDir "$t.json")
   "{0,-30} {1}" -f $t, $recs.Count
   $manifest += [ordered]@{ table = $t; count = $recs.Count }
 }
@@ -98,7 +104,7 @@ foreach ($t in 'account','opportunity') {
     $have = @($recs | ForEach-Object id)
     foreach ($id in @($refs['account'].Keys)) { if ($have -notcontains $id) { $recs += Convert-Row (Invoke-RestMethod "$api/accounts($id)" -Headers $h) (Get-Meta 'account') $std.account.cols } }
   }
-  [ordered]@{ table = $t; set = $std[$t].set; records = $recs } | ConvertTo-Json -Depth 10 | Set-Content (Join-Path $OutDir "$t.json") -Encoding UTF8
+  [ordered]@{ table = $t; set = $std[$t].set; records = $recs } | ConvertTo-Json -Depth 10 | Write-Json (Join-Path $OutDir "$t.json")
   "{0,-30} {1}" -f $t, $recs.Count
   $manifest += [ordered]@{ table = $t; count = $recs.Count }
 }
@@ -106,6 +112,6 @@ foreach ($t in 'account','opportunity') {
 # Import order: standard tables and reference data first.
 $order = @('account','opportunity') + $slcrm
 [ordered]@{ exportedFrom = $OrgUrl; exportedOn = (Get-Date).ToString('s'); importOrder = $order; sets = $setNames; tables = $manifest } |
-  ConvertTo-Json -Depth 6 | Set-Content (Join-Path $OutDir 'manifest.json') -Encoding UTF8
+  ConvertTo-Json -Depth 6 | Write-Json (Join-Path $OutDir 'manifest.json')
 'Done.'
 

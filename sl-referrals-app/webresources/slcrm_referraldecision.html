@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Referral decision</title>
+    <link rel="stylesheet" href="slcrm_common.css?v=1.0.0.20" />
+    <style>
+        /* Layout that only this dialog needs. Colours and buttons come from slcrm_common.css. */
+        .dialog { padding: 20px 24px; max-width: 560px; }
+        .title { font-size: 20px; font-weight: 600; margin: 0 0 12px; }
+        .context { background: #fff; border: 1px solid var(--border); border-radius: 4px; padding: 10px 12px; margin-bottom: 12px; }
+        .context-main { font-weight: 600; }
+        .context-sub { color: var(--muted); margin-top: 2px; }
+        .consequence { color: var(--muted); margin: 0 0 16px; }
+        .comment { min-height: 100px; }
+        .authorities { border: 0; padding: 0; margin: 0 0 12px; }
+        .picker { width: 100%; border-collapse: collapse; margin-top: 4px; }
+        .picker th { text-align: left; font-weight: 600; color: var(--muted); padding: 4px 8px 4px 0; border-bottom: 1px solid var(--border); }
+        .picker td { padding: 6px 8px 6px 0; border-bottom: 1px solid #f3f2f1; }
+        .picker tr.selected td { background: var(--brand-soft); }
+        .buttons { display: flex; justify-content: flex-end; gap: 8px; margin-top: 18px; }
+    </style>
+</head>
+<body>
+    <div id="app"><div class="dialog">Loading&hellip;</div></div>
+    <script src="slcrm_common.js?v=1.0.0.20"></script>
+    <script src="slcrm_referraldecision.js?v=1.0.0.20"></script>
+</body>
+</html>

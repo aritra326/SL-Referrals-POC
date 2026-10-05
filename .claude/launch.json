@@ -6,6 +6,12 @@
       "runtimeExecutable": "node",
       "runtimeArgs": ["sl-referrals-app/referral-builder/pcf/webresource/dev/serve.js"],
       "port": 5599
+    },
+    {
+      "name": "webresources-harness",
+      "runtimeExecutable": "node",
+      "runtimeArgs": ["sl-referrals-app/webresources/dev/serve.js"],
+      "port": 5600
     }
   ]
 }

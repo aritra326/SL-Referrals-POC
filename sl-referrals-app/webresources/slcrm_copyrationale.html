@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Copy rationale</title>
+    <link rel="stylesheet" href="slcrm_common.css?v=1.0.0.20" />
+    <style>
+        /* Layout that only this page needs. Colours and buttons come from slcrm_common.css. */
+        html, body, #app { height: 100%; }
+        .root { display: flex; flex-direction: column; min-height: 100%; }
+        .shell { flex: 1; width: 100%; max-width: 920px; margin: 0 auto; padding: 0 24px 24px; }
+        .centre { padding: 48px; text-align: center; color: var(--muted); }
+
+        .head { padding: 24px 0 14px; border-bottom: 1px solid var(--border); margin-bottom: 20px; }
+        .title { font-size: 28px; font-weight: 600; }
+        .subtitle { color: var(--muted); margin-top: 4px; }
+        .policy-line { display: flex; align-items: center; gap: 8px; margin-top: 12px; color: #323130; }
+        .badge { background: var(--brand-soft); color: var(--brand); border: 1px solid #b4d6fa; border-radius: 10px; padding: 1px 10px; font-weight: 600; }
+
+        .list { display: flex; flex-direction: column; gap: 12px; margin-bottom: 24px; }
+        .rationale-card { background: #fff; border: 1px solid var(--border); border-radius: 6px; overflow: hidden; }
+        .rationale-card.selected { border-color: var(--brand); box-shadow: 0 0 0 1px var(--brand); }
+        .card-select { display: flex; align-items: center; gap: 12px; padding: 12px 16px; cursor: pointer; }
+        .card-year {
+            min-width: 56px;
+            height: 40px;
+            display: grid;
+            place-items: center;
+            padding: 0 8px;
+            border-radius: 4px;
+            background: var(--brand-soft);
+            color: var(--brand);
+            font-size: 16px;
+            font-weight: 700;
+        }
+        .card-info { flex: 1; min-width: 0; }
+        .card-name { font-size: 16px; font-weight: 600; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+        .card-meta { font-size: 12px; color: var(--muted); margin-top: 2px; }
+        .card-preview { border-top: 1px solid var(--border); padding: 16px; background: var(--page); display: flex; flex-direction: column; gap: 12px; }
+        .preview-field { font-size: 12px; }
+        .preview-label { font-weight: 600; color: #484644; }
+        .preview-value { margin-top: 2px; white-space: pre-wrap; color: #484644; }
+        .preview-value.empty { color: var(--faint); font-style: italic; }
+
+        .empty { border: 1px dashed var(--border); border-radius: 6px; padding: 24px; text-align: center; color: var(--muted); margin-bottom: 24px; }
+
+        .cmd-bar { position: sticky; bottom: 0; background: #fff; border-top: 1px solid var(--border); box-shadow: 0 -2px 8px rgba(0, 0, 0, 0.08); }
+        .cmd-inner {
+            max-width: 920px;
+            margin: 0 auto;
+            padding: 12px 24px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 16px;
+            flex-wrap: wrap;
+        }
+        .cmd-status { font-size: 12px; color: var(--muted); }
+        .cmd-buttons { display: flex; gap: 8px; }
+    </style>
+</head>
+<body>
+    <div id="app"><div style="padding:48px;text-align:center;color:#605e5c">Loading rationale history&hellip;</div></div>
+    <script src="slcrm_common.js?v=1.0.0.20"></script>
+    <script src="slcrm_copyrationale.js?v=1.0.0.20"></script>
+</body>
+</html>

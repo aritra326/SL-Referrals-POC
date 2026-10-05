@@ -1,0 +1,87 @@
+/*
+ * SL CRM - shared look for the web resource pages.
+ * Change a colour once in :root and every page follows. Page-specific layout lives in each page's own <style> block.
+ */
+:root {
+    --brand: #0f6cbd;
+    --brand-soft: #eff6fc;
+    --text: #201f1e;
+    --muted: #605e5c;
+    --faint: #8a8886;
+    --border: #e1dfdd;
+    --border-strong: #8a8886;
+    --page: #faf9f8;
+    --card: #ffffff;
+    --danger: #a4262c;
+    --danger-soft: #fdf3f4;
+    --success: #107c10;
+    --warning-soft: #fff4ce;
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+
+html, body {
+    margin: 0;
+    padding: 0;
+    background: var(--page);
+    color: var(--text);
+    font-family: 'Segoe UI', system-ui, sans-serif;
+    font-size: 14px;
+}
+
+h1, h2, h3, p { margin: 0; }
+
+/* ---------- Buttons ---------- */
+button {
+    font: inherit;
+    padding: 6px 18px;
+    border-radius: 4px;
+    cursor: pointer;
+    border: 1px solid var(--border-strong);
+    background: #fff;
+    color: var(--text);
+}
+button.primary { background: var(--brand); border-color: var(--brand); color: #fff; }
+button.link { border: 0; background: none; color: var(--brand); padding: 0; text-decoration: underline; }
+button:disabled { opacity: 0.55; cursor: default; }
+
+/* ---------- Form fields ---------- */
+.label { display: block; font-weight: 600; margin-bottom: 4px; }
+.required { color: var(--danger); }
+.hint { color: var(--muted); font-size: 12px; margin-top: 3px; }
+.field-error { color: var(--danger); font-size: 12px; margin-top: 3px; }
+
+input[type="text"], input[type="date"], select, textarea {
+    width: 100%;
+    font: inherit;
+    color: inherit;
+    padding: 6px 8px;
+    border: 1px solid var(--border-strong);
+    border-radius: 4px;
+    background: #fff;
+}
+textarea { resize: vertical; }
+select:disabled, input:disabled, textarea:disabled { background: #f3f2f1; color: var(--faint); }
+.invalid { border-color: var(--danger); }
+
+/* ---------- Messages ---------- */
+.message { margin-top: 10px; color: #323130; }
+.message.error { color: var(--danger); }
+.message.success { color: var(--success); }
+.banner { padding: 10px 14px; border-radius: 4px; border: 1px solid var(--border); background: #fff; margin-bottom: 16px; }
+.banner.error { border-color: #e6b3b6; background: var(--danger-soft); color: var(--danger); }
+.banner.success { border-color: #b5deb5; background: #f1faf1; color: var(--success); }
+.banner.warning { border-color: #f1d98a; background: var(--warning-soft); color: #5c4a00; }
+.banner strong { display: block; margin-bottom: 2px; }
+.banner ul { margin: 4px 0 0; padding-left: 18px; }
+.code { color: var(--muted); font-size: 12px; }
+
+/* ---------- Cards ---------- */
+.card { background: var(--card); border: 1px solid var(--border); border-radius: 6px; margin-bottom: 20px; overflow: hidden; }
+.card-head { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 14px 20px; border-bottom: 1px solid var(--border); }
+.card-title { font-size: 16px; font-weight: 600; }
+.card-desc { color: var(--muted); font-size: 12px; margin-top: 2px; }
+.card-body { padding: 20px; }
+
+.fatal { max-width: 680px; margin: 48px auto; padding: 24px; color: var(--danger); background: var(--danger-soft); border: 1px solid #e6b3b6; border-radius: 6px; }
+.muted { color: var(--muted); }
