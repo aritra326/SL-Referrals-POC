@@ -35,3 +35,14 @@ One CSV per table, 15 files, numbered in the order they must be imported (parent
 3. User lookups (submitted by, primary underwriter, assigned approver, ...) hold full names and resolve against users in the target. Any that do not
    match need to be fixed in the file or left unmapped.
 4. Names that repeat within a table can resolve to the wrong row. If that happens, use `data-export/Import-Data.ps1` instead, which matches by GUID.
+
+## Why the order is not strictly account > opportunity > policy > ...
+The flow you describe is right, but a few small reference tables have to exist first because policy, referral request and referral item look them up
+(product, country, cover section, authority level, referral reason, underwriter authority). That is why the numbered order is account, opportunity,
+then the reference tables, then policy, rationale, referral request, referral item, decision, participant, notification.
+
+Opportunity and policy point at each other (`opportunity.slcrm_policy` and `policy.slcrm_opportunity`). On the first import of
+`02-opportunity.csv` the Policy column cannot resolve yet, so leave it unmapped, import policy (08), then re-import `02-opportunity.csv` with the
+Policy column mapped (the GUID in column 1 makes it update the same rows).
+
+Only the 14 opportunities that referrals or policies point at are exported (the environment has 14 more of Microsoft's sample opportunities).
