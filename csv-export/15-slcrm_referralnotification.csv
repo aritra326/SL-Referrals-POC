@@ -1,0 +1,7 @@
+﻿"slcrm_referralnotificationid","slcrm_name","slcrm_processingstatus","slcrm_templatekey","slcrm_senton","slcrm_eventtype","slcrm_deduplicationkey","statuscode","slcrm_referral","slcrm_recipientuser"
+"d6b6d6d4-8bb0-f111-aaab-002248db53bb","RFN-001000","Sent","referral-notification","2026-09-10T09:05:00Z","Submitted","DEDUP-4b9e2ebc-633650000","Active","REF-001000","Aritra Bhattacharya"
+"17b7d6d4-8bb0-f111-aaab-002248db53bb","RFN-001001","Sent","referral-notification","2026-09-10T09:05:00Z","Submitted","DEDUP-4c9e2ebc-633650000","Active","REF-001001","David Mallory"
+"19b7d6d4-8bb0-f111-aaab-002248db53bb","RFN-001002","Sent","referral-notification","2026-09-10T09:05:00Z","Decision Recorded","DEDUP-649e2ebc-633650004","Active","REF-001002","Alan Steiner"
+"61b7d6d4-8bb0-f111-aaab-002248db53bb","RFN-001003","Sent","referral-notification","2026-09-10T09:05:00Z","Decision Recorded","DEDUP-0ec75ac3-633650004","Active","REF-001003","Jeremy Johnson"
+"62b7d6d4-8bb0-f111-aaab-002248db53bb","RFN-001004","Sent","referral-notification","2026-09-10T09:05:00Z","Decision Recorded","DEDUP-0fc75ac3-633650004","Active","REF-001004","Aritra Bhattacharya"
+"f06906db-8bb0-f111-aaab-002248db53bb","RFN-001005","Sent","referral-notification","2026-09-10T09:05:00Z","Decision Recorded","DEDUP-a2d932e4-633650004","Active","REF-001006","David Mallory"
