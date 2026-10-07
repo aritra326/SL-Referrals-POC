@@ -6,7 +6,9 @@ It does what Build-SolutionZip.ps1 does (replace the web resource files and bump
 form changes below, by editing customizations.xml as text so nothing else in the package is touched:
 
   1. Cover / Section main form: shows every column (it only had the name before).
-  2. Referral Item main form: Underwriter Rationale is now directly under Referral Details ("What needs approval").
+  2. Cover / Section views (Active, Inactive, Advanced Find, Associated, Lookup, Quick Find): show Product, Cover Code,
+     Parent, Display Order, validity dates and Status Reason, and Quick Find also searches Cover Code and External Code.
+  3. Referral Item main form: Underwriter Rationale is now directly under Referral Details ("What needs approval").
      It used to sit in a row directly after a 4-row-high memo ("Requested Decision / Exception"), so the memo covered
      it and it never showed. Every tall memo now has the filler rows it needs.
 
@@ -187,6 +189,49 @@ def edit_item_form(text):
     return text[:begin] + form + text[end:]
 
 
+def cover_view_columns(querytype):
+    """(column, width) pairs for a Cover / Section view; the small lookup and associated views stay compact."""
+    if querytype in ("2", "64"):
+        return [("slcrm_name", 220), ("slcrm_product", 150), ("slcrm_covercode", 100)]
+    return [("slcrm_name", 220), ("slcrm_product", 150), ("slcrm_covercode", 100), ("slcrm_parentcoversection", 170),
+            ("slcrm_displayorder", 90), ("slcrm_effectivefrom", 110), ("slcrm_effectiveto", 110),
+            ("statuscode", 110), ("createdon", 125)]
+
+
+def edit_cover_views(text):
+    entity = re.search(r"<Name[^>]*>slcrm_CoverSection</Name>", text)
+    begin = text.index("<SavedQueries>", entity.start())
+    end = text.index("</SavedQueries>", begin)
+    block = text[begin:end]
+
+    def edit_query(match):
+        query = match.group(0)
+        if "<layoutxml>" not in query:
+            return query  # the app-level "Covers / Sections" view has no columns of its own
+        querytype = re.search(r"<querytype>(\d+)</querytype>", query).group(1)
+        columns = cover_view_columns(querytype)
+
+        cells = "".join('                  <cell name="%s" width="%d" />\n' % c for c in columns)
+        query = re.sub(r'(<row name="[^"]+" id="slcrm_coversectionid">\n).*?(                </row>)',
+                       lambda m: m.group(1) + cells + m.group(2), query, count=1, flags=re.S)
+
+        wanted = [name for name, _ in columns] + (["slcrm_externalcode"] if querytype == "4" else [])
+        missing = [n for n in wanted if '<attribute name="%s" />' % n not in query]
+        add = "".join('                  <attribute name="%s" />\n' % n for n in missing)
+        query = query.replace('                  <attribute name="slcrm_name" />\n',
+                              '                  <attribute name="slcrm_name" />\n' + add, 1)
+
+        if querytype == "4":  # quick find also searches the codes
+            like = '                    <condition attribute="slcrm_name" operator="like" value="{0}" />\n'
+            more = "".join('                    <condition attribute="%s" operator="like" value="{0}" />\n' % n
+                           for n in ("slcrm_covercode", "slcrm_externalcode"))
+            query = query.replace(like, like + more, 1)
+        return query
+
+    block = re.sub(r"<savedquery>.*?</savedquery>", edit_query, block, flags=re.S)
+    return text[:begin] + block + text[end:]
+
+
 def web_resource_files():
     names = [
         "slcrm_common.js", "slcrm_common.css", "slcrm_referraldecision.html", "slcrm_referraldecision.js",
@@ -215,6 +260,8 @@ def main():
         return raw[3:].decode("utf-8") if raw.startswith(bom) else raw.decode("utf-8"), raw.startswith(bom)
 
     customizations, c_bom = text_of("customizations.xml")
+    crlf = "\r\n" in customizations
+    customizations = customizations.replace("\r\n", "\n")  # edit with plain \n, restore the file's line endings below
     solution, s_bom = text_of("solution.xml")
 
     for name, data in web_resource_files().items():
@@ -225,10 +272,13 @@ def main():
         print("Replaced  " + name)
 
     customizations = edit_cover_form(customizations)
+    customizations = edit_cover_views(customizations)
     customizations = edit_item_form(customizations)
     solution, n = re.subn(r"<Version>[^<]+</Version>", "<Version>%s</Version>" % args.version, solution, count=1)
     assert n == 1, "no <Version> in solution.xml"
 
+    if crlf:
+        customizations = customizations.replace("\n", "\r\n")
     contents["customizations.xml"] = (bom if c_bom else b"") + customizations.encode("utf-8")
     contents["solution.xml"] = (bom if s_bom else b"") + solution.encode("utf-8")
 
