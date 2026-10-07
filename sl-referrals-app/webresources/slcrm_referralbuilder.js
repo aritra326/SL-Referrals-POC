@@ -81,7 +81,8 @@ SLCRM.ReferralBuilder = (function () {
             referralReason: "slcrm_ReferralReason",
             product: "slcrm_Product",
             requiredAuthorityLevel: "slcrm_RequiredAuthorityLevel",
-            underwriterAuthority: "slcrm_UnderwriterAuthority"
+            underwriterAuthority: "slcrm_UnderwriterAuthority",
+            assignedApprover: "slcrm_AssignedApprover"
         }
     };
 
@@ -214,7 +215,12 @@ SLCRM.ReferralBuilder = (function () {
             const level = levels.find(function (candidate) { return candidate.id === levelId; });
             // Keep the authority only when its level is known and ranks high enough.
             if (level && (level.rank || 0) >= requiredRank) {
-                approvers.push({ id: row.slcrm_underwriterauthorityid, label: row.slcrm_name || "(unnamed)", rank: level.rank });
+                approvers.push({
+                    id: row.slcrm_underwriterauthorityid,
+                    label: row.slcrm_name || "(unnamed)",
+                    rank: level.rank,
+                    userId: common.cleanGuid(row._slcrm_underwriter_value) // becomes the item's Assigned Approver
+                });
             }
         });
         return approvers;
@@ -315,6 +321,10 @@ SLCRM.ReferralBuilder = (function () {
         if (item.underwriterAuthorityId) {
             data[ITEM.nav.underwriterAuthority + "@odata.bind"] = common.bindTo(TABLES.underwriterAuthority.entitySet, item.underwriterAuthorityId);
         }
+        // The server only lets the Assigned Approver act on an item, so the chosen authority's underwriter is saved as well.
+        if (item.assignedApproverId) {
+            data[ITEM.nav.assignedApprover + "@odata.bind"] = common.bindTo(TABLES.systemUser.entitySet, item.assignedApproverId);
+        }
 
         await common.getXrm().WebApi.createRecord(TABLES.referralItem.table, data);
     }
@@ -342,7 +352,8 @@ SLCRM.ReferralBuilder = (function () {
             coverSectionId: "",
             rationale: "",
             requiredAuthorityLevelId: "",
-            underwriterAuthorityId: ""
+            underwriterAuthorityId: "",
+            assignedApproverId: "" // the user behind the chosen authority
         };
     }
 
@@ -543,9 +554,14 @@ SLCRM.ReferralBuilder = (function () {
                 return;
             }
             Object.assign(item, changes);
+            if (changes.underwriterAuthorityId !== undefined) {
+                const chosen = (state.approversByKey[clientKey] || []).find(function (a) { return a.id === item.underwriterAuthorityId; });
+                item.assignedApproverId = chosen ? chosen.userId || "" : "";
+            }
             // A different level means a different list of approvers, so the old choice no longer applies.
             if (changes.requiredAuthorityLevelId !== undefined) {
                 item.underwriterAuthorityId = "";
+                item.assignedApproverId = "";
                 loadApproversFor(item);
             }
             draw();
@@ -574,7 +590,8 @@ SLCRM.ReferralBuilder = (function () {
                 coverSectionId: original.coverSectionId,
                 rationale: original.rationale,
                 requiredAuthorityLevelId: original.requiredAuthorityLevelId,
-                underwriterAuthorityId: original.underwriterAuthorityId
+                underwriterAuthorityId: original.underwriterAuthorityId,
+                assignedApproverId: original.assignedApproverId
             });
             state.approversByKey[copy.clientKey] = state.approversByKey[original.clientKey] || [];
             state.draft.items.splice(index + 1, 0, copy);
@@ -607,6 +624,7 @@ SLCRM.ReferralBuilder = (function () {
             state.draft.items.forEach(function (item) {
                 item.coverSectionId = "";
                 item.underwriterAuthorityId = "";
+                item.assignedApproverId = "";
             });
             state.approversByKey = {};
             state.draft.items.forEach(function (item) {

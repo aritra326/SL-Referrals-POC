@@ -370,7 +370,7 @@ test("builder: eligible approvers are filtered by level rank", async function ()
     const xrm = fakeXrm({
         retrieveMultiple: function () {
             return [
-                { slcrm_underwriterauthorityid: "A1", slcrm_name: "Dana - Hull", _slcrm_authoritylevel_value: "L5" },
+                { slcrm_underwriterauthorityid: "A1", slcrm_name: "Dana - Hull", _slcrm_authoritylevel_value: "L5", _slcrm_underwriter_value: "{U-DANA}" },
                 { slcrm_underwriterauthorityid: "A2", slcrm_name: "Sam - Hull", _slcrm_authoritylevel_value: "L2" },
                 { slcrm_underwriterauthorityid: "A3", slcrm_name: "Unknown level", _slcrm_authoritylevel_value: "L9" }
             ];
@@ -379,6 +379,7 @@ test("builder: eligible approvers are filtered by level rank", async function ()
     const levels = [{ id: "L5", label: "Level 5", rank: 5 }, { id: "L2", label: "Level 2", rank: 2 }];
     const list = await builder(xrm).loadEligibleAuthorities("{PROD-1}", 4, levels);
     assert.deepEqual(list.map(function (a) { return a.id; }), ["A1"]);
+    assert.strictEqual(list[0].userId, "U-DANA", "the approver's user id is kept so it can become the Assigned Approver");
 
     const query = decodeURIComponent(xrm.calls[0].options);
     assert.match(query, /_slcrm_productclassofbusiness_value eq PROD-1/);
@@ -396,6 +397,7 @@ test("builder: saveDraft creates the referral then one numbered item per row, as
     draft.countryId = "CTY-1";
     draft.inceptionDate = "2026-11-01";
     draft.items[0].underwriterAuthorityId = "UA-1";
+    draft.items[0].assignedApproverId = "U-DANA";
     draft.items.push(Object.assign(page.newItem(), { referralReasonId: "RR-2", coverSectionId: "CV-2", rationale: "Second", requiredAuthorityLevelId: "LV-2" }));
 
     const result = await page.saveDraft(draft, "USER-1");
@@ -423,7 +425,9 @@ test("builder: saveDraft creates the referral then one numbered item per row, as
     assert.strictEqual(first["slcrm_Referral@odata.bind"], "/slcrm_referralrequests(ID-1)");
     assert.strictEqual(first["slcrm_UnderwriterAuthority@odata.bind"], "/slcrm_underwriterauthorities(UA-1)");
     assert.strictEqual(creates[2].data.slcrm_logicalitemid, "ITEM-0002");
+    assert.strictEqual(first["slcrm_AssignedApprover@odata.bind"], "/systemusers(U-DANA)", "the chosen authority's user becomes the Assigned Approver");
     assert.ok(!("slcrm_UnderwriterAuthority@odata.bind" in creates[2].data), "no approver chosen, so no lookup is sent");
+    assert.ok(!("slcrm_AssignedApprover@odata.bind" in creates[2].data), "no approver chosen, so no Assigned Approver is sent");
 });
 
 test("builder: if an item fails, the message says how many were saved", async function () {
