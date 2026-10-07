@@ -8,7 +8,10 @@ form changes below, by editing customizations.xml as text so nothing else in the
   1. Cover / Section main form: shows every column (it only had the name before).
   2. Cover / Section views (Active, Inactive, Advanced Find, Associated, Lookup, Quick Find): show Product, Cover Code,
      Parent, Display Order, validity dates and Status Reason, and Quick Find also searches Cover Code and External Code.
-  3. Referral Item main form: Underwriter Rationale is now directly under Referral Details ("What needs approval").
+  3. Command bar buttons: every SLCRM.ReferralCommands.* button must pass the form (PrimaryControl, parameter type 5).
+     "Request more info" was exported with an empty parameter list, so it called the script with nothing and showed
+     "This command must be run from a Referral Request or Referral Item form."
+  4. Referral Item main form: Underwriter Rationale is now directly under Referral Details ("What needs approval").
      It used to sit in a row directly after a 4-row-high memo ("Requested Decision / Exception"), so the memo covered
      it and it never showed. Every tall memo now has the filler rows it needs.
 
@@ -232,6 +235,28 @@ def edit_cover_views(text):
     return text[:begin] + block + text[end:]
 
 
+PRIMARY_CONTROL = '[{"type":5}]'  # the Command Designer's "PrimaryControl" parameter (the form context)
+
+
+def fix_button_parameters(contents):
+    """Give every SLCRM.ReferralCommands.* button the PrimaryControl parameter. Returns the buttons it changed."""
+    fixed = []
+    for name in list(contents):
+        if not (name.startswith("appactions/") and name.endswith("/appaction.xml")):
+            continue
+        raw = contents[name]
+        bom = b"\xef\xbb\xbf" if raw.startswith(b"\xef\xbb\xbf") else b""
+        text = raw[len(bom):].decode("utf-8")
+        if "<onclickeventjavascriptfunctionname>SLCRM.ReferralCommands." not in text:
+            continue
+        pattern = r"<onclickeventjavascriptparameters>\s*\[\s*\]\s*</onclickeventjavascriptparameters>"
+        fixed_text, n = re.subn(pattern, "<onclickeventjavascriptparameters>%s</onclickeventjavascriptparameters>" % PRIMARY_CONTROL, text)
+        if n:
+            contents[name] = bom + fixed_text.encode("utf-8")
+            fixed.append(name.split("/")[1].split("!")[0])
+    return fixed
+
+
 def web_resource_files():
     names = [
         "slcrm_common.js", "slcrm_common.css", "slcrm_referraldecision.html", "slcrm_referraldecision.js",
@@ -272,6 +297,8 @@ def main():
         print("Replaced  " + name)
 
     customizations = edit_cover_form(customizations)
+    for button in fix_button_parameters(contents):
+        print("Fixed button parameters: " + button)
     customizations = edit_cover_views(customizations)
     customizations = edit_item_form(customizations)
     solution, n = re.subn(r"<Version>[^<]+</Version>", "<Version>%s</Version>" % args.version, solution, count=1)
