@@ -6,8 +6,9 @@ It does what Build-SolutionZip.ps1 does (replace the web resource files and bump
 form changes below, by editing customizations.xml as text so nothing else in the package is touched:
 
   1. Cover / Section main form: shows every column (it only had the name before).
-  2. Referral Item main form: Underwriter Rationale is now directly under Item Summary. It used to sit in a row
-     directly after a 4-row-high memo ("Requested Decision / Exception"), so the memo covered it and it never showed.
+  2. Referral Item main form: Underwriter Rationale is now directly under Referral Details ("What needs approval").
+     It used to sit in a row directly after a 4-row-high memo ("Requested Decision / Exception"), so the memo covered
+     it and it never showed. Every tall memo now has the filler rows it needs.
 
 Usage (from the repo root):
   python3 sl-referrals-app/build_solution_zip.py \
@@ -138,9 +139,18 @@ def item_approval_rows():
         row(r, cell(c, "ri-reason", "Referral Reason", "slcrm_referralreason", "lookup")) +
         row(r, cell(c, "ri-cover", "Cover / Section", "slcrm_coversection", "lookup")) +
         row(r, cell(c, "ri-summary", "Item Summary", "slcrm_itemsummary", "text")) +
-        row(r, cell(c, "ri-rationale", "Underwriter Rationale", "slcrm_underwriterrationale", "memo", span=4)) +
-        empty_rows(r, 3) +
         row(r, cell(c, "ri-decision", "Requested Decision / Exception", "slcrm_requesteddecisionexception", "memo", span=4)) +
+        empty_rows(r, 3)
+    )
+
+
+def item_details_rows():
+    """Referral Details, then Underwriter Rationale straight under it. Each 4-row-high memo needs 3 filler rows."""
+    c, r = 32, 30
+    return (
+        row(r, cell(c, "ri-details", "Referral Details", "slcrm_referraldetails", "memo", span=4)) +
+        empty_rows(r, 3) +
+        row(r, cell(c, "ri-rationale", "Underwriter Rationale", "slcrm_underwriterrationale", "memo", span=4)) +
         empty_rows(r, 3)
     )
 
@@ -161,15 +171,19 @@ def edit_cover_form(text):
     return text[:begin] + form + text[end:]
 
 
+def replace_section_rows(form, section_name, rows_xml):
+    marker = form.index('name="%s"' % section_name)
+    rows_begin = form.index("<rows>", marker) + len("<rows>\n")
+    rows_end = form.rindex("</rows>", marker, form.index("</section>", marker))
+    rows_end = form.rindex("\n", 0, rows_end) + 1  # back to the start of the closing tag's line
+    return form[:rows_begin] + rows_xml + form[rows_end:]
+
+
 def edit_item_form(text):
     begin, end = form_span(text, ITEM_FORM_ID)
     form = text[begin:end]
-    marker = form.index('name="tab_2_section_2"')
-    rows_begin = form.index("<rows>", marker) + len("<rows>\n")
-    rows_end = form.rindex("</rows>", marker, form.index("</section>", marker))
-    # rows_end sits at the start of the closing tag's indentation; walk back to the line start
-    rows_end = form.rindex("\n", 0, rows_end) + 1
-    form = form[:rows_begin] + item_approval_rows() + form[rows_end:]
+    form = replace_section_rows(form, "tab_2_section_2", item_approval_rows())
+    form = replace_section_rows(form, "tab_2_section_3", item_details_rows())
     return text[:begin] + form + text[end:]
 
 
